@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jade Waves Enterprise</title>
+    <meta
+      name="description"
+      content="Global industrial minerals and export-ready material supply by Jade Waves Enterprise."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#111111",
+              mist: "#f5f5f7",
+              stone: "#e8e8ed",
+              jade: "#1f7067",
+              sand: "#d8c6a5",
+              night: "#050505",
+            },
+            fontFamily: {
+              sans: ["Manrope", "sans-serif"],
+            },
+            letterSpacing: {
+              micro: "0.18em",
+              wideish: "0.28em",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        html {
+          scroll-behavior: smooth;
+        }
+
+        body {
+          @apply bg-mist font-sans text-ink antialiased;
+        }
+
+        ::selection {
+          background: rgba(31, 112, 103, 0.2);
+        }
+      }
+
+      @layer components {
+        .site-header.is-scrolled {
+          @apply mt-3 rounded-full border border-black/5 bg-white/75 px-5 py-3 shadow-[0_18px_60px_rgba(0,0,0,0.08)] backdrop-blur-xl;
+        }
+
+        .reveal {
+          opacity: 0;
+          transform: translateY(28px);
+          transition:
+            opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+            transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .section-shell {
+          @apply mx-auto w-[min(1200px,calc(100vw-2rem))] md:w-[min(1200px,calc(100vw-4rem))];
+        }
+
+        .section-kicker {
+          @apply text-[0.72rem] font-semibold uppercase tracking-wideish text-black/45;
+        }
+
+        .selector-button {
+          @apply rounded-full px-4 py-2.5 text-sm font-medium text-black/60 transition hover:text-black;
+        }
+
+        .selector-button.is-active {
+          @apply bg-black text-white shadow-[0_12px_30px_rgba(0,0,0,0.15)];
+        }
+
+        .display-panel {
+          @apply relative overflow-hidden rounded-[2.75rem] border border-black/5 shadow-[0_40px_120px_rgba(0,0,0,0.14)];
+        }
+
+        .hero-stage {
+          background:
+            radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8), transparent 28%),
+            radial-gradient(circle at 80% 22%, rgba(31, 112, 103, 0.18), transparent 20%),
+            linear-gradient(180deg, #f8f8fa 0%, #eaedf1 100%);
+        }
+
+        .stage-panel {
+          @apply relative overflow-hidden rounded-[2.75rem] border border-black/5 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.14)];
+        }
+
+        .stage-silica {
+          background:
+            radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95), transparent 24%),
+            radial-gradient(circle at 76% 24%, rgba(216, 198, 165, 0.35), transparent 18%),
+            linear-gradient(180deg, #fafbfd 0%, #e4ecf3 46%, #d8c7a7 100%);
+        }
+
+        .stage-bentonite {
+          background:
+            radial-gradient(circle at 22% 20%, rgba(255, 255, 255, 0.9), transparent 22%),
+            radial-gradient(circle at 80% 20%, rgba(31, 112, 103, 0.28), transparent 18%),
+            linear-gradient(180deg, #eff4f1 0%, #dce8e1 52%, #a9b9b1 100%);
+        }
+
+        .stage-cementitious {
+          background:
+            radial-gradient(circle at 24% 14%, rgba(255, 255, 255, 0.8), transparent 18%),
+            radial-gradient(circle at 72% 22%, rgba(17, 17, 17, 0.12), transparent 18%),
+            linear-gradient(180deg, #edeef2 0%, #d2d7de 44%, #8e9297 100%);
+        }
+
+        .stage-process {
+          background:
+            radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.9), transparent 22%),
+            radial-gradient(circle at 78% 18%, rgba(31, 112, 103, 0.18), transparent 18%),
+            linear-gradient(180deg, #fbfbf8 0%, #ede7da 50%, #d8cbb3 100%);
+        }
+
+        .ops-row {
+          @apply grid gap-6 border-b border-white/10 py-10 md:py-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14;
+        }
+
+        .metric-block {
+          @apply rounded-[2rem] bg-white px-7 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.08)] ring-1 ring-black/5;
+        }
+
+        .input-line {
+          @apply w-full border-0 border-b border-white/20 bg-transparent pb-3 text-white outline-none transition focus:border-white;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <div class="absolute left-[-12rem] top-[-10rem] h-[28rem] w-[28rem] rounded-full bg-jade/8 blur-3xl"></div>
+      <div class="absolute right-[-10rem] top-[8rem] h-[24rem] w-[24rem] rounded-full bg-sand/25 blur-3xl"></div>
+      <div class="absolute bottom-[-10rem] left-1/2 h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-white blur-3xl"></div>
+    </div>
+
+    <header
+      class="site-header fixed inset-x-0 top-0 z-30 mx-auto flex w-[min(1200px,calc(100vw-2rem))] items-center justify-between gap-4 py-5 transition-all duration-300 md:w-[min(1200px,calc(100vw-4rem))]"
+    >
+      <a href="#top" aria-label="Jade Waves Enterprise home" class="inline-flex items-center gap-3">
+        <img
+          src="assets/jade-waves-logo-transparent.png"
+          alt="Jade Waves Enterprise logo"
+          class="h-11 w-auto sm:h-12"
+        />
+      </a>
+
+      <nav class="hidden items-center gap-7 text-sm text-black/55 lg:flex" aria-label="Primary">
+        <a class="transition hover:text-black" href="#story">Story</a>
+        <a class="transition hover:text-black" href="#systems">Systems</a>
+        <a class="transition hover:text-black" href="#execution">Execution</a>
+        <a class="transition hover:text-black" href="#contact">Contact</a>
+      </nav>
+
+      <a
+        href="#contact"
+        class="inline-flex min-h-11 items-center justify-center rounded-full bg-black px-5 text-sm font-semibold text-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] transition hover:-translate-y-0.5"
+        >Request A Quote</a
+      >
+    </header>
+
+    <main id="top" class="relative z-10">
+      <section class="px-0 pt-28">
+        <div class="section-shell">
+          <div class="reveal flex flex-col items-center text-center">
+            <p class="section-kicker">Jade Waves Enterprise</p>
+            <h1 class="mt-4 max-w-[12ch] text-[clamp(3.25rem,8vw,7rem)] font-extrabold leading-[0.92] tracking-[-0.06em] text-black">
+              Global materials, handled like a finished product.
+            </h1>
+            <p class="mt-6 max-w-[44rem] text-[1.04rem] leading-7 text-black/62 md:text-[1.12rem]">
+              Quartz, silica sand, bentonite, fly ash, copper slag, kaolin,
+              activated bleaching earth, and salt supplied with cleaner
+              communication, tighter export execution, and less friction for the buyer.
+            </p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#systems"
+                class="inline-flex min-h-12 items-center justify-center rounded-full bg-black px-6 text-sm font-semibold text-white transition hover:-translate-y-0.5"
+                >Explore Material Systems</a
+              >
+              <a
+                href="#execution"
+                class="inline-flex min-h-12 items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 text-sm font-semibold text-black transition hover:-translate-y-0.5"
+                >See How It Works</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="hero-stage display-panel reveal mt-12 min-h-[540px] p-5 sm:p-7 lg:min-h-[720px] lg:p-9"
+            data-hero-stage
+          >
+            <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.5),transparent_45%,rgba(17,17,17,0.03)_100%)]"></div>
+            <img
+              src="assets/jade-waves-logo-transparent.png"
+              alt=""
+              aria-hidden="true"
+              class="absolute right-6 top-6 h-16 w-auto opacity-15 sm:h-20"
+            />
+
+            <div
+              class="absolute inset-x-[6%] top-[18%] h-[32%] rounded-[2rem] bg-white/35 blur-3xl"
+              data-hero-float
+            ></div>
+            <div
+              class="absolute left-[9%] top-[20%] h-28 w-28 rounded-full bg-white/70 blur-xl sm:h-36 sm:w-36"
+              data-hero-float
+            ></div>
+            <div
+              class="absolute right-[12%] top-[24%] h-24 w-24 rounded-full bg-jade/20 blur-xl sm:h-32 sm:w-32"
+              data-hero-float
+            ></div>
+            <div
+              class="absolute bottom-0 left-0 right-0 h-[44%] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(227,233,239,0.85)_30%,rgba(212,200,174,0.95)_100%)]"
+            ></div>
+            <div
+              class="absolute bottom-[8%] left-[6%] right-[6%] h-[22%] rounded-[2.5rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.32),rgba(31,112,103,0.08)_45%,rgba(17,17,17,0.04)_100%)] blur-[2px]"
+            ></div>
+
+            <div class="relative z-10 flex h-full flex-col justify-between">
+              <div class="max-w-[28rem]">
+                <p class="section-kicker text-black/40">Near Mundra Port / Worldwide Delivery</p>
+                <h2 class="mt-3 text-[clamp(2rem,4vw,4rem)] font-extrabold leading-[0.95] tracking-[-0.05em] text-black">
+                  From source to vessel, built for industrial buyers who notice the difference.
+                </h2>
+              </div>
+
+              <div class="grid gap-3 text-left sm:grid-cols-2 lg:grid-cols-4">
+                <div class="rounded-[1.4rem] bg-white/60 px-4 py-4 backdrop-blur-md ring-1 ring-black/5">
+                  <p class="section-kicker text-black/35">Terms</p>
+                  <p class="mt-2 text-lg font-semibold text-black">FOB / CIF / CNF</p>
+                </div>
+                <div class="rounded-[1.4rem] bg-white/60 px-4 py-4 backdrop-blur-md ring-1 ring-black/5">
+                  <p class="section-kicker text-black/35">Container Type</p>
+                  <p class="mt-2 text-lg font-semibold text-black">LCL / FCL</p>
+                </div>
+                <div class="rounded-[1.4rem] bg-white/60 px-4 py-4 backdrop-blur-md ring-1 ring-black/5">
+                  <p class="section-kicker text-black/35">Lead Window</p>
+                  <p class="mt-2 text-lg font-semibold text-black">7-10 Days</p>
+                </div>
+                <div class="rounded-[1.4rem] bg-white/60 px-4 py-4 backdrop-blur-md ring-1 ring-black/5">
+                  <p class="section-kicker text-black/35">Commercial Flow</p>
+                  <p class="mt-2 text-lg font-semibold text-black">Sample First</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="story" class="mt-6 bg-black px-0 py-24 text-white md:py-32">
+        <div class="section-shell">
+          <div class="reveal flex flex-col items-center text-center">
+            <p class="section-kicker text-white/40">A Different Kind Of Export Partner</p>
+            <h2 class="mt-4 max-w-[11ch] text-[clamp(3rem,7vw,6.5rem)] font-extrabold leading-[0.9] tracking-[-0.06em]">
+              Industrial materials, with consumer-grade clarity.
+            </h2>
+            <p class="mt-6 max-w-[42rem] text-[1.05rem] leading-7 text-white/62">
+              Jade Waves is not presented as a commodity list. It is positioned
+              as a disciplined supply partner that studies the requirement,
+              prepares the right grade, documents the shipment properly, and
+              stays responsive when export reality gets messy.
+            </p>
+          </div>
+
+          <div class="reveal mt-16 grid gap-4 md:grid-cols-3">
+            <div class="rounded-[2rem] border border-white/10 bg-white/[0.04] px-6 py-8 backdrop-blur-md">
+              <p class="section-kicker text-white/35">Supply</p>
+              <p class="mt-3 text-2xl font-semibold tracking-[-0.04em]">Source at origin</p>
+              <p class="mt-3 leading-7 text-white/62">
+                Mining, processing, warehousing, and dispatch are framed as one continuous system.
+              </p>
+            </div>
+            <div class="rounded-[2rem] border border-white/10 bg-white/[0.04] px-6 py-8 backdrop-blur-md">
+              <p class="section-kicker text-white/35">Quality</p>
+              <p class="mt-3 text-2xl font-semibold tracking-[-0.04em]">Prepared for the end use</p>
+              <p class="mt-3 leading-7 text-white/62">
+                The pitch centers on usable grades, application fit, and cleaner material handling.
+              </p>
+            </div>
+            <div class="rounded-[2rem] border border-white/10 bg-white/[0.04] px-6 py-8 backdrop-blur-md">
+              <p class="section-kicker text-white/35">Execution</p>
+              <p class="mt-3 text-2xl font-semibold tracking-[-0.04em]">Export without guesswork</p>
+              <p class="mt-3 leading-7 text-white/62">
+                The founder voice emphasizes vessel changes, documents, urgency, and staying clear under pressure.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="systems" class="px-0 py-24 md:py-32">
+        <div class="section-shell">
+          <div class="reveal flex flex-col items-center text-center">
+            <p class="section-kicker">Material Systems</p>
+            <h2 class="mt-4 max-w-[10ch] text-[clamp(3rem,7vw,6rem)] font-extrabold leading-[0.92] tracking-[-0.06em]">
+              One supply partner, multiple industrial tracks.
+            </h2>
+            <p class="mt-5 max-w-[42rem] text-[1.04rem] leading-7 text-black/62">
+              Instead of showing a crowded catalog, the page groups the business
+              into a few clearer systems buyers can scan in seconds.
+            </p>
+          </div>
+
+          <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-2.5" role="tablist" aria-label="Material systems">
+            <button class="selector-button is-active" type="button" role="tab" aria-selected="true" data-product="silica">
+              Quartz / Silica
+            </button>
+            <button class="selector-button" type="button" role="tab" aria-selected="false" data-product="bentonite">
+              Bentonite / Activated Clay
+            </button>
+            <button class="selector-button" type="button" role="tab" aria-selected="false" data-product="cementitious">
+              Fly Ash / Copper Slag
+            </button>
+            <button class="selector-button" type="button" role="tab" aria-selected="false" data-product="process">
+              Kaolin / Salt
+            </button>
+          </div>
+
+          <div
+            id="product-stage"
+            class="stage-panel stage-silica reveal mt-10 min-h-[560px] p-6 sm:p-8 lg:min-h-[680px] lg:p-10"
+            role="tabpanel"
+          >
+            <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.45),transparent_40%,rgba(17,17,17,0.04)_100%)]"></div>
+            <div class="absolute left-[8%] top-[16%] h-24 w-24 rounded-full bg-white/70 blur-xl sm:h-36 sm:w-36"></div>
+            <div class="absolute right-[8%] top-[18%] h-20 w-20 rounded-full bg-black/5 blur-xl sm:h-32 sm:w-32"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-[42%] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.22)_20%,rgba(0,0,0,0.12)_100%)]"></div>
+            <div class="absolute bottom-[14%] left-[8%] right-[8%] h-[16%] rounded-[999px] bg-white/25 blur-[4px]"></div>
+            <div class="absolute bottom-[10%] left-[14%] h-[20%] w-[34%] rounded-[999px] bg-white/25 blur-xl"></div>
+            <div class="absolute bottom-[8%] right-[10%] h-[24%] w-[28%] rounded-[999px] bg-black/8 blur-xl"></div>
+
+            <div class="relative z-10 flex h-full flex-col justify-between">
+              <div class="max-w-[30rem]">
+                <p id="stage-eyebrow" class="section-kicker text-black/38">Glass / Ceramics / Foundry</p>
+                <h3 id="stage-title" class="mt-3 text-[clamp(2.5rem,5vw,5rem)] font-extrabold leading-[0.92] tracking-[-0.06em] text-black">
+                  Quartz / Silica Series
+                </h3>
+                <p id="stage-copy" class="mt-5 max-w-[34rem] text-[1.02rem] leading-7 text-black/60">
+                  High-purity quartz, silica sand, and silica flour positioned
+                  for glass, ceramics, foundry, engineered surfaces, and
+                  industrial manufacturing where grain control and consistency
+                  matter.
+                </p>
+              </div>
+
+              <div class="flex flex-col gap-8">
+                <div id="stage-tags" class="flex flex-wrap gap-2.5">
+                  <span class="rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm font-medium text-black/70 backdrop-blur-md">Glass grade</span>
+                  <span class="rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm font-medium text-black/70 backdrop-blur-md">Custom sizing</span>
+                  <span class="rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm font-medium text-black/70 backdrop-blur-md">Ceramics</span>
+                  <span class="rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm font-medium text-black/70 backdrop-blur-md">Foundry use</span>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-3">
+                  <div class="rounded-[1.5rem] bg-white/55 px-4 py-4 backdrop-blur-md ring-1 ring-black/5">
+                    <p class="section-kicker text-black/35">Positioning</p>
+                    <p id="stage-note-a" class="mt-2 text-base font-semibold text-black">Consistency over commodity pricing.</p>
+                  </div>
+                  <div class="rounded-[1.5rem] bg-white/55 px-4 py-4 backdrop-blur-md ring-1 ring-black/5">
+                    <p class="section-kicker text-black/35">Use Case</p>
+                    <p id="stage-note-b" class="mt-2 text-base font-semibold text-black">Prepared for industrial production lines.</p>
+                  </div>
+                  <div class="rounded-[1.5rem] bg-white/55 px-4 py-4 backdrop-blur-md ring-1 ring-black/5">
+                    <p class="section-kicker text-black/35">Commercial</p>
+                    <p id="stage-note-c" class="mt-2 text-base font-semibold text-black">Quoted with export-ready clarity.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="execution" class="bg-[#060606] px-0 py-24 text-white md:py-32">
+        <div class="section-shell">
+          <div class="reveal flex flex-col items-center text-center">
+            <p class="section-kicker text-white/38">Execution</p>
+            <h2 class="mt-4 max-w-[10ch] text-[clamp(3rem,7vw,6.25rem)] font-extrabold leading-[0.9] tracking-[-0.06em]">
+              Built around what actually breaks shipments.
+            </h2>
+          </div>
+
+          <div class="mt-14">
+            <div class="ops-row reveal">
+              <div>
+                <p class="section-kicker text-white/35">01</p>
+                <h3 class="mt-3 text-[clamp(2rem,4vw,3.6rem)] font-extrabold leading-[0.95] tracking-[-0.05em]">Source</h3>
+              </div>
+              <p class="max-w-[42rem] text-[1.04rem] leading-8 text-white/62">
+                The company story leans on proximity to mines, processing units,
+                warehousing, and dispatch infrastructure instead of generic trading language.
+              </p>
+            </div>
+
+            <div class="ops-row reveal">
+              <div>
+                <p class="section-kicker text-white/35">02</p>
+                <h3 class="mt-3 text-[clamp(2rem,4vw,3.6rem)] font-extrabold leading-[0.95] tracking-[-0.05em]">Process</h3>
+              </div>
+              <p class="max-w-[42rem] text-[1.04rem] leading-8 text-white/62">
+                Material is positioned around application fit, custom grades,
+                and spec-aware handling across silica, clay, and cementitious products.
+              </p>
+            </div>
+
+            <div class="ops-row reveal">
+              <div>
+                <p class="section-kicker text-white/35">03</p>
+                <h3 class="mt-3 text-[clamp(2rem,4vw,3.6rem)] font-extrabold leading-[0.95] tracking-[-0.05em]">Assure</h3>
+              </div>
+              <p class="max-w-[42rem] text-[1.04rem] leading-8 text-white/62">
+                Sampling, incoterms, order formats, payment structure, and lead-time expectations are all surfaced early.
+              </p>
+            </div>
+
+            <div class="ops-row reveal">
+              <div>
+                <p class="section-kicker text-white/35">04</p>
+                <h3 class="mt-3 text-[clamp(2rem,4vw,3.6rem)] font-extrabold leading-[0.95] tracking-[-0.05em]">Ship</h3>
+              </div>
+              <p class="max-w-[42rem] text-[1.04rem] leading-8 text-white/62">
+                The founder message focuses on vessel shifts, documents,
+                last-minute surprises, and staying responsive when timelines get tight.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-0 py-24 md:py-32">
+        <div class="section-shell">
+          <div class="reveal flex flex-col items-center text-center">
+            <p class="section-kicker">Commercial Snapshot</p>
+            <h2 class="mt-4 max-w-[10ch] text-[clamp(3rem,7vw,5.75rem)] font-extrabold leading-[0.92] tracking-[-0.06em]">
+              Fast to scan. Clear to buy.
+            </h2>
+          </div>
+
+          <div class="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div class="metric-block reveal">
+              <p class="section-kicker">Lead Time</p>
+              <p class="mt-4 text-[clamp(2.4rem,5vw,3.8rem)] font-extrabold tracking-[-0.06em]">7-10</p>
+              <p class="mt-1 text-lg font-semibold text-black/75">days</p>
+            </div>
+            <div class="metric-block reveal">
+              <p class="section-kicker">Incoterms</p>
+              <p class="mt-4 text-[clamp(2.2rem,4vw,3.2rem)] font-extrabold tracking-[-0.06em]">FOB<br />CIF<br />CNF</p>
+            </div>
+            <div class="metric-block reveal">
+              <p class="section-kicker">Order Format</p>
+              <p class="mt-4 text-[clamp(2.2rem,4vw,3.2rem)] font-extrabold tracking-[-0.06em]">LCL<br />FCL</p>
+            </div>
+            <div class="metric-block reveal">
+              <p class="section-kicker">Commercial Flow</p>
+              <p class="mt-4 text-[clamp(2.2rem,4vw,3.2rem)] font-extrabold tracking-[-0.06em]">Sample<br />Quote<br />Ship</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="bg-black px-0 py-24 text-white md:py-32">
+        <div class="section-shell">
+          <div class="reveal flex flex-col items-center text-center">
+            <p class="section-kicker text-white/38">Contact</p>
+            <h2 class="mt-4 max-w-[10ch] text-[clamp(3rem,7vw,5.8rem)] font-extrabold leading-[0.92] tracking-[-0.06em]">
+              Start the conversation with what matters.
+            </h2>
+            <p class="mt-5 max-w-[42rem] text-[1.04rem] leading-7 text-white/62">
+              Material, use case, volume, and term. That is enough to start.
+            </p>
+          </div>
+
+          <div class="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            <div class="reveal">
+              <div class="space-y-5 text-lg text-white/70">
+                <p><span class="text-white/38">Email</span><br />info@jadewavesenterprise.com</p>
+                <p><span class="text-white/38">Direct</span><br />deep@jadewavesenterprise.com</p>
+                <p><span class="text-white/38">Phone</span><br />+91 99988 35503</p>
+                <p>
+                  <span class="text-white/38">Office</span><br />
+                  A-11 Florence, Science City Road,<br />
+                  Ahmedabad, Gujarat 380060
+                </p>
+              </div>
+            </div>
+
+            <form id="inquiry-form" class="reveal grid gap-5">
+              <label class="grid gap-2">
+                <span class="section-kicker text-white/38">Material</span>
+                <input class="input-line" type="text" name="material" value="Silica Sand" autocomplete="off" />
+              </label>
+              <label class="grid gap-2">
+                <span class="section-kicker text-white/38">Application</span>
+                <input class="input-line" type="text" name="application" value="Glass / Construction" autocomplete="off" />
+              </label>
+              <label class="grid gap-2">
+                <span class="section-kicker text-white/38">Volume</span>
+                <input class="input-line" type="text" name="volume" value="1 x 20ft container" autocomplete="off" />
+              </label>
+              <label class="grid gap-2">
+                <span class="section-kicker text-white/38">Incoterm</span>
+                <input class="input-line" type="text" name="incoterm" value="CIF" autocomplete="off" />
+              </label>
+              <label class="grid gap-2">
+                <span class="section-kicker text-white/38">Name</span>
+                <input class="input-line" type="text" name="name" value="" autocomplete="name" />
+              </label>
+              <label class="grid gap-2">
+                <span class="section-kicker text-white/38">Email</span>
+                <input class="input-line" type="email" name="email" value="" autocomplete="email" />
+              </label>
+              <div class="pt-2">
+                <button
+                  type="submit"
+                  class="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:-translate-y-0.5"
+                >
+                  Prepare Inquiry Email
+                </button>
+              </div>
+              <p id="form-note" class="text-sm leading-7 text-white/55" aria-live="polite">
+                This opens your local mail client with a prepared inquiry draft.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="relative z-10 bg-black pb-10">
+      <div class="section-shell flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/45 md:flex-row md:items-center md:justify-between">
+        <div class="flex items-center gap-3">
+          <img
+            src="assets/jade-waves-logo-transparent.png"
+            alt="Jade Waves Enterprise logo"
+            class="h-10 w-auto opacity-85"
+          />
+          <p>Jade Waves Enterprise</p>
+        </div>
+        <p>Industrial minerals and export-ready material supply.</p>
+      </div>
+    </footer>
+  </body>
+</html>
