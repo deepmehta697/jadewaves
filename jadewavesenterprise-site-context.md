@@ -223,7 +223,6 @@ Visible contact details:
 - Company name: **Jade Waves Enterprise**
 - Address: **A-11 Florence, Science City Road, Ahmedabad, Gujarat 380060, India**
 - Phone: **+91-999-883-5503**
-- General inquiries: **info@jadewavesenterprise.com**
 - Sales email: **deep@jadewavesenterprise.com**
 
 The site also pushes:

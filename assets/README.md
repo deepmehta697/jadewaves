@@ -14,3 +14,13 @@ This folder stores brand and media assets used by the local Jade Waves website.
   - Header brand mark in the website
   - Footer brand mark in the website
 - Notes: The logo is rendered directly on the dark site background with only a soft shadow for separation.
+
+### `deep-mehta-ceo.jpg`
+
+- Type: JPEG portrait image
+- Original source filename: `deep_picture.JPG`
+- Source location: `/Users/deepmehta/Documents/Jade Waves Enterprise/deep_picture.JPG`
+- Description: Cropped CEO portrait of Deep Mehta prepared for the website so the visible chat watermark area does not appear in the site version.
+- Current usage:
+  - Homepage `From Our CEO` section
+- Notes: This is a site-ready cropped derivative stored separately from the original source image.
