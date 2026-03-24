@@ -9,6 +9,8 @@ const parallaxNodes = document.querySelectorAll("[data-parallax]");
 const routeNetworks = document.querySelectorAll("[data-route-network]");
 const portfolioAnchors = document.querySelectorAll(".portfolio-anchor");
 const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
+const galleries = document.querySelectorAll("[data-gallery]");
+const gradeWheels = document.querySelectorAll("[data-grade-wheel]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 requestAnimationFrame(() => {
@@ -396,6 +398,141 @@ const setRequestType = (requestType) => {
   });
 };
 
+const initProductGallery = (gallery) => {
+  const track = gallery.querySelector("[data-gallery-track]");
+  const slides = Array.from(gallery.querySelectorAll("[data-gallery-slide]"));
+  const dots = Array.from(gallery.querySelectorAll("[data-gallery-dot]"));
+  const prevButton = gallery.querySelector("[data-gallery-prev]");
+  const nextButton = gallery.querySelector("[data-gallery-next]");
+  const interval = Number(gallery.dataset.galleryInterval || 5200);
+
+  if (!track || slides.length < 2) {
+    return;
+  }
+
+  let activeIndex = 0;
+  let timerId = 0;
+
+  const update = (nextIndex) => {
+    activeIndex = (nextIndex + slides.length) % slides.length;
+    track.style.transform = `translate3d(${-activeIndex * 100}%, 0, 0)`;
+
+    slides.forEach((slide, index) => {
+      slide.setAttribute("aria-hidden", String(index !== activeIndex));
+    });
+
+    dots.forEach((dot, index) => {
+      const isActive = index === activeIndex;
+      dot.classList.toggle("is-active", isActive);
+      dot.setAttribute("aria-selected", String(isActive));
+      dot.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+  };
+
+  const stopAutoplay = () => {
+    if (!timerId) return;
+    window.clearInterval(timerId);
+    timerId = 0;
+  };
+
+  const startAutoplay = () => {
+    if (prefersReducedMotion.matches || slides.length < 2) return;
+    stopAutoplay();
+    timerId = window.setInterval(() => {
+      update(activeIndex + 1);
+    }, interval);
+  };
+
+  prevButton?.addEventListener("click", () => {
+    update(activeIndex - 1);
+    startAutoplay();
+  });
+
+  nextButton?.addEventListener("click", () => {
+    update(activeIndex + 1);
+    startAutoplay();
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      update(index);
+      startAutoplay();
+    });
+  });
+
+  gallery.addEventListener("mouseenter", stopAutoplay);
+  gallery.addEventListener("mouseleave", startAutoplay);
+  gallery.addEventListener("focusin", stopAutoplay);
+  gallery.addEventListener("focusout", startAutoplay);
+
+  update(0);
+  startAutoplay();
+};
+
+const initGradeWheel = (stage) => {
+  const items = Array.from(stage.querySelectorAll("[data-grade-item]"));
+  const count = stage.querySelector("[data-grade-count]");
+  const title = stage.querySelector("[data-grade-title]");
+  const copy = stage.querySelector("[data-grade-copy]");
+  const interval = 2800;
+
+  if (!items.length || !count || !title || !copy) {
+    return;
+  }
+
+  let activeIndex = items.findIndex((item) => item.classList.contains("is-active"));
+  let timerId = 0;
+
+  if (activeIndex < 0) {
+    activeIndex = 0;
+  }
+
+  const update = (nextIndex) => {
+    activeIndex = (nextIndex + items.length) % items.length;
+
+    items.forEach((item, index) => {
+      const isActive = index === activeIndex;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-pressed", String(isActive));
+    });
+
+    const activeItem = items[activeIndex];
+    count.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
+    title.textContent = activeItem.dataset.gradeTitle || "";
+    copy.textContent = activeItem.dataset.gradeCopy || "";
+    stage.style.setProperty("--grade-focus-angle", activeItem.style.getPropertyValue("--grade-angle").trim() || "-90deg");
+  };
+
+  const stopAutoplay = () => {
+    if (!timerId) return;
+    window.clearInterval(timerId);
+    timerId = 0;
+  };
+
+  const startAutoplay = () => {
+    if (prefersReducedMotion.matches || items.length < 2) return;
+    stopAutoplay();
+    timerId = window.setInterval(() => {
+      update(activeIndex + 1);
+    }, interval);
+  };
+
+  items.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      update(index);
+      startAutoplay();
+    });
+  });
+
+  stage.addEventListener("mouseenter", stopAutoplay);
+  stage.addEventListener("mouseleave", startAutoplay);
+  stage.addEventListener("focusin", stopAutoplay);
+  stage.addEventListener("focusout", startAutoplay);
+
+  update(activeIndex);
+  startAutoplay();
+};
+
 requestLinks.forEach((link) => {
   link.addEventListener("click", () => {
     const requestType = link.dataset.setRequest;
@@ -418,6 +555,7 @@ formTargets.forEach((form) => {
     const phone = data.get("phone")?.toString().trim() || "Not provided";
     const application = data.get("application")?.toString().trim() || "Not specified";
     const volume = data.get("volume")?.toString().trim() || "Not specified";
+    const destination = data.get("destination")?.toString().trim() || "Not specified";
     const incoterm = data.get("incoterm")?.toString().trim() || "Not specified";
     const notes = data.get("notes")?.toString().trim() || "Not provided";
 
@@ -430,6 +568,7 @@ formTargets.forEach((form) => {
         `Product: ${product}`,
         `Application: ${application}`,
         `Volume: ${volume}`,
+        `Destination / Port: ${destination}`,
         `Preferred term: ${incoterm}`,
         "",
         `Name: ${name}`,
@@ -443,7 +582,7 @@ formTargets.forEach((form) => {
     );
 
     if (note) {
-      note.textContent = "Opening your mail client with the inquiry draft prepared.";
+      note.textContent = `Opening your mail client with the ${requestType.toLowerCase()} draft prepared.`;
     }
 
     window.location.href = `mailto:deep@jadewavesenterprise.com?subject=${subject}&body=${body}`;
@@ -491,6 +630,14 @@ if (portfolioAnchors.length && portfolioStages.length) {
 
 routeNetworks.forEach((canvas) => {
   initRouteNetwork(canvas);
+});
+
+galleries.forEach((gallery) => {
+  initProductGallery(gallery);
+});
+
+gradeWheels.forEach((wheel) => {
+  initGradeWheel(wheel);
 });
 
 syncHeader();

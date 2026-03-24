@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /output/
 
 Sitemap: https://jadewavesenterprise.com/sitemap.xml

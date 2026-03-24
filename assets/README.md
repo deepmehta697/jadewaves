@@ -24,3 +24,16 @@ This folder stores brand and media assets used by the local Jade Waves website.
 - Current usage:
   - Homepage `From Our CEO` section
 - Notes: This is a site-ready cropped derivative stored separately from the original source image.
+
+## Product Visual Workflow
+
+- Raw product photos can be stored in `assets/` using the product name, for example `quartz-sand.png` or `silica-flour.jpg`.
+- Use `/Users/deepmehta/Documents/Jadewaves/prepare_product_visual.py` to turn any raw source image into a consistent square product visual for the website.
+- Example:
+
+```bash
+cd /Users/deepmehta/Documents/Jadewaves
+python3 prepare_product_visual.py assets/quartz-sand.png assets/quartz-sand-visual.webp
+```
+
+- The generated `*-visual.webp` file is the preferred website asset for product pages and social preview metadata.
