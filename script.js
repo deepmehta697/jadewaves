@@ -556,7 +556,7 @@ formTargets.forEach((form) => {
     const application = data.get("application")?.toString().trim() || "Not specified";
     const volume = data.get("volume")?.toString().trim() || "Not specified";
     const destination = data.get("destination")?.toString().trim() || "Not specified";
-    const incoterm = data.get("incoterm")?.toString().trim() || "Not specified";
+    const packingSize = data.get("packing_size")?.toString().trim() || "Not specified";
     const notes = data.get("notes")?.toString().trim() || "Not provided";
 
     const subject = encodeURIComponent(`${requestType} | ${product}`);
@@ -569,7 +569,7 @@ formTargets.forEach((form) => {
         `Application: ${application}`,
         `Volume: ${volume}`,
         `Destination / Port: ${destination}`,
-        `Preferred term: ${incoterm}`,
+        `Packing size: ${packingSize}`,
         "",
         `Name: ${name}`,
         `Company: ${company}`,

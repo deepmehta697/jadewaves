@@ -389,20 +389,6 @@ main {
   text-transform: uppercase;
 }
 
-.hero-direct-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.85rem 1.2rem;
-  margin-top: 1.15rem;
-}
-
-.hero-direct-links .button {
-  max-width: 100%;
-  white-space: normal;
-  text-align: center;
-}
-
 .hero-visual {
   position: relative;
   display: grid;
@@ -945,6 +931,10 @@ main {
 
 .section-link:hover::after {
   transform: translateX(0.18rem);
+}
+
+.hero-section-link {
+  margin-top: 1rem;
 }
 
 .section-block {
@@ -1581,6 +1571,7 @@ body.is-ready .home-poster__metrics {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   margin: 0;
+  align-self: start;
   overflow: hidden;
   border-radius: calc(var(--radius-lg) + 0.2rem);
   background: rgba(255, 255, 255, 0.92);
@@ -1613,6 +1604,19 @@ body.is-ready .home-poster__metrics {
 .process-media-card--lead img,
 .process-media-card--lead video {
   aspect-ratio: 16 / 9;
+}
+
+.process-media-card--quarry img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.process-media-card--wide-view img {
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  background: linear-gradient(180deg, rgba(248, 249, 251, 0.98), rgba(241, 244, 248, 0.96));
+  padding: 0.75rem;
 }
 
 .process-media-card video {
@@ -5342,6 +5346,11 @@ body.is-ready .product-poster__caption {
   .process-media-card--lead img,
   .process-media-card--lead video {
     aspect-ratio: 16 / 11;
+  }
+
+  .process-media-card--wide-view img {
+    aspect-ratio: 16 / 10;
+    padding: 0.5rem;
   }
 
   .proof-strip__item {

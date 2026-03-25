@@ -608,8 +608,8 @@ def nav_html() -> str:
             <nav class="desktop-nav" aria-label="Primary">
               <a href="/#about">About</a>
               <a href="/products/">Products</a>
-              <a href="/#industries">Industries</a>
-              <a href="/#process">Process</a>
+              <a href="/operations/">Operations</a>
+              <a href="/export-markets/">Markets</a>
               <a href="/#contact">Contact</a>
             </nav>
             <div class="header-actions">
@@ -622,8 +622,8 @@ def nav_html() -> str:
           <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
             <a href="/#about">About</a>
             <a href="/products/">Products</a>
-            <a href="/#industries">Industries</a>
-            <a href="/#process">Process</a>
+            <a href="/operations/">Operations</a>
+            <a href="/export-markets/">Markets</a>
             <a href="/#contact">Contact</a>
           </div>
         </header>
@@ -650,7 +650,8 @@ def footer_html() -> str:
                 <p class="footer-heading">Navigate</p>
                 <a href="/">Home</a>
                 <a href="/products/">Products</a>
-                <a href="/#industries">Industries</a>
+                <a href="/operations/">Operations</a>
+                <a href="/export-markets/">Export Markets</a>
                 <a href="/#contact">Contact</a>
               </div>
             </div>
@@ -777,8 +778,8 @@ def form_block(product_name: str = "") -> str:
                 <input type="text" name="volume" placeholder="Trial / monthly volume" />
               </label>
               <label>
-                <span>Incoterm</span>
-                <input type="text" name="incoterm" placeholder="FOB / CIF / CNF / EXW" />
+                <span>Packing Size</span>
+                <input type="text" name="packing_size" placeholder="50 Kg bags / Jumbo bags / bulk" />
               </label>
               <label class="form-grid__wide">
                 <span>Requirement</span>
@@ -6171,7 +6172,7 @@ SCRIPT = dedent(
         const phone = data.get("phone")?.toString().trim() || "Not provided";
         const application = data.get("application")?.toString().trim() || "Not specified";
         const volume = data.get("volume")?.toString().trim() || "Not specified";
-        const incoterm = data.get("incoterm")?.toString().trim() || "Not specified";
+        const packingSize = data.get("packing_size")?.toString().trim() || "Not specified";
         const notes = data.get("notes")?.toString().trim() || "Not provided";
 
         const subject = encodeURIComponent(`${{requestType}} | ${{product}}`);
@@ -6183,7 +6184,7 @@ SCRIPT = dedent(
             `Product: ${{product}}`,
             `Application: ${{application}}`,
             `Volume: ${{volume}}`,
-            `Preferred term: ${{incoterm}}`,
+            `Packing size: ${{packingSize}}`,
             "",
             `Name: ${{name}}`,
             `Company: ${{company}}`,
