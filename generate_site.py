@@ -687,26 +687,6 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
             <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-            <script src="https://cdn.tailwindcss.com"></script>
-            <script>
-              tailwind.config = {{
-                theme: {{
-                  extend: {{
-                    colors: {{
-                      ink: "#1d1d1f",
-                      stone: "#e8e8ed",
-                      mineral: "#0071e3",
-                      jade: "#0071e3",
-                      clay: "#a1a1a6",
-                      mist: "#f5f5f7"
-                    }},
-                    fontFamily: {{
-                      sans: ["Manrope", "sans-serif"]
-                    }}
-                  }}
-                }}
-              }};
-            </script>
             <link rel="stylesheet" href="/styles.css" />
             <script type="application/ld+json">{schema_blob}</script>
             <script defer src="/script.js"></script>
@@ -788,7 +768,7 @@ def form_block(product_name: str = "") -> str:
             </div>
             <div class="form-actions">
               <button class="button button--dark" type="submit">Send Inquiry</button>
-              <p class="form-note" data-form-note>Your message opens in the default mail client with the details prepared.</p>
+              <p class="form-note" data-form-note>Send the form directly. We'll review the requirement and respond by email.</p>
             </div>
           </form>
         </div>
@@ -857,7 +837,7 @@ def render_homepage() -> str:
         (
             "02",
             "Align the commercials",
-            "Incoterms, sample flow, documents, and payment expectations are made clear early.",
+            "Shipment basis, sample flow, documents, and payment expectations are made clear early.",
         ),
         (
             "03",
@@ -6141,6 +6121,8 @@ SCRIPT = dedent(
       }});
     }}
 
+    const inquiryEndpoint = "https://formsubmit.co/ajax/{CONTACT["sales_email"]}";
+
     const setRequestType = (requestType) => {{
       formTargets.forEach((form) => {{
         const select = form.querySelector('[name="request_type"]');
@@ -6161,46 +6143,62 @@ SCRIPT = dedent(
 
     formTargets.forEach((form) => {{
       const note = form.querySelector("[data-form-note]");
-      form.addEventListener("submit", (event) => {{
+      const submitButton = form.querySelector('button[type="submit"]');
+      note?.setAttribute("aria-live", "polite");
+
+      if (submitButton) {{
+        submitButton.dataset.defaultLabel = submitButton.textContent.trim();
+      }}
+
+      form.addEventListener("submit", async (event) => {{
         event.preventDefault();
+        if (!submitButton) return;
+
         const data = new FormData(form);
         const requestType = data.get("request_type")?.toString().trim() || "Inquiry";
         const product = data.get("product")?.toString().trim() || "Not specified";
-        const name = data.get("name")?.toString().trim() || "Buyer";
-        const company = data.get("company")?.toString().trim() || "Not specified";
         const email = data.get("email")?.toString().trim() || "Not provided";
-        const phone = data.get("phone")?.toString().trim() || "Not provided";
-        const application = data.get("application")?.toString().trim() || "Not specified";
-        const volume = data.get("volume")?.toString().trim() || "Not specified";
-        const packingSize = data.get("packing_size")?.toString().trim() || "Not specified";
-        const notes = data.get("notes")?.toString().trim() || "Not provided";
 
-        const subject = encodeURIComponent(`${{requestType}} | ${{product}}`);
-        const body = encodeURIComponent(
-          [
-            "Hello Jade Waves Enterprise,",
-            "",
-            `Request type: ${{requestType}}`,
-            `Product: ${{product}}`,
-            `Application: ${{application}}`,
-            `Volume: ${{volume}}`,
-            `Packing size: ${{packingSize}}`,
-            "",
-            `Name: ${{name}}`,
-            `Company: ${{company}}`,
-            `Email: ${{email}}`,
-            `Phone: ${{phone}}`,
-            "",
-            "Requirement:",
-            notes,
-          ].join("\\n")
-        );
+        data.append("_subject", `${{requestType}} | ${{product}}`);
+        data.append("_template", "table");
+        data.append("_captcha", "false");
+        data.append("_replyto", email);
+        data.append("Source Page", window.location.href);
+        data.append("Page Title", document.title);
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
 
         if (note) {{
-          note.textContent = "Opening your mail client with the inquiry draft prepared.";
+          note.textContent = "Sending the inquiry directly. Please wait a moment.";
         }}
 
-        window.location.href = `mailto:{CONTACT["sales_email"]}?subject=${{subject}}&body=${{body}}`;
+        try {{
+          const response = await fetch(inquiryEndpoint, {{
+            method: "POST",
+            body: data,
+            headers: {{
+              Accept: "application/json",
+            }},
+          }});
+
+          const result = await response.json().catch(() => null);
+          if (!response.ok || result?.success === false || result?.success === "false") {{
+            throw new Error(result?.message || "Submission failed");
+          }}
+
+          form.reset();
+          if (note) {{
+            note.textContent = "Inquiry sent. We will review the requirement and respond by email.";
+          }}
+        }} catch (error) {{
+          if (note) {{
+            note.textContent = "Submission did not go through. Please email {CONTACT["sales_email"]} or call {CONTACT["phone"]}.";
+          }}
+        }} finally {{
+          submitButton.disabled = false;
+          submitButton.textContent = submitButton.dataset.defaultLabel || "Send Inquiry";
+        }}
       }});
     }});
 

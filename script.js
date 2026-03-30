@@ -11,7 +11,40 @@ const portfolioAnchors = document.querySelectorAll(".portfolio-anchor");
 const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
 const galleries = document.querySelectorAll("[data-gallery]");
 const gradeWheels = document.querySelectorAll("[data-grade-wheel]");
+const corridorStages = document.querySelectorAll("[data-corridor-stage]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const inquiryEndpoint = "https://formsubmit.co/ajax/deep@jadewavesenterprise.com";
+const inquiryFallbackEmail = "deep@jadewavesenterprise.com";
+const inquiryFallbackPhone = "+91-999-883-5503";
+const inquiryAttachmentAccept = ".pdf,.png,.jpg,.jpeg";
+const productDocumentCatalog = {
+  "/products/quartz-sand-for-ceramics/": {
+    tds: "/assets/tds/quartz-sand-technical-data-sheet.pdf",
+    requestCopy:
+      "Please share the current technical data sheet for Quartz Sand along with the closest grade and packing fit for our requirement.",
+  },
+  "/products/feldspar/": {
+    tds: "/assets/tds/feldspar-technical-data-sheet.pdf",
+    requestCopy:
+      "Please share the current feldspar technical data sheet with potassium or sodium grade alignment for our end use.",
+  },
+  "/products/silica-sand/": {
+    tds: "/assets/tds/silica-sand-technical-data-sheet.pdf",
+    sampleCoa: "/assets/silica-sand-coa-premium-final.pdf",
+    requestCopy:
+      "Please share the current silica sand technical data sheet and current lot data aligned to our grain size and Fe2O3 requirement.",
+  },
+  "/products/bentonite/": {
+    tds: "/assets/tds/bentonite-technical-data-sheet.pdf",
+    requestCopy:
+      "Please share the current bentonite technical data sheet aligned to our application, viscosity, and packing requirement.",
+  },
+  "/products/salt/": {
+    tds: "/assets/tds/salt-technical-data-sheet.pdf",
+    requestCopy:
+      "Please share the current salt technical data sheet aligned to the required grade, grain size, and packing basis.",
+  },
+};
 
 requestAnimationFrame(() => {
   document.body.classList.add("is-ready");
@@ -33,6 +66,133 @@ const syncParallax = () => {
     const offset = (midpoint - viewportMid) * speed * -0.12;
     node.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
   });
+};
+
+const setFormMessage = (note, state, text) => {
+  if (!note) return;
+  note.textContent = text;
+  note.dataset.state = state;
+  note.classList.toggle("is-success", state === "success");
+  note.classList.toggle("is-error", state === "error");
+  note.classList.toggle("is-loading", state === "loading");
+};
+
+const ensureAttachmentField = (form) => {
+  const grid = form.querySelector(".form-grid");
+  if (!grid || grid.querySelector("[data-attachment-field]")) return;
+
+  const label = document.createElement("label");
+  label.className = "form-grid__wide form-grid__attachment";
+  label.dataset.attachmentField = "true";
+
+  const title = document.createElement("span");
+  title.textContent = "Attach File";
+
+  const input = document.createElement("input");
+  input.type = "file";
+  input.name = "attachment";
+  input.accept = inquiryAttachmentAccept;
+
+  const caption = document.createElement("small");
+  caption.className = "form-field-help";
+  caption.textContent = "Optional. PDF, JPG, or PNG if you want to share a spec sheet, image, or marked requirement.";
+
+  label.append(title, input, caption);
+  grid.append(label);
+};
+
+const ensureHoneypotField = (form) => {
+  if (form.querySelector('input[name="_honey"]')) return;
+  const honeypot = document.createElement("input");
+  honeypot.type = "text";
+  honeypot.name = "_honey";
+  honeypot.tabIndex = -1;
+  honeypot.autocomplete = "off";
+  honeypot.setAttribute("aria-hidden", "true");
+  honeypot.style.position = "absolute";
+  honeypot.style.left = "-9999px";
+  honeypot.style.opacity = "0";
+  form.prepend(honeypot);
+};
+
+const scrollToInquiry = (copy) => {
+  const contact = document.getElementById("contact");
+  const form = document.querySelector("[data-inquiry-form]");
+
+  if (contact) {
+    contact.scrollIntoView({
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      block: "start",
+    });
+  }
+
+  if (!form) return;
+
+  const requestSelect = form.querySelector('[name="request_type"]');
+  if (requestSelect) {
+    requestSelect.value = "General Inquiry";
+  }
+
+  const notesField = form.querySelector('[name="notes"]');
+  if (notesField && !notesField.value.trim() && copy) {
+    notesField.value = copy;
+  }
+
+  window.setTimeout(() => {
+    const focusTarget = notesField || form.querySelector('[name="email"]') || form;
+    focusTarget?.focus();
+  }, prefersReducedMotion.matches ? 0 : 280);
+};
+
+const initProductDocumentActions = () => {
+  const config = productDocumentCatalog[window.location.pathname];
+  if (!config) return;
+
+  const targetRow = Array.from(document.querySelectorAll(".product-line"))
+    .find((row) => row.querySelector("strong")?.textContent.trim() === "Technical Data Sheet");
+
+  if (!targetRow) return;
+
+  const host = targetRow.querySelector("div");
+  if (!host || host.querySelector(".document-actions")) return;
+
+  const detail = document.createElement("p");
+  detail.className = "product-line__detail";
+  detail.textContent = "Current document set aligned to the selected grade, mesh, and packing basis.";
+
+  const actions = document.createElement("div");
+  actions.className = "document-actions";
+
+  if (config.tds) {
+    const tdsLink = document.createElement("a");
+    tdsLink.className = "doc-action";
+    tdsLink.href = config.tds;
+    tdsLink.target = "_blank";
+    tdsLink.rel = "noopener noreferrer";
+    tdsLink.textContent = "Open TDS";
+    actions.append(tdsLink);
+  }
+
+  if (config.sampleCoa) {
+    const coaLink = document.createElement("a");
+    coaLink.className = "doc-action doc-action--ghost";
+    coaLink.href = config.sampleCoa;
+    coaLink.target = "_blank";
+    coaLink.rel = "noopener noreferrer";
+    coaLink.textContent = "Open Sample COA";
+    actions.append(coaLink);
+  }
+
+  const requestButton = document.createElement("button");
+  requestButton.type = "button";
+  requestButton.className = "doc-action doc-action--secondary";
+  requestButton.textContent = "Request Current Lot Data";
+  requestButton.addEventListener("click", () => {
+    scrollToInquiry(config.requestCopy);
+  });
+  actions.append(requestButton);
+
+  host.append(detail, actions);
 };
 
 const initRouteNetwork = (canvas) => {
@@ -533,6 +693,59 @@ const initGradeWheel = (stage) => {
   startAutoplay();
 };
 
+const initCorridorStage = (stage) => {
+  const items = Array.from(stage.querySelectorAll("[data-corridor-item]"));
+  if (!items.length) {
+    return;
+  }
+
+  let activeIndex = items.findIndex((item) => item.classList.contains("is-active"));
+  let timerId = 0;
+
+  if (activeIndex < 0) {
+    activeIndex = 0;
+  }
+
+  const update = (nextIndex) => {
+    activeIndex = (nextIndex + items.length) % items.length;
+
+    items.forEach((item, index) => {
+      const isActive = index === activeIndex;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-pressed", String(isActive));
+    });
+  };
+
+  const stopAutoplay = () => {
+    if (!timerId) return;
+    window.clearInterval(timerId);
+    timerId = 0;
+  };
+
+  const startAutoplay = () => {
+    if (prefersReducedMotion.matches || items.length < 2) return;
+    stopAutoplay();
+    timerId = window.setInterval(() => {
+      update(activeIndex + 1);
+    }, 3600);
+  };
+
+  items.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      update(index);
+      startAutoplay();
+    });
+  });
+
+  stage.addEventListener("mouseenter", stopAutoplay);
+  stage.addEventListener("mouseleave", startAutoplay);
+  stage.addEventListener("focusin", stopAutoplay);
+  stage.addEventListener("focusout", startAutoplay);
+
+  update(activeIndex);
+  startAutoplay();
+};
+
 requestLinks.forEach((link) => {
   link.addEventListener("click", () => {
     const requestType = link.dataset.setRequest;
@@ -544,8 +757,21 @@ requestLinks.forEach((link) => {
 
 formTargets.forEach((form) => {
   const note = form.querySelector("[data-form-note]");
-  form.addEventListener("submit", (event) => {
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  ensureHoneypotField(form);
+  ensureAttachmentField(form);
+  note?.setAttribute("aria-live", "polite");
+
+  if (submitButton) {
+    submitButton.dataset.defaultLabel = submitButton.textContent.trim();
+  }
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    if (!submitButton) return;
+
     const data = new FormData(form);
     const requestType = data.get("request_type")?.toString().trim() || "Inquiry";
     const product = data.get("product")?.toString().trim() || "Not specified";
@@ -559,33 +785,55 @@ formTargets.forEach((form) => {
     const packingSize = data.get("packing_size")?.toString().trim() || "Not specified";
     const notes = data.get("notes")?.toString().trim() || "Not provided";
 
-    const subject = encodeURIComponent(`${requestType} | ${product}`);
-    const body = encodeURIComponent(
-      [
-        "Hello Jade Waves Enterprise,",
-        "",
-        `Request type: ${requestType}`,
-        `Product: ${product}`,
-        `Application: ${application}`,
-        `Volume: ${volume}`,
-        `Destination / Port: ${destination}`,
-        `Packing size: ${packingSize}`,
-        "",
-        `Name: ${name}`,
-        `Company: ${company}`,
-        `Email: ${email}`,
-        `Phone: ${phone}`,
-        "",
-        "Requirement:",
-        notes,
-      ].join("\n")
-    );
+    data.append("_subject", `${requestType} | ${product}`);
+    data.append("_template", "table");
+    data.append("_captcha", "false");
+    data.append("_replyto", email);
+    data.append("Source Page", window.location.href);
+    data.append("Page Title", document.title);
+    data.set("Requirement", notes);
+    data.set("Destination / Port", destination);
+    data.set("Packing Size", packingSize);
 
-    if (note) {
-      note.textContent = `Opening your mail client with the ${requestType.toLowerCase()} draft prepared.`;
+    submitButton.disabled = true;
+    submitButton.classList.add("is-loading");
+    submitButton.textContent = "Sending...";
+    form.classList.add("is-submitting");
+    setFormMessage(note, "loading", "Sending the inquiry directly. Please wait a moment.");
+
+    try {
+      const response = await fetch(inquiryEndpoint, {
+        method: "POST",
+        body: data,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || result?.success === false || result?.success === "false") {
+        throw new Error(result?.message || "Submission failed");
+      }
+
+      form.reset();
+      setFormMessage(
+        note,
+        "success",
+        "Inquiry sent. We’ll review the requirement and respond by email."
+      );
+    } catch (error) {
+      setFormMessage(
+        note,
+        "error",
+        `Submission did not go through. Please email ${inquiryFallbackEmail} or call ${inquiryFallbackPhone}.`
+      );
+    } finally {
+      submitButton.disabled = false;
+      submitButton.classList.remove("is-loading");
+      submitButton.textContent = submitButton.dataset.defaultLabel || "Send Inquiry";
+      form.classList.remove("is-submitting");
     }
-
-    window.location.href = `mailto:deep@jadewavesenterprise.com?subject=${subject}&body=${body}`;
   });
 });
 
@@ -640,6 +888,11 @@ gradeWheels.forEach((wheel) => {
   initGradeWheel(wheel);
 });
 
+corridorStages.forEach((stage) => {
+  initCorridorStage(stage);
+});
+
+initProductDocumentActions();
 syncHeader();
 syncParallax();
 window.addEventListener("scroll", syncHeader, { passive: true });
