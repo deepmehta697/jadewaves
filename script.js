@@ -18,31 +18,45 @@ const inquiryFallbackEmail = "deep@jadewavesenterprise.com";
 const inquiryFallbackPhone = "+91-999-883-5503";
 const inquiryAttachmentAccept = ".pdf,.png,.jpg,.jpeg";
 const productDocumentCatalog = {
-  "/products/quartz-sand-for-ceramics/": {
-    tds: "/assets/tds/quartz-sand-technical-data-sheet.pdf",
-    requestCopy:
-      "Please share the current technical data sheet for Quartz Sand along with the closest grade and packing fit for our requirement.",
-  },
-  "/products/feldspar/": {
-    tds: "/assets/tds/feldspar-technical-data-sheet.pdf",
-    requestCopy:
-      "Please share the current feldspar technical data sheet with potassium or sodium grade alignment for our end use.",
-  },
   "/products/silica-sand/": {
     tds: "/assets/tds/silica-sand-technical-data-sheet.pdf",
-    sampleCoa: "/assets/silica-sand-coa-premium-final.pdf",
-    requestCopy:
-      "Please share the current silica sand technical data sheet and current lot data aligned to our grain size and Fe2O3 requirement.",
+    sampleCoa: "/assets/coas/silica-sand-sample-coa.pdf",
+  },
+  "/products/silica-flour/": {
+    tds: "/assets/tds/silica-flour-technical-data-sheet.pdf",
+    sampleCoa: "/assets/coas/silica-flour-sample-coa.pdf",
+  },
+  "/products/quartz-sand-for-ceramics/": {
+    tds: "/assets/tds/quartz-sand-technical-data-sheet.pdf",
+    sampleCoa: "/assets/coas/quartz-sand-sample-coa.pdf",
   },
   "/products/bentonite/": {
     tds: "/assets/tds/bentonite-technical-data-sheet.pdf",
-    requestCopy:
-      "Please share the current bentonite technical data sheet aligned to our application, viscosity, and packing requirement.",
+    sampleCoa: "/assets/coas/bentonite-sample-coa.pdf",
+  },
+  "/products/kaolin--china-clay/": {
+    tds: "/assets/tds/china-clay-technical-data-sheet.pdf",
+    sampleCoa: "/assets/coas/china-clay-sample-coa.pdf",
+  },
+  "/products/talc/": {
+    tds: "/assets/tds/talc-technical-data-sheet.pdf",
+    sampleCoa: "/assets/coas/talc-sample-coa.pdf",
+  },
+  "/products/feldspar/": {
+    tds: "/assets/tds/feldspar-technical-data-sheet.pdf",
+    sampleCoa: "/assets/coas/feldspar-sample-coa.pdf",
   },
   "/products/salt/": {
     tds: "/assets/tds/salt-technical-data-sheet.pdf",
-    requestCopy:
-      "Please share the current salt technical data sheet aligned to the required grade, grain size, and packing basis.",
+    sampleCoa: "/assets/coas/salt-sample-coa.pdf",
+  },
+  "/products/fly-ash/": {
+    tds: "/assets/tds/fly-ash-technical-data-sheet.pdf",
+    sampleCoa: "/assets/coas/fly-ash-sample-coa.pdf",
+  },
+  "/products/copper-slag/": {
+    tds: "/assets/tds/copper-slag-technical-data-sheet.pdf",
+    sampleCoa: "/assets/coas/copper-slag-sample-coa.pdf",
   },
 };
 
@@ -115,50 +129,31 @@ const ensureHoneypotField = (form) => {
   form.prepend(honeypot);
 };
 
-const scrollToInquiry = (copy) => {
-  const contact = document.getElementById("contact");
-  const form = document.querySelector("[data-inquiry-form]");
-
-  if (contact) {
-    contact.scrollIntoView({
-      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-      block: "start",
-    });
-  }
-
-  if (!form) return;
-
-  const requestSelect = form.querySelector('[name="request_type"]');
-  if (requestSelect) {
-    requestSelect.value = "General Inquiry";
-  }
-
-  const notesField = form.querySelector('[name="notes"]');
-  if (notesField && !notesField.value.trim() && copy) {
-    notesField.value = copy;
-  }
-
-  window.setTimeout(() => {
-    const focusTarget = notesField || form.querySelector('[name="email"]') || form;
-    focusTarget?.focus();
-  }, prefersReducedMotion.matches ? 0 : 280);
-};
-
 const initProductDocumentActions = () => {
   const config = productDocumentCatalog[window.location.pathname];
   if (!config) return;
 
-  const targetRow = Array.from(document.querySelectorAll(".product-line"))
-    .find((row) => row.querySelector("strong")?.textContent.trim() === "Technical Data Sheet");
+  const supplyCard = Array.from(document.querySelectorAll(".product-sheet"))
+    .find((sheet) => sheet.querySelector(".section-label")?.textContent.trim() === "Supply Snapshot");
 
-  if (!targetRow) return;
+  const supplySection = supplyCard?.closest(".section-block");
+  if (!supplySection || supplySection.nextElementSibling?.classList.contains("section-block--documents")) return;
 
-  const host = targetRow.querySelector("div");
-  if (!host || host.querySelector(".document-actions")) return;
+  const docsSection = document.createElement("section");
+  docsSection.className = "section-block section-block--documents";
 
-  const detail = document.createElement("p");
-  detail.className = "product-line__detail";
-  detail.textContent = "Current document set aligned to the selected grade, mesh, and packing basis.";
+  const shell = document.createElement("div");
+  shell.className = "shell";
+
+  const band = document.createElement("div");
+  band.className = "product-documents-band";
+
+  const intro = document.createElement("div");
+  intro.className = "product-documents-band__intro";
+
+  const label = document.createElement("p");
+  label.className = "document-actions-label";
+  label.textContent = "Client Documents";
 
   const actions = document.createElement("div");
   actions.className = "document-actions";
@@ -183,16 +178,11 @@ const initProductDocumentActions = () => {
     actions.append(coaLink);
   }
 
-  const requestButton = document.createElement("button");
-  requestButton.type = "button";
-  requestButton.className = "doc-action doc-action--secondary";
-  requestButton.textContent = "Request Current Lot Data";
-  requestButton.addEventListener("click", () => {
-    scrollToInquiry(config.requestCopy);
-  });
-  actions.append(requestButton);
-
-  host.append(detail, actions);
+  intro.append(label);
+  band.append(intro, actions);
+  shell.append(band);
+  docsSection.append(shell);
+  supplySection.after(docsSection);
 };
 
 const initRouteNetwork = (canvas) => {
@@ -559,23 +549,42 @@ const setRequestType = (requestType) => {
 };
 
 const initProductGallery = (gallery) => {
+  const viewport = gallery.querySelector(".product-gallery__viewport");
   const track = gallery.querySelector("[data-gallery-track]");
   const slides = Array.from(gallery.querySelectorAll("[data-gallery-slide]"));
   const dots = Array.from(gallery.querySelectorAll("[data-gallery-dot]"));
   const prevButton = gallery.querySelector("[data-gallery-prev]");
   const nextButton = gallery.querySelector("[data-gallery-next]");
   const interval = Number(gallery.dataset.galleryInterval || 5200);
+  const autoplayMode = (gallery.dataset.galleryAutoplay || "auto").toLowerCase();
 
-  if (!track || slides.length < 2) {
+  if (!viewport || !track || slides.length < 2) {
     return;
   }
 
   let activeIndex = 0;
   let timerId = 0;
+  let slideWidth = 0;
+
+  const measure = () => {
+    const nextWidth = Math.round(viewport.getBoundingClientRect().width);
+    if (!nextWidth) return;
+    slideWidth = nextWidth;
+    track.style.width = `${slideWidth * slides.length}px`;
+    slides.forEach((slide) => {
+      slide.style.flex = `0 0 ${slideWidth}px`;
+      slide.style.minWidth = `${slideWidth}px`;
+      slide.style.width = `${slideWidth}px`;
+    });
+    track.style.transform = `translate3d(${-activeIndex * slideWidth}px, 0, 0)`;
+  };
 
   const update = (nextIndex) => {
     activeIndex = (nextIndex + slides.length) % slides.length;
-    track.style.transform = `translate3d(${-activeIndex * 100}%, 0, 0)`;
+    if (!slideWidth) {
+      measure();
+    }
+    track.style.transform = `translate3d(${-activeIndex * slideWidth}px, 0, 0)`;
 
     slides.forEach((slide, index) => {
       slide.setAttribute("aria-hidden", String(index !== activeIndex));
@@ -596,6 +605,7 @@ const initProductGallery = (gallery) => {
   };
 
   const startAutoplay = () => {
+    if (autoplayMode === "manual" || autoplayMode === "false") return;
     if (prefersReducedMotion.matches || slides.length < 2) return;
     stopAutoplay();
     timerId = window.setInterval(() => {
@@ -625,6 +635,9 @@ const initProductGallery = (gallery) => {
   gallery.addEventListener("focusin", stopAutoplay);
   gallery.addEventListener("focusout", startAutoplay);
 
+  window.addEventListener("resize", measure, { passive: true });
+
+  measure();
   update(0);
   startAutoplay();
 };
