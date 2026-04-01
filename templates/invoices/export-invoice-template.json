@@ -1,0 +1,124 @@
+{
+  "company": {
+    "name": "Jade Waves Enterprise",
+    "brand_name": "Jade Waves",
+    "address": [
+      "A-11 Florence Residency, Opposite Sola Police Chowky",
+      "Ahmedabad, Gujarat 380060",
+      "India"
+    ],
+    "email": "[Email Address]",
+    "phone": "[Phone Number]",
+    "gstin": "24AAUFJ5543K1ZU",
+    "iec": "AAUFJ5543K",
+    "logo_path": "assets/jade-waves-logo-transparent.png",
+    "signature_path": "assets/coa-silica-sign-stamp.png"
+  },
+  "invoice": {
+    "title": "Export Invoice",
+    "subtitle": "Supply under Letter of Undertaking without payment of Integrated Tax (IGST)",
+    "number": "A00000",
+    "date": "[DD Month YYYY]",
+    "lut_no": "[LUT Number]",
+    "country": "India",
+    "state_code": "Gujarat / 380060",
+    "port_loading": "[Port of Loading]",
+    "port_discharge": "[Port of Discharge]",
+    "final_destination": "[Country of Final Destination]",
+    "incoterm": "CIF",
+    "payment_terms": "100% Advance",
+    "packages": "[Package Count and Packing]",
+    "currency": "USD",
+    "declaration": "Certified that the particulars given above are true and correct.",
+    "sr_no_label": "Sr.No",
+    "description_column_label": "Item Description",
+    "quantity_column_label": "Quantity (Metric Ton)",
+    "rate_column_label": "Rate Per Ton",
+    "amount_column_label": "Amount",
+    "igst_column_label": "IGST",
+    "total_column_label": "Total USD",
+    "quantity_summary_label": "Total Quantity in Metric Tons"
+  },
+  "consignee": {
+    "name": "[Consignee Name]",
+    "address": [
+      "[Address Line 1]",
+      "[Address Line 2]"
+    ],
+    "registration": "[Company Registration Number]",
+    "attention": "[Contact Person]",
+    "phone": "[Phone Number]"
+  },
+  "notify": {
+    "name": "[Notify Party Name]",
+    "address": [
+      "[Address Line 1]",
+      "[Address Line 2]"
+    ],
+    "registration": "[Company Registration Number]",
+    "attention": "[Contact Person]",
+    "phone": "[Phone Number]"
+  },
+  "items": [
+    {
+      "product": "[Product Name]",
+      "description_lines": [
+        "[Packing Details]",
+        "HS Code: [HS Code]",
+        "Country of Origin: India"
+      ],
+      "quantity": "0",
+      "rate": "0",
+      "igst_rate": "0"
+    }
+  ],
+  "bank": {
+    "account_name": "JADE WAVES ENTERPRISE",
+    "bank_name": "HDFC BANK",
+    "account_number": "99905500000022",
+    "ifsc": "HDFC0006638",
+    "swift": "HDFCINBBXXX",
+    "address": [
+      "Ground Floor, Shop No. 3, City Center,",
+      "Science City Road, Near Shukan Mall,",
+      "Ahmedabad, Gujarat 380060 - India"
+    ]
+  },
+  "packing_list": {
+    "title": "Packing List",
+    "invoice_date": "[DD Month YYYY]",
+    "invoice_number": "[Invoice Number]",
+    "other_reference": "IEC: [IEC Number]",
+    "buyer_name": "",
+    "buyer_lines": [],
+    "origin_state_country": "[State / Country of Origin]",
+    "final_destination": "[Final Destination]",
+    "terms_lines": [
+      "[Incoterm Destination]",
+      "[Payment Terms]"
+    ],
+    "pre_carriage_by": "By Road",
+    "place_of_receipt": "",
+    "vessel_flight_no": "-",
+    "port_loading": "[Port of Loading]",
+    "port_discharge": "[Port of Discharge]",
+    "rows": [
+      {
+        "marks_numbers": "[Container / Marks]",
+        "packages": "[No. & Kind of Packages]",
+        "description_lines": [
+          "[Product Name]",
+          "HS CODE: [HS Code]",
+          "COUNTRY OF ORIGIN : INDIA"
+        ],
+        "quantity_mt": "0"
+      }
+    ],
+    "case_no": "",
+    "no_of_pcs": "",
+    "total_quantity_mt": "0",
+    "total_net_weight_ton": "0",
+    "total_gross_weight_ton": "0",
+    "declaration": "We declare that this invoice shows the actual price of goods described and all particulars are true & correct."
+  }
+}

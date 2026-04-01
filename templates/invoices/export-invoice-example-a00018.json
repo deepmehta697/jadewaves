@@ -1,0 +1,124 @@
+{
+  "company": {
+    "name": "Jade Waves Enterprise",
+    "brand_name": "Jade Waves",
+    "address": [
+      "A-11 Florence Residency, Opposite Sola Police Chowky",
+      "Ahmedabad, Gujarat 380060",
+      "India"
+    ],
+    "email": "deep@jadewavesenterprise.com",
+    "phone": "+91-999-883-5503",
+    "gstin": "24AAUFJ5543K1ZU",
+    "iec": "AAUFJ5543K",
+    "logo_path": "assets/jade-waves-logo-transparent.png",
+    "signature_path": "assets/coa-silica-sign-stamp.png"
+  },
+  "invoice": {
+    "title": "Export Invoice",
+    "subtitle": "Supply under Letter of Undertaking without payment of Integrated Tax (IGST)",
+    "number": "A00018",
+    "date": "26 March 2026",
+    "lut_no": "AD2403260494544",
+    "country": "India",
+    "state_code": "Gujarat / 380060",
+    "port_loading": "Mundra, India",
+    "port_discharge": "Male",
+    "final_destination": "Maldives",
+    "incoterm": "CIF",
+    "payment_terms": "100% Advance",
+    "packages": "933 bags of 30 kgs each",
+    "currency": "USD",
+    "declaration": "Certified that the particulars given above are true and correct.",
+    "sr_no_label": "Sr.No",
+    "description_column_label": "Item Description",
+    "quantity_column_label": "Quantity (Metric Ton)",
+    "rate_column_label": "Rate Per Ton",
+    "amount_column_label": "Amount",
+    "igst_column_label": "IGST",
+    "total_column_label": "Total USD",
+    "quantity_summary_label": "Total Quantity in Metric Tons"
+  },
+  "consignee": {
+    "name": "Grass Pro Private Limited",
+    "address": [
+      "Yaagoothuge Lh Kurendhoo",
+      "Republic of Maldives"
+    ],
+    "registration": "Company Registration Number: C0563/2022",
+    "attention": "Attn: Mohamed hameed",
+    "phone": "Tel: +9609926543"
+  },
+  "notify": {
+    "name": "Grass Pro Private Limited",
+    "address": [
+      "Yaagoothuge Lh Kurendhoo",
+      "Republic of Maldives"
+    ],
+    "registration": "Company Registration Number: C0563/2022",
+    "attention": "Attn: Mohamed hameed",
+    "phone": "Tel: +9609926543"
+  },
+  "items": [
+    {
+      "product": "Quartz Silica",
+      "description_lines": [
+        "Packed in 30 kg bags",
+        "HS Code: 25061020",
+        "Country of Origin: India"
+      ],
+      "quantity": "28",
+      "rate": "101",
+      "igst_rate": "0"
+    }
+  ],
+  "bank": {
+    "account_name": "JADE WAVES ENTERPRISE",
+    "bank_name": "HDFC BANK",
+    "account_number": "99905500000022",
+    "ifsc": "HDFC0006638",
+    "swift": "HDFCINBBXXX",
+    "address": [
+      "Ground Floor, Shop No. 3, City Center,",
+      "Science City Road, Near Shukan Mall,",
+      "Ahmedabad, Gujarat 380060 - India"
+    ]
+  },
+  "packing_list": {
+    "title": "Packing List",
+    "invoice_date": "26 March 2026",
+    "invoice_number": "A00018",
+    "other_reference": "IEC: AAUFJ5543K",
+    "buyer_name": "",
+    "buyer_lines": [],
+    "origin_state_country": "MUNDRA - INDIA",
+    "final_destination": "MALDIVES",
+    "terms_lines": [
+      "CIF MALE",
+      "100% ADVANCE"
+    ],
+    "pre_carriage_by": "By Road",
+    "place_of_receipt": "",
+    "vessel_flight_no": "-",
+    "port_loading": "MUNDRA - INDIA",
+    "port_discharge": "MALE",
+    "rows": [
+      {
+        "marks_numbers": "01 x 20' Container",
+        "packages": "933 BAGS OF 30 KGS EACH",
+        "description_lines": [
+          "Quartz Silica",
+          "HS CODE: 25061020",
+          "COUNTRY OF ORIGIN : INDIA"
+        ],
+        "quantity_mt": "28"
+      }
+    ],
+    "case_no": "",
+    "no_of_pcs": "",
+    "total_quantity_mt": "28",
+    "total_net_weight_ton": "28",
+    "total_gross_weight_ton": "28.006",
+    "declaration": "We declare that this invoice shows the actual price of goods described and all particulars are true & correct."
+  }
+}
