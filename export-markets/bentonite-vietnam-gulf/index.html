@@ -41,7 +41,19 @@
         }
       };
     </script>
-    <link rel="stylesheet" href="/styles.css" />
+    <script>
+  window.__JWE_SITE_BASE_PATH__ = (function() {
+    var repoPath = "/jadewaves";
+    var pathname = window.location.pathname;
+    if (pathname === repoPath || pathname.indexOf(repoPath + "/") === 0) {
+      return repoPath;
+    }
+    return "";
+  })();
+  var baseHref = window.__JWE_SITE_BASE_PATH__ ? window.__JWE_SITE_BASE_PATH__ + "/" : "/";
+  document.write('<base href="' + baseHref + '">');
+</script>
+            <link rel="stylesheet" href="styles.css" />
     <script type="application/ld+json">[
       {
         "@context": "https://schema.org",
@@ -91,36 +103,36 @@
         ]
       }
     ]</script>
-    <script defer src="/script.js"></script>
+    <script defer src="script.js"></script>
   </head>
   <body class="antialiased page-portfolio">
     <header class="site-header" data-header>
       <div class="site-header__inner">
-        <a class="brand-mark" href="/" aria-label="Jade Waves Enterprise home">
-          <img src="/assets/jade-waves-logo-transparent.png" alt="Jade Waves Enterprise logo" />
+        <a class="brand-mark" href="./" aria-label="Jade Waves Enterprise home">
+          <img src="assets/jade-waves-logo-transparent.png" alt="Jade Waves Enterprise logo" />
         </a>
         <nav class="desktop-nav" aria-label="Primary">
-          <a href="/#about">About</a>
-          <a href="/products/">Products</a>
-          <a href="/operations/">Operations</a>
-          <a href="/export-markets/">Markets</a>
-          <a href="/#contact">Contact</a>
-            <a href="/privacy-policy/">Privacy Policy</a>
-            <a href="/terms-disclaimer/">Terms &amp; Disclaimer</a>
+          <a href="./#about">About</a>
+          <a href="products/">Products</a>
+          <a href="operations/">Operations</a>
+          <a href="export-markets/">Markets</a>
+          <a href="./#contact">Contact</a>
+            <a href="privacy-policy/">Privacy Policy</a>
+            <a href="terms-disclaimer/">Terms &amp; Disclaimer</a>
         </nav>
         <div class="header-actions">
-          <a class="button button--dark button--compact" href="/#contact" data-set-request="Quote">Request Quote</a>
+          <a class="button button--dark button--compact" href="./#contact" data-set-request="Quote">Request Quote</a>
           <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>Menu</button>
         </div>
       </div>
       <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
-        <a href="/#about">About</a>
-        <a href="/products/">Products</a>
-        <a href="/operations/">Operations</a>
-        <a href="/export-markets/">Markets</a>
-        <a href="/#contact">Contact</a>
-            <a href="/privacy-policy/">Privacy Policy</a>
-            <a href="/terms-disclaimer/">Terms &amp; Disclaimer</a>
+        <a href="./#about">About</a>
+        <a href="products/">Products</a>
+        <a href="operations/">Operations</a>
+        <a href="export-markets/">Markets</a>
+        <a href="./#contact">Contact</a>
+            <a href="privacy-policy/">Privacy Policy</a>
+            <a href="terms-disclaimer/">Terms &amp; Disclaimer</a>
       </div>
     </header>
     <main>
@@ -137,8 +149,8 @@
             <h1>Bentonite manufacturer from India for Vietnam and Gulf buyers.</h1>
             <p class="hero-text">For Vietnam and Gulf buyers who need application, grade direction, packing, destination, and shipment basis aligned before the first quote.</p>
             <div class="hero-actions">
-              <a class="button button--light" href="/products/bentonite/">View Bentonite</a>
-              <a class="button button--ghost" href="/#contact" data-set-request="Quote">Request Quote</a>
+              <a class="button button--light" href="products/bentonite/">View Bentonite</a>
+              <a class="button button--ghost" href="./#contact" data-set-request="Quote">Request Quote</a>
             </div>
           </div>
         </div>
@@ -169,7 +181,7 @@
               <h2>What these buyers usually need to settle first.</h2>
               <p>Most bentonite enquiries from Vietnam and Gulf buyers begin with application, grade direction, performance requirement, packing format, and destination port.</p>
             </div>
-            <a class="section-link" href="/export-markets/">Back to export markets</a>
+            <a class="section-link" href="export-markets/">Back to export markets</a>
           </div>
           <div class="industry-rail">
             <article class="industry-line" data-reveal>
@@ -233,7 +245,7 @@
             <article class="product-line"><span>04</span><div><strong>Volume</strong><p>Project or monthly quantity helps shape the quote properly.</p></div></article>
           </div>
           <div class="section-cta">
-            <a class="button button--dark" href="/#contact" data-set-request="Quote">Prepare a Bentonite inquiry</a>
+            <a class="button button--dark" href="./#contact" data-set-request="Quote">Prepare a Bentonite inquiry</a>
           </div>
         </div>
       </section>
@@ -245,9 +257,9 @@
             <h2>Continue through the portfolio.</h2>
           </div>
           <div class="related-links" data-reveal>
-            <a href="/products/bentonite/">Bentonite Product</a>
-            <a href="/products/fly-ash/">Fly Ash</a>
-            <a href="/export-markets/">Export Markets</a>
+            <a href="products/bentonite/">Bentonite Product</a>
+            <a href="products/fly-ash/">Fly Ash</a>
+            <a href="export-markets/">Export Markets</a>
           </div>
         </div>
       </section>
@@ -281,12 +293,12 @@
           </div>
           <div>
             <p class="footer-heading">Navigate</p>
-            <a href="/">Home</a>
-            <a href="/products/">Products</a>
-            <a href="/export-markets/">Export Markets</a>
-            <a href="/#contact">Contact</a>
-            <a href="/privacy-policy/">Privacy Policy</a>
-            <a href="/terms-disclaimer/">Terms &amp; Disclaimer</a>
+            <a href="./">Home</a>
+            <a href="products/">Products</a>
+            <a href="export-markets/">Export Markets</a>
+            <a href="./#contact">Contact</a>
+            <a href="privacy-policy/">Privacy Policy</a>
+            <a href="terms-disclaimer/">Terms &amp; Disclaimer</a>
           </div>
         </div>
       </div>

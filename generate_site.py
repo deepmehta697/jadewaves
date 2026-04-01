@@ -9,6 +9,7 @@ from textwrap import dedent
 
 ROOT = Path(__file__).parent
 BASE_URL = "https://jadewavesenterprise.com"
+PROJECT_PAGES_REPO = "jadewaves"
 TODAY = date.today().isoformat()
 CEO_LINKEDIN_URL = "https://www.linkedin.com/in/deep-mehta-034230226/"
 
@@ -597,6 +598,40 @@ def write(path: Path, content: str) -> None:
     path.write_text(content.rstrip() + "\n", encoding="utf-8")
 
 
+def make_project_pages_safe(markup: str) -> str:
+    base_bootstrap = dedent(
+        f"""
+        <script>
+          window.__JWE_SITE_BASE_PATH__ = (function() {{
+            var repoPath = "/{PROJECT_PAGES_REPO}";
+            var pathname = window.location.pathname;
+            if (pathname === repoPath || pathname.indexOf(repoPath + "/") === 0) {{
+              return repoPath;
+            }}
+            return "";
+          }})();
+          var baseHref = window.__JWE_SITE_BASE_PATH__ ? window.__JWE_SITE_BASE_PATH__ + "/" : "/";
+          document.write('<base href="' + baseHref + '">');
+        </script>
+        """
+    ).strip()
+    safe_markup = markup.replace(
+        '<link rel="stylesheet" href="/styles.css" />',
+        f"{base_bootstrap}\n            <link rel=\"stylesheet\" href=\"styles.css\" />",
+        1,
+    )
+    for source, target in (
+        ('href="/#', 'href="./#'),
+        ('href="/"', 'href="./"'),
+        ('href="/', 'href="'),
+        ('src="/', 'src="'),
+        ('poster="/', 'poster="'),
+        ('srcset="/', 'srcset="'),
+    ):
+        safe_markup = safe_markup.replace(source, target)
+    return safe_markup
+
+
 def nav_html() -> str:
     return dedent(
         f"""
@@ -667,36 +702,38 @@ def footer_html() -> str:
 def page_shell(title: str, meta_description: str, path: str, body: str, schema: list[dict], body_class: str = "") -> str:
     page_url = f"{BASE_URL}{path}"
     schema_blob = json.dumps(schema, ensure_ascii=False)
-    return dedent(
-        f"""
-        <!DOCTYPE html>
-        <html lang="en">
-          <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>{escape(title)}</title>
-            <meta name="description" content="{escape(meta_description)}" />
-            <meta name="robots" content="index,follow" />
-            <link rel="canonical" href="{escape(page_url)}" />
-            <meta property="og:title" content="{escape(title)}" />
-            <meta property="og:description" content="{escape(meta_description)}" />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content="{escape(page_url)}" />
-            <meta property="og:site_name" content="{escape(CONTACT["company"])}" />
-            <meta property="og:image" content="{BASE_URL}/assets/jade-waves-logo-transparent.png" />
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-            <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-            <link rel="stylesheet" href="/styles.css" />
-            <script type="application/ld+json">{schema_blob}</script>
-            <script defer src="/script.js"></script>
-          </head>
-          <body class="antialiased {escape(body_class)}">
-            {body}
-          </body>
-        </html>
-        """
-    ).strip()
+    return make_project_pages_safe(
+        dedent(
+            f"""
+            <!DOCTYPE html>
+            <html lang="en">
+              <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>{escape(title)}</title>
+                <meta name="description" content="{escape(meta_description)}" />
+                <meta name="robots" content="index,follow" />
+                <link rel="canonical" href="{escape(page_url)}" />
+                <meta property="og:title" content="{escape(title)}" />
+                <meta property="og:description" content="{escape(meta_description)}" />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="{escape(page_url)}" />
+                <meta property="og:site_name" content="{escape(CONTACT["company"])}" />
+                <meta property="og:image" content="{BASE_URL}/assets/jade-waves-logo-transparent.png" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+                <link rel="stylesheet" href="/styles.css" />
+                <script type="application/ld+json">{schema_blob}</script>
+                <script defer src="/script.js"></script>
+              </head>
+              <body class="antialiased {escape(body_class)}">
+                {body}
+              </body>
+            </html>
+            """
+        ).strip()
+    )
 
 
 def form_block(product_name: str = "") -> str:

@@ -17,6 +17,23 @@ const inquiryEndpoint = "https://formsubmit.co/ajax/deep@jadewavesenterprise.com
 const inquiryFallbackEmail = "deep@jadewavesenterprise.com";
 const inquiryFallbackPhone = "+91-999-883-5503";
 const inquiryAttachmentAccept = ".pdf,.png,.jpg,.jpeg";
+const siteBasePath = (() => {
+  const repoPath = "/jadewaves";
+  const { pathname } = window.location;
+  if (pathname === repoPath || pathname.startsWith(`${repoPath}/`)) {
+    return repoPath;
+  }
+  return "";
+})();
+const normalizeSitePath = (path) => {
+  if (!siteBasePath) return path;
+  if (path === siteBasePath) return "/";
+  if (path.startsWith(`${siteBasePath}/`)) {
+    return path.slice(siteBasePath.length);
+  }
+  return path;
+};
+const withSiteBase = (path) => `${siteBasePath}${path.startsWith("/") ? path : `/${path}`}`;
 const productDocumentCatalog = {
   "/products/silica-sand/": {
     tds: "/assets/tds/silica-sand-technical-data-sheet.pdf",
@@ -59,6 +76,11 @@ const productDocumentCatalog = {
     sampleCoa: "/assets/coas/copper-slag-sample-coa.pdf",
   },
 };
+const currentPagePath = (() => {
+  const pathname = normalizeSitePath(window.location.pathname.replace(/index\.html$/, ""));
+  if (!pathname || pathname === "") return "/";
+  return pathname.endsWith("/") ? pathname : `${pathname}/`;
+})();
 
 requestAnimationFrame(() => {
   document.body.classList.add("is-ready");
@@ -130,7 +152,7 @@ const ensureHoneypotField = (form) => {
 };
 
 const initProductDocumentActions = () => {
-  const config = productDocumentCatalog[window.location.pathname];
+  const config = productDocumentCatalog[currentPagePath];
   if (!config) return;
 
   const supplyCard = Array.from(document.querySelectorAll(".product-sheet"))
@@ -161,7 +183,7 @@ const initProductDocumentActions = () => {
   if (config.tds) {
     const tdsLink = document.createElement("a");
     tdsLink.className = "doc-action";
-    tdsLink.href = config.tds;
+    tdsLink.href = withSiteBase(config.tds);
     tdsLink.target = "_blank";
     tdsLink.rel = "noopener noreferrer";
     tdsLink.textContent = "Open TDS";
@@ -171,7 +193,7 @@ const initProductDocumentActions = () => {
   if (config.sampleCoa) {
     const coaLink = document.createElement("a");
     coaLink.className = "doc-action doc-action--ghost";
-    coaLink.href = config.sampleCoa;
+    coaLink.href = withSiteBase(config.sampleCoa);
     coaLink.target = "_blank";
     coaLink.rel = "noopener noreferrer";
     coaLink.textContent = "Open Sample COA";

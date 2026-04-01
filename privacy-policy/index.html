@@ -39,33 +39,45 @@
         }
       };
     </script>
-    <link rel="stylesheet" href="/styles.css" />
-    <script defer src="/script.js"></script>
+    <script>
+  window.__JWE_SITE_BASE_PATH__ = (function() {
+    var repoPath = "/jadewaves";
+    var pathname = window.location.pathname;
+    if (pathname === repoPath || pathname.indexOf(repoPath + "/") === 0) {
+      return repoPath;
+    }
+    return "";
+  })();
+  var baseHref = window.__JWE_SITE_BASE_PATH__ ? window.__JWE_SITE_BASE_PATH__ + "/" : "/";
+  document.write('<base href="' + baseHref + '">');
+</script>
+            <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
   </head>
   <body class="antialiased page-portfolio">
     <header class="site-header" data-header>
       <div class="site-header__inner">
-        <a class="brand-mark" href="/" aria-label="Jade Waves Enterprise home">
-          <img src="/assets/jade-waves-logo-transparent.png" alt="Jade Waves Enterprise logo" />
+        <a class="brand-mark" href="./" aria-label="Jade Waves Enterprise home">
+          <img src="assets/jade-waves-logo-transparent.png" alt="Jade Waves Enterprise logo" />
         </a>
         <nav class="desktop-nav" aria-label="Primary">
-          <a href="/#about">About</a>
-          <a href="/products/">Products</a>
-          <a href="/operations/">Operations</a>
-          <a href="/export-markets/">Markets</a>
-          <a href="/#contact">Contact</a>
+          <a href="./#about">About</a>
+          <a href="products/">Products</a>
+          <a href="operations/">Operations</a>
+          <a href="export-markets/">Markets</a>
+          <a href="./#contact">Contact</a>
         </nav>
         <div class="header-actions">
-          <a class="button button--dark button--compact" href="/#contact" data-set-request="Quote">Request Quote</a>
+          <a class="button button--dark button--compact" href="./#contact" data-set-request="Quote">Request Quote</a>
           <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>Menu</button>
         </div>
       </div>
       <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
-        <a href="/#about">About</a>
-        <a href="/products/">Products</a>
-        <a href="/operations/">Operations</a>
-        <a href="/export-markets/">Markets</a>
-        <a href="/#contact">Contact</a>
+        <a href="./#about">About</a>
+        <a href="products/">Products</a>
+        <a href="operations/">Operations</a>
+        <a href="export-markets/">Markets</a>
+        <a href="./#contact">Contact</a>
       </div>
     </header>
     <main>
@@ -142,7 +154,7 @@
           <div class="related-links" data-reveal>
             <a href="mailto:deep@jadewavesenterprise.com">deep@jadewavesenterprise.com</a>
             <a href="tel:+91-999-883-5503">+91-999-883-5503</a>
-            <a href="/terms-disclaimer/">Terms &amp; Disclaimer</a>
+            <a href="terms-disclaimer/">Terms &amp; Disclaimer</a>
           </div>
         </div>
       </section>
@@ -161,13 +173,13 @@
           </div>
           <div>
             <p class="footer-heading">Navigate</p>
-            <a href="/">Home</a>
-            <a href="/products/">Products</a>
-            <a href="/operations/">Operations</a>
-            <a href="/export-markets/">Export Markets</a>
-            <a href="/industrial-minerals-exporter-india/">Exporter Profile</a>
-            <a href="/privacy-policy/">Privacy Policy</a>
-            <a href="/terms-disclaimer/">Terms &amp; Disclaimer</a>
+            <a href="./">Home</a>
+            <a href="products/">Products</a>
+            <a href="operations/">Operations</a>
+            <a href="export-markets/">Export Markets</a>
+            <a href="industrial-minerals-exporter-india/">Exporter Profile</a>
+            <a href="privacy-policy/">Privacy Policy</a>
+            <a href="terms-disclaimer/">Terms &amp; Disclaimer</a>
           </div>
         </div>
       </div>
