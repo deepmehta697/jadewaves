@@ -20,7 +20,7 @@ const inquiryAttachmentAccept = ".pdf,.png,.jpg,.jpeg";
 const productDocumentCatalog = {
   "/products/silica-sand/": {
     tds: "/assets/tds/silica-sand-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/silica-sand-sample-coa.pdf",
+    sampleCoa: "/assets/silica-sand-coa-premium-final.pdf",
   },
   "/products/silica-flour/": {
     tds: "/assets/tds/silica-flour-technical-data-sheet.pdf",
