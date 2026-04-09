@@ -593,163 +593,6 @@ BLOGS = [
     },
 ]
 
-EXPORT_MARKETS = [
-    {
-        "slug": "quartz-sand-vietnam",
-        "title": "Quartz Sand Supplier from India for Vietnam Buyers",
-        "meta_description": "Quartz sand supplier from India for Vietnam ceramic, glass, and engineered stone buyers comparing purity, sizing, packing, and dispatch reliability.",
-        "eyebrow": "Vietnam / Ceramics / Glass",
-        "headline": "Quartz sand from India for Vietnam ceramic and glass buyers.",
-        "summary": "Use this route when the buying brief centers on quartz sand, grits, or powder for tile bodies, ceramic plants, glass batches, or engineered stone demand in Vietnam.",
-        "product_slugs": ["quartz-sand-for-ceramics", "silica-sand", "feldspar"],
-        "market_points": [
-            "Quartz sand, grits, and powder options aligned to ceramic and glass use.",
-            "Specification-first discussions on SiO2, whiteness, grain size, and packing.",
-            "Useful for buyers comparing multiple India quartz suppliers before trial or volume orders.",
-        ],
-    },
-    {
-        "slug": "feldspar-vietnam",
-        "title": "Feldspar Supplier from India for Vietnam Buyers",
-        "meta_description": "Feldspar supplier from India for Vietnam ceramic, sanitaryware, and glass buyers sourcing potassium and sodium feldspar grades.",
-        "eyebrow": "Vietnam / Feldspar / Ceramics",
-        "headline": "Feldspar supply from India for Vietnam ceramic and glass production.",
-        "summary": "Built for Vietnam buyers sourcing potassium feldspar or sodium feldspar for ceramic bodies, sanitaryware, glaze systems, and glass production.",
-        "product_slugs": ["feldspar", "quartz-sand-for-ceramics", "kaolin--china-clay"],
-        "market_points": [
-            "Potassium and sodium feldspar grades matched to ceramic and glass use.",
-            "Conversations start around K2O, Na2O, Fe2O3, mesh size, and packing.",
-            "Designed for import buyers narrowing suppliers before sample approval.",
-        ],
-    },
-    {
-        "slug": "feldspar-thailand",
-        "title": "Feldspar Supplier from India for Thailand Buyers",
-        "meta_description": "Feldspar supplier from India for Thailand import buyers sourcing ceramic and glass grades with controlled K2O, Na2O, Fe2O3, and mesh size.",
-        "eyebrow": "Thailand / Feldspar / Ceramics",
-        "headline": "Feldspar from India for Thailand ceramic and glass buyers.",
-        "summary": "For Thailand buyers who need potassium or sodium feldspar with cleaner chemistry discussions before pricing, sampling, and dispatch.",
-        "product_slugs": ["feldspar", "quartz-sand-for-ceramics", "kaolin--china-clay"],
-        "market_points": [
-            "Feldspar grades suited to ceramic, sanitaryware, and glass production.",
-            "Useful when comparing India feldspar suppliers for repeat import programs.",
-            "Built around export handling, packing, and order-fit discussions.",
-        ],
-    },
-    {
-        "slug": "silica-sand-maldives",
-        "title": "Silica Sand Supplier from India for Maldives Buyers",
-        "meta_description": "Silica sand supplier from India for Maldives buyers sourcing filtration, construction, and industrial silica sand with export-ready packing.",
-        "eyebrow": "Maldives / Silica Sand / Filtration",
-        "headline": "Silica sand from India for Maldives import buyers.",
-        "summary": "A focused entry page for Maldives buyers sourcing silica sand for filtration, construction, or related mineral demand where dispatch and packing matter.",
-        "product_slugs": ["silica-sand", "silica-flour"],
-        "market_points": [
-            "Silica sand supply for filtration, foundry, and construction-linked demand.",
-            "Useful for Maldives buyers comparing bulk silica sand imports from India.",
-            "Clear discussions on chemistry, grain size, packing, and shipment basis.",
-        ],
-    },
-    {
-        "slug": "silica-sand-philippines",
-        "title": "Silica Sand Supplier from India for Philippines Buyers",
-        "meta_description": "Silica sand supplier from India for Philippines import buyers sourcing glass, filtration, foundry, and construction grades.",
-        "eyebrow": "Philippines / Silica Sand / Glass",
-        "headline": "Silica sand from India for Philippines glass and industrial buyers.",
-        "summary": "For Philippines buyers comparing silica sand suppliers from India for glass manufacturing, filtration, foundry use, and construction demand.",
-        "product_slugs": ["silica-sand", "silica-flour", "quartz-sand-for-ceramics"],
-        "market_points": [
-            "Glass, filtration, foundry, and construction silica grades.",
-            "Structured around import-buyer questions on Fe2O3, SiO2, sizing, and packing.",
-            "Supports trial, sample, and volume conversations with export context.",
-        ],
-    },
-    {
-        "slug": "bentonite-vietnam-gulf",
-        "title": "Bentonite Supplier from India for Vietnam and Gulf Buyers",
-        "meta_description": "Bentonite supplier from India for Vietnam, UAE, Oman, Qatar, Bahrain, and Saudi Arabia buyers sourcing drilling, foundry, and bleaching grades.",
-        "eyebrow": "Vietnam + Gulf / Bentonite",
-        "headline": "Bentonite from India for Vietnam and Gulf import buyers.",
-        "summary": "A route for buyers sourcing sodium bentonite, calcium bentonite, or bleaching earth grades into Vietnam and the Gulf region.",
-        "product_slugs": ["bentonite", "talc"],
-        "market_points": [
-            "Drilling, foundry, sealing, absorbent, and bleaching bentonite discussions.",
-            "Useful for Gulf and Southeast Asia buyers comparing India bentonite sources.",
-            "Built around viscosity, liquid limit, moisture, and packing clarity.",
-        ],
-    },
-    {
-        "slug": "bentonite-saudi-arabia",
-        "title": "Bentonite Supplier from India for Saudi Arabia Buyers",
-        "meta_description": "Bentonite supplier from India for Saudi Arabia import buyers sourcing drilling, foundry, civil, absorbent, and bleaching earth grades.",
-        "eyebrow": "Saudi Arabia / Bentonite",
-        "headline": "Bentonite from India for Saudi Arabia buyers.",
-        "summary": "For Saudi Arabia buyers sourcing bentonite from India for drilling fluids, foundry systems, sealing work, absorbent applications, or bleaching earth use.",
-        "product_slugs": ["bentonite"],
-        "market_points": [
-            "Application-led bentonite discussions before price comparisons begin.",
-            "Useful for Saudi buyers evaluating India bentonite suppliers for repeated imports.",
-            "Commercial fit built around grade, viscosity, moisture, and packing.",
-        ],
-    },
-    {
-        "slug": "industrial-salt-uae",
-        "title": "Industrial Salt Supplier from India for UAE Buyers",
-        "meta_description": "Industrial salt supplier from India for UAE import buyers sourcing bulk non-iodized and iodized salt for chemical, treatment, and utility demand.",
-        "eyebrow": "UAE / Industrial Salt",
-        "headline": "Industrial salt from India for UAE buyers.",
-        "summary": "This page targets UAE buyers sourcing industrial salt or selected edible grades from India for chemical processing, water treatment, utilities, and related demand.",
-        "product_slugs": ["salt"],
-        "market_points": [
-            "Industrial salt and selected iodized or non-iodized grades for import planning.",
-            "Useful for UAE buyers comparing India salt suppliers on purity, grain size, and packing.",
-            "Built for bulk and repeat-order discussions rather than one-off commodity listings.",
-        ],
-    },
-    {
-        "slug": "talc-malaysia",
-        "title": "Talc Powder Supplier from India for Malaysia Buyers",
-        "meta_description": "Talc powder supplier from India for Malaysia import buyers sourcing plastics, paint, rubber, ceramic, detergent, and filler grades.",
-        "eyebrow": "Malaysia / Talc Powder",
-        "headline": "Talc powder from India for Malaysia import buyers.",
-        "summary": "For Malaysia buyers comparing talc powder suppliers from India for plastics, coatings, rubber, ceramics, detergents, and industrial fillers.",
-        "product_slugs": ["talc", "kaolin--china-clay"],
-        "market_points": [
-            "High-whiteness talc powder routes for plastics, coatings, ceramics, and fillers.",
-            "Useful for Malaysia import buyers comparing mesh size, whiteness, and packing options.",
-            "Commercial conversations start with grade fit, not generic talc listings.",
-        ],
-    },
-    {
-        "slug": "quartz-feldspar-ceramic-glass",
-        "title": "Quartz and Feldspar Supplier from India for Ceramic and Glass Buyers",
-        "meta_description": "Quartz and feldspar supplier from India for ceramic and glass buyers in Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
-        "eyebrow": "Ceramic + Glass / Export Markets",
-        "headline": "Quartz and feldspar from India for ceramic and glass production.",
-        "summary": "A broader route for buyers who source both quartz and feldspar into ceramic, tile, sanitaryware, glass, and engineered stone lines.",
-        "product_slugs": ["quartz-sand-for-ceramics", "feldspar", "kaolin--china-clay"],
-        "market_points": [
-            "Useful when the buying brief spans multiple ceramic or glass minerals, not just one line item.",
-            "Supports early comparison around chemistry, flux behavior, whiteness, and sizing.",
-            "Internal links point directly to the exact product pages for deeper spec review.",
-        ],
-    },
-]
-
-EXPORT_MARKETS_BY_SLUG = {market["slug"]: market for market in EXPORT_MARKETS}
-PRODUCT_MARKET_LINKS = {
-    "silica-sand": ["silica-sand-philippines", "silica-sand-maldives", "quartz-sand-vietnam"],
-    "silica-flour": ["silica-sand-philippines", "quartz-sand-vietnam"],
-    "quartz-sand-for-ceramics": ["quartz-sand-vietnam", "quartz-feldspar-ceramic-glass", "feldspar-thailand"],
-    "feldspar": ["feldspar-vietnam", "feldspar-thailand", "quartz-feldspar-ceramic-glass"],
-    "bentonite": ["bentonite-saudi-arabia", "bentonite-vietnam-gulf"],
-    "kaolin--china-clay": ["feldspar-thailand", "quartz-feldspar-ceramic-glass", "talc-malaysia"],
-    "talc": ["talc-malaysia", "bentonite-vietnam-gulf"],
-    "salt": ["industrial-salt-uae"],
-    "fly-ash": ["industrial-salt-uae"],
-    "copper-slag": ["industrial-salt-uae"],
-}
-
 
 def write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1006,25 +849,6 @@ def related_links(slugs: list[str]) -> str:
     return "".join(links)
 
 
-def market_links(slugs: list[str]) -> str:
-    cards = []
-    for slug in slugs:
-        market = EXPORT_MARKETS_BY_SLUG[slug]
-        cards.append(
-            dedent(
-                f"""
-                <a class="market-card" href="/export-markets/{market["slug"]}/">
-                  <p class="market-card__eyebrow">{escape(market["eyebrow"])}</p>
-                  <h3>{escape(market["title"])}</h3>
-                  <p>{escape(market["summary"])}</p>
-                  <span class="market-card__cta">Open market page</span>
-                </a>
-                """
-            ).strip()
-        )
-    return "".join(cards)
-
-
 def natural_join(items: list[str]) -> str:
     if not items:
         return ""
@@ -1051,172 +875,6 @@ def sentence_fragment(text: str) -> str:
     if any(ch.isdigit() for ch in first_word) or sum(ch.isupper() for ch in first_word) >= 2:
         return clean
     return clean[0].lower() + clean[1:]
-
-
-def render_export_markets_index() -> str:
-    market_cards = market_links([market["slug"] for market in EXPORT_MARKETS])
-    body = dedent(
-        f"""
-        {nav_html()}
-        <main>
-          <section class="hero hero--portfolio">
-            <div class="hero__strata" aria-hidden="true">
-              <span class="strata strata--a"></span>
-              <span class="strata strata--b"></span>
-              <span class="strata strata--c"></span>
-              <span class="route-line route-line--hero"></span>
-            </div>
-            <div class="shell hero__inner hero__inner--single">
-              <div class="hero-copy hero-copy--portfolio" data-reveal>
-                <p class="hero-label">Export Markets</p>
-                <h1>Product routes for priority import markets.</h1>
-                <p class="hero-text">
-                  These pages are built for buyers searching by product plus country, especially when the buying intent is to import from India into Southeast Asia, the Gulf, Mauritius, and Maldives.
-                </p>
-              </div>
-            </div>
-          </section>
-          <section class="section-block">
-            <div class="shell section-shell">
-              <div class="section-intro" data-reveal>
-                <p class="section-label">Priority Markets</p>
-                <h2>Country and region pages with direct product links.</h2>
-                <p>Each route narrows to the products, specification cues, and import conversations most likely to matter in that market.</p>
-              </div>
-              <div class="market-grid">{market_cards}</div>
-            </div>
-          </section>
-        </main>
-        {footer_html()}
-        """
-    ).strip()
-    schema = [
-        {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Jade Waves Export Markets", "url": f"{BASE_URL}/export-markets/"},
-    ]
-    return page_shell(
-        "Industrial Minerals Export Markets | Jade Waves Enterprise",
-        "Country and region pages for import buyers sourcing industrial minerals from India into Southeast Asia, the Gulf, Mauritius, and Maldives.",
-        "/export-markets/",
-        body,
-        schema,
-        "page-portfolio",
-    )
-
-
-def render_export_market_page(market: dict) -> str:
-    product_cards = "".join(
-        dedent(
-            f"""
-            <a class="portfolio-product" href="/products/{product["slug"]}/">
-              <div class="portfolio-product__main">
-                <p class="portfolio-product__eyebrow">{escape(product["eyebrow"])}</p>
-                <h3>{escape(product["name"])}</h3>
-                <p class="portfolio-product__fit"><span>Best for</span>{escape(product["short_copy"])}</p>
-              </div>
-              <span class="portfolio-product__arrow">View product</span>
-            </a>
-            """
-        ).strip()
-        for product in (PRODUCTS_BY_SLUG[slug] for slug in market["product_slugs"])
-    )
-    market_points = "".join(
-        dedent(
-            f"""
-            <article class="product-line">
-              <span>{index:02d}</span>
-              <div>
-                <strong>{escape(point)}</strong>
-              </div>
-            </article>
-            """
-        ).strip()
-        for index, point in enumerate(market["market_points"], start=1)
-    )
-    body = dedent(
-        f"""
-        {nav_html()}
-        <main>
-          <section class="hero hero--portfolio">
-            <div class="hero__strata" aria-hidden="true">
-              <span class="strata strata--a"></span>
-              <span class="strata strata--b"></span>
-              <span class="strata strata--c"></span>
-              <span class="route-line route-line--hero"></span>
-            </div>
-            <div class="shell hero__inner hero__inner--single">
-              <div class="hero-copy hero-copy--portfolio" data-reveal>
-                <div class="breadcrumb">
-                  <a href="/">Home</a>
-                  <span>/</span>
-                  <a href="/export-markets/">Export Markets</a>
-                  <span>/</span>
-                  <strong>{escape(market["title"])}</strong>
-                </div>
-                <p class="hero-label">{escape(market["eyebrow"])}</p>
-                <h1>{escape(market["headline"])}</h1>
-                <p class="hero-text">{escape(market["summary"])}</p>
-                <div class="hero-actions">
-                  <a class="button button--light" href="#contact" data-set-request="Quote">Request Quote</a>
-                  <a class="button button--ghost" href="/products/">Browse Products</a>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section class="section-block">
-            <div class="shell product-ledger">
-              <article class="product-sheet product-sheet--wide" data-reveal>
-                <p class="section-label">Market Fit</p>
-                <h2>What this page is intended to capture.</h2>
-                <div class="product-line-list">{market_points}</div>
-              </article>
-              <article class="product-sheet" data-reveal>
-                <p class="section-label">Commercial Flow</p>
-                <h2>How buyers usually start.</h2>
-                <p class="product-sheet__body">Most import conversations begin with the application, chemistry, size, packing, target destination, and expected monthly volume. This page narrows those questions before product-level review starts.</p>
-              </article>
-            </div>
-          </section>
-          <section class="section-block section-block--contrast">
-            <div class="shell section-shell">
-              <div class="section-intro" data-reveal>
-                <p class="section-label">Linked Products</p>
-                <h2>Open the exact product pages next.</h2>
-                <p>These are the product pages most relevant to this country or regional search route.</p>
-              </div>
-              <div class="portfolio-stage__track" data-reveal>
-                {product_cards}
-              </div>
-            </div>
-          </section>
-          <section class="section-block section-block--contact">
-            <div class="shell section-shell">
-              {form_block()}
-            </div>
-          </section>
-        </main>
-        {footer_html()}
-        """
-    ).strip()
-    schema = [
-        {"@context": "https://schema.org", "@type": "WebPage", "name": market["title"], "url": f"{BASE_URL}/export-markets/{market['slug']}/"},
-        {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE_URL},
-                {"@type": "ListItem", "position": 2, "name": "Export Markets", "item": f"{BASE_URL}/export-markets/"},
-                {"@type": "ListItem", "position": 3, "name": market["title"], "item": f"{BASE_URL}/export-markets/{market['slug']}/"},
-            ],
-        },
-    ]
-    return page_shell(
-        market["title"] + " | Jade Waves Enterprise",
-        market["meta_description"],
-        f"/export-markets/{market['slug']}/",
-        body,
-        schema,
-        "page-portfolio",
-    )
 
 
 def render_homepage() -> str:
@@ -1309,14 +967,6 @@ def render_homepage() -> str:
         ).strip()
         for number, title, copy in process_steps
     )
-    market_markup = market_links([
-        "quartz-sand-vietnam",
-        "feldspar-thailand",
-        "silica-sand-philippines",
-        "industrial-salt-uae",
-        "bentonite-saudi-arabia",
-        "talc-malaysia",
-    ])
     operating_markup = "".join(
         dedent(
             f"""
@@ -1426,17 +1076,6 @@ def render_homepage() -> str:
               <div class="home-family-list">
                 {''.join(family_blocks)}
               </div>
-            </div>
-          </section>
-
-          <section class="section-block">
-            <div class="shell section-shell">
-              <div class="section-intro" data-reveal>
-                <p class="section-label">Priority Export Markets</p>
-                <h2>Country pages built around import intent.</h2>
-                <p>These routes are designed to catch searches that combine your product with a country market and an India-origin supplier intent.</p>
-              </div>
-              <div class="market-grid">{market_markup}</div>
             </div>
           </section>
 
@@ -1758,23 +1397,6 @@ def render_product_page(product: dict) -> str:
         ).strip()
     commercial_tags = "".join(f'<span>{escape(item)}</span>' for item in product["industries"])
     related = related_links(product["related"])
-    market_section = ""
-    market_slugs = PRODUCT_MARKET_LINKS.get(product["slug"], [])
-    if market_slugs:
-        market_section = dedent(
-            f"""
-            <section class="section-block">
-              <div class="shell section-shell">
-                <div class="section-intro" data-reveal>
-                  <p class="section-label">Priority Markets</p>
-                  <h2>Country pages linked to this product.</h2>
-                  <p>These export-market pages help connect country-specific import searches to the right product route.</p>
-                </div>
-                <div class="market-grid" data-reveal>{market_links(market_slugs)}</div>
-              </div>
-            </section>
-            """
-        ).strip()
     faq_markup, faq_schema = render_faq(product)
     summary_spec = product.get("summary_spec")
     poster_metrics = [
@@ -1901,8 +1523,6 @@ def render_product_page(product: dict) -> str:
               <div class="related-links" data-reveal>{related}</div>
             </div>
           </section>
-
-          {market_section}
 
           <section class="section-block section-block--contrast">
             <div class="shell section-shell">
@@ -2326,58 +1946,6 @@ STYLES = dedent(
       flex-wrap: wrap;
       gap: 0.85rem;
       margin-top: 2rem;
-    }
-
-    .market-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.1rem;
-    }
-
-    .market-card {
-      display: grid;
-      gap: 0.85rem;
-      padding: 1.35rem;
-      border-radius: 1.5rem;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(29, 29, 31, 0.08);
-      box-shadow: 0 14px 34px rgba(29, 29, 31, 0.06);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-    }
-
-    .market-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 42px rgba(29, 29, 31, 0.09);
-      border-color: rgba(0, 113, 227, 0.18);
-    }
-
-    .market-card__eyebrow {
-      margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: rgba(29, 29, 31, 0.46);
-    }
-
-    .market-card h3 {
-      margin: 0;
-      line-height: 1.15;
-      font-size: 1.18rem;
-      letter-spacing: -0.04em;
-    }
-
-    .market-card p {
-      margin: 0;
-      color: rgba(29, 29, 31, 0.66);
-      line-height: 1.65;
-      font-size: 0.96rem;
-    }
-
-    .market-card__cta {
-      font-weight: 700;
-      color: var(--ore);
-      font-size: 0.92rem;
     }
 
     .hero-visual {
@@ -5893,10 +5461,6 @@ STYLES = dedent(
       .portfolio-stage__track {
         padding-top: 0;
       }
-
-      .market-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
     }
 
     @media (max-width: 900px) {
@@ -5967,10 +5531,6 @@ STYLES = dedent(
       .portfolio-row,
       .portfolio-product,
       .home-family-row {
-        grid-template-columns: 1fr;
-      }
-
-      .market-grid {
         grid-template-columns: 1fr;
       }
 
@@ -6788,9 +6348,6 @@ def main() -> None:
     write(ROOT / "styles.css", STYLES)
     write(ROOT / "script.js", SCRIPT)
     write(ROOT / "index.html", render_homepage())
-    write(ROOT / "export-markets" / "index.html", render_export_markets_index())
-    for market in EXPORT_MARKETS:
-        write(ROOT / "export-markets" / market["slug"] / "index.html", render_export_market_page(market))
     write(ROOT / "products" / "index.html", render_products_index())
     for product in PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
