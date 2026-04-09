@@ -1,0 +1,10 @@
+{
+  "name": "jadewaves-seo-automation",
+  "private": true,
+  "scripts": {
+    "build": "python3 scripts/build_site.py",
+    "build:regen": "python3 generate_site.py && python3 scripts/build_site.py",
+    "seo:report": "python3 scripts/seo/daily_runner.py",
+    "seo:report:force": "python3 scripts/seo/daily_runner.py --force"
+  }
+}

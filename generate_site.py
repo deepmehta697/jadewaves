@@ -12,6 +12,7 @@ BASE_URL = "https://jadewavesenterprise.com"
 PROJECT_PAGES_REPO = "jadewaves"
 TODAY = date.today().isoformat()
 CEO_LINKEDIN_URL = "https://www.linkedin.com/in/deep-mehta-034230226/"
+GA4_MEASUREMENT_ID = "G-9BRL4JKNN6"
 
 CONTACT = {
     "company": "Jade Waves Enterprise",
@@ -60,8 +61,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "silica",
         "eyebrow": "Glass / Filtration / Foundry / Construction",
-        "seo_title": "Silica Sand Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Silica sand supplier and exporter from India for glass manufacturing, filtration, foundry, and construction applications.",
+        "seo_title": "Silica Sand Supplier from India for Import Buyers | Jade Waves Enterprise",
+        "meta_description": "Silica sand supplier from India for import buyers in Vietnam, Thailand, the Philippines, UAE, Saudi Arabia, Mauritius, and Maldives.",
         "hero_copy": "Silica sand for glass, filtration, foundry, and construction buyers who need clean chemistry, steady grain size, and export handling that stays under control.",
         "short_copy": "Silica sand supplied for glass, filtration, foundry, and construction use.",
         "summary_spec": "SiO2 98.07% / Fe2O3 customizable to 150-200 PPM for glass",
@@ -106,8 +107,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "silica",
         "eyebrow": "Ceramics / Coatings / Fillers / Construction",
-        "seo_title": "Silica Flour Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Silica flour supplier from India offering controlled particle size silica for oil well cementing, paints, sealants, ceramics, fillers, and specialty construction.",
+        "seo_title": "Silica Flour Supplier from India for Import Buyers | Jade Waves Enterprise",
+        "meta_description": "Silica flour supplier from India for import buyers in Vietnam, Thailand, Malaysia, UAE, Saudi Arabia, Mauritius, and Maldives.",
         "hero_copy": "Silica flour with controlled sizing for ceramics, coatings, fillers, sealants, and construction systems that depend on a reliable micron profile.",
         "short_copy": "Controlled-size silica flour for ceramics, coatings, fillers, and specialty construction.",
         "summary_spec": "SiO2 99.10% / Fe2O3 0.036%",
@@ -149,8 +150,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "quartz",
         "eyebrow": "Ceramics / Glass / Engineered Stone / Building Materials",
-        "seo_title": "Quartz Sand, Grits & Powder Supplier from India | Jade Waves Enterprise",
-        "meta_description": "Quartz sand, grits, and powder supplier from India offering >99% SiO2 material for ceramics, glass, engineered stone manufacturing, and building materials.",
+        "seo_title": "Quartz Sand Supplier from India | Grits & Powder Exporter | Jade Waves Enterprise",
+        "meta_description": "Quartz sand supplier from India for import buyers in Vietnam, Thailand, the Philippines, Malaysia, UAE, and Saudi Arabia.",
         "hero_copy": "Quartz sand, grits, and powder for ceramics, glass, and engineered stone where purity, whiteness, and sizing shape the result.",
         "short_copy": "Quartz sand, grits, and powder for ceramics, glass, and engineered stone.",
         "summary_spec": "SiO2 >99.0% / L value 91 min",
@@ -204,8 +205,8 @@ PRODUCTS = [
         "anchor": "clays-fillers",
         "theme": "clay",
         "eyebrow": "Drilling / Foundry / Civil / Absorbent Grades",
-        "seo_title": "Bentonite Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Bulk bentonite supplier from India offering sodium and calcium bentonite for drilling, foundry, civil, and absorbent applications.",
+        "seo_title": "Bentonite Supplier from India for Import Buyers | Jade Waves Enterprise",
+        "meta_description": "Bulk bentonite supplier from India for import buyers in Vietnam, UAE, Oman, Qatar, Bahrain, Saudi Arabia, and Malaysia.",
         "hero_copy": "Bentonite for drilling, foundry, sealing, absorbent, and bleaching grades where swelling, viscosity, and moisture control need to stay dependable.",
         "short_copy": "Bentonite supplied for drilling, foundry, sealing, absorbent, and bleaching use.",
         "summary_spec": "pH 9-11 / Liquid limit 450 min",
@@ -249,8 +250,8 @@ PRODUCTS = [
         "anchor": "clays-fillers",
         "theme": "kaolin",
         "eyebrow": "Ceramics / Coatings / Paper / Fillers",
-        "seo_title": "Kaolin Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Kaolin supplier from India offering high-brightness china clay for ceramics, paints, paper, rubber, and industrial filler applications.",
+        "seo_title": "China Clay Supplier from India | Kaolin Exporter | Jade Waves Enterprise",
+        "meta_description": "China clay supplier from India for import buyers in Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
         "hero_copy": "Kaolin with high brightness and a cleaner impurity profile for ceramics, coatings, paper, rubber, and filler systems.",
         "short_copy": "High-brightness kaolin for ceramics, coatings, paper, rubber, and fillers.",
         "summary_spec": "Whiteness 86.17 / Fe2O3 0.29%",
@@ -292,8 +293,8 @@ PRODUCTS = [
         "anchor": "clays-fillers",
         "theme": "talc",
         "eyebrow": "Plastics / Paints / Ceramics / Rubber",
-        "seo_title": "Talc Powder Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Talc supplier from India offering high-whiteness talc powder for plastics, paints, ceramics, rubber, cable, detergent, and industrial filler applications.",
+        "seo_title": "Talc Powder Supplier from India for Import Buyers | Jade Waves Enterprise",
+        "meta_description": "Talc powder supplier from India for import buyers in Vietnam, Thailand, Malaysia, UAE, Oman, Qatar, Bahrain, and Saudi Arabia.",
         "hero_copy": "Talc powder for plastics, paints, ceramics, rubber, cable, detergents, and fillers where whiteness, fineness, and smoother processing matter.",
         "short_copy": "High-whiteness talc powder for plastics, coatings, ceramics, rubber, cable, detergents, and fillers.",
         "applications": [
@@ -337,8 +338,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "feldspar",
         "eyebrow": "Ceramics / Sanitaryware / Glass",
-        "seo_title": "Feldspar Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Potassium and sodium feldspar supplier from India offering up to 11% K2O and up to 10% Na2O for ceramics, glass, sanitaryware, and engineered stone production.",
+        "seo_title": "Feldspar Supplier from India for Import Buyers | Jade Waves Enterprise",
+        "meta_description": "Potassium and sodium feldspar supplier from India for import buyers in Vietnam, Thailand, the Philippines, UAE, Malaysia, and Saudi Arabia.",
         "hero_copy": "Potassium and sodium feldspar supplied for ceramic, sanitaryware, tile, glass, and engineered stone production where flux behavior, melting control, and cleaner firing matter.",
         "short_copy": "Potassium and sodium feldspar for ceramics, sanitaryware, glass, and engineered stone production.",
         "summary_spec": "K2O up to 12% / Na2O up to 10%",
@@ -382,8 +383,8 @@ PRODUCTS = [
         "anchor": "salt-grades",
         "theme": "salt",
         "eyebrow": "Chemical / Water Treatment / Utility / Food-Linked Supply",
-        "seo_title": "Industrial Salt Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Industrial salt supplier from India offering bulk non-iodized and iodized salt for chemical processing, water treatment, food processing, and utility demand.",
+        "seo_title": "Industrial Salt Supplier from India for Import Buyers | Jade Waves Enterprise",
+        "meta_description": "Industrial salt supplier from India for import buyers in UAE, Oman, Qatar, Bahrain, Saudi Arabia, Mauritius, and Maldives.",
         "hero_copy": "Industrial and iodized salt grades for chemical processing, treatment systems, infrastructure, and food-linked demand, with flexible packing and dependable export flow.",
         "short_copy": "Iodized and non-iodized salt grades for chemical, utility, and food-linked supply.",
         "summary_spec": "NaCl 99.00% / Moisture 0.2% max",
@@ -432,8 +433,8 @@ PRODUCTS = [
         "anchor": "construction-media",
         "theme": "ash",
         "eyebrow": "Concrete / Cement / Blocks / Roads",
-        "seo_title": "Fly Ash Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Fly ash supplier from India for cement, ready-mix concrete, brick, block, and infrastructure applications.",
+        "seo_title": "Fly Ash Supplier from India for Import Buyers | Jade Waves Enterprise",
+        "meta_description": "Fly ash supplier from India for import buyers in the Philippines, Malaysia, UAE, Oman, Qatar, Bahrain, and Saudi Arabia.",
         "hero_copy": "Fly ash for cement, concrete, blocks, and infrastructure work that depends on steady dispatch and consistent replacement performance.",
         "short_copy": "Fly ash supplied for cement, concrete, blocks, and infrastructure work.",
         "summary_spec": "SiO2 55.13% / Al2O3 24.45% / LOI <1%",
@@ -475,8 +476,8 @@ PRODUCTS = [
         "anchor": "construction-media",
         "theme": "copper",
         "eyebrow": "Blasting / Surface Preparation / Construction",
-        "seo_title": "Copper Slag Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Copper slag supplier from India for abrasive blasting, surface preparation, and construction applications requiring dense angular media.",
+        "seo_title": "Copper Slag Supplier from India for Import Buyers | Jade Waves Enterprise",
+        "meta_description": "Copper slag supplier from India for import buyers in UAE, Oman, Qatar, Bahrain, Saudi Arabia, Malaysia, and Singapore.",
         "hero_copy": "Copper slag abrasive for blasting and surface preparation where hardness, angularity, and cleaner handling matter.",
         "short_copy": "Copper slag grit supplied for blasting, surface preparation, and construction use.",
         "summary_spec": "Moh's 6.0-7.0 / Specific gravity 3.51",
@@ -699,9 +700,26 @@ def footer_html() -> str:
     ).strip()
 
 
+def analytics_snippet() -> str:
+    if not GA4_MEASUREMENT_ID:
+        return ""
+    return dedent(
+        f"""
+        <script async src="https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){{dataLayer.push(arguments);}}
+          gtag('js', new Date());
+          gtag('config', '{GA4_MEASUREMENT_ID}');
+        </script>
+        """
+    ).strip()
+
+
 def page_shell(title: str, meta_description: str, path: str, body: str, schema: list[dict], body_class: str = "") -> str:
     page_url = f"{BASE_URL}{path}"
     schema_blob = json.dumps(schema, ensure_ascii=False)
+    tracking_markup = analytics_snippet()
     return make_project_pages_safe(
         dedent(
             f"""
@@ -724,6 +742,7 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
                 <link rel="stylesheet" href="/styles.css" />
+                {tracking_markup}
                 <script type="application/ld+json">{schema_blob}</script>
                 <script defer src="/script.js"></script>
               </head>
@@ -977,7 +996,7 @@ def render_homepage() -> str:
               <div class="hero-copy hero-copy--home" data-reveal>
                 <h1>A better way to buy industrial minerals.</h1>
                 <p class="hero-text">
-                  A focused export portfolio built around clearer specifications, cleaner communication, and shipment flow that stays visible.
+                  Industrial minerals exported from India for import buyers who need clearer specifications, cleaner communication, and shipment flow that stays visible.
                 </p>
                 <div class="hero-actions">
                   <a class="button button--light" href="/products/">Explore Portfolio</a>
@@ -1034,9 +1053,9 @@ def render_homepage() -> str:
                 <div class="home-ledger__intro" data-reveal>
                   <p class="section-kicker">Clarity, end to end.</p>
                   <h2>The details are handled early.</h2>
-                  <p>
-                    The material, the spec, the packing, the documents, the shipment. The work is set up to feel settled before the cargo moves.
-                  </p>
+                    <p>
+                      The material, the spec, the packing, the documents, the shipment. The work is set up for import buyers across Southeast Asia, the Gulf, Mauritius, and Maldives to feel settled before cargo moves.
+                    </p>
                 </div>
                 <div class="home-ledger__rows">
                   {operating_markup}
@@ -1147,8 +1166,8 @@ def render_homepage() -> str:
         },
     ]
     return page_shell(
-        "Industrial Mineral Exporter from India | Jade Waves Enterprise",
-        "Jade Waves Enterprise supplies industrial minerals from India with clear specifications, sample-first coordination, and export-ready shipment handling for global buyers.",
+        "Industrial Mineral Exporter from India for Global Buyers | Jade Waves Enterprise",
+        "Industrial mineral exporter from India serving import buyers in Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
         "/",
         home_body,
         schema,
@@ -1229,7 +1248,7 @@ def render_products_index() -> str:
                 <p class="hero-label">Portfolio</p>
                 <h1>Browse by application first.</h1>
                 <p class="hero-text">
-                  Use the portfolio to narrow by end use first, then open the exact product page for grade cues, packing, and shipment fit.
+                  Use the portfolio to find industrial minerals supplied from India for import buyers in Southeast Asia, the Gulf, Mauritius, and Maldives.
                 </p>
                 <div class="hero-actions">
                   <a class="button button--light" href="/#contact" data-set-request="Quote">Request Quote</a>
@@ -1275,8 +1294,8 @@ def render_products_index() -> str:
         },
     ]
     return page_shell(
-        "Industrial Minerals Portfolio | Jade Waves Enterprise",
-        "Browse the Jade Waves Enterprise industrial minerals portfolio by buying group, then open dedicated product pages for uses, specifications, packing, and export handling.",
+        "Industrial Minerals Supplier from India | Jade Waves Enterprise",
+        "Industrial minerals supplier from India for import buyers in Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
         "/products/",
         body,
         schema,
@@ -6303,7 +6322,16 @@ def render_robots() -> str:
 
 
 def render_sitemap() -> str:
-    urls = ["/", "/products/"] + [f"/products/{product['slug']}/" for product in PRODUCTS]
+    urls: list[str] = []
+    for path in sorted(ROOT.rglob("index.html")):
+        if "_site" in path.parts or ".git" in path.parts:
+            continue
+        rel = path.relative_to(ROOT)
+        if rel.name != "index.html":
+            continue
+        parent = rel.parent.as_posix()
+        url_path = "/" if parent == "." else f"/{parent}/"
+        urls.append(url_path)
     entries = "\n".join(
         f"  <url><loc>{BASE_URL}{path}</loc><lastmod>{TODAY}</lastmod></url>"
         for path in urls

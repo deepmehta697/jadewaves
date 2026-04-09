@@ -1,3 +1,12 @@
 .DS_Store
 tmp/
 tmp_footer_check.html
+.env
+.env.*
+!.env.example
+.venv/
+_site/
+reports/seo/latest.md
+config/seo.config.local.json
+*.service-account.json
+*.service_account.json

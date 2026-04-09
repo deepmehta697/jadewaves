@@ -9,78 +9,7 @@ const parallaxNodes = document.querySelectorAll("[data-parallax]");
 const routeNetworks = document.querySelectorAll("[data-route-network]");
 const portfolioAnchors = document.querySelectorAll(".portfolio-anchor");
 const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
-const galleries = document.querySelectorAll("[data-gallery]");
-const gradeWheels = document.querySelectorAll("[data-grade-wheel]");
-const corridorStages = document.querySelectorAll("[data-corridor-stage]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const inquiryEndpoint = "https://formsubmit.co/ajax/deep@jadewavesenterprise.com";
-const inquiryFallbackEmail = "deep@jadewavesenterprise.com";
-const inquiryFallbackPhone = "+91-999-883-5503";
-const inquiryAttachmentAccept = ".pdf,.png,.jpg,.jpeg";
-const siteBasePath = (() => {
-  const repoPath = "/jadewaves";
-  const { pathname } = window.location;
-  if (pathname === repoPath || pathname.startsWith(`${repoPath}/`)) {
-    return repoPath;
-  }
-  return "";
-})();
-const normalizeSitePath = (path) => {
-  if (!siteBasePath) return path;
-  if (path === siteBasePath) return "/";
-  if (path.startsWith(`${siteBasePath}/`)) {
-    return path.slice(siteBasePath.length);
-  }
-  return path;
-};
-const withSiteBase = (path) => `${siteBasePath}${path.startsWith("/") ? path : `/${path}`}`;
-const productDocumentCatalog = {
-  "/products/silica-sand/": {
-    tds: "/assets/tds/silica-sand-technical-data-sheet.pdf",
-    sampleCoa: "/assets/silica-sand-coa-premium-final.pdf",
-  },
-  "/products/silica-flour/": {
-    tds: "/assets/tds/silica-flour-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/silica-flour-sample-coa.pdf",
-  },
-  "/products/quartz-sand-for-ceramics/": {
-    tds: "/assets/tds/quartz-sand-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/quartz-sand-sample-coa.pdf",
-  },
-  "/products/bentonite/": {
-    tds: "/assets/tds/bentonite-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/bentonite-sample-coa.pdf",
-  },
-  "/products/kaolin--china-clay/": {
-    tds: "/assets/tds/china-clay-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/china-clay-sample-coa.pdf",
-  },
-  "/products/talc/": {
-    tds: "/assets/tds/talc-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/talc-sample-coa.pdf",
-  },
-  "/products/feldspar/": {
-    tds: "/assets/tds/feldspar-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/feldspar-sample-coa.pdf",
-  },
-  "/products/salt/": {
-    tds: "/assets/tds/salt-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/salt-sample-coa.pdf",
-  },
-  "/products/fly-ash/": {
-    tds: "/assets/tds/fly-ash-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/fly-ash-sample-coa.pdf",
-  },
-  "/products/copper-slag/": {
-    tds: "/assets/tds/copper-slag-technical-data-sheet.pdf",
-    sampleCoa: "/assets/coas/copper-slag-sample-coa.pdf",
-  },
-};
-const currentPagePath = (() => {
-  const pathname = normalizeSitePath(window.location.pathname.replace(/index\.html$/, ""));
-  if (!pathname || pathname === "") return "/";
-  return pathname.endsWith("/") ? pathname : `${pathname}/`;
-})();
 
 requestAnimationFrame(() => {
   document.body.classList.add("is-ready");
@@ -102,109 +31,6 @@ const syncParallax = () => {
     const offset = (midpoint - viewportMid) * speed * -0.12;
     node.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
   });
-};
-
-const setFormMessage = (note, state, text) => {
-  if (!note) return;
-  note.textContent = text;
-  note.dataset.state = state;
-  note.classList.toggle("is-success", state === "success");
-  note.classList.toggle("is-error", state === "error");
-  note.classList.toggle("is-loading", state === "loading");
-};
-
-const ensureAttachmentField = (form) => {
-  const grid = form.querySelector(".form-grid");
-  if (!grid || grid.querySelector("[data-attachment-field]")) return;
-
-  const label = document.createElement("label");
-  label.className = "form-grid__wide form-grid__attachment";
-  label.dataset.attachmentField = "true";
-
-  const title = document.createElement("span");
-  title.textContent = "Attach File";
-
-  const input = document.createElement("input");
-  input.type = "file";
-  input.name = "attachment";
-  input.accept = inquiryAttachmentAccept;
-
-  const caption = document.createElement("small");
-  caption.className = "form-field-help";
-  caption.textContent = "Optional. PDF, JPG, or PNG if you want to share a spec sheet, image, or marked requirement.";
-
-  label.append(title, input, caption);
-  grid.append(label);
-};
-
-const ensureHoneypotField = (form) => {
-  if (form.querySelector('input[name="_honey"]')) return;
-  const honeypot = document.createElement("input");
-  honeypot.type = "text";
-  honeypot.name = "_honey";
-  honeypot.tabIndex = -1;
-  honeypot.autocomplete = "off";
-  honeypot.setAttribute("aria-hidden", "true");
-  honeypot.style.position = "absolute";
-  honeypot.style.left = "-9999px";
-  honeypot.style.opacity = "0";
-  form.prepend(honeypot);
-};
-
-const initProductDocumentActions = () => {
-  const config = productDocumentCatalog[currentPagePath];
-  if (!config) return;
-
-  const supplyCard = Array.from(document.querySelectorAll(".product-sheet"))
-    .find((sheet) => sheet.querySelector(".section-label")?.textContent.trim() === "Supply Snapshot");
-
-  const supplySection = supplyCard?.closest(".section-block");
-  if (!supplySection || supplySection.nextElementSibling?.classList.contains("section-block--documents")) return;
-
-  const docsSection = document.createElement("section");
-  docsSection.className = "section-block section-block--documents";
-
-  const shell = document.createElement("div");
-  shell.className = "shell";
-
-  const band = document.createElement("div");
-  band.className = "product-documents-band";
-
-  const intro = document.createElement("div");
-  intro.className = "product-documents-band__intro";
-
-  const label = document.createElement("p");
-  label.className = "document-actions-label";
-  label.textContent = "Client Documents";
-
-  const actions = document.createElement("div");
-  actions.className = "document-actions";
-
-  if (config.tds) {
-    const tdsLink = document.createElement("a");
-    tdsLink.className = "doc-action";
-    tdsLink.href = withSiteBase(config.tds);
-    tdsLink.target = "_blank";
-    tdsLink.rel = "noopener noreferrer";
-    tdsLink.textContent = "Open TDS";
-    actions.append(tdsLink);
-  }
-
-  if (config.sampleCoa) {
-    const coaLink = document.createElement("a");
-    coaLink.className = "doc-action doc-action--ghost";
-    coaLink.href = withSiteBase(config.sampleCoa);
-    coaLink.target = "_blank";
-    coaLink.rel = "noopener noreferrer";
-    coaLink.textContent = "Open Sample COA";
-    actions.append(coaLink);
-  }
-
-  intro.append(label);
-  band.append(intro, actions);
-  shell.append(band);
-  docsSection.append(shell);
-  supplySection.after(docsSection);
 };
 
 const initRouteNetwork = (canvas) => {
@@ -561,6 +387,8 @@ if (menuToggle && mobileMenu) {
   });
 }
 
+const inquiryEndpoint = "https://formsubmit.co/ajax/deep@jadewavesenterprise.com";
+
 const setRequestType = (requestType) => {
   formTargets.forEach((form) => {
     const select = form.querySelector('[name="request_type"]');
@@ -568,217 +396,6 @@ const setRequestType = (requestType) => {
       select.value = requestType;
     }
   });
-};
-
-const initProductGallery = (gallery) => {
-  const viewport = gallery.querySelector(".product-gallery__viewport");
-  const track = gallery.querySelector("[data-gallery-track]");
-  const slides = Array.from(gallery.querySelectorAll("[data-gallery-slide]"));
-  const dots = Array.from(gallery.querySelectorAll("[data-gallery-dot]"));
-  const prevButton = gallery.querySelector("[data-gallery-prev]");
-  const nextButton = gallery.querySelector("[data-gallery-next]");
-  const interval = Number(gallery.dataset.galleryInterval || 5200);
-  const autoplayMode = (gallery.dataset.galleryAutoplay || "auto").toLowerCase();
-
-  if (!viewport || !track || slides.length < 2) {
-    return;
-  }
-
-  let activeIndex = 0;
-  let timerId = 0;
-  let slideWidth = 0;
-
-  const measure = () => {
-    const nextWidth = Math.round(viewport.getBoundingClientRect().width);
-    if (!nextWidth) return;
-    slideWidth = nextWidth;
-    track.style.width = `${slideWidth * slides.length}px`;
-    slides.forEach((slide) => {
-      slide.style.flex = `0 0 ${slideWidth}px`;
-      slide.style.minWidth = `${slideWidth}px`;
-      slide.style.width = `${slideWidth}px`;
-    });
-    track.style.transform = `translate3d(${-activeIndex * slideWidth}px, 0, 0)`;
-  };
-
-  const update = (nextIndex) => {
-    activeIndex = (nextIndex + slides.length) % slides.length;
-    if (!slideWidth) {
-      measure();
-    }
-    track.style.transform = `translate3d(${-activeIndex * slideWidth}px, 0, 0)`;
-
-    slides.forEach((slide, index) => {
-      slide.setAttribute("aria-hidden", String(index !== activeIndex));
-    });
-
-    dots.forEach((dot, index) => {
-      const isActive = index === activeIndex;
-      dot.classList.toggle("is-active", isActive);
-      dot.setAttribute("aria-selected", String(isActive));
-      dot.setAttribute("tabindex", isActive ? "0" : "-1");
-    });
-  };
-
-  const stopAutoplay = () => {
-    if (!timerId) return;
-    window.clearInterval(timerId);
-    timerId = 0;
-  };
-
-  const startAutoplay = () => {
-    if (autoplayMode === "manual" || autoplayMode === "false") return;
-    if (prefersReducedMotion.matches || slides.length < 2) return;
-    stopAutoplay();
-    timerId = window.setInterval(() => {
-      update(activeIndex + 1);
-    }, interval);
-  };
-
-  prevButton?.addEventListener("click", () => {
-    update(activeIndex - 1);
-    startAutoplay();
-  });
-
-  nextButton?.addEventListener("click", () => {
-    update(activeIndex + 1);
-    startAutoplay();
-  });
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      update(index);
-      startAutoplay();
-    });
-  });
-
-  gallery.addEventListener("mouseenter", stopAutoplay);
-  gallery.addEventListener("mouseleave", startAutoplay);
-  gallery.addEventListener("focusin", stopAutoplay);
-  gallery.addEventListener("focusout", startAutoplay);
-
-  window.addEventListener("resize", measure, { passive: true });
-
-  measure();
-  update(0);
-  startAutoplay();
-};
-
-const initGradeWheel = (stage) => {
-  const items = Array.from(stage.querySelectorAll("[data-grade-item]"));
-  const count = stage.querySelector("[data-grade-count]");
-  const title = stage.querySelector("[data-grade-title]");
-  const copy = stage.querySelector("[data-grade-copy]");
-  const interval = 2800;
-
-  if (!items.length || !count || !title || !copy) {
-    return;
-  }
-
-  let activeIndex = items.findIndex((item) => item.classList.contains("is-active"));
-  let timerId = 0;
-
-  if (activeIndex < 0) {
-    activeIndex = 0;
-  }
-
-  const update = (nextIndex) => {
-    activeIndex = (nextIndex + items.length) % items.length;
-
-    items.forEach((item, index) => {
-      const isActive = index === activeIndex;
-      item.classList.toggle("is-active", isActive);
-      item.setAttribute("aria-pressed", String(isActive));
-    });
-
-    const activeItem = items[activeIndex];
-    count.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
-    title.textContent = activeItem.dataset.gradeTitle || "";
-    copy.textContent = activeItem.dataset.gradeCopy || "";
-    stage.style.setProperty("--grade-focus-angle", activeItem.style.getPropertyValue("--grade-angle").trim() || "-90deg");
-  };
-
-  const stopAutoplay = () => {
-    if (!timerId) return;
-    window.clearInterval(timerId);
-    timerId = 0;
-  };
-
-  const startAutoplay = () => {
-    if (prefersReducedMotion.matches || items.length < 2) return;
-    stopAutoplay();
-    timerId = window.setInterval(() => {
-      update(activeIndex + 1);
-    }, interval);
-  };
-
-  items.forEach((item, index) => {
-    item.addEventListener("click", () => {
-      update(index);
-      startAutoplay();
-    });
-  });
-
-  stage.addEventListener("mouseenter", stopAutoplay);
-  stage.addEventListener("mouseleave", startAutoplay);
-  stage.addEventListener("focusin", stopAutoplay);
-  stage.addEventListener("focusout", startAutoplay);
-
-  update(activeIndex);
-  startAutoplay();
-};
-
-const initCorridorStage = (stage) => {
-  const items = Array.from(stage.querySelectorAll("[data-corridor-item]"));
-  if (!items.length) {
-    return;
-  }
-
-  let activeIndex = items.findIndex((item) => item.classList.contains("is-active"));
-  let timerId = 0;
-
-  if (activeIndex < 0) {
-    activeIndex = 0;
-  }
-
-  const update = (nextIndex) => {
-    activeIndex = (nextIndex + items.length) % items.length;
-
-    items.forEach((item, index) => {
-      const isActive = index === activeIndex;
-      item.classList.toggle("is-active", isActive);
-      item.setAttribute("aria-pressed", String(isActive));
-    });
-  };
-
-  const stopAutoplay = () => {
-    if (!timerId) return;
-    window.clearInterval(timerId);
-    timerId = 0;
-  };
-
-  const startAutoplay = () => {
-    if (prefersReducedMotion.matches || items.length < 2) return;
-    stopAutoplay();
-    timerId = window.setInterval(() => {
-      update(activeIndex + 1);
-    }, 3600);
-  };
-
-  items.forEach((item, index) => {
-    item.addEventListener("click", () => {
-      update(index);
-      startAutoplay();
-    });
-  });
-
-  stage.addEventListener("mouseenter", stopAutoplay);
-  stage.addEventListener("mouseleave", startAutoplay);
-  stage.addEventListener("focusin", stopAutoplay);
-  stage.addEventListener("focusout", startAutoplay);
-
-  update(activeIndex);
-  startAutoplay();
 };
 
 requestLinks.forEach((link) => {
@@ -793,9 +410,6 @@ requestLinks.forEach((link) => {
 formTargets.forEach((form) => {
   const note = form.querySelector("[data-form-note]");
   const submitButton = form.querySelector('button[type="submit"]');
-
-  ensureHoneypotField(form);
-  ensureAttachmentField(form);
   note?.setAttribute("aria-live", "polite");
 
   if (submitButton) {
@@ -804,21 +418,12 @@ formTargets.forEach((form) => {
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-
     if (!submitButton) return;
 
     const data = new FormData(form);
     const requestType = data.get("request_type")?.toString().trim() || "Inquiry";
     const product = data.get("product")?.toString().trim() || "Not specified";
-    const name = data.get("name")?.toString().trim() || "Buyer";
-    const company = data.get("company")?.toString().trim() || "Not specified";
     const email = data.get("email")?.toString().trim() || "Not provided";
-    const phone = data.get("phone")?.toString().trim() || "Not provided";
-    const application = data.get("application")?.toString().trim() || "Not specified";
-    const volume = data.get("volume")?.toString().trim() || "Not specified";
-    const destination = data.get("destination")?.toString().trim() || "Not specified";
-    const packingSize = data.get("packing_size")?.toString().trim() || "Not specified";
-    const notes = data.get("notes")?.toString().trim() || "Not provided";
 
     data.append("_subject", `${requestType} | ${product}`);
     data.append("_template", "table");
@@ -826,15 +431,13 @@ formTargets.forEach((form) => {
     data.append("_replyto", email);
     data.append("Source Page", window.location.href);
     data.append("Page Title", document.title);
-    data.set("Requirement", notes);
-    data.set("Destination / Port", destination);
-    data.set("Packing Size", packingSize);
 
     submitButton.disabled = true;
-    submitButton.classList.add("is-loading");
     submitButton.textContent = "Sending...";
-    form.classList.add("is-submitting");
-    setFormMessage(note, "loading", "Sending the inquiry directly. Please wait a moment.");
+
+    if (note) {
+      note.textContent = "Sending the inquiry directly. Please wait a moment.";
+    }
 
     try {
       const response = await fetch(inquiryEndpoint, {
@@ -846,28 +449,21 @@ formTargets.forEach((form) => {
       });
 
       const result = await response.json().catch(() => null);
-
       if (!response.ok || result?.success === false || result?.success === "false") {
         throw new Error(result?.message || "Submission failed");
       }
 
       form.reset();
-      setFormMessage(
-        note,
-        "success",
-        "Inquiry sent. We’ll review the requirement and respond by email."
-      );
+      if (note) {
+        note.textContent = "Inquiry sent. We will review the requirement and respond by email.";
+      }
     } catch (error) {
-      setFormMessage(
-        note,
-        "error",
-        `Submission did not go through. Please email ${inquiryFallbackEmail} or call ${inquiryFallbackPhone}.`
-      );
+      if (note) {
+        note.textContent = "Submission did not go through. Please email deep@jadewavesenterprise.com or call +91-999-883-5503.";
+      }
     } finally {
       submitButton.disabled = false;
-      submitButton.classList.remove("is-loading");
       submitButton.textContent = submitButton.dataset.defaultLabel || "Send Inquiry";
-      form.classList.remove("is-submitting");
     }
   });
 });
@@ -915,19 +511,6 @@ routeNetworks.forEach((canvas) => {
   initRouteNetwork(canvas);
 });
 
-galleries.forEach((gallery) => {
-  initProductGallery(gallery);
-});
-
-gradeWheels.forEach((wheel) => {
-  initGradeWheel(wheel);
-});
-
-corridorStages.forEach((stage) => {
-  initCorridorStage(stage);
-});
-
-initProductDocumentActions();
 syncHeader();
 syncParallax();
 window.addEventListener("scroll", syncHeader, { passive: true });

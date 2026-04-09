@@ -1,0 +1,135 @@
+{
+  "site_url": "https://jadewavesenterprise.com",
+  "site_name": "Jade Waves Enterprise",
+  "site_domain": "jadewavesenterprise.com",
+  "github_repo": "deepmehta697/jadewaves",
+  "report_dir": "reports/seo",
+  "production_build_command": "python3 scripts/build_site.py",
+  "regenerate_command": "python3 generate_site.py",
+  "search_console_property": "https://jadewavesenterprise.com/",
+  "ga4_property_id": "527330659",
+  "google_service_account_key_path": "",
+  "analytics": {
+    "measurement_id": "G-9BRL4JKNN6",
+    "form_submit_event_name": "submit_lead_form",
+    "lead_event_name": "generate_lead"
+  },
+  "priority_pages": [
+    "/",
+    "/products/",
+    "/products/quartz-sand-for-ceramics/",
+    "/products/feldspar/",
+    "/products/silica-sand/",
+    "/products/salt/",
+    "/products/bentonite/"
+  ],
+  "keyword_targets": [
+    {
+      "path": "/",
+      "primary": "industrial mineral exporter",
+      "secondary": [
+        "industrial mineral supplier",
+        "bulk mineral exporter"
+      ]
+    },
+    {
+      "path": "/products/",
+      "primary": "industrial minerals supplier",
+      "secondary": [
+        "industrial minerals exporter",
+        "bulk minerals portfolio",
+        "silica quartz feldspar supplier"
+      ]
+    },
+    {
+      "path": "/products/silica-sand/",
+      "primary": "silica sand supplier",
+      "secondary": [
+        "silica sand exporter",
+        "bulk silica sand supplier",
+        "silica sand for glass manufacturing"
+      ]
+    },
+    {
+      "path": "/products/silica-flour/",
+      "primary": "silica flour supplier",
+      "secondary": [
+        "silica flour exporter",
+        "bulk silica flour supplier",
+        "silica flour micron grade"
+      ]
+    },
+    {
+      "path": "/products/quartz-sand-for-ceramics/",
+      "primary": "quartz sand supplier",
+      "secondary": [
+        "quartz grits supplier",
+        "quartz powder supplier",
+        "quartz sand for ceramics"
+      ]
+    },
+    {
+      "path": "/products/feldspar/",
+      "primary": "feldspar supplier",
+      "secondary": [
+        "feldspar exporter",
+        "potash feldspar supplier",
+        "sodium feldspar supplier"
+      ]
+    },
+    {
+      "path": "/products/bentonite/",
+      "primary": "bentonite supplier",
+      "secondary": [
+        "bentonite exporter",
+        "bentonite for drilling",
+        "foundry bentonite supplier"
+      ]
+    },
+    {
+      "path": "/products/talc/",
+      "primary": "talc powder supplier",
+      "secondary": [
+        "talc exporter",
+        "industrial talc supplier",
+        "talc for plastics"
+      ]
+    },
+    {
+      "path": "/products/kaolin--china-clay/",
+      "primary": "china clay supplier",
+      "secondary": [
+        "kaolin supplier",
+        "china clay exporter",
+        "kaolin exporter"
+      ]
+    },
+    {
+      "path": "/products/salt/",
+      "primary": "industrial salt supplier",
+      "secondary": [
+        "salt exporter",
+        "bulk salt supplier",
+        "iodized salt supplier"
+      ]
+    },
+    {
+      "path": "/products/fly-ash/",
+      "primary": "fly ash supplier",
+      "secondary": [
+        "fly ash exporter",
+        "fly ash for cement",
+        "fly ash for concrete"
+      ]
+    },
+    {
+      "path": "/products/copper-slag/",
+      "primary": "copper slag supplier",
+      "secondary": [
+        "copper slag exporter",
+        "copper slag abrasive",
+        "blasting media supplier"
+      ]
+    }
+  ]
+}
