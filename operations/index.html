@@ -31,25 +31,7 @@
     <meta name="twitter:image:alt" content="Bagged mineral cargo and dispatch operations at Jade Waves Enterprise" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" /><script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              ink: "#1d1d1f",
-              stone: "#e8e8ed",
-              mineral: "#0071e3",
-              jade: "#0071e3",
-              clay: "#a1a1a6",
-              mist: "#f5f5f7"
-            },
-            fontFamily: {
-              sans: ["Manrope", "sans-serif"]
-            }
-          }
-        }
-      };
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script>
   window.__JWE_SITE_BASE_PATH__ = (function() {
     var repoPath = "/jadewaves";
@@ -122,7 +104,6 @@
           <a href="./#about">About</a>
           <a href="products/">Products</a>
           <a href="operations/">Operations</a>
-          <a href="export-markets/">Markets</a>
           <a href="./#contact">Contact</a>
         </nav>
         <div class="header-actions">
@@ -134,7 +115,6 @@
         <a href="./#about">About</a>
         <a href="products/">Products</a>
         <a href="operations/">Operations</a>
-        <a href="export-markets/">Markets</a>
         <a href="./#contact">Contact</a>
       </div>
     </header>
@@ -193,10 +173,10 @@
             <div class="section-topline__copy">
               <p class="section-label">Dispatch View</p>
               <h2>Silica sand plant dispatch and yard movement.</h2>
-              <p>Actual yard footage, loading movement, packed cargo, and container-ready dispatch from the silica sand plant arranged in one place.</p>
+              <p>Yard footage, live loading movement, and container-ready cargo from the silica sand plant arranged in one clear stage.</p>
             </div>
           </div>
-          <div class="process-media-stage" data-reveal>
+          <div class="process-media-stage process-media-stage--dispatch" data-reveal>
             <div class="process-media-stage__lead">
               <figure class="process-media-card process-media-card--video process-media-card--lead" data-reveal>
                 <video autoplay muted loop playsinline preload="metadata" poster="assets/jcb-poster.jpg" aria-label="JCB loading activity in the dispatch yard">
@@ -205,7 +185,7 @@
                 <figcaption>Loading activity during cargo preparation.</figcaption>
               </figure>
             </div>
-            <div class="process-media-grid" aria-label="Dispatch yard story">
+            <div class="process-media-grid process-media-grid--dispatch" aria-label="Dispatch yard story">
               <figure class="process-media-card process-media-card--video" data-reveal>
                 <video autoplay muted loop playsinline preload="metadata" poster="assets/loading-poster.jpg" aria-label="Bag loading footage from the dispatch yard">
                   <source src="assets/loading.mp4" type="video/mp4" />
@@ -233,10 +213,10 @@
             <div class="section-topline__copy">
               <p class="section-label">Operations View</p>
               <h2>Inside the quartz and feldspar plant.</h2>
-              <p>These visuals show how sorting, processing, packing, and truck movement are handled across the quartz and feldspar operation before dispatch.</p>
+              <p>These visuals show the plant in sequence: quarry intake, sorting, processing, packing, loading, and quality checks before dispatch.</p>
             </div>
           </div>
-          <div class="process-media-grid" aria-label="Operations support visuals">
+          <div class="process-media-grid process-media-grid--operations" aria-label="Operations support visuals">
             <figure class="process-media-card process-media-card--quarry" data-reveal>
               <img src="assets/optimized/quarry-quartz.jpg" alt="Quartz quarry material before plant sorting" width="2914" height="1300" />
               <figcaption>Quartz quarry material before plant sorting and processing begins.</figcaption>
@@ -411,8 +391,6 @@
             <a href="./">Home</a>
             <a href="products/">Products</a>
             <a href="operations/">Operations</a>
-            <a href="export-markets/">Export Markets</a>
-            <a href="industrial-minerals-exporter-india/">Exporter Profile</a>
             <a href="./#contact">Contact</a>
             <a href="privacy-policy/">Privacy Policy</a>
             <a href="terms-disclaimer/">Terms &amp; Disclaimer</a>

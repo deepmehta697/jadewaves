@@ -9,6 +9,7 @@ const parallaxNodes = document.querySelectorAll("[data-parallax]");
 const routeNetworks = document.querySelectorAll("[data-route-network]");
 const portfolioAnchors = document.querySelectorAll(".portfolio-anchor");
 const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
+const corridorStages = document.querySelectorAll("[data-corridor-stage]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 requestAnimationFrame(() => {
@@ -369,6 +370,8 @@ if (reveals.length) {
 }
 
 if (menuToggle && mobileMenu) {
+  mobileMenu.setAttribute("hidden", "");
+
   menuToggle.addEventListener("click", () => {
     const open = mobileMenu.hasAttribute("hidden");
     if (open) {
@@ -386,6 +389,59 @@ if (menuToggle && mobileMenu) {
     });
   });
 }
+
+const initCorridorStage = (stage) => {
+  const items = Array.from(stage.querySelectorAll("[data-corridor-item]"));
+  if (!items.length) {
+    return;
+  }
+
+  let activeIndex = items.findIndex((item) => item.classList.contains("is-active"));
+  let timerId = 0;
+
+  if (activeIndex < 0) {
+    activeIndex = 0;
+  }
+
+  const update = (nextIndex) => {
+    activeIndex = (nextIndex + items.length) % items.length;
+
+    items.forEach((item, index) => {
+      const isActive = index === activeIndex;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-pressed", String(isActive));
+    });
+  };
+
+  const stopAutoplay = () => {
+    if (!timerId) return;
+    window.clearInterval(timerId);
+    timerId = 0;
+  };
+
+  const startAutoplay = () => {
+    if (prefersReducedMotion.matches || items.length < 2) return;
+    stopAutoplay();
+    timerId = window.setInterval(() => {
+      update(activeIndex + 1);
+    }, 3600);
+  };
+
+  items.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      update(index);
+      startAutoplay();
+    });
+  });
+
+  stage.addEventListener("mouseenter", stopAutoplay);
+  stage.addEventListener("mouseleave", startAutoplay);
+  stage.addEventListener("focusin", stopAutoplay);
+  stage.addEventListener("focusout", startAutoplay);
+
+  update(activeIndex);
+  startAutoplay();
+};
 
 const inquiryEndpoint = "https://formsubmit.co/ajax/deep@jadewavesenterprise.com";
 
@@ -509,6 +565,10 @@ if (portfolioAnchors.length && portfolioStages.length) {
 
 routeNetworks.forEach((canvas) => {
   initRouteNetwork(canvas);
+});
+
+corridorStages.forEach((stage) => {
+  initCorridorStage(stage);
 });
 
 syncHeader();
