@@ -150,8 +150,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "quartz",
         "eyebrow": "Ceramics / Glass / Engineered Stone / Building Materials",
-        "seo_title": "Quartz Sand, Grits & Powder Supplier from India | Jade Waves Enterprise",
-        "meta_description": "Quartz sand, quartz grits, and quartz powder supplier from India for ceramics, glass, and engineered stone buyers in Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
+        "seo_title": "Quartz Sand Supplier | Grits & Powder Exporter from India | Jade Waves Enterprise",
+        "meta_description": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
         "hero_copy": "Quartz sand, quartz grits, and quartz powder for ceramics, glass, and engineered stone where purity, whiteness, and sizing shape the result.",
         "short_copy": "Quartz sand, quartz grits, and quartz powder for ceramics, glass, and engineered stone.",
         "summary_spec": "SiO2 >99.0% / L value 91 min",
@@ -1166,8 +1166,8 @@ def render_homepage() -> str:
         },
     ]
     return page_shell(
-        "Industrial Mineral Supplier & Exporter from India | Jade Waves Enterprise",
-        "Industrial mineral supplier and exporter from India serving global import buyers across Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
+        "Industrial Mineral Exporter from India | Supplier for Global Buyers | Jade Waves Enterprise",
+        "Industrial mineral exporter from India supplying global buyers across Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
         "/",
         home_body,
         schema,
