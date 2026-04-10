@@ -152,8 +152,8 @@ PRODUCTS = [
         "eyebrow": "Ceramics / Glass / Engineered Stone / Building Materials",
         "seo_title": "Quartz Sand Supplier from India | Grits & Powder Exporter | Jade Waves Enterprise",
         "meta_description": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
-        "hero_copy": "Quartz sand, quartz grits, and quartz powder for ceramics, glass, and engineered stone where purity, whiteness, and sizing shape the result.",
-        "short_copy": "Quartz sand, quartz grits, and quartz powder for ceramics, glass, and engineered stone.",
+        "hero_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits, quartz powder, and dependable export handling.",
+        "short_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone.",
         "summary_spec": "SiO2 >99.0% / L value 91 min",
         "applications": [
             "Tiles and ceramic body production",
