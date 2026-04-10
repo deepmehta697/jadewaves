@@ -61,10 +61,10 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "silica",
         "eyebrow": "Glass / Filtration / Foundry / Construction",
-        "seo_title": "Silica Sand Supplier from India for Import Buyers | Jade Waves Enterprise",
-        "meta_description": "Silica sand supplier from India for import buyers in Vietnam, Thailand, the Philippines, UAE, Saudi Arabia, Mauritius, and Maldives.",
-        "hero_copy": "Silica sand for glass, filtration, foundry, and construction buyers who need clean chemistry, steady grain size, and export handling that stays under control.",
-        "short_copy": "Silica sand supplied for glass, filtration, foundry, and construction use.",
+        "seo_title": "Silica Sand Supplier & Exporter from India | Jade Waves Enterprise",
+        "meta_description": "Silica sand supplier and exporter from India for glass manufacturing, filtration, foundry, and construction buyers across Vietnam, Thailand, UAE, Saudi Arabia, Mauritius, and Maldives.",
+        "hero_copy": "Silica sand for glass manufacturing, filtration, foundry, and construction buyers who need clean chemistry, steady grain size, and export handling that stays under control.",
+        "short_copy": "Silica sand supplier for glass manufacturing, filtration, foundry, and construction use.",
         "summary_spec": "SiO2 98.07% / Fe2O3 customizable to 150-200 PPM for glass",
         "applications": [
             "Glass manufacturing",
@@ -150,10 +150,10 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "quartz",
         "eyebrow": "Ceramics / Glass / Engineered Stone / Building Materials",
-        "seo_title": "Quartz Sand Supplier from India | Grits & Powder Exporter | Jade Waves Enterprise",
-        "meta_description": "Quartz sand supplier from India for import buyers in Vietnam, Thailand, the Philippines, Malaysia, UAE, and Saudi Arabia.",
-        "hero_copy": "Quartz sand, grits, and powder for ceramics, glass, and engineered stone where purity, whiteness, and sizing shape the result.",
-        "short_copy": "Quartz sand, grits, and powder for ceramics, glass, and engineered stone.",
+        "seo_title": "Quartz Sand, Grits & Powder Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Quartz sand, quartz grits, and quartz powder supplier from India for ceramics, glass, and engineered stone buyers in Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
+        "hero_copy": "Quartz sand, quartz grits, and quartz powder for ceramics, glass, and engineered stone where purity, whiteness, and sizing shape the result.",
+        "short_copy": "Quartz sand, quartz grits, and quartz powder for ceramics, glass, and engineered stone.",
         "summary_spec": "SiO2 >99.0% / L value 91 min",
         "applications": [
             "Tiles and ceramic body production",
@@ -205,10 +205,10 @@ PRODUCTS = [
         "anchor": "clays-fillers",
         "theme": "clay",
         "eyebrow": "Drilling / Foundry / Civil / Absorbent Grades",
-        "seo_title": "Bentonite Supplier from India for Import Buyers | Jade Waves Enterprise",
-        "meta_description": "Bulk bentonite supplier from India for import buyers in Vietnam, UAE, Oman, Qatar, Bahrain, Saudi Arabia, and Malaysia.",
-        "hero_copy": "Bentonite for drilling, foundry, sealing, absorbent, and bleaching grades where swelling, viscosity, and moisture control need to stay dependable.",
-        "short_copy": "Bentonite supplied for drilling, foundry, sealing, absorbent, and bleaching use.",
+        "seo_title": "Bentonite Supplier & Exporter from India | Jade Waves Enterprise",
+        "meta_description": "Bulk bentonite supplier and exporter from India for drilling, foundry, sealing, and absorbent buyers in Vietnam, UAE, Oman, Qatar, Bahrain, Saudi Arabia, and Malaysia.",
+        "hero_copy": "Bentonite for drilling, foundry, sealing, absorbent, and bleaching grades where swelling, viscosity, and moisture control need to stay dependable for bulk export buyers.",
+        "short_copy": "Bentonite supplier for drilling, foundry, sealing, absorbent, and bleaching use.",
         "summary_spec": "pH 9-11 / Liquid limit 450 min",
         "applications": [
             "Drilling fluids for oil, gas, and HDD",
@@ -338,10 +338,10 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "feldspar",
         "eyebrow": "Ceramics / Sanitaryware / Glass",
-        "seo_title": "Feldspar Supplier from India for Import Buyers | Jade Waves Enterprise",
-        "meta_description": "Potassium and sodium feldspar supplier from India for import buyers in Vietnam, Thailand, the Philippines, UAE, Malaysia, and Saudi Arabia.",
-        "hero_copy": "Potassium and sodium feldspar supplied for ceramic, sanitaryware, tile, glass, and engineered stone production where flux behavior, melting control, and cleaner firing matter.",
-        "short_copy": "Potassium and sodium feldspar for ceramics, sanitaryware, glass, and engineered stone production.",
+        "seo_title": "Potash & Soda Feldspar Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Potash and soda feldspar supplier from India for ceramics, sanitaryware, glass, and engineered stone buyers in Vietnam, Thailand, the Philippines, UAE, Malaysia, and Saudi Arabia.",
+        "hero_copy": "Potash and soda feldspar supplied for ceramic, sanitaryware, tile, glass, and engineered stone production where flux behavior, melting control, and cleaner firing matter.",
+        "short_copy": "Potash and soda feldspar for ceramics, sanitaryware, glass, and engineered stone production.",
         "summary_spec": "K2O up to 12% / Na2O up to 10%",
         "applications": [
             "Ceramic and tile production",
@@ -383,10 +383,10 @@ PRODUCTS = [
         "anchor": "salt-grades",
         "theme": "salt",
         "eyebrow": "Chemical / Water Treatment / Utility / Food-Linked Supply",
-        "seo_title": "Industrial Salt Supplier from India for Import Buyers | Jade Waves Enterprise",
-        "meta_description": "Industrial salt supplier from India for import buyers in UAE, Oman, Qatar, Bahrain, Saudi Arabia, Mauritius, and Maldives.",
-        "hero_copy": "Industrial and iodized salt grades for chemical processing, treatment systems, infrastructure, and food-linked demand, with flexible packing and dependable export flow.",
-        "short_copy": "Iodized and non-iodized salt grades for chemical, utility, and food-linked supply.",
+        "seo_title": "Industrial Salt Supplier & Exporter from India | Jade Waves Enterprise",
+        "meta_description": "Industrial salt supplier and exporter from India for water treatment, chemical processing, de-icing, and iodized salt buyers in UAE, Oman, Qatar, Bahrain, Saudi Arabia, Mauritius, and Maldives.",
+        "hero_copy": "Industrial and iodized salt grades for water treatment, chemical processing, infrastructure, and food-linked demand, with flexible packing and dependable export flow.",
+        "short_copy": "Iodized and non-iodized salt grades for water treatment, chemical, utility, and food-linked supply.",
         "summary_spec": "NaCl 99.00% / Moisture 0.2% max",
         "applications": [
             "Chemical and industrial processing",
@@ -1166,8 +1166,8 @@ def render_homepage() -> str:
         },
     ]
     return page_shell(
-        "Industrial Mineral Exporter from India for Global Buyers | Jade Waves Enterprise",
-        "Industrial mineral exporter from India serving import buyers in Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
+        "Industrial Mineral Supplier & Exporter from India | Jade Waves Enterprise",
+        "Industrial mineral supplier and exporter from India serving global import buyers across Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
         "/",
         home_body,
         schema,
@@ -1248,7 +1248,7 @@ def render_products_index() -> str:
                 <p class="hero-label">Portfolio</p>
                 <h1>Browse by application first.</h1>
                 <p class="hero-text">
-                  Use the portfolio to find industrial minerals supplied from India for import buyers in Southeast Asia, the Gulf, Mauritius, and Maldives.
+                  Use the portfolio to find industrial minerals supplied and exported from India for import buyers in Southeast Asia, the Gulf, Mauritius, and Maldives.
                 </p>
                 <div class="hero-actions">
                   <a class="button button--light" href="/#contact" data-set-request="Quote">Request Quote</a>
@@ -1294,12 +1294,407 @@ def render_products_index() -> str:
         },
     ]
     return page_shell(
-        "Industrial Minerals Supplier from India | Jade Waves Enterprise",
-        "Industrial minerals supplier from India for import buyers in Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
+        "Industrial Minerals Supplier & Exporter from India | Jade Waves Enterprise",
+        "Industrial minerals supplier and exporter from India for import buyers across Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
         "/products/",
         body,
         schema,
         "page-portfolio",
+    )
+
+
+def render_export_markets_page() -> str:
+    proof_items = [
+        ("Markets in scope", "Gulf, Southeast Asia, Mauritius, Maldives"),
+        ("Buyer focus", "Specification, packing, timing"),
+        ("Typical flow", "Quote, sample, documents, dispatch"),
+        ("Best fit", "Bulk import buyers and repeat programs"),
+    ]
+    proof_markup = "".join(
+        dedent(
+            f"""
+            <article class="proof-strip__item">
+              <span class="proof-strip__eyebrow">{escape(label)}</span>
+              <strong>{escape(value)}</strong>
+            </article>
+            """
+        ).strip()
+        for label, value in proof_items
+    )
+    market_rows = [
+        ("01", "Gulf buyers", "Gulf buyers usually want cleaner communication on specs, packing, and dispatch timing before the cargo is locked."),
+        ("02", "Southeast Asia buyers", "Southeast Asia buyers often start with application fit, then narrow into chemistry, sizing, and shipment rhythm."),
+        ("03", "Island cargo buyers", "Mauritius and Maldives buyers usually value consistency and dependable export handling over unnecessary range."),
+    ]
+    market_rows_markup = "".join(
+        dedent(
+            f"""
+            <article class="home-ledger-row" data-reveal>
+              <span>{escape(number)}</span>
+              <div>
+                <strong>{escape(title)}</strong>
+                <p>{escape(copy)}</p>
+              </div>
+            </article>
+            """
+        ).strip()
+        for number, title, copy in market_rows
+    )
+    process_steps = [
+        ("01", "Share the requirement", "Tell us the product, application, destination, monthly volume, and preferred packing."),
+        ("02", "Align the right grade", "We match the requirement to the right chemistry, size range, and commercial fit before quoting."),
+        ("03", "Confirm shipment detail", "Packing, documentation, and dispatch timing are aligned before the order moves."),
+        ("04", "Keep the export flow visible", "Updates continue through loading and onward cargo movement so the buyer is not chasing status."),
+    ]
+    process_markup = "".join(
+        dedent(
+            f"""
+            <article class="process-step" data-reveal>
+              <span>{escape(number)}</span>
+              <div class="process-step__body">
+                <h3>{escape(title)}</h3>
+                <p>{escape(copy)}</p>
+              </div>
+            </article>
+            """
+        ).strip()
+        for number, title, copy in process_steps
+    )
+    market_links = "".join(
+        [
+            '<a href="/products/silica-sand/">Silica sand for glass, filtration, and foundry buyers</a>',
+            '<a href="/products/quartz-sand-for-ceramics/">Quartz sand, grits, and powder for ceramic and glass buyers</a>',
+            '<a href="/products/feldspar/">Potash and soda feldspar for ceramic and sanitaryware buyers</a>',
+            '<a href="/products/bentonite/">Bentonite for drilling, foundry, and sealing buyers</a>',
+            '<a href="/products/salt/">Industrial salt for water treatment and chemical buyers</a>',
+        ]
+    )
+    body = dedent(
+        f"""
+        {nav_html()}
+        <main>
+          <section class="hero hero--home">
+            <div class="hero__strata" aria-hidden="true">
+              <span class="strata strata--a"></span>
+              <span class="strata strata--b"></span>
+              <span class="strata strata--c"></span>
+              <span class="route-line route-line--hero"></span>
+            </div>
+            <div class="shell home-hero">
+              <div class="hero-copy hero-copy--home" data-reveal>
+                <p class="hero-label">Export markets</p>
+                <h1>Industrial minerals for buyers who value clarity before cargo moves.</h1>
+                <p class="hero-text">
+                  Jade Waves supports import buyers across the Gulf, Southeast Asia, Mauritius, and Maldives with clear product fit, export handling, and communication that stays steady from inquiry to dispatch.
+                </p>
+                <div class="hero-actions">
+                  <a class="button button--light" href="/products/">View Products</a>
+                  <a class="button button--ghost" href="/#contact" data-set-request="Quote">Request Quote</a>
+                </div>
+              </div>
+              <div class="home-poster" data-reveal data-parallax="0.14">
+                <div class="home-poster__surface">
+                  <div class="home-poster__summary">
+                    <p class="home-poster__eyebrow">Buyer view</p>
+                    <strong>Clear market fit. Fewer loose ends.</strong>
+                    <p>Buyers usually want three things early: the right material, a clean export plan, and communication that stays reliable after the first reply.</p>
+                  </div>
+                  <div class="home-poster__metrics">
+                    <article class="home-metric">
+                      <span>Scope</span>
+                      <strong>Bulk industrial mineral supply</strong>
+                    </article>
+                    <article class="home-metric">
+                      <span>Packing</span>
+                      <strong>50 Kg and jumbo bag programs</strong>
+                    </article>
+                    <article class="home-metric">
+                      <span>Shipment</span>
+                      <strong>Export handling from India</strong>
+                    </article>
+                  </div>
+                  <span class="route-line route-line--visual"></span>
+                </div>
+              </div>
+            </div>
+            <div class="shell proof-strip" data-reveal>
+              {proof_markup}
+            </div>
+          </section>
+
+          <section class="section-block">
+            <div class="shell section-shell">
+              <div class="home-ledger">
+                <div class="home-ledger__intro" data-reveal>
+                  <p class="section-kicker">Where buyers are coming from</p>
+                  <h2>Different markets, similar buying logic.</h2>
+                  <p>Product fit, document clarity, and dispatch discipline tend to matter more than broad claims. The market changes, but those priorities usually do not.</p>
+                </div>
+                <div class="home-ledger__rows">
+                  {market_rows_markup}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block section-block--contrast">
+            <div class="shell section-shell">
+              <div class="home-split">
+                <article class="home-split__panel" data-reveal>
+                  <p class="section-label">How product fit is handled</p>
+                  <h2>Start with application, then align the mineral.</h2>
+                  <p>Better buying decisions usually come from starting with end use, chemistry range, size requirement, and packing constraints rather than a generic product list.</p>
+                  <div class="related-links">{market_links}</div>
+                </article>
+                <article class="home-split__panel" data-reveal>
+                  <p class="section-label">How export handling is kept calm</p>
+                  <h2>One visible track from inquiry to dispatch.</h2>
+                  <p>Short steps and cleaner handoffs reduce the usual friction around export buying.</p>
+                  <div class="home-process-list">
+                    {process_markup}
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block section-block--contact">
+            <div class="shell section-shell">
+              {form_block("Export Markets")}
+            </div>
+          </section>
+        </main>
+        {footer_html()}
+        """
+    ).strip()
+    schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Export Markets",
+            "description": "Industrial mineral supply from India for buyers across the Gulf, Southeast Asia, Mauritius, and Maldives.",
+            "url": f"{BASE_URL}/export-markets/",
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE_URL},
+                {"@type": "ListItem", "position": 2, "name": "Export Markets", "item": f"{BASE_URL}/export-markets/"},
+            ],
+        },
+    ]
+    return page_shell(
+        "Export Markets for Industrial Mineral Buyers | Jade Waves Enterprise",
+        "Industrial mineral supply from India for buyers across the Gulf, Southeast Asia, Mauritius, and Maldives.",
+        "/export-markets/",
+        body,
+        schema,
+        "page-export-markets",
+    )
+
+
+def render_exporter_profile_page() -> str:
+    proof_items = [
+        ("Company focus", "Industrial mineral supply from India"),
+        ("Buyer priority", "Specification clarity before dispatch"),
+        ("Typical shipment", "FCL export programs"),
+        ("Best fit", "Import buyers who need repeatable supply"),
+    ]
+    proof_markup = "".join(
+        dedent(
+            f"""
+            <article class="proof-strip__item">
+              <span class="proof-strip__eyebrow">{escape(label)}</span>
+              <strong>{escape(value)}</strong>
+            </article>
+            """
+        ).strip()
+        for label, value in proof_items
+    )
+    buyer_rows = [
+        ("01", "Clear specification handling", "The right conversation starts with chemistry, size, application, packing, and destination, not vague product labels."),
+        ("02", "Export-ready communication", "Buyers need direct answers on documents, shipment planning, and what can realistically be delivered."),
+        ("03", "Range with commercial focus", "The range covers ceramic, glass, drilling, foundry, water treatment, and process buyers without reading like a generic catalogue."),
+    ]
+    buyer_rows_markup = "".join(
+        dedent(
+            f"""
+            <article class="home-ledger-row" data-reveal>
+              <span>{escape(number)}</span>
+              <div>
+                <strong>{escape(title)}</strong>
+                <p>{escape(copy)}</p>
+              </div>
+            </article>
+            """
+        ).strip()
+        for number, title, copy in buyer_rows
+    )
+    product_links = "".join(
+        [
+            '<a href="/products/silica-sand/">Silica sand supplier and exporter</a>',
+            '<a href="/products/quartz-sand-for-ceramics/">Quartz sand, grits, and powder supplier</a>',
+            '<a href="/products/feldspar/">Potash and soda feldspar supplier</a>',
+            '<a href="/products/bentonite/">Bentonite supplier for drilling and foundry use</a>',
+            '<a href="/products/salt/">Industrial salt supplier for water treatment and chemical use</a>',
+        ]
+    )
+    process_steps = [
+        ("01", "Requirement review", "Product, application, country, volume, and packing preference are clarified first."),
+        ("02", "Quote or sample alignment", "Commercial fit is matched to the right grade before a sample or quote is finalised."),
+        ("03", "Commercial confirmation", "Packing, paperwork, and shipment timing are confirmed before loading begins."),
+        ("04", "Dispatch follow-through", "The buyer continues getting updates instead of having to chase the shipment."),
+    ]
+    process_markup = "".join(
+        dedent(
+            f"""
+            <article class="process-step" data-reveal>
+              <span>{escape(number)}</span>
+              <div class="process-step__body">
+                <h3>{escape(title)}</h3>
+                <p>{escape(copy)}</p>
+              </div>
+            </article>
+            """
+        ).strip()
+        for number, title, copy in process_steps
+    )
+    body = dedent(
+        f"""
+        {nav_html()}
+        <main>
+          <section class="hero hero--home">
+            <div class="hero__strata" aria-hidden="true">
+              <span class="strata strata--a"></span>
+              <span class="strata strata--b"></span>
+              <span class="strata strata--c"></span>
+              <span class="route-line route-line--hero"></span>
+            </div>
+            <div class="shell home-hero">
+              <div class="hero-copy hero-copy--home" data-reveal>
+                <p class="hero-label">Company profile</p>
+                <h1>Industrial minerals exporter from India for buyers who want the details settled early.</h1>
+                <p class="hero-text">
+                  Jade Waves Enterprise supports import buyers with industrial mineral supply from India, handling product fit, packing, documents, and dispatch with a calmer, specification-led approach.
+                </p>
+                <div class="hero-actions">
+                  <a class="button button--light" href="/products/">Explore Portfolio</a>
+                  <a class="button button--ghost" href="/#contact" data-set-request="Quote">Request Quote</a>
+                </div>
+              </div>
+              <div class="home-poster" data-reveal data-parallax="0.14">
+                <div class="home-poster__surface">
+                  <div class="home-poster__summary">
+                    <p class="home-poster__eyebrow">Why buyers shortlist</p>
+                    <strong>Less friction around the important details.</strong>
+                    <p>For import buyers, the stronger signal is usually clearer specification handling, steadier export follow-through, and faster alignment on what can actually ship.</p>
+                  </div>
+                  <div class="home-poster__metrics">
+                    <article class="home-metric">
+                      <span>Range</span>
+                      <strong>Silica, quartz, feldspar, bentonite, salt, and more</strong>
+                    </article>
+                    <article class="home-metric">
+                      <span>Focus</span>
+                      <strong>Bulk industrial and repeat buying programs</strong>
+                    </article>
+                    <article class="home-metric">
+                      <span>Origin</span>
+                      <strong>Export supply from India</strong>
+                    </article>
+                  </div>
+                  <span class="route-line route-line--visual"></span>
+                </div>
+              </div>
+            </div>
+            <div class="shell proof-strip" data-reveal>
+              {proof_markup}
+            </div>
+          </section>
+
+          <section class="section-block">
+            <div class="shell section-shell">
+              <div class="home-ledger">
+                <div class="home-ledger__intro" data-reveal>
+                  <p class="section-kicker">Buyer perspective</p>
+                  <h2>What import teams usually need to know first.</h2>
+                  <p>This page answers the practical questions buyers usually ask before going deeper into specs, samples, or commercial terms.</p>
+                </div>
+                <div class="home-ledger__rows">
+                  {buyer_rows_markup}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block section-block--contrast">
+            <div class="shell section-shell">
+              <div class="home-split">
+                <article class="home-split__panel" data-reveal>
+                  <p class="section-label">Core export range</p>
+                  <h2>Products buyers usually ask for first.</h2>
+                  <p>These products usually matter most when the requirement is tied to ceramics, glass, drilling, foundry, water treatment, or process use.</p>
+                  <div class="related-links">{product_links}</div>
+                </article>
+                <article class="home-split__panel" data-reveal>
+                  <p class="section-label">Working style</p>
+                  <h2>How the export process is kept straightforward.</h2>
+                  <p>The goal is to remove avoidable confusion before pricing, loading, and document handling become time-sensitive.</p>
+                  <div class="home-process-list">
+                    {process_markup}
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block section-block--contact">
+            <div class="shell section-shell">
+              {form_block("Industrial Minerals Exporter India")}
+            </div>
+          </section>
+        </main>
+        {footer_html()}
+        """
+    ).strip()
+    schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "Industrial Minerals Exporter India",
+            "description": "Industrial mineral exporter from India with clear specification handling and dependable export follow-through.",
+            "url": f"{BASE_URL}/industrial-minerals-exporter-india/",
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": CONTACT["company"],
+            "url": BASE_URL,
+            "telephone": CONTACT["phone"],
+            "email": CONTACT["sales_email"],
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": CONTACT["address"],
+                "addressCountry": "IN",
+            },
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE_URL},
+                {"@type": "ListItem", "position": 2, "name": "Industrial Minerals Exporter India", "item": f"{BASE_URL}/industrial-minerals-exporter-india/"},
+            ],
+        },
+    ]
+    return page_shell(
+        "Industrial Minerals Exporter from India | Jade Waves Enterprise",
+        "Industrial mineral exporter from India with clear specification handling and dependable export follow-through.",
+        "/industrial-minerals-exporter-india/",
+        body,
+        schema,
+        "page-exporter-profile",
     )
 
 
@@ -6348,6 +6743,8 @@ def main() -> None:
     write(ROOT / "styles.css", STYLES)
     write(ROOT / "script.js", SCRIPT)
     write(ROOT / "index.html", render_homepage())
+    write(ROOT / "export-markets" / "index.html", render_export_markets_page())
+    write(ROOT / "industrial-minerals-exporter-india" / "index.html", render_exporter_profile_page())
     write(ROOT / "products" / "index.html", render_products_index())
     for product in PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
