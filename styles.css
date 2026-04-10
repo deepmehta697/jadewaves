@@ -193,8 +193,12 @@ textarea {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(29, 29, 31, 0.08);
   box-shadow: var(--shadow);
-  display: grid;
+  display: none;
   gap: 0.7rem;
+}
+
+.mobile-menu:not([hidden]) {
+  display: grid;
 }
 
 .button {
