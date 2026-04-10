@@ -15,6 +15,7 @@ This repo is a static site with checked-in HTML, CSS, JS, and a Python generator
   - Otherwise generates a new report and refreshes `reports/seo/latest.md`.
 - `scripts/seo/generate_report.py`
   - Audits the repo output, checks live site availability, and attempts Google Search Console and GA4 fetches when configured.
+  - Adds directional Google Trends demand checks when the Trends client is installed.
   - Stops cleanly with exact blockers and setup instructions when Google access is missing.
 - `scripts/build_site.py`
   - Builds the production `_site/` artifact in the same shape as the GitHub Pages workflow.
@@ -52,6 +53,9 @@ Put these in `config/seo.config.local.json` or via environment variables from `.
 - `SEO_GA4_MEASUREMENT_ID`
   - Optional for frontend tagging.
   - Leave blank if tagging has not been installed yet.
+- Google Trends client
+  - Install from `requirements-seo.txt` if you want directional demand checks in the report.
+  - The workflow uses configured trend targets plus a seed keyword to compare relative interest over time.
 
 ## How to get each Google value
 
@@ -96,7 +100,13 @@ Put these in `config/seo.config.local.json` or via environment variables from `.
 
 - GA4 tagging is now installed in the shared page shell.
 - Lead-form events are emitted on successful inquiry submission.
-- The report currently verifies GA4 configuration and Search Console access from the local machine.
+- The report currently verifies GA4 configuration, Search Console access, and optional Google Trends demand checks from the local machine.
+
+## Current Google Trends state in this repo
+
+- Trends settings now live in `config/seo.config.json` under `trends`.
+- The default run compares configured product and export terms against a seed keyword: `industrial minerals supplier`.
+- Trends data is directional, not absolute volume. Use it to compare relative interest and spot terms worth promoting in titles, descriptions, and supporting copy.
 
 ## How the daily operator should use this
 

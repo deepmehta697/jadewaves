@@ -14,6 +14,24 @@
     "form_submit_event_name": "submit_lead_form",
     "lead_event_name": "generate_lead"
   },
+  "trends": {
+    "enabled": true,
+    "geo": "",
+    "timeframe": "today 3-m",
+    "seed_keyword": "industrial minerals supplier",
+    "max_terms": 8,
+    "min_average_interest": 8,
+    "targets": [
+      "industrial mineral exporter",
+      "silica sand supplier",
+      "quartz supplier from india",
+      "feldspar supplier",
+      "bentonite supplier",
+      "industrial salt supplier",
+      "silica flour supplier",
+      "china clay supplier"
+    ]
+  },
   "priority_pages": [
     "/",
     "/products/",
@@ -61,8 +79,9 @@
     },
     {
       "path": "/products/quartz-sand-for-ceramics/",
-      "primary": "quartz sand supplier",
+      "primary": "quartz supplier from india",
       "secondary": [
+        "quartz sand supplier",
         "quartz grits supplier",
         "quartz powder supplier",
         "quartz sand for ceramics"

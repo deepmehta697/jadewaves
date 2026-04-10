@@ -24,6 +24,15 @@ DEFAULT_CONFIG: dict[str, Any] = {
         "form_submit_event_name": "submit_lead_form",
         "lead_event_name": "generate_lead",
     },
+    "trends": {
+        "enabled": True,
+        "geo": "",
+        "timeframe": "today 3-m",
+        "seed_keyword": "industrial minerals supplier",
+        "max_terms": 8,
+        "min_average_interest": 8,
+        "targets": [],
+    },
     "priority_pages": [
         "/",
         "/products/",

@@ -126,6 +126,110 @@ def google_clients_available() -> tuple[bool, str]:
     return True, ""
 
 
+def trends_client_available() -> tuple[bool, str]:
+    try:
+        import pytrends.request  # noqa: F401
+    except ModuleNotFoundError:
+        return False, "Python Google Trends client library is not installed."
+    return True, ""
+
+
+def configured_trend_targets(config: dict[str, Any]) -> list[str]:
+    trends_config = config.get("trends", {})
+    explicit_targets = [item.strip() for item in trends_config.get("targets", []) if item.strip()]
+    if explicit_targets:
+        return explicit_targets[: max(1, int(trends_config.get("max_terms", 8)))]
+
+    seen: set[str] = set()
+    targets: list[str] = []
+    max_terms = max(1, int(trends_config.get("max_terms", 8)))
+    for keyword_target in config.get("keyword_targets", []):
+        for term in [keyword_target.get("primary", ""), *keyword_target.get("secondary", [])]:
+            normalized = term.strip().lower()
+            if not normalized or normalized in seen:
+                continue
+            seen.add(normalized)
+            targets.append(term.strip())
+            if len(targets) >= max_terms:
+                return targets
+    return targets
+
+
+def fetch_trends_data(config: dict[str, Any]) -> tuple[dict[str, Any] | None, list[str]]:
+    trends_config = config.get("trends", {})
+    if not trends_config.get("enabled", False):
+        return None, []
+
+    available, library_message = trends_client_available()
+    notes: list[str] = []
+    if not available:
+        notes.append(
+            library_message + " Install it with `python3 -m pip install -r requirements-seo.txt`."
+        )
+        return None, notes
+
+    targets = configured_trend_targets(config)
+    if not targets:
+        notes.append("No Google Trends target keywords are configured.")
+        return None, notes
+
+    seed_keyword = trends_config.get("seed_keyword", "").strip() or targets[0]
+    timeframe = trends_config.get("timeframe", "today 3-m").strip() or "today 3-m"
+    geo = trends_config.get("geo", "").strip()
+
+    try:
+        from pytrends.request import TrendReq
+    except ModuleNotFoundError:
+        notes.append(
+            "Python Google Trends client library is not installed. Install it with "
+            "`python3 -m pip install -r requirements-seo.txt`."
+        )
+        return None, notes
+
+    try:
+        client = TrendReq(hl="en-US", tz=330)
+    except Exception as exc:
+        notes.append(f"Could not initialize the Google Trends client: {exc}")
+        return None, notes
+
+    results: list[dict[str, Any]] = []
+    for term in targets:
+        if term.lower() == seed_keyword.lower():
+            continue
+        try:
+            client.build_payload([seed_keyword, term], timeframe=timeframe, geo=geo)
+            interest = client.interest_over_time()
+        except Exception as exc:
+            notes.append(f"Google Trends lookup failed for `{term}`: {exc}")
+            continue
+
+        if interest.empty or term not in interest:
+            notes.append(f"Google Trends returned no directional data for `{term}`.")
+            continue
+
+        series = interest[term].astype(int)
+        results.append(
+            {
+                "term": term,
+                "average_interest": round(float(series.mean()), 2),
+                "latest_interest": int(series.iloc[-1]),
+                "peak_interest": int(series.max()),
+            }
+        )
+
+    if not results and not notes:
+        notes.append("Google Trends returned no usable keyword-interest data.")
+        return None, notes
+
+    results.sort(key=lambda item: (-item["average_interest"], -item["latest_interest"], item["term"]))
+    return {
+        "seed_keyword": seed_keyword,
+        "geo": geo or "global",
+        "timeframe": timeframe,
+        "targets": results,
+    }, notes
+
+
 def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
     result: dict[str, Any] = {"search_console": None, "ga4": None}
     blockers: list[str] = []
@@ -249,8 +353,17 @@ def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]
     return result, blockers
 
 
-def keyword_opportunities(config: dict[str, Any], page_map: dict[str, PageAudit]) -> list[str]:
+def keyword_opportunities(
+    config: dict[str, Any],
+    page_map: dict[str, PageAudit],
+    trends_data: dict[str, Any] | None = None,
+) -> list[str]:
     opportunities: list[str] = []
+    trend_lookup = {
+        item["term"].lower(): item
+        for item in (trends_data or {}).get("targets", [])
+    }
+    min_average_interest = int(config.get("trends", {}).get("min_average_interest", 8))
     for target in config.get("keyword_targets", []):
         path = target["path"]
         page = page_map.get(path)
@@ -270,6 +383,20 @@ def keyword_opportunities(config: dict[str, Any], page_map: dict[str, PageAudit]
             )
         if len(opportunities) >= 5:
             break
+        title_and_description = f"{title} {description}"
+        for related_term in target.get("secondary", []):
+            trend = trend_lookup.get(related_term.lower())
+            if not trend or trend["average_interest"] < min_average_interest:
+                continue
+            if related_term.lower() in title_and_description:
+                continue
+            opportunities.append(
+                f"`{path}`: demand term `{related_term}` shows directional Google Trends interest "
+                f"(avg {trend['average_interest']}) but is not present in title/meta."
+            )
+            break
+        if len(opportunities) >= 5:
+            break
     return opportunities
 
 
@@ -287,7 +414,10 @@ def previous_report_metrics(report_dir: Path, today: str) -> tuple[dict[str, Any
     return json.loads(match.group(1)), latest.name
 
 
-def build_local_metrics(config: dict[str, Any]) -> tuple[dict[str, Any], list[str], list[str], list[str]]:
+def build_local_metrics(
+    config: dict[str, Any],
+    trends_data: dict[str, Any] | None = None,
+) -> tuple[dict[str, Any], list[str], list[str], list[str]]:
     pages = collect_pages()
     page_map = {page.path: page for page in pages}
     sitemap_metrics = read_sitemap_metrics()
@@ -310,7 +440,7 @@ def build_local_metrics(config: dict[str, Any]) -> tuple[dict[str, Any], list[st
     if duplicate_descriptions:
         issues.append(f"Found {len(duplicate_descriptions)} duplicate meta description values across the site.")
 
-    opportunities = keyword_opportunities(config, page_map)
+    opportunities = keyword_opportunities(config, page_map, trends_data=trends_data)
     if not tracking["has_gtag"] and not tracking["has_gtm"]:
         issues.append("No GA4 or GTM client-side tracking snippet is present in the site code.")
 
@@ -341,6 +471,38 @@ def build_local_metrics(config: dict[str, Any]) -> tuple[dict[str, Any], list[st
         "tracking_measurement_id_configured": tracking["measurement_id_configured"],
     }
     return metrics, issues, opportunities, actions
+
+
+def summarize_search_demand(
+    google_data: dict[str, Any],
+    google_blockers: list[str],
+    trends_data: dict[str, Any] | None,
+    trends_notes: list[str],
+) -> list[str]:
+    notes: list[str] = []
+    if google_data.get("search_console"):
+        notes.append(
+            f"Search Console 28-day clicks: {google_data['search_console']['clicks']}, "
+            f"impressions: {google_data['search_console']['impressions']}."
+        )
+    elif google_blockers:
+        notes.append("Search Console demand data is unavailable until the Google blockers are cleared.")
+
+    if trends_data and trends_data.get("targets"):
+        top_terms = trends_data["targets"][:3]
+        term_summary = ", ".join(
+            f"`{item['term']}` (avg {item['average_interest']}, latest {item['latest_interest']})"
+            for item in top_terms
+        )
+        notes.append(
+            "Google Trends directional checks "
+            f"({trends_data['timeframe']}, {trends_data['geo']}, compared against "
+            f"`{trends_data['seed_keyword']}`) highlight: {term_summary}."
+        )
+    elif trends_notes:
+        notes.extend(f"Google Trends note: {note}" for note in trends_notes[:3])
+
+    return notes
 
 
 def summarize_crawlability(
@@ -386,7 +548,6 @@ def render_report(config: dict[str, Any], reused: bool = False) -> str:
     report_dir = Path(config["report_dir"])
     report_dir.mkdir(parents=True, exist_ok=True)
 
-    local_metrics, issues, opportunities, actions = build_local_metrics(config)
     previous_metrics, previous_name = previous_report_metrics(report_dir, today)
     live_checks = {
         "homepage": check_live_endpoint(config["site_url"]),
@@ -395,6 +556,8 @@ def render_report(config: dict[str, Any], reused: bool = False) -> str:
     }
 
     google_data, google_blockers = fetch_google_data(config)
+    trends_data, trends_notes = fetch_trends_data(config)
+    local_metrics, issues, opportunities, actions = build_local_metrics(config, trends_data=trends_data)
     live_blockers = [
         f"Could not reach {label} at `{url}`: {check.get('error', 'unknown error')}."
         for label, url, check in (
@@ -422,6 +585,8 @@ def render_report(config: dict[str, Any], reused: bool = False) -> str:
         key_findings.append("Live site checks failed, so external crawlability validation is incomplete.")
     if google_blockers:
         key_findings.append("Google data is blocked until the missing credentials or libraries are supplied.")
+    if trends_data and trends_data.get("targets"):
+        key_findings.append("Search Console demand is now complemented with directional Google Trends keyword checks.")
 
     conversion_notes = []
     if local_metrics["tracking_has_gtag"] or local_metrics["tracking_has_gtm"]:
@@ -461,11 +626,15 @@ def render_report(config: dict[str, Any], reused: bool = False) -> str:
     report_lines.extend(["", "## Indexing And Crawlability Changes"])
     report_lines.extend(f"- {item}" for item in crawlability_notes)
     if google_data.get("search_console"):
-        report_lines.append(
-            f"- Search Console 28-day clicks: {google_data['search_console']['clicks']}, impressions: {google_data['search_console']['impressions']}."
-        )
+        report_lines.append("- Search Console demand data is available for this run.")
     elif google_blockers:
         report_lines.append("- Google indexing and query data is unavailable until the blockers below are cleared.")
+
+    report_lines.extend(["", "## Search Demand Signals"])
+    report_lines.extend(
+        f"- {item}"
+        for item in summarize_search_demand(google_data, google_blockers, trends_data, trends_notes)
+    )
 
     report_lines.extend(["", "## Keyword Opportunities"])
     if opportunities:
