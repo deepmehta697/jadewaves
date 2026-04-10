@@ -1003,6 +1003,7 @@ def render_homepage() -> str:
                   <a class="button button--ghost" href="/#contact" data-set-request="Quote">Request Quote</a>
                   <a class="button button--ghost" href="/#contact" data-set-request="Sample">Request Sample</a>
                 </div>
+                <p class="hero-subline">Fast Response. Reliable Supply. No Surprises.</p>
               </div>
               <div class="home-poster" data-reveal data-parallax="0.14">
                 <div class="home-poster__surface">
@@ -1826,6 +1827,16 @@ def render_product_page(product: dict) -> str:
             ("Shipment", "FCL"),
         ]
     )
+    hero_crosslink = ""
+    if product["slug"] == "silica-sand":
+        hero_crosslink = dedent(
+            """
+            <a class="hero-crosslink-card" href="/products/quartz-sand-for-ceramics/">
+              <strong>Quartz Sand</strong>
+              <span>SiO2&gt;99% and high whiteness</span>
+            </a>
+            """
+        ).strip()
     product_body = dedent(
         f"""
         {nav_html()}
@@ -1853,6 +1864,7 @@ def render_product_page(product: dict) -> str:
                   <a class="button button--light" href="#contact" data-set-request="Quote">Request Quote</a>
                   <a class="button button--ghost" href="#contact" data-set-request="Sample">Request Sample</a>
                 </div>
+                {hero_crosslink}
               </div>
               <aside class="product-poster" data-reveal data-parallax="0.12">
                 <div class="product-poster__surface">
@@ -2341,6 +2353,42 @@ STYLES = dedent(
       flex-wrap: wrap;
       gap: 0.85rem;
       margin-top: 2rem;
+    }
+
+    .hero-crosslink-card {
+      margin-top: 1rem;
+      display: inline-grid;
+      gap: 0.22rem;
+      padding: 0.68rem 0.92rem;
+      border-radius: 0.95rem;
+      border: 1px solid rgba(29, 29, 31, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 252, 0.95)),
+        linear-gradient(120deg, rgba(0, 113, 227, 0.06), transparent 46%);
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(29, 29, 31, 0.06);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .hero-crosslink-card strong {
+      font-size: 0.98rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .hero-crosslink-card span {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(29, 29, 31, 0.62);
+      line-height: 1.35;
+    }
+
+    .hero-crosslink-card:hover,
+    .hero-crosslink-card:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(0, 113, 227, 0.24);
+      box-shadow: 0 14px 32px rgba(29, 29, 31, 0.08);
     }
 
     .hero-visual {

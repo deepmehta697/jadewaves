@@ -347,7 +347,7 @@ main {
 }
 
 .hero-subline {
-  margin: 0.55rem 0 0;
+  margin: 0.95rem 0 0;
   color: rgba(29, 29, 31, 0.72);
   font-size: 0.98rem;
   font-weight: 700;
@@ -359,6 +359,42 @@ main {
   flex-wrap: wrap;
   gap: 0.85rem;
   margin-top: 2rem;
+}
+
+.hero-crosslink-card {
+  margin-top: 1rem;
+  display: inline-grid;
+  gap: 0.22rem;
+  padding: 0.68rem 0.92rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(29, 29, 31, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 252, 0.95)),
+    linear-gradient(120deg, rgba(0, 113, 227, 0.06), transparent 46%);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(29, 29, 31, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.hero-crosslink-card strong {
+  font-size: 0.98rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.hero-crosslink-card span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(29, 29, 31, 0.62);
+  line-height: 1.35;
+}
+
+.hero-crosslink-card:hover,
+.hero-crosslink-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(0, 113, 227, 0.24);
+  box-shadow: 0 14px 32px rgba(29, 29, 31, 0.08);
 }
 
 .hero-visual {
