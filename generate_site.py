@@ -203,6 +203,12 @@ PRODUCTS = [
             "400 Mesh",
             "Custom size available",
         ],
+        "parameter_docs": [
+            ("Quartz Grits Q1", "/assets/grade-sheets/quartz-grits-q1-parameter-sheet.pdf"),
+            ("Quartz Grits Q2", "/assets/grade-sheets/quartz-grits-q2-parameter-sheet.pdf"),
+            ("Quartz Powder", "/assets/grade-sheets/quartz-powder-c-parameter-sheet.pdf"),
+        ],
+        "parameter_docs_copy": "Chemical and physical parameter files for active quartz grits and powder grades.",
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For ceramic, glass, and engineered stone lines where purity and brightness show up in the finish.",
         "industries": ["Ceramics", "Glass", "Construction"],
@@ -381,6 +387,11 @@ PRODUCTS = [
         ],
         "forms": ["Lumps & Powder"],
         "size_options": ["100 Mesh", "200 Mesh", "325 Mesh", "350 Mesh", "Custom sizing available"],
+        "parameter_docs": [
+            ("Sodium Feldspar", "/assets/grade-sheets/soda-feldspar-parameter-sheet.pdf"),
+            ("Potassium Feldspar", "/assets/grade-sheets/potash-feldspar-parameter-sheet.pdf"),
+        ],
+        "parameter_docs_copy": "Chemical and physical parameter files for sodium and potassium feldspar grades.",
         "packing": "Jumbo Bags",
         "commercial_fit": "For manufacturers who need flux contribution to be predictable, not approximate.",
         "industries": ["Ceramics", "Sanitaryware", "Glass", "Engineered Stone"],
@@ -2911,6 +2922,9 @@ def render_ceo_page() -> str:
                       </p>
                     </div>
                     <p class="ceo-spotlight__meta"><span>Deep Mehta</span><span>CEO, Jade Waves Enterprise</span></p>
+                    <div class="ceo-spotlight__actions">
+                      <a class="button button--ghost button--compact" href="{escape(CEO_LINKEDIN_URL)}" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+                    </div>
                   </div>
                   <figure class="ceo-spotlight__media">
                     <img src="/assets/deep-mehta-ceo.jpg" alt="Deep Mehta, CEO of Jade Waves Enterprise" loading="lazy" />
@@ -3060,6 +3074,25 @@ def render_product_page(product: dict) -> str:
     size_pills = "".join(
         f'<span class="size-pill">{escape(item)}</span>' for item in product.get("size_options", [])
     )
+    parameter_doc_links = "".join(
+        f'<a class="button button--ghost button--compact" href="{escape(href)}" target="_blank" rel="noopener">{escape(label)}</a>'
+        for label, href in product.get("parameter_docs", [])
+    )
+    parameter_doc_block = ""
+    if parameter_doc_links:
+        parameter_doc_block = dedent(
+            f"""
+              <div class="grade-sheet-block">
+                <div class="grade-sheet-block__head">
+                  <p class="grade-sheet-block__label">Parameter Sheets</p>
+                  <p class="grade-sheet-block__copy">{escape(product.get("parameter_docs_copy", "Chemical and physical parameter files for active grades."))}</p>
+                </div>
+                <div class="grade-sheet-block__actions">
+                  {parameter_doc_links}
+                </div>
+              </div>
+            """
+        ).strip()
     sizes_card = ""
     if product.get("size_options"):
         sizes_card = dedent(
@@ -3068,6 +3101,7 @@ def render_product_page(product: dict) -> str:
                 <p class="section-label">Sizes Available</p>
                 <h2>Readily Available Sizes</h2>
                 <div class="size-cloud">{size_pills}</div>
+                {parameter_doc_block}
               </article>
             """
         ).strip()
@@ -5664,6 +5698,48 @@ STYLES = dedent(
       transform: translateX(0.2rem);
       background: var(--ore);
       color: white;
+    }
+
+    .grade-sheet-block {
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 1.25rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid rgba(29, 29, 31, 0.08);
+    }
+
+    .grade-sheet-block__head {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .grade-sheet-block__label,
+    .grade-sheet-block__copy {
+      margin: 0;
+    }
+
+    .grade-sheet-block__label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(29, 29, 31, 0.42);
+    }
+
+    .grade-sheet-block__copy {
+      max-width: 42rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .grade-sheet-block__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.72rem;
+    }
+
+    .grade-sheet-block__actions .button {
+      text-decoration: none;
     }
 
     .buyer-guides-holder {

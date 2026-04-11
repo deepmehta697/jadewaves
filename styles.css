@@ -2370,6 +2370,48 @@ body.is-ready .home-poster__metrics {
   color: white;
 }
 
+.grade-sheet-block {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(29, 29, 31, 0.08);
+}
+
+.grade-sheet-block__head {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.grade-sheet-block__label,
+.grade-sheet-block__copy {
+  margin: 0;
+}
+
+.grade-sheet-block__label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(29, 29, 31, 0.42);
+}
+
+.grade-sheet-block__copy {
+  max-width: 42rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.grade-sheet-block__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.72rem;
+}
+
+.grade-sheet-block__actions .button {
+  text-decoration: none;
+}
+
 .buyer-guides-holder {
   display: flex;
   justify-content: flex-end;
