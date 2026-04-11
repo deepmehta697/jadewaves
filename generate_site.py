@@ -811,6 +811,63 @@ BLOGS = [
         ],
     },
     {
+        "slug": "potassium-feldspar-supplier-for-ceramic-tiles",
+        "title": "Potassium Feldspar Supplier for Ceramic Tiles: Export-Ready Supply for Manufacturers",
+        "eyebrow": "Potassium Feldspar / Ceramic Tiles",
+        "summary": "A direct buyer guide for ceramic tile manufacturers reviewing potassium feldspar grade fit, particle size alignment, and export handling from India.",
+        "marquee_title": "Potassium Feldspar for Ceramic Tiles",
+        "seo_title": "Potassium Feldspar Supplier for Ceramic Tiles | Export Supply from India",
+        "meta_description": "Looking for a potassium feldspar supplier for ceramic tiles? Get export-ready supply from India with grade alignment, mesh customization, packing options, and shipment support for ceramic manufacturers.",
+        "product_slug": "feldspar",
+        "sections": [
+            {
+                "heading": "What we supply for ceramic tile manufacturers",
+                "body": "If your team is sourcing potassium feldspar for ceramic tiles, the first step is to align body or glaze use, particle size direction, and shipment basis before quotation starts.",
+                "points": [
+                    "Supply discussions can be aligned for body and glaze applications",
+                    "Potassium feldspar powder is handled as the primary ceramic tile supply format",
+                    "Custom particle size feasibility can be discussed during RFQ stage",
+                ],
+            },
+            {
+                "heading": "How potassium feldspar is used in ceramic tiles",
+                "body": "Ceramic buyers usually evaluate feldspar not only by chemistry, but by how consistently it fits formulation, firing behavior, and repeat production planning.",
+                "points": [
+                    "Tile body formulations",
+                    "Glaze formulations",
+                    "Plant trials before repeat-order alignment",
+                    "Production planning where consistency matters lot to lot",
+                ],
+            },
+            {
+                "heading": "What buyers usually require before quotation",
+                "body": "Ceramic tile teams tend to move faster when the requirement is translated into a commercial brief early instead of being left as a generic feldspar inquiry.",
+                "points": [
+                    "Application fit for body or glaze use",
+                    "Particle size or mesh requirement aligned to process setup",
+                    "Trial-to-bulk continuity and repeat shipment basis",
+                    "Packing, destination, and shipment planning handled in the same conversation",
+                ],
+            },
+            {
+                "heading": "Export and shipment support",
+                "body": "For import buyers, supply reliability includes how the material is packed, documented, and moved, not just whether the chemistry looks workable on paper.",
+                "points": [
+                    "Flexible packing discussion based on handling preference",
+                    "Containerized export planning for ceramic raw material procurement",
+                    "Document and shipment coordination based on buyer instructions and destination",
+                ],
+            },
+        ],
+        "questions": [
+            "Tile body or glaze application",
+            "Required particle size or mesh range",
+            "Monthly volume and trial quantity",
+            "Destination port and preferred packing basis",
+            "Any grade or chemistry checkpoints that must be matched first",
+        ],
+    },
+    {
         "slug": "kaolin-supplier-for-paint-industry",
         "title": "Kaolin Supplier for Paint Industry: What We Supply",
         "eyebrow": "Kaolin / Paint Industry",
@@ -1249,6 +1306,7 @@ BLOGS = [
 ]
 
 CURRENT_BLOG_SLUGS = [
+    "potassium-feldspar-supplier-for-ceramic-tiles",
     "quartz-powder-supplier-for-engineered-stone",
     "silica-sand-exporter-from-india",
     "kaolin-supplier-for-paint-industry",
