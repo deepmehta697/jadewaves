@@ -370,24 +370,60 @@ if (reveals.length) {
 }
 
 if (menuToggle && mobileMenu) {
-  mobileMenu.setAttribute("hidden", "");
+  const mobileBreakpoint = window.matchMedia("(max-width: 900px)");
+  const closeMobileMenu = () => {
+    mobileMenu.setAttribute("hidden", "");
+    menuToggle.setAttribute("aria-expanded", "false");
+  };
+
+  const syncMobileMenuState = () => {
+    if (!mobileBreakpoint.matches) {
+      closeMobileMenu();
+    }
+  };
+
+  closeMobileMenu();
 
   menuToggle.addEventListener("click", () => {
+    if (!mobileBreakpoint.matches) {
+      closeMobileMenu();
+      return;
+    }
     const open = mobileMenu.hasAttribute("hidden");
     if (open) {
       mobileMenu.removeAttribute("hidden");
     } else {
-      mobileMenu.setAttribute("hidden", "");
+      closeMobileMenu();
     }
     menuToggle.setAttribute("aria-expanded", String(open));
   });
 
   mobileMenu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      mobileMenu.setAttribute("hidden", "");
-      menuToggle.setAttribute("aria-expanded", "false");
+      closeMobileMenu();
     });
   });
+
+  document.addEventListener("click", (event) => {
+    if (mobileMenu.hasAttribute("hidden")) return;
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    if (mobileMenu.contains(target) || menuToggle.contains(target)) return;
+    closeMobileMenu();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMobileMenu();
+    }
+  });
+
+  if (mobileBreakpoint.addEventListener) {
+    mobileBreakpoint.addEventListener("change", syncMobileMenuState);
+  } else if (mobileBreakpoint.addListener) {
+    mobileBreakpoint.addListener(syncMobileMenuState);
+  }
+  window.addEventListener("resize", syncMobileMenuState);
 }
 
 const initCorridorStage = (stage) => {

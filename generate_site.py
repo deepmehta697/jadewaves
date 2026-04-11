@@ -53,6 +53,17 @@ INDUSTRIES = [
     ),
 ]
 
+
+INDUSTRY_ICONS = {
+    "Glass": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v2l-5 6v5l-4 3v-8L5 6V4z"/></svg>',
+    "Ceramics": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>',
+    "Construction": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18v11H3z"/><path d="M3 5h18v3H3z"/><path d="M9 12v8M15 12v8"/></svg>',
+    "Chemicals": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3v5l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V3"/><path d="M9 11h6"/></svg>',
+    "Drilling": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l7-7"/><path d="M9 4l11 11"/><path d="M14 3l7 7"/></svg>',
+    "Agriculture": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c5-1 8-5 8-11-6 0-10 3-11 8"/><path d="M4 13c1 4 4 7 8 7"/><path d="M12 20V9"/></svg>',
+    "Foundry": '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>',
+}
+
 PRODUCTS = [
     {
         "slug": "silica-sand",
@@ -574,23 +585,335 @@ HOME_FEATURED = ["silica-sand", "bentonite", "feldspar"]
 
 BLOGS = [
     {
-        "title": "Glass Grade Silica Sand",
-        "url": "https://jadewavesenterprise.com/blogs/f/glass-grade-silica-sand",
-        "eyebrow": "Silica Insights",
-        "copy": "A focused topic for buyers evaluating silica grades for glass-oriented production.",
+        "slug": "quartz-sand-supplier-india-vietnam-buyers-guide",
+        "title": "Quartz Sand Supplier from India: Buyer Checklist for Vietnam Ceramics and Glass Teams",
+        "eyebrow": "Quartz Sand / Vietnam / Ceramics-Glass",
+        "summary": "What import buyers should confirm before RFQ when sourcing quartz sand, grits, and powder from India.",
+        "marquee_title": "Quartz Sand for Vietnam Buyers",
+        "seo_title": "Quartz Sand Supplier from India for Vietnam Buyers | Jade Waves Guide",
+        "meta_description": "Buyer guide for Vietnam importers sourcing quartz sand from India for ceramics and glass. Learn key checks before quote and dispatch.",
+        "product_slug": "quartz-sand-for-ceramics",
+        "sections": [
+            {
+                "heading": "Start with end use, not only product name",
+                "body": "Quartz requirements change by process. A tile body brief, float glass brief, and engineered stone brief should not be priced the same way.",
+                "points": [
+                    "Confirm application first: ceramic body, glass batch, or engineered stone line.",
+                    "Ask for chemistry aligned to use, not generic lab values.",
+                    "Fix acceptable color and whiteness range before trial quantity.",
+                ],
+            },
+            {
+                "heading": "Lock sizing and consistency before commercial terms",
+                "body": "Most trial failures happen due to particle distribution mismatch, not because the product name was wrong.",
+                "points": [
+                    "Specify required grain/mesh range and tolerance.",
+                    "Confirm moisture expectation at dispatch stage.",
+                    "Request batch consistency approach for repeat orders.",
+                ],
+            },
+            {
+                "heading": "Align packing and shipment basis early",
+                "body": "For import teams, landed performance depends on how material is packed and moved, not only on sample chemistry.",
+                "points": [
+                    "Confirm 50 Kg vs jumbo bag basis with loading plan.",
+                    "Lock shipment basis (FOB/CIF/CNF) in writing.",
+                    "Check dispatch timeline against production planning window.",
+                ],
+            },
+        ],
+        "questions": [
+            "Can you share the grade against our exact end use?",
+            "Which size range can you hold consistently in production batches?",
+            "What packing format is best for our unloading setup?",
+            "What document set comes with each shipment?",
+            "What is practical lead time for trial and repeat volume?",
+        ],
     },
     {
-        "title": "Bentonite Suppliers in Saudi Arabia",
-        "url": "https://jadewavesenterprise.com/blogs/f/bentonite-suppliers-in-saudi-arabia",
-        "eyebrow": "Regional Supply",
-        "copy": "A market-facing note for buyers sourcing bentonite into Saudi Arabia.",
+        "slug": "potassium-vs-sodium-feldspar-import-buyer-guide",
+        "title": "Potassium vs Sodium Feldspar: What Import Buyers Should Confirm Before Buying",
+        "eyebrow": "Feldspar / Ceramics-Glass / Import Guide",
+        "summary": "How buyers compare potash and soda feldspar grades for ceramic and glass applications before quote.",
+        "marquee_title": "Potassium vs Sodium Feldspar",
+        "seo_title": "Potassium vs Sodium Feldspar Import Guide | Jade Waves Enterprise",
+        "meta_description": "Import buyer guide on selecting potassium feldspar vs sodium feldspar from India for ceramic and glass applications.",
+        "product_slug": "feldspar",
+        "sections": [
+            {
+                "heading": "Choose the feldspar type based on process behavior",
+                "body": "Potassium and sodium feldspar are not interchangeable in every ceramic or glass process.",
+                "points": [
+                    "Define whether melt behavior or body strength is the priority.",
+                    "Share production constraints where flux response matters.",
+                    "Confirm target chemistry profile before asking for price.",
+                ],
+            },
+            {
+                "heading": "Ask for chemistry and form together",
+                "body": "Chemistry without particle form creates trial uncertainty.",
+                "points": [
+                    "Confirm potassium/sodium content expectation.",
+                    "Select form and mesh according to process feed system.",
+                    "Request typical impurity limits relevant to end use.",
+                ],
+            },
+            {
+                "heading": "Reduce import risk with a trial-first structure",
+                "body": "A clean trial plan makes repeat ordering faster and safer.",
+                "points": [
+                    "Start with controlled trial volume and fixed grade.",
+                    "Use same packing basis intended for repeat orders.",
+                    "Pre-align documents and dispatch timeline for quick scale-up.",
+                ],
+            },
+        ],
+        "questions": [
+            "Which feldspar type do you recommend for our use case and why?",
+            "Can you hold this chemistry and mesh in repeat supply?",
+            "What is standard packing and shipment basis for our destination?",
+            "Which technical and commercial documents will be provided?",
+        ],
     },
     {
-        "title": "Kaolin / China Clay Suppliers in India",
-        "url": "https://jadewavesenterprise.com/blogs/f/kaolin-china-clay-suppliers-in-india",
-        "eyebrow": "Material Guides",
-        "copy": "A practical read for ceramic, coating, paper, and filler buyers comparing kaolin sources.",
+        "slug": "silica-sand-import-checklist-glass-foundry-filtration",
+        "title": "Silica Sand Import Checklist for Glass, Foundry, and Filtration Buyers",
+        "eyebrow": "Silica Sand / Buyer Checklist",
+        "summary": "A practical import checklist for buyers comparing silica sand suppliers and preparing a clean RFQ.",
+        "marquee_title": "Silica Sand Import Checklist",
+        "seo_title": "Silica Sand Import Checklist for Buyers | Jade Waves Enterprise",
+        "meta_description": "Silica sand buyer checklist covering grain size, SiO2, Fe2O3, packing, shipment basis, and documents before import order.",
+        "product_slug": "silica-sand",
+        "sections": [
+            {
+                "heading": "Define technical requirement by application",
+                "body": "Glass, foundry, and filtration buyers need different control points, even if all are sourcing silica sand.",
+                "points": [
+                    "Share intended end use with operating condition.",
+                    "Specify target SiO2 range and relevant impurity limits.",
+                    "Confirm acceptable grain size range and tolerance.",
+                ],
+            },
+            {
+                "heading": "Evaluate supplier response quality, not just rate",
+                "body": "A low quote without clear technical alignment creates avoidable delays at trial stage.",
+                "points": [
+                    "Ask whether grade is matched to your exact use case.",
+                    "Review TDS and sample COA for the discussed grade.",
+                    "Check how quickly technical clarifications are handled.",
+                ],
+            },
+            {
+                "heading": "Prepare dispatch flow before final confirmation",
+                "body": "Import execution improves when packing, documents, and shipment basis are settled early.",
+                "points": [
+                    "Select packing size based on unloading capability.",
+                    "Lock shipment basis and destination port plan.",
+                    "Confirm document set and communication owner for updates.",
+                ],
+            },
+        ],
+        "questions": [
+            "Can you support Fe2O3 range needed for our application?",
+            "What size options can be supplied consistently?",
+            "Can we align trial grade and repeat grade from the start?",
+            "What is expected lead time from PO to dispatch?",
+        ],
     },
+    {
+        "slug": "bentonite-grade-selection-guide-for-importers",
+        "title": "Bentonite Grade Selection Guide for Drilling, Foundry, and Civil Buyers",
+        "eyebrow": "Bentonite / Grade Selection",
+        "summary": "How buyers shortlist bentonite grades by application and avoid mismatched trials.",
+        "marquee_title": "Bentonite Grade Selection",
+        "seo_title": "Bentonite Grade Selection Guide for Import Buyers | Jade Waves",
+        "meta_description": "Import guide for selecting bentonite grades for drilling, foundry, piling, HDD, and earthing applications.",
+        "product_slug": "bentonite",
+        "sections": [
+            {
+                "heading": "Map grade to application performance",
+                "body": "Bentonite buying should be led by function: swelling behavior, viscosity response, and moisture stability.",
+                "points": [
+                    "Define exact application: drilling, foundry, piling, HDD, earthing, or sealing.",
+                    "Share process condition where rheology matters.",
+                    "Confirm handling and storage realities at destination.",
+                ],
+            },
+            {
+                "heading": "Clarify form and usage plan",
+                "body": "Lumps and powder behave differently in handling and blending systems.",
+                "points": [
+                    "Choose supply form based on your dosing method.",
+                    "Share expected monthly volume and trial target.",
+                    "Ask for grade consistency approach for repeat shipments.",
+                ],
+            },
+            {
+                "heading": "Commercial fit should follow technical fit",
+                "body": "Quoting first and qualifying later often increases cost and delay.",
+                "points": [
+                    "Confirm grade shortlist before rate comparison.",
+                    "Align packing and shipment terms to your site setup.",
+                    "Keep documentation and dispatch updates in one owner flow.",
+                ],
+            },
+        ],
+        "questions": [
+            "Which bentonite grade fits our exact application?",
+            "What technical references can you share for that grade?",
+            "How do you handle repeat-batch consistency?",
+            "What are the practical timelines for shipment?",
+        ],
+    },
+    {
+        "slug": "industrial-salt-import-guide-gulf-buyers",
+        "title": "Industrial Salt Import Guide for UAE, Oman, Qatar, and Kuwait Buyers",
+        "eyebrow": "Salt / Gulf Importers",
+        "summary": "A buyer-side guide for industrial salt sourcing from India with packaging and dispatch clarity.",
+        "marquee_title": "Industrial Salt for Gulf Buyers",
+        "seo_title": "Industrial Salt Import Guide for Gulf Buyers | Jade Waves Enterprise",
+        "meta_description": "Industrial salt import guide for UAE, Oman, Qatar, and Kuwait buyers covering grades, packing, and shipment planning.",
+        "product_slug": "salt",
+        "sections": [
+            {
+                "heading": "Select grade by process requirement",
+                "body": "Industrial salt inquiries work best when application context is shared first.",
+                "points": [
+                    "Clarify if requirement is chemical processing, treatment, or utility use.",
+                    "Share grade preference and acceptance range.",
+                    "Align crystal size with process handling setup.",
+                ],
+            },
+            {
+                "heading": "Avoid confusion in RFQ language",
+                "body": "Using generic salt terms creates back-and-forth that delays purchasing cycles.",
+                "points": [
+                    "Use clear grade name and packing basis in RFQ.",
+                    "Include destination and shipment term expectation.",
+                    "Mention monthly or project volume range for practical quote.",
+                ],
+            },
+            {
+                "heading": "Treat logistics as part of product quality",
+                "body": "Packing integrity and dispatch consistency directly affect usable material at destination.",
+                "points": [
+                    "Confirm packing protection for transit conditions.",
+                    "Align loading plan to receiving infrastructure.",
+                    "Ensure document set is finalized before vessel planning.",
+                ],
+            },
+        ],
+        "questions": [
+            "Which salt grade is best for our end use?",
+            "Can you support our packing and unloading format?",
+            "What documents are supplied with each shipment?",
+            "What lead time should we plan for repeat orders?",
+        ],
+    },
+    {
+        "slug": "quartz-powder-supplier-for-engineered-stone",
+        "title": "Quartz Powder Supplier for Engineered Stone: What We Supply",
+        "eyebrow": "Quartz Powder / Engineered Stone",
+        "summary": "A direct supply guide for engineered stone buyers reviewing available forms, sizes, quality focus, and export handling from India.",
+        "marquee_title": "Quartz Powder for Engineered Stone",
+        "seo_title": "Quartz Powder Supplier for Engineered Stone | Sizes, Specs, and Export Supply",
+        "meta_description": "Quartz powder supply for engineered stone buyers from India, including available sizes, key quality focus points, and export handling support.",
+        "product_slug": "quartz-sand-for-ceramics",
+        "sections": [
+            {
+                "heading": "What we supply for engineered stone buyers",
+                "body": "If your requirement is quartz powder for engineered stone, the first step is to align the right form against your process, not only the product name.",
+                "points": [
+                    "Supply options include quartz sand, quartz grits, and quartz powder.",
+                    "Grade and size range are aligned to engineered stone end use before quotation.",
+                    "Commercial discussion is tied to form, packing basis, and shipment planning together.",
+                ],
+            },
+            {
+                "heading": "Sizes available in the current supply range",
+                "body": "Engineered stone buyers usually need both powder and controlled sized inputs depending on the production line and blend requirement.",
+                "points": [
+                    "0.1-0.4 mm, 0.3-0.7 mm, 0.6-1.2 mm, 1.2-2.5 mm, 2.5-4.0 mm, and 4.0-6.0 mm",
+                    "200 mesh, 325 mesh, and 400 mesh",
+                    "Custom size discussion available against application requirement",
+                ],
+            },
+            {
+                "heading": "Quality focus before quotation",
+                "body": "For engineered stone programs, technical alignment needs to happen before pricing so the offer matches production needs.",
+                "points": [
+                    "SiO2 above 99.0 percent with low potassium profile",
+                    "Form and grain or mesh size alignment before sample movement",
+                    "Color, whiteness, and consistency discussion before commercial finalization",
+                ],
+            },
+            {
+                "heading": "Packing and export handling",
+                "body": "Shipment planning matters as much as technical fit because engineered stone buyers often need the same basis to hold through trial and repeat orders.",
+                "points": [
+                    "Current packing basis: jumbo bags",
+                    "Current shipment mode: FCL",
+                    "Sample alignment, document alignment, and shipment planning are handled from India based on destination and order size",
+                ],
+            },
+        ],
+        "questions": [
+            "Do you need quartz powder, grits, or sand for the engineered stone line?",
+            "Which size or mesh range should be quoted?",
+            "Which destination country and port should shipment planning follow?",
+            "What is the trial quantity and expected monthly volume?",
+            "Which packing format should be aligned before quotation?",
+        ],
+    },
+    {
+        "slug": "how-to-check-tds-and-sample-coa-before-mineral-import",
+        "title": "How to Check TDS and Sample COA Before You Place a Mineral Import Order",
+        "eyebrow": "TDS / COA / Buyer Process",
+        "summary": "A practical review framework for buyers before trial, quotation, and bulk dispatch.",
+        "marquee_title": "How to Read TDS and Sample COA",
+        "seo_title": "How to Review TDS and Sample COA for Mineral Imports | Jade Waves",
+        "meta_description": "Step-by-step guide for import buyers to review technical data sheets and sample COA before placing mineral orders.",
+        "product_slug": "silica-sand",
+        "sections": [
+            {
+                "heading": "Use TDS to understand capability range",
+                "body": "TDS shows the grade profile and typical range, but should be read with application context.",
+                "points": [
+                    "Check if the listed parameters match your process-critical checks.",
+                    "Separate typical range from strict acceptance requirement.",
+                    "Confirm form, size, and packing references in the same sheet.",
+                ],
+            },
+            {
+                "heading": "Use sample COA to validate trial relevance",
+                "body": "A sample COA helps validate whether trial material is close to your buying basis.",
+                "points": [
+                    "Match sample COA to the exact grade being quoted.",
+                    "Check testing basis and parameter naming consistency.",
+                    "Clarify any value that sits near your rejection threshold.",
+                ],
+            },
+            {
+                "heading": "Convert documents into buying decisions",
+                "body": "Documents are useful only when they are translated into a clear commercial and dispatch plan.",
+                "points": [
+                    "Lock technical acceptance points before final quote approval.",
+                    "Align trial outcome with repeat-order specification.",
+                    "Confirm dispatch documents and communication process early.",
+                ],
+            },
+        ],
+        "questions": [
+            "Is this TDS matched to the same grade quoted to us?",
+            "Can you share sample COA for the discussed mesh/form?",
+            "How close is sample data to repeat shipment target?",
+            "What is your process if one parameter drifts near limit?",
+        ],
+    },
+]
+
+CURRENT_BLOG_SLUGS = [
+    "quartz-powder-supplier-for-engineered-stone",
 ]
 
 
@@ -645,6 +968,7 @@ def nav_html() -> str:
               <a href="/#about">About</a>
               <a href="/products/">Products</a>
               <a href="/operations/">Operations</a>
+              <a href="/blog/">Blog</a>
               <a href="/export-markets/">Markets</a>
               <a href="/#contact">Contact</a>
             </nav>
@@ -659,6 +983,7 @@ def nav_html() -> str:
             <a href="/#about">About</a>
             <a href="/products/">Products</a>
             <a href="/operations/">Operations</a>
+            <a href="/blog/">Blog</a>
             <a href="/export-markets/">Markets</a>
             <a href="/#contact">Contact</a>
           </div>
@@ -687,6 +1012,8 @@ def footer_html() -> str:
                 <a href="/">Home</a>
                 <a href="/products/">Products</a>
                 <a href="/operations/">Operations</a>
+                <a href="/blog/">Blog</a>
+                <a href="/hear-from-ceo/">Hear from Our CEO</a>
                 <a href="/export-markets/">Export Markets</a>
                 <a href="/#contact">Contact</a>
               </div>
@@ -981,6 +1308,12 @@ def render_homepage() -> str:
         ).strip()
         for number, title, copy in operating_points
     )
+    guide_links_once = "".join(
+        f'<a class="buyer-guide-pill" href="/blog/">{escape(post.get("marquee_title", post["title"]))}</a>'
+        for post in BLOGS
+        if post["slug"] in CURRENT_BLOG_SLUGS
+    )
+    guide_links_markup = guide_links_once + guide_links_once
     home_body = dedent(
         f"""
         {nav_html()}
@@ -1082,7 +1415,7 @@ def render_homepage() -> str:
 
           <section class="section-block section-block--contrast" id="industries">
             <div class="shell section-shell">
-              <div class="home-split">
+              <div class="home-split home-split--stack">
                 <article class="home-split__panel" data-reveal>
                   <p class="section-label">Industries</p>
                   <h2>Specified into the work that keeps moving.</h2>
@@ -1100,6 +1433,96 @@ def render_homepage() -> str:
                   </div>
                 </article>
               </div>
+            </div>
+          </section>
+
+          <section class="section-block" id="countries-served">
+            <div class="shell section-shell">
+              <div class="corridor-stage">
+                <div class="corridor-stage__top" data-reveal>
+                  <div class="corridor-stage__intro">
+                    <p class="section-label">Countries Served</p>
+                    <h2>Countries we are currently exporting to from India.</h2>
+                    <p>These lanes group the countries where Jade Waves is already moving cargo and handling live export requirements from the same India origin point.</p>
+                  </div>
+                </div>
+                <div class="corridor-stage__body">
+                  <article class="corridor-stage__hub" data-reveal>
+                    <p class="corridor-stage__eyebrow">Origin</p>
+                    <div class="corridor-stage__hub-mark" aria-hidden="true">
+                      <span class="corridor-stage__hub-ring corridor-stage__hub-ring--outer"></span>
+                      <span class="corridor-stage__hub-ring corridor-stage__hub-ring--inner"></span>
+                      <span class="corridor-stage__hub-core"></span>
+                    </div>
+                    <h3>India manufacturing hub</h3>
+                    <p>Plant handling, packing, and dispatch flow outward from one origin before cargo splits into country groups.</p>
+                  </article>
+                  <div class="corridor-stage__lanes" data-corridor-stage>
+                    <button class="corridor-lane is-active" type="button" data-corridor-item aria-pressed="true">
+                      <span class="corridor-lane__rail" aria-hidden="true">
+                        <span class="corridor-lane__track"></span>
+                        <span class="corridor-lane__glow"></span>
+                        <span class="corridor-lane__ship"></span>
+                        <span class="corridor-lane__terminal"></span>
+                      </span>
+                      <span class="corridor-lane__card">
+                        <span class="corridor-lane__meta">01 · Gulf</span>
+                        <strong>Gulf</strong>
+                        <span class="corridor-lane__countries">UAE, Saudi Arabia, Oman, Kuwait, Qatar</span>
+                      </span>
+                    </button>
+                    <button class="corridor-lane" type="button" data-corridor-item aria-pressed="false">
+                      <span class="corridor-lane__rail" aria-hidden="true">
+                        <span class="corridor-lane__track"></span>
+                        <span class="corridor-lane__glow"></span>
+                        <span class="corridor-lane__ship"></span>
+                        <span class="corridor-lane__terminal"></span>
+                      </span>
+                      <span class="corridor-lane__card">
+                        <span class="corridor-lane__meta">02 · Southeast Asia</span>
+                        <strong>Southeast Asia</strong>
+                        <span class="corridor-lane__countries">Vietnam, Philippines, Indonesia, Malaysia</span>
+                      </span>
+                    </button>
+                    <button class="corridor-lane" type="button" data-corridor-item aria-pressed="false">
+                      <span class="corridor-lane__rail" aria-hidden="true">
+                        <span class="corridor-lane__track"></span>
+                        <span class="corridor-lane__glow"></span>
+                        <span class="corridor-lane__ship"></span>
+                        <span class="corridor-lane__terminal"></span>
+                      </span>
+                      <span class="corridor-lane__card">
+                        <span class="corridor-lane__meta">03 · Island Cargo</span>
+                        <strong>Island cargo</strong>
+                        <span class="corridor-lane__countries">Maldives and Mauritius</span>
+                      </span>
+                    </button>
+                    <button class="corridor-lane" type="button" data-corridor-item aria-pressed="false">
+                      <span class="corridor-lane__rail" aria-hidden="true">
+                        <span class="corridor-lane__track"></span>
+                        <span class="corridor-lane__glow"></span>
+                        <span class="corridor-lane__ship"></span>
+                        <span class="corridor-lane__terminal"></span>
+                      </span>
+                      <span class="corridor-lane__card">
+                        <span class="corridor-lane__meta">04 · East Africa</span>
+                        <strong>East Africa</strong>
+                        <span class="corridor-lane__countries">Kenya</span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block section-block--contrast">
+            <div class="shell section-shell">
+              <article class="relationship-band" data-reveal>
+                <p class="section-label">Supply Relationships</p>
+                <h2>Built for Long-Term Supply Relationships</h2>
+                <p>We work with buyers who value consistency in quality, communication, and shipment execution across repeat orders.</p>
+              </article>
             </div>
           </section>
 
@@ -1173,6 +1596,330 @@ def render_homepage() -> str:
         home_body,
         schema,
         "page-home",
+    )
+
+
+def render_blog_index_page() -> str:
+    current_posts = [post for post in BLOGS if post["slug"] in CURRENT_BLOG_SLUGS]
+    post_cards = []
+    for post in current_posts:
+        product = PRODUCTS_BY_SLUG[post["product_slug"]]
+        post_cards.append(
+            dedent(
+                f"""
+                <article class="blog-card" data-reveal>
+                  <p class="blog-card__eyebrow">{escape(post["eyebrow"])}</p>
+                  <h3>{escape(post["title"])}</h3>
+                  <p>{escape(post["summary"])}</p>
+                  <div class="blog-card__actions">
+                    <a class="blog-card__link" href="/blog/{escape(post["slug"])}/">Read guide</a>
+                    <a class="blog-card__link blog-card__link--alt" href="/products/{escape(product["slug"])}/">{escape(product["name"])}</a>
+                  </div>
+                </article>
+                """
+            ).strip()
+        )
+    body = dedent(
+        f"""
+        {nav_html()}
+        <main>
+          <section class="hero hero--home">
+            <div class="hero__strata" aria-hidden="true">
+              <span class="strata strata--a"></span>
+              <span class="strata strata--b"></span>
+              <span class="strata strata--c"></span>
+              <span class="route-line route-line--hero"></span>
+            </div>
+            <div class="shell home-hero">
+              <div class="hero-copy hero-copy--home" data-reveal>
+                <p class="hero-label">Buyer Guides</p>
+                <h1>Buyer<br />guides.</h1>
+                <p class="hero-text">
+                  This section is being rebuilt around real buyer questions on specification, sampling, and export planning.
+                </p>
+                <div class="hero-actions">
+                  <a class="button button--light" href="/#contact" data-set-request="Quote">Start Inquiry</a>
+                  <a class="button button--ghost" href="/products/">Explore Products</a>
+                </div>
+              </div>
+            </div>
+            <div class="shell proof-strip" data-reveal>
+              <article class="proof-strip__item">
+                <span class="proof-strip__eyebrow">Who this is for</span>
+                <strong>Importers and procurement teams</strong>
+              </article>
+              <article class="proof-strip__item">
+                <span class="proof-strip__eyebrow">What you get</span>
+                <strong>Clear RFQ and pre-dispatch checklists</strong>
+              </article>
+              <article class="proof-strip__item">
+                <span class="proof-strip__eyebrow">Move faster</span>
+                <strong>Product links and direct inquiry paths</strong>
+              </article>
+              <article class="proof-strip__item">
+                <span class="proof-strip__eyebrow">Next step</span>
+                <strong>Share spec, destination, and volume</strong>
+              </article>
+            </div>
+          </section>
+
+          <section class="section-block section-block--contrast">
+            <div class="shell section-shell">
+              <div class="section-topline section-topline--stack" data-reveal>
+                <div class="section-topline__copy">
+                  <p class="section-kicker">Current post</p>
+                  <h2>Published buyer guides.</h2>
+                </div>
+                <a class="section-link" href="/#contact">Need a quote now?</a>
+              </div>
+              <div class="blog-grid">
+                {"".join(post_cards)}
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <div class="shell section-shell">
+              <div class="home-ledger">
+                <div class="home-ledger__intro" data-reveal>
+                  <p class="section-kicker">Quick move</p>
+                  <h2>Move from reading to buying without friction.</h2>
+                  <p>Use these direct links to switch from guide content into technical and commercial discussion.</p>
+                </div>
+                <div class="home-ledger__rows">
+                  <article class="home-ledger-row" data-reveal>
+                    <span>01</span>
+                    <div>
+                      <strong><a href="/products/">Open product portfolio</a></strong>
+                      <p>Compare grades, forms, and specification focus across all products.</p>
+                    </div>
+                  </article>
+                  <article class="home-ledger-row" data-reveal>
+                    <span>02</span>
+                    <div>
+                      <strong><a href="/operations/">Review operations</a></strong>
+                      <p>See processing and dispatch visibility before confirming supply decisions.</p>
+                    </div>
+                  </article>
+                  <article class="home-ledger-row" data-reveal>
+                    <span>03</span>
+                    <div>
+                      <strong><a href="/#countries-served">See countries served</a></strong>
+                      <p>View the current export lanes and country groups being handled from India.</p>
+                    </div>
+                  </article>
+                  <article class="home-ledger-row" data-reveal>
+                    <span>04</span>
+                    <div>
+                      <strong><a href="/#contact" data-set-request="Quote">Send inquiry</a></strong>
+                      <p>Share product, destination, monthly volume, and packing basis for a clean quote.</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        {footer_html()}
+        """
+    ).strip()
+    schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Buyer and Importer Blog",
+            "url": f"{BASE_URL}/blog/",
+            "description": "Buyer guide hub for import teams reviewing industrial mineral sourcing, specification checks, and export planning from India.",
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "Published Buyer Guides",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "url": f"{BASE_URL}/blog/{post['slug']}/",
+                    "name": post["title"],
+                }
+                for index, post in enumerate(current_posts)
+            ],
+        },
+    ]
+    return page_shell(
+        "Buyer Guides | Jade Waves Enterprise",
+        "Buyer guide hub from Jade Waves Enterprise for import teams reviewing mineral sourcing, specification checks, and export planning.",
+        "/blog/",
+        body,
+        schema,
+        "page-blog",
+    )
+
+
+def render_blog_post_page(post: dict) -> str:
+    product = PRODUCTS_BY_SLUG[post["product_slug"]]
+    section_markup = "".join(
+        dedent(
+            f"""
+            <section class="blog-article-section" data-reveal>
+              <h2>{escape(section["heading"])}</h2>
+              <p>{escape(section["body"])}</p>
+              <ul class="bullet-list">
+                {"".join(f"<li>{escape(point)}</li>" for point in section["points"])}
+              </ul>
+            </section>
+            """
+        ).strip()
+        for section in post["sections"]
+    )
+    questions_markup = "".join(f"<li>{escape(question)}</li>" for question in post["questions"])
+    related_cards = []
+    for related in BLOGS:
+        if related["slug"] not in CURRENT_BLOG_SLUGS:
+            continue
+        if related["slug"] == post["slug"]:
+            continue
+        related_cards.append(
+            dedent(
+                f"""
+                <a class="blog-card blog-card--compact" href="/blog/{escape(related["slug"])}/" data-reveal>
+                  <p class="blog-card__eyebrow">{escape(related["eyebrow"])}</p>
+                  <h3>{escape(related["title"])}</h3>
+                  <p>{escape(related["summary"])}</p>
+                </a>
+                """
+            ).strip()
+        )
+        if len(related_cards) == 3:
+            break
+    related_section = ""
+    if related_cards:
+        related_section = dedent(
+            f"""
+          <section class="section-block section-block--contrast">
+            <div class="shell section-shell">
+              <div class="section-topline section-topline--stack" data-reveal>
+                <div class="section-topline__copy">
+                  <p class="section-kicker">Related guides</p>
+                  <h2>Continue with nearby buyer questions.</h2>
+                </div>
+                <a class="section-link" href="/blog/">Open all guides</a>
+              </div>
+              <div class="blog-grid blog-grid--compact">
+                {"".join(related_cards)}
+              </div>
+            </div>
+          </section>
+            """
+        ).strip()
+
+    body = dedent(
+        f"""
+        {nav_html()}
+        <main>
+          <section class="hero hero--home">
+            <div class="hero__strata" aria-hidden="true">
+              <span class="strata strata--a"></span>
+              <span class="strata strata--b"></span>
+              <span class="strata strata--c"></span>
+              <span class="route-line route-line--hero"></span>
+            </div>
+            <div class="shell home-hero">
+              <div class="hero-copy hero-copy--home" data-reveal>
+                <p class="hero-label">{escape(post["eyebrow"])}</p>
+                <h1>{escape(post["title"])}</h1>
+                <p class="hero-text">{escape(post["summary"])}</p>
+                <div class="hero-actions">
+                  <a class="button button--light" href="/products/{escape(product["slug"])}/">Open {escape(product["name"])}</a>
+                  <a class="button button--ghost" href="/#contact" data-set-request="Quote">Request Quote</a>
+                </div>
+              </div>
+            </div>
+            <div class="shell proof-strip" data-reveal>
+              <article class="proof-strip__item">
+                <span class="proof-strip__eyebrow">From this guide</span>
+                <strong>What to confirm before RFQ</strong>
+              </article>
+              <article class="proof-strip__item">
+                <span class="proof-strip__eyebrow">Primary product</span>
+                <strong>{escape(product["name"])}</strong>
+              </article>
+              <article class="proof-strip__item">
+                <span class="proof-strip__eyebrow">Move to technicals</span>
+                <strong><a href="/products/{escape(product["slug"])}/">Open product page</a></strong>
+              </article>
+              <article class="proof-strip__item">
+                <span class="proof-strip__eyebrow">Move to inquiry</span>
+                <strong><a href="/#contact" data-set-request="Quote">Send requirement</a></strong>
+              </article>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <div class="shell section-shell">
+              <div class="blog-layout">
+                <article class="blog-article">
+                  {section_markup}
+                </article>
+                <aside class="blog-sidecard" data-reveal>
+                  <p class="section-label">Questions to send before quote</p>
+                  <h2>Use this exact checklist in your first message.</h2>
+                  <ul class="bullet-list">
+                    {questions_markup}
+                  </ul>
+                  <div class="related-links blog-sidecard__links">
+                    <a href="/products/{escape(product["slug"])}/">Open {escape(product["name"])}</a>
+                    <a href="/operations/">See operations</a>
+                    <a href="/#contact" data-set-request="Quote">Send inquiry</a>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </section>
+
+          {related_section}
+        </main>
+        {footer_html()}
+        """
+    ).strip()
+    post_url = f"{BASE_URL}/blog/{post['slug']}/"
+    schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post["title"],
+            "description": post["meta_description"],
+            "mainEntityOfPage": post_url,
+            "url": post_url,
+            "datePublished": TODAY,
+            "dateModified": TODAY,
+            "author": {"@type": "Organization", "name": CONTACT["company"]},
+            "publisher": {
+                "@type": "Organization",
+                "name": CONTACT["company"],
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": f"{BASE_URL}/assets/jade-waves-logo-transparent.png",
+                },
+            },
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE_URL},
+                {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{BASE_URL}/blog/"},
+                {"@type": "ListItem", "position": 3, "name": post["title"], "item": post_url},
+            ],
+        },
+    ]
+    return page_shell(
+        post["seo_title"],
+        post["meta_description"],
+        f"/blog/{post['slug']}/",
+        body,
+        schema,
+        "page-blog-post",
     )
 
 
@@ -1699,6 +2446,162 @@ def render_exporter_profile_page() -> str:
     )
 
 
+def render_ceo_page() -> str:
+    proof_items = [
+        ("Company base", "Ahmedabad, Gujarat, India"),
+        ("Manufacturer-backed supply", "Silica, quartz, feldspar, bentonite, and salt"),
+        ("Port linkage", CONTACT["port"]),
+        ("Core export documents", "COA, COO, Packing List, B/L"),
+    ]
+    proof_markup = "".join(
+        dedent(
+            f"""
+            <article class="proof-strip__item">
+              <span class="proof-strip__eyebrow">{escape(label)}</span>
+              <strong>{escape(value)}</strong>
+            </article>
+            """
+        ).strip()
+        for label, value in proof_items
+    )
+    commitment_rows = [
+        ("01", "Requirement clarity before quote", "We align end use, chemistry, grain size, and packing basis before numbers are finalized."),
+        ("02", "Technical references before confirmation", "TDS and sample COA are shared against the discussed grade so technical teams can evaluate clearly."),
+        ("03", "Commercial and document alignment", "Shipment basis, packing plan, and document expectations are confirmed early with your team."),
+        ("04", "Dispatch visibility", "Buyers receive direct loading and shipment updates from planning stage to cargo movement."),
+        ("05", "Repeat-order consistency", "The same operating method is carried into repeat orders so quality and communication remain stable."),
+    ]
+    commitment_markup = "".join(
+        dedent(
+            f"""
+            <article class="home-ledger-row" data-reveal>
+              <span>{escape(number)}</span>
+              <div>
+                <strong>{escape(title)}</strong>
+                <p>{escape(copy)}</p>
+              </div>
+            </article>
+            """
+        ).strip()
+        for number, title, copy in commitment_rows
+    )
+    body = dedent(
+        f"""
+        {nav_html()}
+        <main>
+          <section class="hero hero--home">
+            <div class="hero__strata" aria-hidden="true">
+              <span class="strata strata--a"></span>
+              <span class="strata strata--b"></span>
+              <span class="strata strata--c"></span>
+              <span class="route-line route-line--hero"></span>
+            </div>
+            <div class="shell home-hero">
+              <div class="hero-copy hero-copy--home" data-reveal>
+                <p class="hero-label">Hear from our CEO</p>
+                <h1>A note<br />for buyers.</h1>
+                <p class="hero-text">
+                  This page explains how we work with import buyers in practical terms: agree the right specification first, share technical references early, and keep dispatch execution visible until cargo moves.
+                </p>
+                <div class="hero-actions">
+                  <a class="button button--light" href="/#contact" data-set-request="Quote">Request Quote</a>
+                  <a class="button button--ghost" href="{escape(CEO_LINKEDIN_URL)}" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+                </div>
+              </div>
+            </div>
+            <div class="shell proof-strip" data-reveal>
+              {proof_markup}
+            </div>
+          </section>
+
+          <section class="section-block section-block--contrast">
+            <div class="shell section-shell">
+              <article class="ceo-spotlight" data-reveal>
+                <div class="ceo-spotlight__grid">
+                  <div class="ceo-spotlight__content">
+                    <p class="section-label">CEO Note</p>
+                    <h2>What buyers can expect when working with Jade Waves.</h2>
+                    <p class="ceo-spotlight__quote">“Clarity before commitment. Discipline in execution. Communication that stays direct from inquiry to dispatch.”</p>
+                    <div class="ceo-spotlight__body">
+                      <p>
+                        We do not treat export supply as only cargo movement. Our responsibility is to make sure your team receives the material aligned to your end use, with the right packing, document discipline, and commercial clarity.
+                      </p>
+                      <p>
+                        We manufacture and export silica sand, quartz, feldspar, bentonite, salt, and other industrial minerals from India for buyers who value repeat-order reliability over one-time transactions.
+                      </p>
+                      <p>
+                        You will have a directly reachable team member during inquiry, sampling, documentation, and dispatch. That keeps decisions faster, execution cleaner, and avoidable risk lower.
+                      </p>
+                    </div>
+                    <p class="ceo-spotlight__meta"><span>Deep Mehta</span><span>CEO, Jade Waves Enterprise</span></p>
+                  </div>
+                  <figure class="ceo-spotlight__media">
+                    <img src="/assets/deep-mehta-ceo.jpg" alt="Deep Mehta, CEO of Jade Waves Enterprise" loading="lazy" />
+                  </figure>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <div class="shell section-shell">
+              <div class="home-ledger">
+                <div class="home-ledger__intro" data-reveal>
+                  <p class="section-kicker">Commercial commitments</p>
+                  <h2>How we keep buyer confidence stable across repeat orders.</h2>
+                  <p>These are operating commitments buyers can verify during enquiry, trial, documentation, and dispatch.</p>
+                </div>
+                <div class="home-ledger__rows">
+                  {commitment_markup}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block section-block--contact">
+            <div class="shell section-shell">
+              {form_block("CEO Inquiry")}
+            </div>
+          </section>
+        </main>
+        {footer_html()}
+        """
+    ).strip()
+    schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "Hear from our CEO",
+            "description": "CEO message on manufacturer-led mineral supply, technical clarity, and dependable export execution for global buyers.",
+            "url": f"{BASE_URL}/hear-from-ceo/",
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Deep Mehta",
+            "jobTitle": "CEO",
+            "worksFor": {"@type": "Organization", "name": CONTACT["company"]},
+            "url": CEO_LINKEDIN_URL,
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE_URL},
+                {"@type": "ListItem", "position": 2, "name": "Hear from our CEO", "item": f"{BASE_URL}/hear-from-ceo/"},
+            ],
+        },
+    ]
+    return page_shell(
+        "A Note for Buyers | Jade Waves Enterprise",
+        "CEO message from Jade Waves Enterprise on how we align technical fit, packing, and export execution for global mineral buyers.",
+        "/hear-from-ceo/",
+        body,
+        schema,
+        "page-ceo",
+    )
+
+
 def render_faq(product: dict) -> tuple[str, list[dict]]:
     booking_points = product.get("booking_points", product["specs"])
     faqs = [
@@ -1831,12 +2734,15 @@ def render_product_page(product: dict) -> str:
     if product["slug"] == "silica-sand":
         hero_crosslink = dedent(
             """
-            <a class="hero-crosslink-card" href="/products/quartz-sand-for-ceramics/">
+            <a class="hero-crosslink-card hero-crosslink-card--bridge" href="/products/quartz-sand-for-ceramics/">
               <strong>Quartz Sand</strong>
               <span>SiO2&gt;99% and high whiteness</span>
             </a>
             """
         ).strip()
+    hero_class = "shell hero__inner hero__inner--product product-hero"
+    if hero_crosslink:
+        hero_class += " product-hero--with-crosslink"
     product_body = dedent(
         f"""
         {nav_html()}
@@ -1848,7 +2754,7 @@ def render_product_page(product: dict) -> str:
               <span class="strata strata--c"></span>
               <span class="route-line route-line--hero"></span>
             </div>
-            <div class="shell hero__inner hero__inner--product product-hero">
+            <div class="{hero_class}">
               <div class="hero-copy hero-copy--product" data-reveal>
                 <div class="breadcrumb">
                   <a href="/">Home</a>
@@ -1864,8 +2770,8 @@ def render_product_page(product: dict) -> str:
                   <a class="button button--light" href="#contact" data-set-request="Quote">Request Quote</a>
                   <a class="button button--ghost" href="#contact" data-set-request="Sample">Request Sample</a>
                 </div>
-                {hero_crosslink}
               </div>
+              {hero_crosslink}
               <aside class="product-poster" data-reveal data-parallax="0.12">
                 <div class="product-poster__surface">
                   <span class="ore-pillar ore-pillar--a"></span>
@@ -2203,6 +3109,10 @@ STYLES = dedent(
       gap: 0.7rem;
     }
 
+    .mobile-menu[hidden] {
+      display: none !important;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -2389,6 +3299,36 @@ STYLES = dedent(
       transform: translateY(-1px);
       border-color: rgba(0, 113, 227, 0.24);
       box-shadow: 0 14px 32px rgba(29, 29, 31, 0.08);
+    }
+
+    .product-hero--with-crosslink {
+      position: relative;
+    }
+
+    .product-hero--with-crosslink .hero-crosslink-card--bridge {
+      width: fit-content;
+      max-width: 100%;
+      margin-top: 1rem;
+      padding: 0.82rem 1.04rem;
+      border-color: rgba(0, 113, 227, 0.26);
+      box-shadow: 0 14px 32px rgba(29, 29, 31, 0.1);
+      min-width: clamp(14rem, 28vw, 18.4rem);
+      z-index: 4;
+    }
+
+    @media (min-width: 1101px) {
+      .product-hero--with-crosslink .hero-crosslink-card--bridge {
+        position: absolute;
+        left: 55%;
+        top: 43%;
+        transform: translate(-50%, -50%);
+        margin-top: 0;
+      }
+
+      .product-hero--with-crosslink .hero-crosslink-card--bridge:hover,
+      .product-hero--with-crosslink .hero-crosslink-card--bridge:focus-visible {
+        transform: translate(-50%, calc(-50% - 2px));
+      }
     }
 
     .hero-visual {
@@ -3443,6 +4383,12 @@ STYLES = dedent(
       padding-top: 1rem;
     }
 
+    .home-split--stack {
+      grid-template-columns: 1fr;
+      gap: 2.1rem;
+      max-width: 72rem;
+    }
+
     .home-split__panel {
       padding-top: 1.2rem;
       border-top: 1px solid rgba(29, 29, 31, 0.08);
@@ -3517,6 +4463,341 @@ STYLES = dedent(
 
     .reveal.is-visible.process-step:nth-child(4) {
       animation-delay: 0.24s;
+    }
+
+    .corridor-stage {
+      position: relative;
+      overflow: hidden;
+      padding: 1.35rem;
+      border-radius: calc(var(--radius-xl) + 0.25rem);
+      background:
+        radial-gradient(circle at 16% 18%, rgba(96, 157, 233, 0.2), transparent 24%),
+        radial-gradient(circle at 86% 72%, rgba(78, 134, 218, 0.18), transparent 24%),
+        linear-gradient(180deg, #0e2039 0%, #102746 54%, #143055 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 28px 56px rgba(5, 13, 24, 0.22);
+    }
+
+    .corridor-stage::before,
+    .corridor-stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .corridor-stage::before {
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 7.5rem 7.5rem;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.08));
+    }
+
+    .corridor-stage::after {
+      background:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1), transparent 18%),
+        radial-gradient(circle at 72% 24%, rgba(255, 255, 255, 0.08), transparent 16%);
+      opacity: 0.75;
+    }
+
+    .corridor-stage__top,
+    .corridor-stage__body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .corridor-stage__top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .corridor-stage__intro {
+      max-width: 44rem;
+    }
+
+    .corridor-stage__top .section-label {
+      margin: 0;
+      color: rgba(225, 236, 252, 0.62);
+    }
+
+    .corridor-stage__top h2 {
+      margin: 0;
+      max-width: 12ch;
+      color: rgba(255, 255, 255, 0.98);
+      font-size: clamp(2.4rem, 4.6vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+    }
+
+    .corridor-stage__top p:last-child {
+      margin: 1rem 0 0;
+      color: rgba(226, 235, 247, 0.76);
+      line-height: 1.74;
+    }
+
+    .corridor-stage__body {
+      display: grid;
+      grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+      gap: 2rem;
+      align-items: start;
+      padding-top: 1.4rem;
+    }
+
+    .corridor-stage__hub {
+      position: relative;
+      min-height: 100%;
+      padding: 1.45rem;
+      border-radius: 1.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03)),
+        radial-gradient(circle at 24% 18%, rgba(150, 198, 255, 0.16), transparent 34%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .corridor-stage__eyebrow {
+      margin: 0 0 1rem;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(229, 237, 249, 0.56);
+    }
+
+    .corridor-stage__hub-mark {
+      position: relative;
+      width: 8.8rem;
+      aspect-ratio: 1;
+      margin-bottom: 1.35rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .corridor-stage__hub-ring,
+    .corridor-stage__hub-core {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .corridor-stage__hub-ring--outer {
+      inset: 0;
+      border: 1px solid rgba(190, 222, 255, 0.18);
+      animation: corridorHubOrbit 7.6s linear infinite;
+    }
+
+    .corridor-stage__hub-ring--inner {
+      inset: 18%;
+      border: 1px solid rgba(221, 236, 255, 0.3);
+      animation: corridorHubPulse 3.1s ease-in-out infinite;
+    }
+
+    .corridor-stage__hub-core {
+      inset: 35%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 1), rgba(218, 235, 255, 0.98) 54%, rgba(110, 168, 244, 0.96) 100%);
+      box-shadow:
+        0 0 0 0.55rem rgba(142, 193, 255, 0.12),
+        0 0 2.5rem rgba(148, 201, 255, 0.24);
+    }
+
+    .corridor-stage__hub h3 {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.98);
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .corridor-stage__hub p:last-child {
+      margin: 0.8rem 0 0;
+      max-width: 22rem;
+      color: rgba(228, 236, 247, 0.72);
+      line-height: 1.72;
+    }
+
+    .corridor-stage__lanes {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .corridor-lane {
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(14rem, 18.5rem);
+      align-items: center;
+      gap: 1rem;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .corridor-lane__rail {
+      position: relative;
+      display: block;
+      min-width: 0;
+      height: 3.4rem;
+    }
+
+    .corridor-lane__track,
+    .corridor-lane__glow {
+      position: absolute;
+      left: 0;
+      right: 0.25rem;
+      top: 50%;
+      height: 2px;
+      border-radius: 999px;
+      transform: translateY(-50%);
+    }
+
+    .corridor-lane__track {
+      background: linear-gradient(90deg, rgba(190, 219, 255, 0.14), rgba(190, 219, 255, 0.26) 54%, rgba(190, 219, 255, 0.1));
+    }
+
+    .corridor-lane__glow {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(204, 230, 255, 0.92) 36%, rgba(204, 230, 255, 0));
+      transform: translateY(-50%) scaleX(0.18);
+      transform-origin: left center;
+      opacity: 0;
+      transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1), opacity 320ms ease;
+    }
+
+    .corridor-lane__terminal {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 0 0 0.32rem rgba(191, 224, 255, 0.1);
+      transform: translateY(-50%);
+    }
+
+    .corridor-lane__ship {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 2.05rem;
+      height: 1.35rem;
+      transform: translate(-0.15rem, -50%);
+      opacity: 0;
+    }
+
+    .corridor-lane__ship::before,
+    .corridor-lane__ship::after {
+      content: "";
+      position: absolute;
+    }
+
+    .corridor-lane__ship::before {
+      inset: auto 0 0 0;
+      height: 0.68rem;
+      background: rgba(255, 255, 255, 0.96);
+      clip-path: polygon(0 35%, 76% 35%, 100% 58%, 88% 100%, 14% 100%);
+      filter: drop-shadow(0 8px 12px rgba(3, 8, 15, 0.28));
+    }
+
+    .corridor-lane__ship::after {
+      left: 0.76rem;
+      top: 0.04rem;
+      width: 0.42rem;
+      height: 0.52rem;
+      border-radius: 0.16rem 0.16rem 0 0;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0.48rem 0.12rem 0 -0.08rem rgba(191, 223, 255, 0.94);
+    }
+
+    .corridor-lane__card {
+      display: grid;
+      gap: 0.18rem;
+      padding: 0.95rem 1rem;
+      border-radius: 1.35rem;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      transition: background-color 220ms ease, border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .corridor-lane__meta {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(226, 236, 250, 0.56);
+    }
+
+    .corridor-lane__card strong {
+      font-size: 1.1rem;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.98);
+    }
+
+    .corridor-lane__countries {
+      color: rgba(224, 234, 247, 0.72);
+      line-height: 1.55;
+    }
+
+    .corridor-lane:hover .corridor-lane__card,
+    .corridor-lane:focus-visible .corridor-lane__card {
+      transform: translateY(-1px);
+      border-color: rgba(196, 225, 255, 0.22);
+    }
+
+    .corridor-lane:focus-visible {
+      outline: none;
+    }
+
+    .corridor-lane.is-active .corridor-lane__glow {
+      opacity: 1;
+      transform: translateY(-50%) scaleX(1);
+    }
+
+    .corridor-lane.is-active .corridor-lane__ship {
+      opacity: 1;
+      animation: corridorShipTravel 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    }
+
+    .corridor-lane.is-active .corridor-lane__terminal {
+      animation: corridorTerminalPulse 2.4s ease-out infinite;
+    }
+
+    .corridor-lane.is-active .corridor-lane__card {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.08)),
+        radial-gradient(circle at 12% 16%, rgba(152, 205, 255, 0.14), transparent 34%);
+      border-color: rgba(204, 231, 255, 0.2);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 18px 28px rgba(6, 16, 29, 0.18);
+    }
+
+    .relationship-band {
+      max-width: 62rem;
+      padding: 1.4rem 0 0.2rem;
+      border-top: 1px solid rgba(29, 29, 31, 0.08);
+    }
+
+    .relationship-band h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4.2vw, 3.8rem);
+      line-height: 0.97;
+      letter-spacing: -0.05em;
+    }
+
+    .relationship-band p {
+      margin: 0.95rem 0 0;
+      color: var(--ink-soft);
+      max-width: 44rem;
+      line-height: 1.72;
     }
 
     .ceo-spotlight {
@@ -4007,6 +5288,261 @@ STYLES = dedent(
       color: white;
     }
 
+    .buyer-guides-holder {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding-right: clamp(0rem, 2.6vw, 1.2rem);
+    }
+
+    .buyer-guides-strip {
+      position: relative;
+      width: min(18.5rem, 100%);
+      aspect-ratio: 1 / 1;
+      padding: 1rem;
+      border-radius: 1.6rem;
+      border: 1px solid rgba(29, 29, 31, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 248, 251, 0.92)),
+        linear-gradient(120deg, rgba(0, 113, 227, 0.04), transparent 42%);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .buyer-guides-strip__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      margin-bottom: 0.72rem;
+    }
+
+    .buyer-guides-strip__head .section-kicker {
+      margin: 0;
+    }
+
+    .buyer-guides-marquee {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.1rem;
+      border: 1px solid rgba(29, 29, 31, 0.08);
+      background: rgba(255, 255, 255, 0.74);
+      padding: 0.5rem 0;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+    }
+
+    .buyer-guides-marquee::before,
+    .buyer-guides-marquee::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4rem;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .buyer-guides-marquee::before {
+      left: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0));
+    }
+
+    .buyer-guides-marquee::after {
+      right: 0;
+      background: linear-gradient(270deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0));
+    }
+
+    .buyer-guides-marquee__track {
+      width: max-content;
+      display: flex;
+      align-items: center;
+      gap: 0.62rem;
+      padding: 0 0.6rem;
+      animation: buyerGuidesScroll 84s linear infinite;
+    }
+
+    .buyer-guides-marquee:hover .buyer-guides-marquee__track {
+      animation-play-state: paused;
+    }
+
+    .buyer-guide-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.2rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(29, 29, 31, 0.08);
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+      font-size: 0.84rem;
+      font-weight: 700;
+      line-height: 1.25;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+    }
+
+    .buyer-guide-pill:hover,
+    .buyer-guide-pill:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(0, 113, 227, 0.24);
+      color: var(--ore);
+      background: rgba(245, 250, 255, 0.94);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .blog-grid--compact .blog-card {
+      min-height: auto;
+    }
+
+    .blog-card {
+      position: relative;
+      display: grid;
+      gap: 0.75rem;
+      min-height: 100%;
+      padding: 1.25rem 1.2rem;
+      border-radius: 1.4rem;
+      border: 1px solid rgba(29, 29, 31, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 248, 251, 0.92)),
+        linear-gradient(120deg, rgba(0, 113, 227, 0.05), transparent 42%);
+      box-shadow: 0 12px 28px rgba(29, 29, 31, 0.06);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .blog-card:hover,
+    .blog-card:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(29, 29, 31, 0.08);
+      border-color: rgba(0, 113, 227, 0.2);
+    }
+
+    a.blog-card {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .blog-card__eyebrow {
+      margin: 0;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 800;
+      color: rgba(29, 29, 31, 0.44);
+    }
+
+    .blog-card h3 {
+      margin: 0;
+      line-height: 1.16;
+      letter-spacing: -0.03em;
+      font-size: clamp(1.15rem, 1.55vw, 1.42rem);
+    }
+
+    .blog-card p {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.66;
+    }
+
+    .blog-card__actions {
+      margin-top: 0.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .blog-card__link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.4rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--ore);
+      border: 1px solid rgba(0, 113, 227, 0.2);
+      background: rgba(240, 246, 255, 0.78);
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .blog-card__link--alt {
+      color: rgba(29, 29, 31, 0.72);
+      border-color: rgba(29, 29, 31, 0.12);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .blog-card__link:hover,
+    .blog-card__link:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(0, 113, 227, 0.32);
+      background: rgba(240, 246, 255, 1);
+    }
+
+    .blog-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .blog-article,
+    .blog-sidecard {
+      position: relative;
+      padding: 1.3rem;
+      border-radius: 1.55rem;
+      border: 1px solid rgba(29, 29, 31, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 248, 251, 0.92)),
+        linear-gradient(120deg, rgba(0, 113, 227, 0.05), transparent 42%);
+      box-shadow: var(--shadow);
+    }
+
+    .blog-article-section + .blog-article-section {
+      margin-top: 1.4rem;
+      padding-top: 1.35rem;
+      border-top: 1px solid rgba(29, 29, 31, 0.08);
+    }
+
+    .blog-article-section h2 {
+      margin: 0 0 0.6rem;
+      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+
+    .blog-article-section p {
+      margin: 0;
+      line-height: 1.72;
+      color: var(--ink-soft);
+    }
+
+    .blog-sidecard {
+      top: 6.2rem;
+      position: sticky;
+    }
+
+    .blog-sidecard h2 {
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.4rem, 2.1vw, 2rem);
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+
+    .blog-sidecard__links {
+      margin-top: 1rem;
+    }
+
     .reveal.is-visible .product-link {
       animation: chipEnter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
     }
@@ -4184,8 +5720,43 @@ STYLES = dedent(
       transform: translateX(0.15rem);
     }
 
-    .industry-line h3 {
+    .industry-line__title {
+      display: flex;
+      align-items: center;
+      gap: 0.58rem;
       margin: 0 0 0.45rem;
+    }
+
+    .industry-line__icon {
+      width: 1.55rem;
+      height: 1.55rem;
+      border-radius: 0.48rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(0, 113, 227, 0.74);
+      background: rgba(0, 113, 227, 0.08);
+      border: 1px solid rgba(0, 113, 227, 0.18);
+      flex: 0 0 auto;
+    }
+
+    .industry-line__icon svg {
+      width: 0.95rem;
+      height: 0.95rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .industry-line__icon svg rect,
+    .industry-line__icon svg circle {
+      fill: none;
+    }
+
+    .industry-line h3 {
+      margin: 0;
       font-size: 1.2rem;
       line-height: 1.25;
       letter-spacing: -0.04em;
@@ -5856,6 +7427,64 @@ STYLES = dedent(
       }
     }
 
+    @keyframes corridorHubOrbit {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes corridorHubPulse {
+      0%,
+      100% {
+        transform: scale(0.94);
+        opacity: 0.66;
+      }
+      50% {
+        transform: scale(1.03);
+        opacity: 1;
+      }
+    }
+
+    @keyframes corridorShipTravel {
+      0% {
+        left: 0;
+        transform: translate(-0.15rem, -50%) scale(0.94);
+        opacity: 0;
+      }
+      12% {
+        opacity: 1;
+      }
+      84% {
+        opacity: 1;
+      }
+      100% {
+        left: calc(100% - 2.05rem);
+        transform: translate(0, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes corridorTerminalPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(191, 224, 255, 0.34);
+      }
+      100% {
+        box-shadow: 0 0 0 0.8rem rgba(191, 224, 255, 0);
+      }
+    }
+
+    @keyframes buyerGuidesScroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
     @media (max-width: 1100px) {
       .hero__inner,
       .home-ledger,
@@ -5890,6 +7519,19 @@ STYLES = dedent(
         min-height: 28rem;
       }
 
+      .blog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .blog-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-sidecard {
+        position: relative;
+        top: auto;
+      }
+
       .portfolio-stage {
         grid-template-columns: 1fr;
         gap: 1.9rem;
@@ -5903,6 +7545,14 @@ STYLES = dedent(
 
       .portfolio-stage__track {
         padding-top: 0;
+      }
+
+      .corridor-stage__body {
+        grid-template-columns: 1fr;
+      }
+
+      .corridor-stage__hub {
+        max-width: 34rem;
       }
     }
 
@@ -5928,6 +7578,7 @@ STYLES = dedent(
 
       .proof-strip,
       .home-poster__metrics,
+      .blog-grid,
       .industry-rail,
       .operating-stage__cards,
       .process-grid,
@@ -5950,6 +7601,35 @@ STYLES = dedent(
 
       .section-topline--stack {
         align-items: flex-start;
+      }
+
+      .buyer-guides-strip__head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .buyer-guides-holder {
+        justify-content: flex-start;
+        padding-right: 0;
+      }
+
+      .buyer-guides-strip {
+        width: min(19rem, 100%);
+        aspect-ratio: auto;
+        min-height: 12rem;
+      }
+
+      .corridor-stage__top {
+        align-items: flex-start;
+      }
+
+      .corridor-lane {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.5rem;
+      }
+
+      .corridor-lane__rail {
+        height: 2.7rem;
       }
 
       .family-band__meta {
@@ -6181,6 +7861,20 @@ STYLES = dedent(
         min-height: 24rem;
       }
 
+      .blog-card {
+        padding: 1.1rem 1rem;
+      }
+
+      .buyer-guides-strip {
+        padding: 0.9rem 0.82rem;
+        min-height: 11.4rem;
+      }
+
+      .buyer-guides-marquee::before,
+      .buyer-guides-marquee::after {
+        width: 2.5rem;
+      }
+
       .product-snapshot__visual {
         min-height: 31rem;
       }
@@ -6242,6 +7936,7 @@ SCRIPT = dedent(
     const routeNetworks = document.querySelectorAll("[data-route-network]");
     const portfolioAnchors = document.querySelectorAll(".portfolio-anchor");
     const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
+    const corridorStages = document.querySelectorAll("[data-corridor-stage]");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     requestAnimationFrame(() => {{
@@ -6602,23 +8297,114 @@ SCRIPT = dedent(
     }}
 
     if (menuToggle && mobileMenu) {{
+      const mobileBreakpoint = window.matchMedia("(max-width: 900px)");
+      const closeMobileMenu = () => {{
+        mobileMenu.setAttribute("hidden", "");
+        menuToggle.setAttribute("aria-expanded", "false");
+      }};
+
+      const syncMobileMenuState = () => {{
+        if (!mobileBreakpoint.matches) {{
+          closeMobileMenu();
+        }}
+      }};
+
+      closeMobileMenu();
+
       menuToggle.addEventListener("click", () => {{
+        if (!mobileBreakpoint.matches) {{
+          closeMobileMenu();
+          return;
+        }}
         const open = mobileMenu.hasAttribute("hidden");
         if (open) {{
           mobileMenu.removeAttribute("hidden");
         }} else {{
-          mobileMenu.setAttribute("hidden", "");
+          closeMobileMenu();
         }}
         menuToggle.setAttribute("aria-expanded", String(open));
       }});
 
       mobileMenu.querySelectorAll("a").forEach((link) => {{
         link.addEventListener("click", () => {{
-          mobileMenu.setAttribute("hidden", "");
-          menuToggle.setAttribute("aria-expanded", "false");
+          closeMobileMenu();
         }});
       }});
+
+      document.addEventListener("click", (event) => {{
+        if (mobileMenu.hasAttribute("hidden")) return;
+        const target = event.target;
+        if (!(target instanceof Node)) return;
+        if (mobileMenu.contains(target) || menuToggle.contains(target)) return;
+        closeMobileMenu();
+      }});
+
+      document.addEventListener("keydown", (event) => {{
+        if (event.key === "Escape") {{
+          closeMobileMenu();
+        }}
+      }});
+
+      if (mobileBreakpoint.addEventListener) {{
+        mobileBreakpoint.addEventListener("change", syncMobileMenuState);
+      }} else if (mobileBreakpoint.addListener) {{
+        mobileBreakpoint.addListener(syncMobileMenuState);
+      }}
+      window.addEventListener("resize", syncMobileMenuState);
     }}
+
+    const initCorridorStage = (stage) => {{
+      const items = Array.from(stage.querySelectorAll("[data-corridor-item]"));
+      if (!items.length) {{
+        return;
+      }}
+
+      let activeIndex = items.findIndex((item) => item.classList.contains("is-active"));
+      let timerId = 0;
+
+      if (activeIndex < 0) {{
+        activeIndex = 0;
+      }}
+
+      const update = (nextIndex) => {{
+        activeIndex = (nextIndex + items.length) % items.length;
+
+        items.forEach((item, index) => {{
+          const isActive = index === activeIndex;
+          item.classList.toggle("is-active", isActive);
+          item.setAttribute("aria-pressed", String(isActive));
+        }});
+      }};
+
+      const stopAutoplay = () => {{
+        if (!timerId) return;
+        window.clearInterval(timerId);
+        timerId = 0;
+      }};
+
+      const startAutoplay = () => {{
+        if (prefersReducedMotion.matches || items.length < 2) return;
+        stopAutoplay();
+        timerId = window.setInterval(() => {{
+          update(activeIndex + 1);
+        }}, 3600);
+      }};
+
+      items.forEach((item, index) => {{
+        item.addEventListener("click", () => {{
+          update(index);
+          startAutoplay();
+        }});
+      }});
+
+      stage.addEventListener("mouseenter", stopAutoplay);
+      stage.addEventListener("mouseleave", startAutoplay);
+      stage.addEventListener("focusin", stopAutoplay);
+      stage.addEventListener("focusout", startAutoplay);
+
+      update(activeIndex);
+      startAutoplay();
+    }};
 
     const inquiryEndpoint = "https://formsubmit.co/ajax/{CONTACT["sales_email"]}";
 
@@ -6744,6 +8530,10 @@ SCRIPT = dedent(
       initRouteNetwork(canvas);
     }});
 
+    corridorStages.forEach((stage) => {{
+      initCorridorStage(stage);
+    }});
+
     syncHeader();
     syncParallax();
     window.addEventListener("scroll", syncHeader, {{ passive: true }});
@@ -6791,6 +8581,10 @@ def main() -> None:
     write(ROOT / "styles.css", STYLES)
     write(ROOT / "script.js", SCRIPT)
     write(ROOT / "index.html", render_homepage())
+    write(ROOT / "blog" / "index.html", render_blog_index_page())
+    for blog_post in BLOGS:
+      write(ROOT / "blog" / blog_post["slug"] / "index.html", render_blog_post_page(blog_post))
+    write(ROOT / "hear-from-ceo" / "index.html", render_ceo_page())
     write(ROOT / "export-markets" / "index.html", render_export_markets_page())
     write(ROOT / "industrial-minerals-exporter-india" / "index.html", render_exporter_profile_page())
     write(ROOT / "products" / "index.html", render_products_index())
