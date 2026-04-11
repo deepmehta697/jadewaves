@@ -45,6 +45,8 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "keyword_targets": [],
 }
 
+DEFAULT_SHARED_SERVICE_ACCOUNT_PATH = Path.home() / ".config" / "jadewaves" / "google-seo-service-account.json"
+
 ENV_TO_PATH = {
     "SEO_SITE_URL": ("site_url",),
     "SEO_SITE_NAME": ("site_name",),
@@ -95,6 +97,9 @@ def load_config() -> tuple[dict[str, Any], Path]:
     config["report_dir"] = str(report_dir if report_dir.is_absolute() else ROOT / report_dir)
 
     key_path = config.get("google_service_account_key_path", "").strip()
+    if not key_path and DEFAULT_SHARED_SERVICE_ACCOUNT_PATH.exists():
+        key_path = str(DEFAULT_SHARED_SERVICE_ACCOUNT_PATH)
+        config["google_service_account_key_path"] = key_path
     if key_path:
         service_account_path = Path(key_path)
         config["google_service_account_key_path"] = str(
