@@ -811,6 +811,286 @@ BLOGS = [
         ],
     },
     {
+        "slug": "kaolin-supplier-for-paint-industry",
+        "title": "Kaolin Supplier for Paint Industry: What We Supply",
+        "eyebrow": "Kaolin / Paint Industry",
+        "summary": "A direct kaolin supply guide for paint and coatings buyers reviewing forms, brightness focus, and export handling from India.",
+        "marquee_title": "Kaolin for Paint Industry",
+        "seo_title": "Kaolin Supplier for Paint Industry | Forms, Brightness Focus, Export Supply",
+        "meta_description": "Kaolin supply for paint industry buyers with forms, quality focus points, and export handling support from India.",
+        "product_slug": "kaolin--china-clay",
+        "sections": [
+            {
+                "heading": "What we offer",
+                "body": "If your team is sourcing kaolin for paint industry use, the first step is to align the form, brightness direction, and shipment basis before quotation starts.",
+                "points": [
+                    "Current supply forms include lumps and powder",
+                    "Paint and coatings discussions are aligned to application before commercial offer",
+                    "Packing and shipment planning are handled together with the grade conversation",
+                ],
+            },
+            {
+                "heading": "Where the kaolin line is used",
+                "body": "Kaolin requirements change by end use, so paint buyers usually need cleaner alignment on performance and impurity expectations early.",
+                "points": [
+                    "Paints and coatings",
+                    "Ceramics and tiles",
+                    "Paper systems",
+                    "Rubber and industrial fillers",
+                ],
+            },
+            {
+                "heading": "Quality focus before quotation",
+                "body": "Technical alignment helps paint-industry buyers avoid trial drift between the sample basis and repeat supply basis.",
+                "points": [
+                    "Brightness target and Fe2O3 limit are aligned first",
+                    "Al2O3 and SiO2 profile are reviewed against application need",
+                    "Form, packing, and order volume are handled with the quality discussion",
+                ],
+            },
+            {
+                "heading": "Supply and export setup",
+                "body": "The material fit matters, but the shipment basis needs to stay equally clear when import planning starts.",
+                "points": [
+                    "Packing: 50 Kg bags and jumbo bags",
+                    "Shipment mode: FCL",
+                    "Export handling includes sample alignment, document alignment, and shipment planning from India based on destination and order size",
+                ],
+            },
+        ],
+        "questions": [
+            "Paint or coating application and process context",
+            "Required brightness, whiteness, and impurity limits",
+            "Preferred form: lumps or powder",
+            "Trial quantity and expected monthly volume",
+            "Destination port and preferred packing basis",
+        ],
+    },
+    {
+        "slug": "bentonite-supplier-india",
+        "title": "Bentonite Supplier India: What We Offer",
+        "eyebrow": "Bentonite / India Supply",
+        "summary": "A direct bentonite supply guide for buyers comparing grades, application fit, and export handling from India.",
+        "marquee_title": "Bentonite Supplier India",
+        "seo_title": "Bentonite Supplier India | Grades, Quality Focus, and Export Supply",
+        "meta_description": "Bentonite supply from India with sodium and calcium grades, quality focus points, and export support for industrial buyers.",
+        "product_slug": "bentonite",
+        "sections": [
+            {
+                "heading": "What we offer",
+                "body": "If your requirement is bentonite from India, the first step is to align the right grade against the actual application rather than treat every bentonite discussion as interchangeable.",
+                "points": [
+                    "Supply includes sodium bentonite, calcium bentonite, and application-specific grades",
+                    "Activated bleaching earth sits within the broader bentonite portfolio",
+                    "Commercial discussion is aligned to application, grade type, and packing basis together",
+                ],
+            },
+            {
+                "heading": "Where the bentonite line is used",
+                "body": "Bentonite performance depends heavily on the end use, so buyers usually need application fit clarified before pricing moves too far.",
+                "points": [
+                    "Drilling fluids for oil, gas, and HDD",
+                    "Foundry and casting systems",
+                    "Construction, sealing, and waterproofing work",
+                    "Cat litter, absorbent use, and bleaching earth programs",
+                ],
+            },
+            {
+                "heading": "Quality focus before quotation",
+                "body": "Technical alignment matters most when buyers need trial approval and repeat shipment performance to stay on the same basis.",
+                "points": [
+                    "Application requirement and sodium or calcium grade are aligned first",
+                    "pH, liquid limit, viscosity, moisture, and filtrate loss are reviewed against end use",
+                    "Packing and order volume are handled with the quality discussion",
+                ],
+            },
+            {
+                "heading": "Supply and export setup",
+                "body": "Export execution becomes cleaner when sample, document, and shipment basis are kept in one buyer-facing conversation from the start.",
+                "points": [
+                    "Packing: 50 Kg bags and jumbo bags",
+                    "Shipment mode: FCL",
+                    "Export handling includes sample alignment, document alignment, and shipment planning from India",
+                ],
+            },
+        ],
+        "questions": [
+            "Application and process context",
+            "Required grade type: sodium, calcium, or application-specific",
+            "Key acceptance parameters such as viscosity, pH, liquid limit, and filtrate loss",
+            "Trial quantity and expected monthly volume",
+            "Destination port and preferred packing basis",
+        ],
+    },
+    {
+        "slug": "fly-ash-exporter-from-india-bulk-shipment",
+        "title": "Fly Ash Exporter from India Bulk Shipment: What We Supply",
+        "eyebrow": "Fly Ash / Bulk Shipment",
+        "summary": "A direct fly ash supply guide for buyers reviewing forms, application fit, and bulk shipment handling from India.",
+        "marquee_title": "Fly Ash Bulk Shipment",
+        "seo_title": "Fly Ash Exporter from India Bulk Shipment | Forms, Quality Focus, Export Supply",
+        "meta_description": "Fly ash export supply from India with dry and bulk forms, quality focus points, and dispatch planning for import buyers.",
+        "product_slug": "fly-ash",
+        "sections": [
+            {
+                "heading": "What we offer",
+                "body": "If your team is sourcing fly ash from India, the first step is to align the supply form and unloading setup before quotation and dispatch planning start.",
+                "points": [
+                    "Current supply discussions include dry fly ash and bulk fly ash",
+                    "Application fit is aligned before commercial discussion",
+                    "Packing, unloading, and shipment planning are handled together with the material conversation",
+                ],
+            },
+            {
+                "heading": "Where the fly ash line is used",
+                "body": "Buyers usually need the replacement role and handling basis clarified early because fly ash decisions are tied closely to the receiving process.",
+                "points": [
+                    "Cement and concrete production",
+                    "Fly ash bricks and blocks",
+                    "Roads and embankments",
+                    "Infrastructure-linked mineral substitution",
+                ],
+            },
+            {
+                "heading": "Quality focus before quotation",
+                "body": "Technical alignment should happen before pricing so the quoted supply basis matches the replacement target and receiving setup.",
+                "points": [
+                    "Application and replacement target are aligned first",
+                    "SiO2 and Al2O3 profile are reviewed against the required basis",
+                    "Packing format, dispatch volume, and schedule are handled with the quality discussion",
+                ],
+            },
+            {
+                "heading": "Supply and export setup",
+                "body": "For bulk-oriented fly ash buying, the shipment basis matters almost as much as the chemistry once dispatch planning begins.",
+                "points": [
+                    "Packing: jumbo bags",
+                    "Shipment mode: FCL",
+                    "Export handling includes sample alignment, document alignment, and shipment planning from India based on destination and order size",
+                ],
+            },
+        ],
+        "questions": [
+            "End use and replacement target",
+            "Required chemistry or acceptance basis",
+            "Preferred packing and unloading setup",
+            "Trial quantity and expected monthly volume",
+            "Destination port and delivery timing",
+        ],
+    },
+    {
+        "slug": "copper-slag-supplier-for-shipyard-blasting",
+        "title": "Copper Slag Supplier for Shipyard Blasting: What We Supply",
+        "eyebrow": "Copper Slag / Shipyard Blasting",
+        "summary": "A direct copper slag grit guide for shipyard blasting buyers reviewing sizes, performance focus, and export handling from India.",
+        "marquee_title": "Copper Slag for Shipyard Blasting",
+        "seo_title": "Copper Slag Supplier for Shipyard Blasting | Sizes and Export Supply",
+        "meta_description": "Copper slag grit supply for shipyard blasting with available sizes, key performance focus points, and export handling support.",
+        "product_slug": "copper-slag",
+        "sections": [
+            {
+                "heading": "What we offer",
+                "body": "If your requirement is copper slag for shipyard blasting, the first step is to align the required size range and blasting basis before quotation.",
+                "points": [
+                    "Current supply form is copper slag grit",
+                    "Commercial discussion is aligned to blasting requirement and size range together",
+                    "Packing and shipment planning are handled with the performance discussion",
+                ],
+            },
+            {
+                "heading": "Readily available sizes",
+                "body": "Blasting buyers usually need the size range locked early because it directly affects surface preparation outcome and material consumption.",
+                "points": [
+                    "4.00-3.00 mm",
+                    "3.00-2.36 mm",
+                    "2.36-1.00 mm",
+                    "1.00-0.50 mm, 0.50-0.212 mm, and 0.212 mm and below",
+                ],
+            },
+            {
+                "heading": "Performance focus before quotation",
+                "body": "Technical alignment matters before PO so the blasting media basis stays clear through sample, quotation, and dispatch.",
+                "points": [
+                    "Sieve size distribution is aligned first",
+                    "Density, hardness, and angular grain profile are reviewed against blasting need",
+                    "Packing and shipment volume are handled together with the size discussion",
+                ],
+            },
+            {
+                "heading": "Supply and export setup",
+                "body": "Shipyard blasting programs usually move faster when the size basis, cargo handling, and dispatch timeline are aligned early.",
+                "points": [
+                    "Packing: jumbo bags",
+                    "Shipment mode: FCL",
+                    "Export handling includes sample alignment, document alignment, and shipment planning from India based on destination and order size",
+                ],
+            },
+        ],
+        "questions": [
+            "Required blasting size range",
+            "Surface preparation requirement or blasting standard",
+            "Trial quantity and expected monthly volume",
+            "Destination port and preferred packing basis",
+            "Required delivery timing",
+        ],
+    },
+    {
+        "slug": "industrial-salt-exporter",
+        "title": "Industrial Salt Exporter: What We Supply",
+        "eyebrow": "Industrial Salt / Export Supply",
+        "summary": "A direct supply guide for buyers comparing industrial salt grades, packing basis, and export handling from India.",
+        "marquee_title": "Industrial Salt Exporter",
+        "seo_title": "Industrial Salt Exporter | Grades, Packing, and Export Supply from India",
+        "meta_description": "Industrial salt export supply from India with multiple grades, quality focus points, and shipment support for import buyers.",
+        "product_slug": "salt",
+        "sections": [
+            {
+                "heading": "What we offer",
+                "body": "If your team is looking for an industrial salt exporter, the first step is to align the required grade against the actual end use before quotation begins.",
+                "points": [
+                    "Current portfolio includes industrial salt, raw salt, crystalline salt, de-icing salt, and iodized grades",
+                    "Commercial discussion is aligned to grade, purity direction, and shipment basis together",
+                    "Packing and dispatch planning are handled in the same conversation as the grade discussion",
+                ],
+            },
+            {
+                "heading": "Where the salt line is used",
+                "body": "Salt requirements shift by application, so buyers usually need grade direction and iodine basis settled before the offer is finalized.",
+                "points": [
+                    "Chemical and industrial processing",
+                    "Water treatment applications",
+                    "De-icing and utility use",
+                    "Food processing and commercial supply",
+                ],
+            },
+            {
+                "heading": "Quality focus before quotation",
+                "body": "Technical and commercial alignment matter most when buyers want the same grade basis to hold through trial and repeat shipments.",
+                "points": [
+                    "Required salt grade is aligned first",
+                    "NaCl purity, iodine requirement, and grain size are reviewed against end use",
+                    "Packing and monthly volume are handled with the quality discussion",
+                ],
+            },
+            {
+                "heading": "Supply and export setup",
+                "body": "The order moves more cleanly when sample basis, document flow, and shipment plan are aligned before cargo planning starts.",
+                "points": [
+                    "Packing: 50 Kg bags and jumbo bags",
+                    "Shipment mode: FCL",
+                    "Export handling includes sample alignment, document alignment, and shipment planning from India based on destination and order size",
+                ],
+            },
+        ],
+        "questions": [
+            "Required grade and end use",
+            "NaCl purity and iodine requirement",
+            "Required grain size and packing basis",
+            "Trial quantity and expected monthly volume",
+            "Destination port and delivery timing",
+        ],
+    },
+    {
         "slug": "quartz-powder-supplier-for-engineered-stone",
         "title": "Quartz Powder Supplier for Engineered Stone: What We Supply",
         "eyebrow": "Quartz Powder / Engineered Stone",
@@ -971,6 +1251,11 @@ BLOGS = [
 CURRENT_BLOG_SLUGS = [
     "quartz-powder-supplier-for-engineered-stone",
     "silica-sand-exporter-from-india",
+    "kaolin-supplier-for-paint-industry",
+    "bentonite-supplier-india",
+    "fly-ash-exporter-from-india-bulk-shipment",
+    "copper-slag-supplier-for-shipyard-blasting",
+    "industrial-salt-exporter",
 ]
 
 
@@ -2768,6 +3053,16 @@ def render_product_page(product: dict) -> str:
             </a>
             """
         ).strip()
+    bridge_row = ""
+    if hero_crosslink:
+        bridge_row = dedent(
+            f"""
+            <div class="shell product-bridge-row" data-reveal>
+              <div class="product-bridge-row__spacer" aria-hidden="true"></div>
+              {hero_crosslink}
+            </div>
+            """
+        ).strip()
     product_body = dedent(
         f"""
         {nav_html()}
@@ -2791,7 +3086,6 @@ def render_product_page(product: dict) -> str:
                 <p class="hero-label">{escape(product["eyebrow"])}</p>
                 <h1>{escape(product["name"])}</h1>
                 <p class="hero-text">{escape(product["hero_copy"])}</p>
-                {hero_crosslink}
                 <div class="hero-actions">
                   <a class="button button--light" href="#contact" data-set-request="Quote">Request Quote</a>
                   <a class="button button--ghost" href="#contact" data-set-request="Sample">Request Sample</a>
@@ -2818,6 +3112,7 @@ def render_product_page(product: dict) -> str:
           </section>
 
           <section class="section-block">
+            {bridge_row}
             <div class="shell product-ledger">
               <article class="product-sheet product-sheet--wide" data-reveal>
                 <p class="section-label">Applications</p>
@@ -3326,11 +3621,7 @@ STYLES = dedent(
       box-shadow: 0 14px 32px rgba(29, 29, 31, 0.08);
     }
 
-    .product-hero--with-crosslink {
-      position: relative;
-    }
-
-    .product-hero--with-crosslink .hero-crosslink-card--bridge {
+    .hero-crosslink-card--bridge {
       width: fit-content;
       max-width: 100%;
       margin-top: 1rem;
@@ -3341,19 +3632,17 @@ STYLES = dedent(
       z-index: 4;
     }
 
-    @media (min-width: 1101px) {
-      .product-hero--with-crosslink .hero-crosslink-card--bridge {
-        position: absolute;
-        left: 55%;
-        top: 43%;
-        transform: translate(-50%, -50%);
-        margin-top: 0;
-      }
+    .product-bridge-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 1.4rem;
+      align-items: start;
+      margin-top: -1rem;
+      margin-bottom: 1.15rem;
+    }
 
-      .product-hero--with-crosslink .hero-crosslink-card--bridge:hover,
-      .product-hero--with-crosslink .hero-crosslink-card--bridge:focus-visible {
-        transform: translate(-50%, calc(-50% - 2px));
-      }
+    .product-bridge-row .hero-crosslink-card--bridge {
+      margin-top: 0;
     }
 
     .hero-visual {
@@ -7604,7 +7893,8 @@ STYLES = dedent(
       .contact-shell,
       .site-footer__inner,
       .ceo-note,
-      .product-ledger {
+      .product-ledger,
+      .product-bridge-row {
         grid-template-columns: 1fr;
       }
 
@@ -7622,6 +7912,10 @@ STYLES = dedent(
 
       .product-hero {
         gap: 2rem;
+      }
+
+      .product-bridge-row {
+        margin-top: 0;
       }
 
       .home-poster {
