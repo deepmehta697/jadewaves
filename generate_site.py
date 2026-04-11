@@ -866,6 +866,62 @@ BLOGS = [
         ],
     },
     {
+        "slug": "silica-sand-exporter-from-india",
+        "title": "Silica Sand Exporter from India: What We Supply",
+        "eyebrow": "Silica Sand / Export Supply",
+        "summary": "A direct supply guide for import buyers reviewing silica sand forms, application fit, quality focus points, and export handling from India.",
+        "marquee_title": "Silica Sand Exporter from India",
+        "seo_title": "Silica Sand Exporter from India | Forms, Quality Focus, and Export Supply",
+        "meta_description": "Silica sand export supply from India with available forms, quality focus points, and shipment support for import buyers.",
+        "product_slug": "silica-sand",
+        "sections": [
+            {
+                "heading": "What we offer",
+                "body": "If your team is sourcing silica sand from India, the first step is to align the right supply form against application and shipment basis.",
+                "points": [
+                    "Current silica line includes silica sand and silica flour",
+                    "Supply discussion is aligned to end use before quotation",
+                    "Packing and shipment planning are handled together with the grade discussion",
+                ],
+            },
+            {
+                "heading": "Where the silica line is used",
+                "body": "Silica requirements change by process, so application fit needs to be clear before commercial discussion.",
+                "points": [
+                    "Glass manufacturing",
+                    "Water filtration media",
+                    "Foundry moulding systems",
+                    "Paints, construction, and specialty fillers",
+                ],
+            },
+            {
+                "heading": "Quality focus before quotation",
+                "body": "Technical alignment matters most when import teams want trials and repeat shipments to stay on the same basis.",
+                "points": [
+                    "Grain size, SiO2 content, and Fe2O3 requirement are aligned first",
+                    "For glass use, Fe2O3 requirements can be discussed against the required grade",
+                    "Packing and order volume are handled together with quality alignment",
+                ],
+            },
+            {
+                "heading": "Supply and export setup",
+                "body": "The practical side of the order matters just as much as the material itself when shipment planning starts.",
+                "points": [
+                    "Packing: 50 Kg bags and jumbo bags",
+                    "Shipment mode: FCL",
+                    "Export handling includes sample alignment, document alignment, and shipment planning from India based on destination and order size",
+                ],
+            },
+        ],
+        "questions": [
+            "Which application and process requirement should the quote follow?",
+            "What grain size and quality range should be aligned?",
+            "What are the trial and monthly volume expectations?",
+            "Which destination country and port should shipment planning follow?",
+            "Which packing format and shipment timeline should be quoted?",
+        ],
+    },
+    {
         "slug": "how-to-check-tds-and-sample-coa-before-mineral-import",
         "title": "How to Check TDS and Sample COA Before You Place a Mineral Import Order",
         "eyebrow": "TDS / COA / Buyer Process",
@@ -914,6 +970,7 @@ BLOGS = [
 
 CURRENT_BLOG_SLUGS = [
     "quartz-powder-supplier-for-engineered-stone",
+    "silica-sand-exporter-from-india",
 ]
 
 
