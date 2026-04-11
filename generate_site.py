@@ -858,11 +858,11 @@ BLOGS = [
             },
         ],
         "questions": [
-            "Do you need quartz powder, grits, or sand for the engineered stone line?",
-            "Which size or mesh range should be quoted?",
-            "Which destination country and port should shipment planning follow?",
-            "What is the trial quantity and expected monthly volume?",
-            "Which packing format should be aligned before quotation?",
+            "End use, slab line, and process requirement",
+            "Required form and size range: powder, grits, or sand",
+            "SiO2 target, whiteness expectation, and key impurity limits",
+            "Trial quantity and expected monthly volume",
+            "Destination port and preferred packing basis",
         ],
     },
     {
@@ -914,11 +914,11 @@ BLOGS = [
             },
         ],
         "questions": [
-            "Which application and process requirement should the quote follow?",
-            "What grain size and quality range should be aligned?",
-            "What are the trial and monthly volume expectations?",
-            "Which destination country and port should shipment planning follow?",
-            "Which packing format and shipment timeline should be quoted?",
+            "End use: glass, foundry, filtration, construction, or another line",
+            "Required grain size or mesh range",
+            "SiO2 target and Fe2O3 limit for the intended process",
+            "Trial quantity and expected monthly requirement",
+            "Destination port, packing basis, and delivery timing",
         ],
     },
     {
@@ -1583,35 +1583,6 @@ def render_homepage() -> str:
             </div>
           </section>
 
-          <section class="section-block section-block--contrast">
-            <div class="shell section-shell">
-              <article class="ceo-spotlight" data-reveal>
-                <div class="ceo-spotlight__grid">
-                  <div class="ceo-spotlight__content">
-                    <p class="section-label">From Our CEO</p>
-                    <h2>A simple standard.</h2>
-                    <p class="ceo-spotlight__quote">“Be clear on what is possible. Be early on what could change. Stand behind the shipment.”</p>
-                    <div class="ceo-spotlight__body">
-                      <p>
-                        Jade Waves was built around a simple idea: industrial sourcing should feel calmer when the right details are handled early.
-                      </p>
-                      <p>
-                        That means clearer specifications, direct communication, and follow-through that holds from the first message to dispatch.
-                      </p>
-                    </div>
-                    <p class="ceo-spotlight__meta"><span>Deep Mehta</span><span>CEO, Jade Waves Enterprise</span></p>
-                    <div class="ceo-spotlight__actions">
-                      <a class="button button--light button--compact" href="{escape(CEO_LINKEDIN_URL)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    </div>
-                  </div>
-                  <figure class="ceo-spotlight__media">
-                    <img src="/assets/deep-mehta-ceo.jpg" alt="Deep Mehta, CEO of Jade Waves Enterprise" loading="lazy" />
-                  </figure>
-                </div>
-              </article>
-            </div>
-          </section>
-
           <section class="section-block section-block--contact">
             <div class="shell section-shell">
               {form_block()}
@@ -1919,8 +1890,8 @@ def render_blog_post_page(post: dict) -> str:
                   {section_markup}
                 </article>
                 <aside class="blog-sidecard" data-reveal>
-                  <p class="section-label">Questions to send before quote</p>
-                  <h2>Use this exact checklist in your first message.</h2>
+                  <p class="section-label">Buyer RFQ checklist</p>
+                  <h2>Share these details in your first inquiry.</h2>
                   <ul class="bullet-list">
                     {questions_markup}
                   </ul>
@@ -2797,9 +2768,6 @@ def render_product_page(product: dict) -> str:
             </a>
             """
         ).strip()
-    hero_class = "shell hero__inner hero__inner--product product-hero"
-    if hero_crosslink:
-        hero_class += " product-hero--with-crosslink"
     product_body = dedent(
         f"""
         {nav_html()}
@@ -2811,7 +2779,7 @@ def render_product_page(product: dict) -> str:
               <span class="strata strata--c"></span>
               <span class="route-line route-line--hero"></span>
             </div>
-            <div class="{hero_class}">
+            <div class="shell hero__inner hero__inner--product product-hero">
               <div class="hero-copy hero-copy--product" data-reveal>
                 <div class="breadcrumb">
                   <a href="/">Home</a>
@@ -2823,12 +2791,12 @@ def render_product_page(product: dict) -> str:
                 <p class="hero-label">{escape(product["eyebrow"])}</p>
                 <h1>{escape(product["name"])}</h1>
                 <p class="hero-text">{escape(product["hero_copy"])}</p>
+                {hero_crosslink}
                 <div class="hero-actions">
                   <a class="button button--light" href="#contact" data-set-request="Quote">Request Quote</a>
                   <a class="button button--ghost" href="#contact" data-set-request="Sample">Request Sample</a>
                 </div>
               </div>
-              {hero_crosslink}
               <aside class="product-poster" data-reveal data-parallax="0.12">
                 <div class="product-poster__surface">
                   <span class="ore-pillar ore-pillar--a"></span>
@@ -5600,6 +5568,90 @@ STYLES = dedent(
       margin-top: 1rem;
     }
 
+    .process-media-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      align-items: start;
+    }
+
+    .process-media-grid--dispatch {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .process-media-grid--operations {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .process-media-card {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      border-radius: calc(var(--radius-lg) + 0.1rem);
+      overflow: hidden;
+      border: 1px solid rgba(29, 29, 31, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 248, 251, 0.92)),
+        linear-gradient(120deg, rgba(0, 113, 227, 0.04), transparent 46%);
+      box-shadow: var(--shadow);
+    }
+
+    .process-media-card img,
+    .process-media-card video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #edf1f6;
+      object-fit: cover;
+    }
+
+    .process-media-card > img,
+    .process-media-card > video {
+      aspect-ratio: 4 / 3;
+    }
+
+    .process-media-card--video > video {
+      aspect-ratio: 16 / 10;
+    }
+
+    .process-media-card--lead {
+      grid-column: span 2;
+    }
+
+    .process-media-card--lead > video {
+      aspect-ratio: 16 / 9;
+    }
+
+    .process-media-card--wide-view {
+      grid-column: 1 / -1;
+    }
+
+    .process-media-card--wide-view > img {
+      aspect-ratio: 16 / 9;
+      object-position: center 44%;
+    }
+
+    .process-media-card--quarry > img {
+      object-position: center 42%;
+    }
+
+    .process-media-card figcaption {
+      padding: 0.9rem 1rem 1rem;
+      border-top: 1px solid rgba(29, 29, 31, 0.06);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    .process-media-card figcaption::before {
+      content: "";
+      display: block;
+      width: 2.1rem;
+      height: 1px;
+      margin-bottom: 0.7rem;
+      background: linear-gradient(90deg, rgba(0, 113, 227, 0.42), rgba(0, 113, 227, 0));
+    }
+
     .reveal.is-visible .product-link {
       animation: chipEnter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
     }
@@ -7589,6 +7641,10 @@ STYLES = dedent(
         top: auto;
       }
 
+      .process-media-grid--operations {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .portfolio-stage {
         grid-template-columns: 1fr;
         gap: 1.9rem;
@@ -7649,6 +7705,15 @@ STYLES = dedent(
       .footer-grid,
       .ceo-spotlight__grid {
         grid-template-columns: 1fr;
+      }
+
+      .process-media-grid--dispatch {
+        grid-template-columns: 1fr;
+      }
+
+      .process-media-card--lead,
+      .process-media-card--wide-view {
+        grid-column: auto;
       }
 
       .section-topline {
@@ -7920,6 +7985,10 @@ STYLES = dedent(
 
       .blog-card {
         padding: 1.1rem 1rem;
+      }
+
+      .process-media-grid--operations {
+        grid-template-columns: 1fr;
       }
 
       .buyer-guides-strip {
