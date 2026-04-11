@@ -813,6 +813,10 @@ BLOGS = [
     {
         "slug": "potassium-feldspar-supplier-for-ceramic-tiles",
         "title": "Potassium Feldspar Supplier for Ceramic Tiles: Export-Ready Supply for Manufacturers",
+        "display_title_lines": [
+            "Potassium Feldspar for Ceramic Tiles",
+            "Export-Ready Supply",
+        ],
         "eyebrow": "Potassium Feldspar / Ceramic Tiles",
         "summary": "A direct buyer guide for ceramic tile manufacturers reviewing potassium feldspar grade fit, particle size alignment, and export handling from India.",
         "marquee_title": "Potassium Feldspar for Ceramic Tiles",
@@ -2129,6 +2133,8 @@ def render_blog_index_page() -> str:
 
 def render_blog_post_page(post: dict) -> str:
     product = PRODUCTS_BY_SLUG[post["product_slug"]]
+    title_lines = post.get("display_title_lines")
+    visible_title = "<br />".join(escape(line) for line in title_lines) if title_lines else escape(post["title"])
     section_markup = "".join(
         dedent(
             f"""
@@ -2198,7 +2204,7 @@ def render_blog_post_page(post: dict) -> str:
             <div class="shell home-hero">
               <div class="hero-copy hero-copy--home" data-reveal>
                 <p class="hero-label">{escape(post["eyebrow"])}</p>
-                <h1>{escape(post["title"])}</h1>
+                <h1>{visible_title}</h1>
                 <p class="hero-text">{escape(post["summary"])}</p>
                 <div class="hero-actions">
                   <a class="button button--light" href="/products/{escape(product["slug"])}/">Open {escape(product["name"])}</a>
