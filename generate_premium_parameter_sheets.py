@@ -84,6 +84,14 @@ styles.add(
 )
 styles.add(
     ParagraphStyle(
+        name="HeaderCell",
+        parent=styles["Cell"],
+        fontName="Helvetica-Bold",
+        textColor=colors.white,
+    )
+)
+styles.add(
+    ParagraphStyle(
         name="CellCenter",
         parent=styles["Cell"],
         alignment=TA_CENTER,
@@ -329,6 +337,63 @@ DOCS = [
         "note": "",
     },
     {
+        "filename": "silica-sand-parameter-sheet.pdf",
+        "title": "Silica Sand",
+        "subtitle": "",
+        "metrics": [
+            ("Silica", "SiO<sub>2</sub> 98.07%"),
+            ("Moisture", "&lt; 0.10%"),
+            ("AFS", "42"),
+        ],
+        "sections": [
+            {
+                "title": "Chemical Parameters",
+                "headers": ["Parameter", "Unit", "Result", "Protocol"],
+                "widths": [88 * mm, 24 * mm, 44 * mm, 80 * mm],
+                "rows": [
+                    ("Moisture", "%", "Less than 0.10", "IS:1918:1966"),
+                    ("Loss on Ignition", "%", "0.29", "IS:1917:P-1:1991"),
+                    ("Silica as SiO<sub>2</sub>", "%", "98.07", "IS:1917:P-3:1991"),
+                    ("Alumina as Al<sub>2</sub>O<sub>3</sub>", "%", "0.59", "By ICP"),
+                    ("Iron as Fe<sub>2</sub>O<sub>3</sub>", "%", "0.30", "By ICP"),
+                    ("Titania as TiO<sub>2</sub>", "%", "0.05", "By ICP"),
+                    ("Calcium as CaO", "%", "0.30", "By ICP"),
+                    ("Magnesium as MgO", "%", "0.03", "By ICP"),
+                    ("Sodium as Na<sub>2</sub>O", "%", "0.01", "By ICP"),
+                    ("Potassium as K<sub>2</sub>O", "%", "Less than 0.01", "By ICP"),
+                ],
+            },
+            {
+                "title": "Sieve Analysis",
+                "headers": ["Parameter", "Unit", "Result", "Protocol"],
+                "widths": [108 * mm, 22 * mm, 36 * mm, 70 * mm],
+                "rows": [
+                    ("Sieve Analysis (-1700 Microns + 850 Microns)", "%", "NIL", "IS:1607:2013"),
+                    ("Sieve Analysis (-850 Microns to +600 Microns)", "%", "0.07", "IS:1607:2013"),
+                    ("Sieve Analysis (-600 Micron to +425 Micron)", "%", "15.09", "IS:1607:2013"),
+                    ("Sieve Analysis (-425 Micron to +300 Micron)", "%", "62.97", "IS:1607:2013"),
+                    ("Sieve Analysis (-300 Micron to +212 Micron)", "%", "18.57", "IS:1607:2013"),
+                    ("Sieve Analysis (-212 Micron to +150 Micron)", "%", "1.98", "IS:1607:2013"),
+                    ("Sieve Analysis (-150 Microns to +106 Microns)", "%", "0.81", "IS:1607:2013"),
+                    ("Sieve Analysis (-106 Micron to +75 Micron)", "%", "0.33", "IS:1607:2013"),
+                    ("Sieve Analysis (-75 Microns to +53 Microns)", "%", "0.09", "IS:1607:2013"),
+                    ("Sieve Analysis (-53 Microns)", "%", "0.09", "IS:1607:2013"),
+                ],
+            },
+            {
+                "title": "Physical Reference",
+                "headers": ["Parameter", "Unit", "Result", "Protocol"],
+                "widths": [88 * mm, 24 * mm, 44 * mm, 80 * mm],
+                "rows": [
+                    ("AFS Grain Fineness", "No.", "42", "By calculation"),
+                    ("Custom sizing available", "-", "Available", "Buyer requirement"),
+                ],
+            },
+        ],
+        "reference": [],
+        "note": "",
+    },
+    {
         "filename": "soda-feldspar-parameter-sheet.pdf",
         "title": "Soda/Sodium Feldspar",
         "subtitle": "",
@@ -521,7 +586,7 @@ def metric_cards(metrics):
 
 
 def data_table(headers, rows, widths):
-    table_rows = [[para(cell, "Cell") for cell in headers]]
+    table_rows = [[para(cell, "HeaderCell") for cell in headers]]
     for row in rows:
         table_rows.append([para(cell, "Cell") for cell in row])
 

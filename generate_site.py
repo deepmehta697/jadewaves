@@ -106,6 +106,18 @@ PRODUCTS = [
         ],
         "forms": ["Silica Sand", "Silica Flour"],
         "packing": "50 Kg/Jumbo Bags",
+        "size_options": [
+            "8 Mesh",
+            "16 Mesh",
+            "24 Mesh",
+            "30 Mesh",
+            "50 Mesh",
+            "Custom AFS/Sizing available",
+        ],
+        "parameter_docs": [
+            ("Silica Sand", "/assets/grade-sheets/silica-sand-parameter-sheet.pdf"),
+        ],
+        "parameter_docs_copy": "Chemical and physical parameter file for silica sand.",
         "commercial_fit": "For buyers who need silica that holds up in process and in transit.",
         "industries": ["Glass", "Foundry", "Construction", "Water Treatment"],
         "source_url": "https://jadewavesenterprise.com/silica-sand",
@@ -1742,9 +1754,9 @@ def render_homepage() -> str:
             </div>
             <div class="shell home-hero">
               <div class="hero-copy hero-copy--home" data-reveal>
-                <h1>A better way to buy industrial minerals.</h1>
+                <h1>Manufacturer-backed mineral<br />supply for global buyers.</h1>
                 <p class="hero-text">
-                  Industrial minerals exported from India for import buyers who need clearer specifications, cleaner communication, and shipment flow that stays visible.
+                  Industrial minerals exported from India with clear specs, direct communication, and visible dispatch.
                 </p>
                 <div class="hero-actions">
                   <a class="button button--light" href="/products/">Explore Portfolio</a>
@@ -3146,8 +3158,8 @@ def render_product_page(product: dict) -> str:
         hero_crosslink = dedent(
             """
             <a class="hero-crosslink-card hero-crosslink-card--bridge" href="/products/quartz-sand-for-ceramics/">
-              <strong>Quartz Sand</strong>
-              <span>SiO2&gt;99% and high whiteness</span>
+              <strong>For higher-purity requirements</strong>
+              <span>Quartz Sand: &gt;99% SiO2 and high whiteness</span>
             </a>
             """
         ).strip()
