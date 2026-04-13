@@ -16,6 +16,7 @@ SITE_DIRS = [
     "blog",
     "blogs",
     "bentonite",
+    "contact-1",
     "copper-slag",
     "export-markets",
     "feldspar",

@@ -579,6 +579,21 @@ LEGACY_REDIRECTS = [
         "title": "Silica Sand Maldives moved",
         "target": "/products/silica-sand/",
     },
+    {
+        "path": "blogs/f/bentonite-suppliers-in-saudi-arabia",
+        "title": "Bentonite Suppliers in Saudi Arabia moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "blogs/f/silica-sand-suppliers-in-mauritius-jade-waves-enterprise",
+        "title": "Silica Sand Suppliers in Mauritius moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "contact-1",
+        "title": "Contact moved",
+        "target": "/#contact",
+    },
 ]
 
 PRODUCT_FAMILIES = [
