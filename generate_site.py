@@ -3290,16 +3290,6 @@ def render_product_page(product: dict) -> str:
     schema = [
         {
             "@context": "https://schema.org",
-            "@type": "Product",
-            "name": product["name"],
-            "description": product["meta_description"],
-            "category": "Industrial Mineral",
-            "brand": {"@type": "Brand", "name": CONTACT["company"]},
-            "manufacturer": {"@type": "Organization", "name": CONTACT["company"]},
-            "url": f"{BASE_URL}/products/{product['slug']}/",
-        },
-        {
-            "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
                 {
