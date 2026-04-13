@@ -14,6 +14,7 @@ OPTIONAL_FILES = ["CNAME"]
 SITE_DIRS = [
     "assets",
     "blog",
+    "blogs",
     "bentonite",
     "copper-slag",
     "export-markets",

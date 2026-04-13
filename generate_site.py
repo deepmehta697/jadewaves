@@ -573,6 +573,14 @@ for product in PRODUCTS:
 
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
 
+LEGACY_REDIRECTS = [
+    {
+        "path": "blogs/f/silica-sand-maldives",
+        "title": "Silica Sand Maldives moved",
+        "target": "/products/silica-sand/",
+    },
+]
+
 PRODUCT_FAMILIES = [
     {
         "id": "silica-quartz-feldspar",
@@ -9119,6 +9127,7 @@ def render_robots() -> str:
 def render_sitemap() -> str:
     urls: list[str] = []
     legacy_product_paths = {product["slug"] for product in PRODUCTS}
+    legacy_redirect_paths = {redirect["path"] for redirect in LEGACY_REDIRECTS}
     for path in sorted(ROOT.rglob("index.html")):
         if "_site" in path.parts or ".git" in path.parts:
             continue
@@ -9127,6 +9136,8 @@ def render_sitemap() -> str:
             continue
         parent = rel.parent.as_posix()
         if parent in legacy_product_paths:
+            continue
+        if parent in legacy_redirect_paths:
             continue
         url_path = "/" if parent == "." else f"/{parent}/"
         urls.append(url_path)
@@ -9142,10 +9153,8 @@ def render_sitemap() -> str:
     )
 
 
-def render_legacy_product_redirect(product: dict) -> str:
-    target = f"/products/{product['slug']}/"
+def render_redirect_page(title: str, target: str) -> str:
     target_url = f"{BASE_URL}{target}"
-    title = f"{product['name']} moved | {CONTACT['company']}"
     return dedent(
         f"""
         <!DOCTYPE html>
@@ -9153,18 +9162,22 @@ def render_legacy_product_redirect(product: dict) -> str:
           <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>{escape(title)}</title>
+            <title>{escape(title)} | {CONTACT['company']}</title>
             <meta name="robots" content="noindex,follow" />
             <link rel="canonical" href="{escape(target_url)}" />
             <meta http-equiv="refresh" content="0; url={escape(target)}" />
             <script>window.location.replace("{escape(target)}");</script>
           </head>
           <body>
-            <p>{escape(product["name"])} moved to <a href="{escape(target)}">{escape(target_url)}</a>.</p>
+            <p>{escape(title)} to <a href="{escape(target)}">{escape(target_url)}</a>.</p>
           </body>
         </html>
         """
     ).strip()
+
+
+def render_legacy_product_redirect(product: dict) -> str:
+    return render_redirect_page(f"{product['name']} moved", f"/products/{product['slug']}/")
 
 
 def main() -> None:
@@ -9181,6 +9194,8 @@ def main() -> None:
     for product in PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
       write(ROOT / product["slug"] / "index.html", render_legacy_product_redirect(product))
+    for redirect in LEGACY_REDIRECTS:
+      write(ROOT / redirect["path"] / "index.html", render_redirect_page(redirect["title"], redirect["target"]))
     write(ROOT / "robots.txt", render_robots())
     write(ROOT / "sitemap.xml", render_sitemap())
 
