@@ -120,7 +120,7 @@ PRODUCTS = [
         "parameter_docs_copy": "Chemical and physical parameter file for silica sand.",
         "commercial_fit": "For buyers who need silica that holds up in process and in transit.",
         "industries": ["Glass", "Foundry", "Construction", "Water Treatment"],
-        "source_url": "https://jadewavesenterprise.com/silica-sand",
+        "source_url": "https://jadewavesenterprise.com/products/silica-sand/",
         "related": ["silica-flour", "quartz-sand-for-ceramics", "feldspar"],
     },
     {
@@ -163,7 +163,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For buyers who care more about particle discipline than generic silica supply.",
         "industries": ["Ceramics", "Construction", "Coatings", "Chemicals"],
-        "source_url": "https://jadewavesenterprise.com/silica-flour",
+        "source_url": "https://jadewavesenterprise.com/products/silica-flour/",
         "related": ["silica-sand", "quartz-sand-for-ceramics", "kaolin--china-clay"],
     },
     {
@@ -224,7 +224,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For ceramic, glass, and engineered stone lines where purity and brightness show up in the finish.",
         "industries": ["Ceramics", "Glass", "Construction"],
-        "source_url": "https://jadewavesenterprise.com/quartz-sand-for-ceramics",
+        "source_url": "https://jadewavesenterprise.com/products/quartz-sand-for-ceramics/",
         "related": ["silica-sand", "silica-flour", "feldspar"],
     },
     {
@@ -269,7 +269,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For operations that need bentonite to perform the same way from batch to batch.",
         "industries": ["Drilling", "Foundry", "Construction", "Treatment"],
-        "source_url": "https://jadewavesenterprise.com/bentonite#ace72553-7437-4a98-b346-2b25da28c515",
+        "source_url": "https://jadewavesenterprise.com/products/bentonite/",
         "related": ["kaolin--china-clay", "talc", "fly-ash"],
     },
     {
@@ -312,7 +312,7 @@ PRODUCTS = [
         "packing": "Jumbo Bags",
         "commercial_fit": "For buyers chasing brightness, cleaner firing, and a tighter filler profile.",
         "industries": ["Ceramics", "Paper", "Coatings", "Fillers"],
-        "source_url": "https://jadewavesenterprise.com/kaolin--china-clay",
+        "source_url": "https://jadewavesenterprise.com/products/kaolin--china-clay/",
         "related": ["talc", "feldspar", "silica-flour"],
     },
     {
@@ -357,7 +357,7 @@ PRODUCTS = [
         "packing": "Jumbo Bags",
         "commercial_fit": "For formulations that depend on whiteness, smoothness, and finer control.",
         "industries": ["Plastics", "Coatings", "Ceramics", "Rubber"],
-        "source_url": "https://jadewavesenterprise.com/talc",
+        "source_url": "https://jadewavesenterprise.com/products/talc/",
         "related": ["kaolin--china-clay", "feldspar", "silica-flour"],
     },
     {
@@ -407,7 +407,7 @@ PRODUCTS = [
         "packing": "Jumbo Bags",
         "commercial_fit": "For manufacturers who need flux contribution to be predictable, not approximate.",
         "industries": ["Ceramics", "Sanitaryware", "Glass", "Engineered Stone"],
-        "source_url": "https://jadewavesenterprise.com/feldspar",
+        "source_url": "https://jadewavesenterprise.com/products/feldspar/",
         "related": ["quartz-sand-for-ceramics", "kaolin--china-clay", "talc"],
     },
     {
@@ -457,7 +457,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For buyers managing multiple grades, steady volumes, and flexible packing requirements.",
         "industries": ["Chemicals", "Water Treatment", "Infrastructure", "Food Processing"],
-        "source_url": "https://jadewavesenterprise.com/salt",
+        "source_url": "https://jadewavesenterprise.com/products/salt/",
         "related": ["silica-sand", "bentonite", "fly-ash"],
     },
     {
@@ -500,7 +500,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For cement and infrastructure buyers who need dispatch discipline as much as material fit.",
         "industries": ["Construction", "Cement", "Infrastructure"],
-        "source_url": "https://jadewavesenterprise.com/fly-ash",
+        "source_url": "https://jadewavesenterprise.com/products/fly-ash/",
         "related": ["copper-slag", "silica-sand", "bentonite"],
     },
     {
@@ -551,7 +551,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For abrasive work where particle performance and dependable supply both matter.",
         "industries": ["Blasting", "Surface Preparation", "Construction"],
-        "source_url": "https://jadewavesenterprise.com/copper-slag",
+        "source_url": "https://jadewavesenterprise.com/products/copper-slag/",
         "related": ["fly-ash", "silica-sand", "feldspar"],
     },
 ]
@@ -9118,6 +9118,7 @@ def render_robots() -> str:
 
 def render_sitemap() -> str:
     urls: list[str] = []
+    legacy_product_paths = {product["slug"] for product in PRODUCTS}
     for path in sorted(ROOT.rglob("index.html")):
         if "_site" in path.parts or ".git" in path.parts:
             continue
@@ -9125,6 +9126,8 @@ def render_sitemap() -> str:
         if rel.name != "index.html":
             continue
         parent = rel.parent.as_posix()
+        if parent in legacy_product_paths:
+            continue
         url_path = "/" if parent == "." else f"/{parent}/"
         urls.append(url_path)
     entries = "\n".join(
@@ -9137,6 +9140,31 @@ def render_sitemap() -> str:
         f"{entries}\n"
         "</urlset>"
     )
+
+
+def render_legacy_product_redirect(product: dict) -> str:
+    target = f"/products/{product['slug']}/"
+    target_url = f"{BASE_URL}{target}"
+    title = f"{product['name']} moved | {CONTACT['company']}"
+    return dedent(
+        f"""
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>{escape(title)}</title>
+            <meta name="robots" content="noindex,follow" />
+            <link rel="canonical" href="{escape(target_url)}" />
+            <meta http-equiv="refresh" content="0; url={escape(target)}" />
+            <script>window.location.replace("{escape(target)}");</script>
+          </head>
+          <body>
+            <p>{escape(product["name"])} moved to <a href="{escape(target)}">{escape(target_url)}</a>.</p>
+          </body>
+        </html>
+        """
+    ).strip()
 
 
 def main() -> None:
@@ -9152,6 +9180,7 @@ def main() -> None:
     write(ROOT / "products" / "index.html", render_products_index())
     for product in PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
+      write(ROOT / product["slug"] / "index.html", render_legacy_product_redirect(product))
     write(ROOT / "robots.txt", render_robots())
     write(ROOT / "sitemap.xml", render_sitemap())
 

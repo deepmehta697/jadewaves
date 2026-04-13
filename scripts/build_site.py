@@ -13,11 +13,22 @@ ROOT_FILES = ["index.html", "styles.css", "script.js", "robots.txt", "sitemap.xm
 OPTIONAL_FILES = ["CNAME"]
 SITE_DIRS = [
     "assets",
+    "blog",
+    "bentonite",
+    "copper-slag",
     "export-markets",
+    "feldspar",
+    "fly-ash",
     "industrial-minerals-exporter-india",
+    "kaolin--china-clay",
     "operations",
     "privacy-policy",
     "products",
+    "quartz-sand-for-ceramics",
+    "salt",
+    "silica-flour",
+    "silica-sand",
+    "talc",
     "terms-disclaimer",
 ]
 
