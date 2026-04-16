@@ -610,6 +610,21 @@ LEGACY_REDIRECTS = [
         "target": "/#contact",
     },
     {
+        "path": "contact-1/ola/services/business-collaboration",
+        "title": "Business collaboration moved",
+        "target": "/#contact",
+    },
+    {
+        "path": "contact-1/ola/services/request-a-free-sample",
+        "title": "Sample request moved",
+        "target": "/#contact",
+    },
+    {
+        "path": "contact-1/ola/services/product-inquiry-call",
+        "title": "Product inquiry moved",
+        "target": "/#contact",
+    },
+    {
         "path": "blogs/f/bentonite-suppliers-in-vietnam",
         "title": "Bentonite suppliers in Vietnam moved",
         "target": "/products/bentonite/",
@@ -743,6 +758,21 @@ LEGACY_REDIRECTS = [
         "path": "operations/industrial-minerals-exporter-india",
         "title": "Exporter profile moved",
         "target": "/industrial-minerals-exporter-india/",
+    },
+    {
+        "path": "m/login",
+        "title": "Login moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "m/reset",
+        "title": "Reset moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "m/create-account",
+        "title": "Account creation moved",
+        "target": "/products/bentonite/",
     },
     {
         "path": "export-markets/quartz-sand-vietnam",
