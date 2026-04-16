@@ -594,6 +594,181 @@ LEGACY_REDIRECTS = [
         "title": "Contact moved",
         "target": "/#contact",
     },
+    {
+        "path": "blogs",
+        "title": "Blog index moved",
+        "target": "/blog/",
+    },
+    {
+        "path": "about-us",
+        "title": "About us moved",
+        "target": "/industrial-minerals-exporter-india/",
+    },
+    {
+        "path": "company-profile",
+        "title": "Company profile moved",
+        "target": "/industrial-minerals-exporter-india/",
+    },
+    {
+        "path": "home",
+        "title": "Home moved",
+        "target": "/",
+    },
+    {
+        "path": "infrastructure",
+        "title": "Infrastructure moved",
+        "target": "/operations/",
+    },
+    {
+        "path": "hear-from-our-ceo",
+        "title": "CEO page moved",
+        "target": "/hear-from-ceo/",
+    },
+    {
+        "path": "terms-and-conditions",
+        "title": "Terms moved",
+        "target": "/terms-disclaimer/",
+    },
+    {
+        "path": "faq",
+        "title": "FAQ moved",
+        "target": "/products/",
+    },
+    {
+        "path": "operations/industrial-minerals-exporter-india",
+        "title": "Exporter profile moved",
+        "target": "/industrial-minerals-exporter-india/",
+    },
+    {
+        "path": "export-markets/quartz-sand-vietnam",
+        "title": "Vietnam quartz page moved",
+        "target": "/products/quartz-sand-for-ceramics/",
+    },
+    {
+        "path": "export-markets/silica-sand-maldives",
+        "title": "Maldives silica sand page moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "export-markets/quartz-feldspar-ceramic-glass",
+        "title": "Ceramic and glass markets page moved",
+        "target": "/export-markets/",
+    },
+    {
+        "path": "export-markets/bentonite-vietnam-gulf",
+        "title": "Vietnam and Gulf bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "export-markets/feldspar-vietnam",
+        "title": "Vietnam feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
+        "path": "products/products/silica-sand",
+        "title": "Silica sand page moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "products/salt/products/silica-sand",
+        "title": "Silica sand page moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "products/kaolin--china-clay/products",
+        "title": "Kaolin page moved",
+        "target": "/products/kaolin--china-clay/",
+    },
+    {
+        "path": "potash-&-soda-feldspar",
+        "title": "Feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
+        "path": "silica-sand-india",
+        "title": "Silica sand page moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "silicasand-supplier-india",
+        "title": "Silica sand page moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "bentonite-supplier-india",
+        "title": "Bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "oil-drilling-bentonite",
+        "title": "Drilling bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "pond-sealing-bentonite",
+        "title": "Pond sealing bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "cat-litter-bentonite",
+        "title": "Cat litter bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "ceramics-bentonite",
+        "title": "Ceramics bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "earthing-bentonite",
+        "title": "Earthing bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "foundry-bentonite",
+        "title": "Foundry bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "refractory-bentonite",
+        "title": "Refractory bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "fertilizer-bentonite",
+        "title": "Fertilizer bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "piling-bentonite",
+        "title": "Piling bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "hdd-bentonite",
+        "title": "HDD bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "dolomite",
+        "title": "Dolomite page moved",
+        "target": "/products/",
+    },
+    {
+        "path": "limestone-/-dolomite",
+        "title": "Dolomite page moved",
+        "target": "/products/",
+    },
+    {
+        "path": "talc-/-soapstone",
+        "title": "Talc page moved",
+        "target": "/products/talc/",
+    },
+    {
+        "path": "rubber-granules",
+        "title": "Rubber granules page moved",
+        "target": "/products/",
+    },
 ]
 
 PRODUCT_FAMILIES = [
