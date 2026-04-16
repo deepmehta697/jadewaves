@@ -590,9 +590,114 @@ LEGACY_REDIRECTS = [
         "target": "/products/silica-sand/",
     },
     {
+        "path": "blogs/f/activated-bleaching-earth",
+        "title": "Activated bleaching earth moved",
+        "target": "/products/",
+    },
+    {
+        "path": "blogs/f/bentonite-clay-and-its-applications",
+        "title": "Bentonite applications article moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "blogs/f/bentonite-suppliers-in-malaysia",
+        "title": "Bentonite suppliers in Malaysia moved",
+        "target": "/products/bentonite/",
+    },
+    {
         "path": "contact-1",
         "title": "Contact moved",
         "target": "/#contact",
+    },
+    {
+        "path": "blogs/f/bentonite-suppliers-in-vietnam",
+        "title": "Bentonite suppliers in Vietnam moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "blogs/f/copper-slag-for-sandblasting",
+        "title": "Copper slag sandblasting article moved",
+        "target": "/blog/copper-slag-supplier-for-shipyard-blasting/",
+    },
+    {
+        "path": "blogs/f/copper-slag-suppliers-in-india",
+        "title": "Copper slag suppliers in India moved",
+        "target": "/products/copper-slag/",
+    },
+    {
+        "path": "blogs/f/drilling-bentonite",
+        "title": "Drilling bentonite article moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "blogs/f/fly-ash-suppliers-in-india",
+        "title": "Fly ash suppliers in India moved",
+        "target": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
+    },
+    {
+        "path": "blogs/f/kaolin-china-clay-suppliers-in-india",
+        "title": "Kaolin suppliers in India moved",
+        "target": "/products/kaolin--china-clay/",
+    },
+    {
+        "path": "blogs/f/paint-bentonite",
+        "title": "Paint bentonite article moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "blogs/f/potash-feldspar-feldspar-suppliers-india",
+        "title": "Potash feldspar suppliers article moved",
+        "target": "/blog/potassium-feldspar-supplier-for-ceramic-tiles/",
+    },
+    {
+        "path": "blogs/f/quartz-supplier-in-vietnam---quartz-india",
+        "title": "Quartz supplier in Vietnam article moved",
+        "target": "/blog/quartz-sand-supplier-india-vietnam-buyers-guide/",
+    },
+    {
+        "path": "blogs/f/rubber-granules-maldives-rubber-granules-supplier-in-maldives",
+        "title": "Rubber granules Maldives article moved",
+        "target": "/products/",
+    },
+    {
+        "path": "blogs/f/salt-suppliers-in-mauritius-jade-waves-enterprise",
+        "title": "Salt suppliers in Mauritius moved",
+        "target": "/blog/industrial-salt-exporter/",
+    },
+    {
+        "path": "blogs/f/salt-suppliers-in-seychelles-jade-waves-enteprise",
+        "title": "Salt suppliers in Seychelles moved",
+        "target": "/blog/industrial-salt-exporter/",
+    },
+    {
+        "path": "blogs/f/salt-the-essential-mineral",
+        "title": "Salt article moved",
+        "target": "/products/salt/",
+    },
+    {
+        "path": "blogs/f/silica-sand-for-artificial-football-turf",
+        "title": "Silica sand turf article moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "blogs/f/silica-sand-suppliers-in-kenya",
+        "title": "Silica sand suppliers in Kenya moved",
+        "target": "/blog/silica-sand-exporter-from-india/",
+    },
+    {
+        "path": "blogs/f/the-future-of-fly-ash-utilization-in-green-building-practices",
+        "title": "Fly ash green building article moved",
+        "target": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
+    },
+    {
+        "path": "blogs/f/the-role-of-fly-ash-in-cement-manufacturing",
+        "title": "Fly ash cement article moved",
+        "target": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
+    },
+    {
+        "path": "blogs/f/top-silica-sand-suppliers-in-india-jade-waves-enterprise",
+        "title": "Silica sand suppliers article moved",
+        "target": "/blog/silica-sand-exporter-from-india/",
     },
     {
         "path": "blogs",
