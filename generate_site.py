@@ -650,6 +650,11 @@ LEGACY_REDIRECTS = [
         "target": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
     },
     {
+        "path": "blogs/f/innovations-in-recycling-fly-ash",
+        "title": "Fly ash recycling article moved",
+        "target": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
+    },
+    {
         "path": "blogs/f/kaolin-china-clay-suppliers-in-india",
         "title": "Kaolin suppliers in India moved",
         "target": "/products/kaolin--china-clay/",
@@ -832,6 +837,11 @@ LEGACY_REDIRECTS = [
     {
         "path": "bentonite-supplier-india",
         "title": "Bentonite page moved",
+        "target": "/products/bentonite/",
+    },
+    {
+        "path": "animal-feed-bentonite",
+        "title": "Animal feed bentonite page moved",
         "target": "/products/bentonite/",
     },
     {
