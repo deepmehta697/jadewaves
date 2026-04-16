@@ -21,6 +21,7 @@ SITE_DIRS = [
     "export-markets",
     "feldspar",
     "fly-ash",
+    "hear-from-ceo",
     "industrial-minerals-exporter-india",
     "kaolin--china-clay",
     "operations",
