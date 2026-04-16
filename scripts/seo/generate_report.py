@@ -5,7 +5,7 @@ import re
 import socket
 from collections import Counter
 from dataclasses import dataclass
-from datetime import date, timedelta
+from datetime import date
 from html import unescape
 from pathlib import Path
 from typing import Any
@@ -136,6 +136,22 @@ def trends_client_available() -> tuple[bool, str]:
     except ModuleNotFoundError:
         return False, "Python Google Trends client library is not installed."
     return True, ""
+
+
+def google_reporting_window(config: dict[str, Any]) -> tuple[date, date]:
+    end_date = date.today() - date.resolution
+    start_date_raw = config.get("google_reporting_start_date", "").strip()
+    if start_date_raw:
+        try:
+            start_date = date.fromisoformat(start_date_raw)
+        except ValueError:
+            start_date = end_date
+    else:
+        start_date = end_date
+
+    if start_date > end_date:
+        start_date = end_date
+    return start_date, end_date
 
 
 def configured_trend_targets(config: dict[str, Any]) -> list[str]:
@@ -287,8 +303,7 @@ def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]
         blockers.append(f"Could not load the service account JSON key: {exc}")
         return result, blockers
 
-    end_date = date.today() - timedelta(days=1)
-    start_date = end_date - timedelta(days=27)
+    start_date, end_date = google_reporting_window(config)
 
     try:
         search_console = build("searchconsole", "v1", credentials=credentials, cache_discovery=False)
@@ -333,7 +348,12 @@ def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]
             .runReport(
                 property=f"properties/{ga4_property_id}",
                 body={
-                    "dateRanges": [{"startDate": "28daysAgo", "endDate": "yesterday"}],
+                    "dateRanges": [
+                        {
+                            "startDate": start_date.isoformat(),
+                            "endDate": end_date.isoformat(),
+                        }
+                    ],
                     "metrics": [{"name": "sessions"}, {"name": "totalUsers"}, {"name": "conversions"}],
                     "dimensions": [{"name": "eventName"}],
                     "limit": 10,
@@ -496,9 +516,11 @@ def summarize_search_demand(
 ) -> list[str]:
     notes: list[str] = []
     if google_data.get("search_console"):
+        start_date, end_date = google_data["search_console"]["date_range"]
         notes.append(
-            f"Search Console 28-day clicks: {google_data['search_console']['clicks']}, "
-            f"impressions: {google_data['search_console']['impressions']}."
+            f"Search Console clicks ({start_date} to {end_date}): "
+            f"{google_data['search_console']['clicks']}, impressions: "
+            f"{google_data['search_console']['impressions']}."
         )
     elif google_blockers:
         notes.append("Search Console demand data is unavailable until the Google blockers are cleared.")

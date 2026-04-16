@@ -18,6 +18,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "regenerate_command": "python3 generate_site.py",
     "search_console_property": "",
     "ga4_property_id": "",
+    "google_reporting_start_date": "2026-04-10",
     "google_service_account_key_path": "",
     "analytics": {
         "measurement_id": "",
@@ -52,6 +53,7 @@ ENV_TO_PATH = {
     "SEO_GITHUB_REPO": ("github_repo",),
     "SEO_SEARCH_CONSOLE_PROPERTY": ("search_console_property",),
     "SEO_GA4_PROPERTY_ID": ("ga4_property_id",),
+    "SEO_GOOGLE_REPORTING_START_DATE": ("google_reporting_start_date",),
     "SEO_GOOGLE_SERVICE_ACCOUNT_KEY_PATH": ("google_service_account_key_path",),
     "SEO_GA4_MEASUREMENT_ID": ("analytics", "measurement_id"),
     "SEO_ANALYTICS_FORM_SUBMIT_EVENT": ("analytics", "form_submit_event_name"),
