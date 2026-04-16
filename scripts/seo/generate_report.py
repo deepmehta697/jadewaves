@@ -154,6 +154,13 @@ def google_reporting_window(config: dict[str, Any]) -> tuple[date, date]:
     return start_date, end_date
 
 
+def excluded_search_console_countries(config: dict[str, Any]) -> list[str]:
+    raw = config.get("search_console_excluded_countries", [])
+    if isinstance(raw, str):
+        raw = [item.strip() for item in raw.split(",") if item.strip()]
+    return [item.strip().lower() for item in raw if item and item.strip()]
+
+
 def configured_trend_targets(config: dict[str, Any]) -> list[str]:
     trends_config = config.get("trends", {})
     explicit_targets = [item.strip() for item in trends_config.get("targets", []) if item.strip()]
@@ -317,12 +324,26 @@ def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]
             blockers.append(f"Could not initialize the Search Console API client: {exc}")
     if search_console is not None:
         try:
+            excluded_countries = excluded_search_console_countries(config)
             payload = {
                 "startDate": start_date.isoformat(),
                 "endDate": end_date.isoformat(),
                 "dimensions": ["page"],
-                "rowLimit": 10,
+                "rowLimit": 250,
             }
+            if excluded_countries:
+                payload["dimensionFilterGroups"] = [
+                    {
+                        "groupType": "and",
+                        "filters": [
+                            {
+                                "dimension": "country",
+                                "operator": "excludingRegex",
+                                "expression": f"^({'|'.join(re.escape(code) for code in excluded_countries)})$",
+                            }
+                        ],
+                    }
+                ]
             response = (
                 search_console.searchanalytics()
                 .query(siteUrl=search_console_property, body=payload)
@@ -331,6 +352,7 @@ def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]
             rows = response.get("rows", [])
             result["search_console"] = {
                 "date_range": [start_date.isoformat(), end_date.isoformat()],
+                "excluded_countries": excluded_countries,
                 "clicks": round(sum(row.get("clicks", 0) for row in rows), 2),
                 "impressions": round(sum(row.get("impressions", 0) for row in rows), 2),
                 "top_pages": rows[:5],
@@ -517,8 +539,12 @@ def summarize_search_demand(
     notes: list[str] = []
     if google_data.get("search_console"):
         start_date, end_date = google_data["search_console"]["date_range"]
+        excluded_countries = google_data["search_console"].get("excluded_countries", [])
+        scope = ""
+        if excluded_countries:
+            scope = f", excluding countries: {', '.join(code.upper() for code in excluded_countries)}"
         notes.append(
-            f"Search Console clicks ({start_date} to {end_date}): "
+            f"Search Console clicks ({start_date} to {end_date}{scope}): "
             f"{google_data['search_console']['clicks']}, impressions: "
             f"{google_data['search_console']['impressions']}."
         )

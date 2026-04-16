@@ -19,6 +19,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "search_console_property": "",
     "ga4_property_id": "",
     "google_reporting_start_date": "2026-04-10",
+    "search_console_excluded_countries": ["ind"],
     "google_service_account_key_path": "",
     "analytics": {
         "measurement_id": "",
@@ -54,6 +55,7 @@ ENV_TO_PATH = {
     "SEO_SEARCH_CONSOLE_PROPERTY": ("search_console_property",),
     "SEO_GA4_PROPERTY_ID": ("ga4_property_id",),
     "SEO_GOOGLE_REPORTING_START_DATE": ("google_reporting_start_date",),
+    "SEO_SEARCH_CONSOLE_EXCLUDED_COUNTRIES": ("search_console_excluded_countries",),
     "SEO_GOOGLE_SERVICE_ACCOUNT_KEY_PATH": ("google_service_account_key_path",),
     "SEO_GA4_MEASUREMENT_ID": ("analytics", "measurement_id"),
     "SEO_ANALYTICS_FORM_SUBMIT_EVENT": ("analytics", "form_submit_event_name"),
@@ -75,7 +77,10 @@ def set_nested(config: dict[str, Any], path: tuple[str, ...], value: str) -> Non
     current = config
     for key in path[:-1]:
         current = current.setdefault(key, {})
-    current[path[-1]] = value
+    if path[-1] == "search_console_excluded_countries":
+        current[path[-1]] = [item.strip().lower() for item in value.split(",") if item.strip()]
+    else:
+        current[path[-1]] = value
 
 
 def load_config() -> tuple[dict[str, Any], Path]:
