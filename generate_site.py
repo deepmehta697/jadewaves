@@ -595,6 +595,11 @@ LEGACY_REDIRECTS = [
         "target": "/products/",
     },
     {
+        "path": "activated-bleaching-earth",
+        "title": "Activated bleaching earth moved",
+        "target": "/products/",
+    },
+    {
         "path": "blogs/f/bentonite-clay-and-its-applications",
         "title": "Bentonite applications article moved",
         "target": "/products/bentonite/",
@@ -823,6 +828,11 @@ LEGACY_REDIRECTS = [
         "path": "potash-&-soda-feldspar",
         "title": "Feldspar page moved",
         "target": "/products/feldspar/",
+    },
+    {
+        "path": "quartz",
+        "title": "Quartz page moved",
+        "target": "/products/quartz-sand-for-ceramics/",
     },
     {
         "path": "silica-sand-india",
@@ -1687,43 +1697,71 @@ CURRENT_BLOG_SLUGS = [
 ]
 
 
+def crawler_cleanup_redirects() -> list[dict[str, str]]:
+    exported_paths = [
+        ("blog/industrial-salt-exporter/operations", "/operations/"),
+        ("blog/bentonite-supplier-india/blog/potassium-feldspar-supplier-for-ceramic-tiles", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
+        ("blog/bentonite-supplier-india/blog/kaolin-supplier-for-paint-industry", "/blog/kaolin-supplier-for-paint-industry/"),
+        ("blog/potassium-feldspar-supplier-for-ceramic-tiles/export-markets", "/export-markets/"),
+        ("products/bentonite/products/fly-ash", "/products/fly-ash/"),
+        ("blog/copper-slag-supplier-for-shipyard-blasting/products/copper-slag", "/products/copper-slag/"),
+        ("blog/copper-slag-supplier-for-shipyard-blasting/blog/bentonite-supplier-india", "/blog/bentonite-supplier-india/"),
+        ("industrial-minerals-exporter-india/export-markets", "/export-markets/"),
+        ("industrial-minerals-exporter-india/products", "/products/"),
+        ("industrial-minerals-exporter-india/blog", "/blog/"),
+        ("industrial-minerals-exporter-india/operations", "/operations/"),
+        ("industrial-minerals-exporter-india/hear-from-ceo", "/hear-from-ceo/"),
+        ("blog/copper-slag-supplier-for-shipyard-blasting/blog/potassium-feldspar-supplier-for-ceramic-tiles", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
+        ("blog/potassium-feldspar-supplier-for-ceramic-tiles/operations", "/operations/"),
+        ("blog/potassium-feldspar-supplier-for-ceramic-tiles/blog/bentonite-supplier-india", "/blog/bentonite-supplier-india/"),
+        ("blog/potassium-feldspar-supplier-for-ceramic-tiles/blog/fly-ash-exporter-from-india-bulk-shipment", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
+        ("blog/copper-slag-supplier-for-shipyard-blasting/blog/kaolin-supplier-for-paint-industry", "/blog/kaolin-supplier-for-paint-industry/"),
+        ("blog/industrial-salt-exporter/blog/kaolin-supplier-for-paint-industry", "/blog/kaolin-supplier-for-paint-industry/"),
+        ("blog/blog", "/blog/"),
+        ("blog/fly-ash-exporter-from-india-bulk-shipment/blog/bentonite-supplier-india", "/blog/bentonite-supplier-india/"),
+        ("blog/industrial-salt-exporter/blog/potassium-feldspar-supplier-for-ceramic-tiles", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
+        ("blog/products", "/products/"),
+        ("blog/export-markets", "/export-markets/"),
+        ("blog/blog/copper-slag-supplier-for-shipyard-blasting", "/blog/copper-slag-supplier-for-shipyard-blasting/"),
+        ("blog/industrial-salt-exporter/products/salt", "/products/salt/"),
+        ("blog/silica-sand-exporter-from-india/hear-from-ceo", "/hear-from-ceo/"),
+        ("blog/silica-sand-exporter-from-india/blog", "/blog/"),
+        ("blog/silica-sand-exporter-from-india/operations", "/operations/"),
+        ("blog/silica-sand-exporter-from-india/products", "/products/"),
+        ("blog/silica-sand-exporter-from-india/export-markets", "/export-markets/"),
+        ("blog/silica-sand-exporter-from-india/blog/bentonite-supplier-india", "/blog/bentonite-supplier-india/"),
+        ("blog/silica-sand-exporter-from-india/blog/kaolin-supplier-for-paint-industry", "/blog/kaolin-supplier-for-paint-industry/"),
+        ("blog/silica-sand-exporter-from-india/blog/potassium-feldspar-supplier-for-ceramic-tiles", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
+    ]
+    return [
+        {
+            "path": path,
+            "title": "Malformed crawler URL moved",
+            "target": target,
+        }
+        for path, target in exported_paths
+    ]
+
+
+def all_redirects() -> list[dict[str, str]]:
+    redirects: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for redirect in [*LEGACY_REDIRECTS, *crawler_cleanup_redirects()]:
+        path = redirect["path"].strip("/")
+        if path in seen:
+            continue
+        seen.add(path)
+        redirects.append({**redirect, "path": path})
+    return redirects
+
+
 def write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content.rstrip() + "\n", encoding="utf-8")
 
 
 def make_project_pages_safe(markup: str) -> str:
-    base_bootstrap = dedent(
-        f"""
-        <script>
-          window.__JWE_SITE_BASE_PATH__ = (function() {{
-            var repoPath = "/{PROJECT_PAGES_REPO}";
-            var pathname = window.location.pathname;
-            if (pathname === repoPath || pathname.indexOf(repoPath + "/") === 0) {{
-              return repoPath;
-            }}
-            return "";
-          }})();
-          var baseHref = window.__JWE_SITE_BASE_PATH__ ? window.__JWE_SITE_BASE_PATH__ + "/" : "/";
-          document.write('<base href="' + baseHref + '">');
-        </script>
-        """
-    ).strip()
-    safe_markup = markup.replace(
-        '<link rel="stylesheet" href="/styles.css" />',
-        f"{base_bootstrap}\n            <link rel=\"stylesheet\" href=\"styles.css\" />",
-        1,
-    )
-    for source, target in (
-        ('href="/#', 'href="./#'),
-        ('href="/"', 'href="./"'),
-        ('href="/', 'href="'),
-        ('src="/', 'src="'),
-        ('poster="/', 'poster="'),
-        ('srcset="/', 'srcset="'),
-    ):
-        safe_markup = safe_markup.replace(source, target)
-    return safe_markup
+    return markup
 
 
 def nav_html() -> str:
@@ -9462,7 +9500,7 @@ def render_robots() -> str:
 def render_sitemap() -> str:
     urls: list[str] = []
     legacy_product_paths = {product["slug"] for product in PRODUCTS}
-    legacy_redirect_paths = {redirect["path"] for redirect in LEGACY_REDIRECTS}
+    legacy_redirect_paths = {redirect["path"] for redirect in all_redirects()}
     for path in sorted(ROOT.rglob("index.html")):
         if "_site" in path.parts or ".git" in path.parts:
             continue
@@ -9529,7 +9567,7 @@ def main() -> None:
     for product in PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
       write(ROOT / product["slug"] / "index.html", render_legacy_product_redirect(product))
-    for redirect in LEGACY_REDIRECTS:
+    for redirect in all_redirects():
       write(ROOT / redirect["path"] / "index.html", render_redirect_page(redirect["title"], redirect["target"]))
     write(ROOT / "robots.txt", render_robots())
     write(ROOT / "sitemap.xml", render_sitemap())

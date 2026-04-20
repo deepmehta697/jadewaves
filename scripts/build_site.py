@@ -36,6 +36,19 @@ SITE_DIRS = [
 ]
 
 
+def generated_redirect_dirs() -> list[str]:
+    sys.path.insert(0, str(ROOT))
+    import generate_site
+
+    dirs = {product["slug"] for product in generate_site.PRODUCTS}
+    dirs.update(Path(redirect["path"]).parts[0] for redirect in generate_site.all_redirects())
+    return sorted(dirs)
+
+
+def site_dirs() -> list[str]:
+    return sorted({*SITE_DIRS, *generated_redirect_dirs()})
+
+
 def run_regeneration() -> None:
     result = subprocess.run([sys.executable, "generate_site.py"], cwd=ROOT)
     if result.returncode != 0:
@@ -52,7 +65,7 @@ def copy_path(source: Path, target: Path) -> None:
 
 def validate_inputs() -> list[str]:
     missing: list[str] = []
-    for name in ROOT_FILES + SITE_DIRS:
+    for name in ROOT_FILES + site_dirs():
         if not (ROOT / name).exists():
             missing.append(name)
     return missing
@@ -63,12 +76,13 @@ def build_site() -> None:
         shutil.rmtree(BUILD_DIR)
     BUILD_DIR.mkdir(parents=True, exist_ok=True)
 
-    for name in ROOT_FILES + OPTIONAL_FILES + SITE_DIRS:
+    dirs = site_dirs()
+    for name in ROOT_FILES + OPTIONAL_FILES + dirs:
         source = ROOT / name
         if source.exists():
             copy_path(source, BUILD_DIR / name)
 
-    expected = [BUILD_DIR / name for name in ROOT_FILES + SITE_DIRS]
+    expected = [BUILD_DIR / name for name in ROOT_FILES + dirs]
     missing_outputs = [str(path.relative_to(ROOT)) for path in expected if not path.exists()]
     if missing_outputs:
         raise SystemExit(
