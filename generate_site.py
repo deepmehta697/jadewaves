@@ -106,9 +106,10 @@ PRODUCTS = [
         ],
         "gallery_images": [
             ("Silica sand grain view", "/assets/silica-sand-1.png"),
-            ("Silica sand sample", "/assets/silica-sand.png"),
+            ("Silica sand close texture", "/assets/optimized/silica-sand.jpg"),
             ("Silica sand packed for dispatch", "/assets/silica-sand-packing.jpg"),
-            ("Silica sand material view", "/assets/silica-sand-visual.webp"),
+            ("Container-ready silica cargo", "/assets/container-1604.jpeg"),
+            ("Silica loading movement", "/assets/loading-poster.jpg"),
         ],
         "snapshot_rows": [
             ("Form", "Silica sand and silica flour"),
@@ -260,9 +261,11 @@ PRODUCTS = [
         ],
         "gallery_images": [
             ("Quartz sand sample", "/assets/quartz-sand-detail.png"),
-            ("Quartz material view", "/assets/quartz-sand.png"),
-            ("Quartz lumps", "/assets/quartz-lumps-1.png"),
             ("Quartz grits sample", "/assets/quartz-grits-0-1-0-4mm-sample.webp"),
+            ("Quartz grits line", "/assets/quartz-grits-0-1-0-4mm-hero.webp"),
+            ("Quartz lumps", "/assets/quartz-lumps-1.png"),
+            ("Quartz lumps stock", "/assets/quartz-lumps-3.png"),
+            ("Quartz lump texture", "/assets/quartz-lumps-texture.jpg"),
         ],
         "snapshot_rows": [
             ("Form", "Quartz sand, grits, and powder"),
@@ -482,8 +485,10 @@ PRODUCTS = [
         "gallery_images": [
             ("Feldspar lumps", "/assets/feldspar-lumps.png"),
             ("Feldspar material view", "/assets/feldspar-lumps-1.png"),
-            ("Feldspar stock view", "/assets/feldspar-lumps-2.jpeg"),
+            ("Feldspar K2O: 11%", "/assets/feldspar-lumps-2.jpeg"),
+            ("Feldspar K2O: 10%", "/assets/feldspar-lumps-3.jpeg"),
             ("Feldspar powder", "/assets/feldspar-powder.jpeg"),
+            ("Feldspar packed bags", "/assets/feldspar-bags.png"),
         ],
         "snapshot_rows": [
             ("Form", "Lumps and powder"),
@@ -1901,6 +1906,10 @@ def nav_html() -> str:
 
 
 def footer_html() -> str:
+    footer_blog_links = "".join(
+        f'<a href="/blog/{escape(post["slug"])}/">{escape(post.get("marquee_title", post["title"]))}</a>'
+        for post in visible_blog_posts()
+    )
     return dedent(
         f"""
         <footer class="site-footer">
@@ -1923,6 +1932,11 @@ def footer_html() -> str:
                 <a href="/blog/">Blog</a>
                 <a href="/hear-from-ceo/">Hear from Our CEO</a>
                 <a href="/#contact">Contact</a>
+              </div>
+              <div>
+                <p class="footer-heading">Buyer Guides</p>
+                {footer_blog_links}
+                <a href="/blog/">Open all guides</a>
               </div>
             </div>
           </div>
@@ -2303,7 +2317,7 @@ def render_homepage() -> str:
             <div class="shell manufacturing-hero">
               <div class="manufacturing-hero__copy" data-reveal>
                 <p class="hero-label">Manufacturer &amp; Exporter From India</p>
-                <h1>Plant-backed silica sand,<br />quartz, and feldspar.</h1>
+                <h1>Manufacturer-led mineral supply.<br />Export-ready by design.</h1>
                 <p class="hero-text">
                   A manufacturing-led supply flow for global buyers who need clearer specifications, steadier packing discipline, and dispatch visibility before cargo moves.
                 </p>
@@ -2956,7 +2970,7 @@ def render_products_index() -> str:
             <div class="shell hero__inner hero__inner--single">
               <div class="hero-copy hero-copy--portfolio" data-reveal>
                 <p class="hero-label">Products</p>
-                <h1>Three manufacturing programs.<br />Built for repeat supply.</h1>
+                <h1>Three core mineral lines.<br />Built for repeat orders.</h1>
                 <p class="hero-text">
                   Explore the three products at the center of the manufacturing setup: silica sand, quartz sand, and feldspar manufactured in India for global buyers.
                 </p>
@@ -3665,8 +3679,49 @@ def render_product_page(product: dict) -> str:
             </figure>
             """
         ).strip()
-        for index, (label, src) in enumerate(product.get("hero_images", []))
+        for index, (label, src) in enumerate(product.get("hero_images", [])[:1])
     )
+    product_gallery_cards = "".join(
+        dedent(
+            f"""
+            <figure class="product-gallery-card">
+              <img src="{escape(src)}" alt="{escape(label)}" loading="lazy" />
+              <figcaption>{escape(label)}</figcaption>
+            </figure>
+            """
+        ).strip()
+        for label, src in product.get("gallery_images", [])
+    )
+    gallery_section = ""
+    if product_gallery_cards:
+        gallery_section = dedent(
+            f"""
+          <section class="section-block section-block--contrast">
+            <div class="shell section-shell">
+              <div class="section-topline section-topline--stack" data-reveal>
+                <div class="section-topline__copy">
+                  <p class="section-kicker">Material Gallery</p>
+                  <h2>Material views from the active line.</h2>
+                  <p>Actual product visuals arranged as a continuous gallery for faster grade comparison.</p>
+                </div>
+              </div>
+              <div class="product-gallery-marquee" data-reveal data-product-gallery>
+                <button class="product-gallery-control product-gallery-control--prev" type="button" aria-label="Scroll gallery left" data-gallery-control="-1">
+                  <span aria-hidden="true">&#8592;</span>
+                </button>
+                <div class="product-gallery-scroller" data-gallery-scroller tabindex="0">
+                  <div class="product-gallery-marquee__track">
+                    {product_gallery_cards}
+                  </div>
+                </div>
+                <button class="product-gallery-control product-gallery-control--next" type="button" aria-label="Scroll gallery right" data-gallery-control="1">
+                  <span aria-hidden="true">&#8594;</span>
+                </button>
+              </div>
+            </div>
+          </section>
+            """
+        ).strip()
     parameter_doc_block = ""
     if parameter_doc_links:
         parameter_doc_block = dedent(
@@ -3856,6 +3911,8 @@ def render_product_page(product: dict) -> str:
               </article>
             </div>
           </section>
+
+          {gallery_section}
 
           {f'''
           <section class="section-block">
@@ -5030,7 +5087,7 @@ STYLES = dedent(
     }
 
     .manufacturing-hero__copy h1 {
-      max-width: 12ch;
+      max-width: 15ch;
     }
 
     .manufacturing-hero__copy .hero-text {
@@ -7534,7 +7591,7 @@ STYLES = dedent(
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      grid-template-columns: 1fr;
       gap: 0.8rem;
       margin-top: 1.2rem;
     }
@@ -7550,7 +7607,7 @@ STYLES = dedent(
     }
 
     .product-poster__image--lead {
-      min-height: 14.5rem;
+      min-height: 16rem;
     }
 
     .product-poster__image img {
@@ -7764,6 +7821,123 @@ STYLES = dedent(
       max-width: 34rem;
       color: var(--ink-soft);
       line-height: 1.75;
+    }
+
+    .product-gallery-marquee {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 0.8rem;
+      align-items: center;
+      margin-top: 1.45rem;
+      padding: 0.3rem 0;
+    }
+
+    .product-gallery-marquee::before,
+    .product-gallery-marquee::after {
+      content: "";
+      position: absolute;
+      top: 0.3rem;
+      bottom: 0.3rem;
+      width: 4rem;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .product-gallery-marquee::before {
+      left: 3.2rem;
+      background: linear-gradient(90deg, rgba(245, 245, 247, 0.98), rgba(245, 245, 247, 0));
+    }
+
+    .product-gallery-marquee::after {
+      right: 3.2rem;
+      background: linear-gradient(270deg, rgba(245, 245, 247, 0.98), rgba(245, 245, 247, 0));
+    }
+
+    .product-gallery-scroller {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      scroll-snap-type: x proximity;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(29, 29, 31, 0.18) rgba(255, 255, 255, 0.6);
+    }
+
+    .product-gallery-scroller::-webkit-scrollbar {
+      height: 0.45rem;
+    }
+
+    .product-gallery-scroller::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.72);
+      border-radius: 999px;
+    }
+
+    .product-gallery-scroller::-webkit-scrollbar-thumb {
+      background: rgba(29, 29, 31, 0.18);
+      border-radius: 999px;
+    }
+
+    .product-gallery-marquee__track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      padding-bottom: 0.55rem;
+      will-change: scroll-position;
+    }
+
+    .product-gallery-card {
+      scroll-snap-align: start;
+      flex: 0 0 clamp(16rem, 22vw, 19rem);
+      overflow: hidden;
+      border-radius: 1.55rem;
+      border: 1px solid rgba(29, 29, 31, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 248, 251, 0.92));
+      box-shadow: 0 18px 38px rgba(29, 29, 31, 0.06);
+    }
+
+    .product-gallery-card img {
+      width: 100%;
+      height: 13.5rem;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-gallery-card figcaption {
+      padding: 0.9rem 1rem 1rem;
+      color: rgba(29, 29, 31, 0.74);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.45;
+    }
+
+    .product-gallery-control {
+      position: relative;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.9rem;
+      height: 2.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(29, 29, 31, 0.08);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 12px 28px rgba(29, 29, 31, 0.06);
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+
+    .product-gallery-control:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(29, 29, 31, 0.08);
+    }
+
+    .product-gallery-control span {
+      font-size: 1.05rem;
+      line-height: 1;
+      font-weight: 800;
     }
 
     .product-line-list,
@@ -8367,7 +8541,7 @@ STYLES = dedent(
     }
 
     .hero-copy--portfolio h1 {
-      max-width: 10.5ch;
+      max-width: 13ch;
     }
 
     .hero-copy--portfolio .hero-text {
@@ -9205,7 +9379,7 @@ STYLES = dedent(
       }
 
       .product-poster__gallery {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
       }
 
       .manufacturing-hero__media {
@@ -9467,6 +9641,35 @@ STYLES = dedent(
         min-height: 12rem;
       }
 
+      .product-gallery-marquee::before,
+      .product-gallery-marquee::after {
+        width: 2rem;
+      }
+
+      .product-gallery-marquee {
+        grid-template-columns: 1fr;
+      }
+
+      .product-gallery-control {
+        display: none;
+      }
+
+      .product-gallery-marquee::before {
+        left: 0;
+      }
+
+      .product-gallery-marquee::after {
+        right: 0;
+      }
+
+      .product-gallery-card {
+        flex-basis: 13.5rem;
+      }
+
+      .product-gallery-card img {
+        height: 11rem;
+      }
+
       .home-poster__surface {
         min-height: 25rem;
         padding: 1.25rem;
@@ -9642,6 +9845,7 @@ SCRIPT = dedent(
     const portfolioAnchors = document.querySelectorAll(".portfolio-anchor");
     const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
     const corridorStages = document.querySelectorAll("[data-corridor-stage]");
+    const productGalleries = document.querySelectorAll("[data-product-gallery]");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     requestAnimationFrame(() => {{
@@ -10111,6 +10315,96 @@ SCRIPT = dedent(
       startAutoplay();
     }};
 
+    const initProductGallery = (gallery) => {{
+      const scroller = gallery.querySelector("[data-gallery-scroller]");
+      const controls = Array.from(gallery.querySelectorAll("[data-gallery-control]"));
+      if (!scroller) return;
+
+      let frameId = 0;
+      let paused = false;
+      let lastTime = 0;
+      let resumeTimer = 0;
+
+      const maxScroll = () => Math.max(0, scroller.scrollWidth - scroller.clientWidth);
+
+      const scheduleResume = () => {{
+        if (resumeTimer) {{
+          window.clearTimeout(resumeTimer);
+        }}
+        resumeTimer = window.setTimeout(() => {{
+          paused = false;
+        }}, 2200);
+      }};
+
+      const scrollByAmount = (direction) => {{
+        const distance = Math.max(scroller.clientWidth * 0.82, 220) * direction;
+        scroller.scrollBy({{ left: distance, behavior: "smooth" }});
+      }};
+
+      controls.forEach((control) => {{
+        control.addEventListener("click", () => {{
+          paused = true;
+          scrollByAmount(Number(control.dataset.galleryControl || 0));
+          scheduleResume();
+        }});
+      }});
+
+      const tick = (time) => {{
+        if (!paused && !prefersReducedMotion.matches && maxScroll() > 0) {{
+          if (lastTime) {{
+            const delta = time - lastTime;
+            const next = scroller.scrollLeft + delta * 0.045;
+            scroller.scrollLeft = next >= maxScroll() ? 0 : next;
+          }}
+        }}
+        lastTime = time;
+        frameId = window.requestAnimationFrame(tick);
+      }};
+
+      const pause = () => {{
+        paused = true;
+        if (resumeTimer) {{
+          window.clearTimeout(resumeTimer);
+        }}
+      }};
+
+      const resume = () => {{
+        paused = false;
+        if (resumeTimer) {{
+          window.clearTimeout(resumeTimer);
+        }}
+        resumeTimer = 0;
+      }};
+
+      gallery.addEventListener("mouseenter", pause);
+      gallery.addEventListener("mouseleave", resume);
+      gallery.addEventListener("focusin", pause);
+      gallery.addEventListener("focusout", resume);
+      scroller.addEventListener("pointerdown", () => {{
+        pause();
+        scheduleResume();
+      }});
+      scroller.addEventListener("touchstart", () => {{
+        pause();
+        scheduleResume();
+      }}, {{ passive: true }});
+      scroller.addEventListener("wheel", () => {{
+        pause();
+        scheduleResume();
+      }}, {{ passive: true }});
+      scroller.addEventListener("scroll", () => {{
+        if (paused) {{
+          scheduleResume();
+        }}
+      }}, {{ passive: true }});
+
+      frameId = window.requestAnimationFrame(tick);
+      return () => {{
+        if (frameId) window.cancelAnimationFrame(frameId);
+        if (resumeTimer) window.clearTimeout(resumeTimer);
+      }};
+    }};
+
     const inquiryEndpoint = "https://formsubmit.co/ajax/{CONTACT["sales_email"]}";
 
     const setRequestType = (requestType) => {{
@@ -10237,6 +10531,10 @@ SCRIPT = dedent(
 
     corridorStages.forEach((stage) => {{
       initCorridorStage(stage);
+    }});
+
+    productGalleries.forEach((gallery) => {{
+      initProductGallery(gallery);
     }});
 
     syncHeader();
