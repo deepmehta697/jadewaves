@@ -3126,7 +3126,7 @@ def render_export_markets_page() -> str:
                     </article>
                     <article class="home-metric">
                       <span>Packing</span>
-                      <strong>50 Kg and jumbo bag programs</strong>
+                      <strong>25 Kg/50 Kg &amp; Jumbo Bags</strong>
                     </article>
                     <article class="home-metric">
                       <span>Shipment</span>
