@@ -354,6 +354,7 @@ main {
 }
 
 .hero-crosslink-card {
+  position: relative;
   margin-top: 1rem;
   display: inline-grid;
   gap: 0.22rem;
@@ -365,6 +366,8 @@ main {
     linear-gradient(120deg, rgba(0, 113, 227, 0.06), transparent 46%);
   color: var(--ink);
   text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
   box-shadow: 0 10px 24px rgba(29, 29, 31, 0.06);
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
@@ -401,16 +404,22 @@ main {
 }
 
 .product-bridge-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
-  gap: 1.4rem;
-  align-items: start;
-  margin-top: -1rem;
+  display: flex;
+  justify-content: center;
+  margin-top: -0.6rem;
   margin-bottom: 1.15rem;
+  position: relative;
+  z-index: 6;
 }
 
 .product-bridge-row .hero-crosslink-card--bridge {
   margin-top: 0;
+  width: min(100%, 22rem);
+  min-width: 0;
+  padding: 0.88rem 1.06rem;
+  border-color: rgba(0, 113, 227, 0.24);
+  box-shadow: 0 14px 30px rgba(29, 29, 31, 0.08);
+  pointer-events: auto;
 }
 
 .hero-visual {
@@ -1080,9 +1089,9 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 1.6rem;
-  align-items: end;
-  min-height: 72vh;
-  padding-bottom: 1rem;
+  align-items: start;
+  min-height: auto;
+  padding-bottom: 0.35rem;
 }
 
 .manufacturing-hero__copy {
@@ -1101,7 +1110,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.9rem;
-  margin-top: 1.7rem;
+  margin-top: 1.35rem;
   max-width: 52rem;
 }
 
@@ -1130,6 +1139,10 @@ main {
   font-size: 0.98rem;
   line-height: 1.45;
   letter-spacing: -0.03em;
+}
+
+.hero--manufacturing-home + .section-block {
+  padding-top: 1.4rem;
 }
 
 .manufacturing-hero__media {
@@ -5554,6 +5567,10 @@ body.is-ready .product-poster__caption {
   .manufacturing-hero {
     gap: 1.3rem;
     padding-bottom: 0;
+  }
+
+  .manufacturing-hero__facts {
+    gap: 0.85rem;
   }
 
   .hero h1 {

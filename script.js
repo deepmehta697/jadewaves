@@ -11,6 +11,7 @@ const portfolioAnchors = document.querySelectorAll(".portfolio-anchor");
 const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
 const corridorStages = document.querySelectorAll("[data-corridor-stage]");
 const productGalleries = document.querySelectorAll("[data-product-gallery]");
+const crosslinkTargets = document.querySelectorAll("[data-crosslink-target]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 requestAnimationFrame(() => {
@@ -700,6 +701,15 @@ corridorStages.forEach((stage) => {
 
 productGalleries.forEach((gallery) => {
   initProductGallery(gallery);
+});
+
+crosslinkTargets.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const href = link.getAttribute("href");
+    if (!href) return;
+    event.preventDefault();
+    window.location.assign(href);
+  });
 });
 
 syncHeader();

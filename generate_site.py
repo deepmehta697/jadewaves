@@ -2334,7 +2334,7 @@ def render_homepage() -> str:
                   </article>
                   <article class="manufacturing-fact">
                     <span>Packing Basis</span>
-                    <strong>50 Kg and jumbo bag programs</strong>
+                    <strong>25 Kg/50 Kg &amp; Jumbo Bags</strong>
                   </article>
                   <article class="manufacturing-fact">
                     <span>Dispatch</span>
@@ -2970,7 +2970,7 @@ def render_products_index() -> str:
             <div class="shell hero__inner hero__inner--single">
               <div class="hero-copy hero-copy--portfolio" data-reveal>
                 <p class="hero-label">Products</p>
-                <h1>Three core mineral lines.<br />Built for repeat orders.</h1>
+                <h1>Three core mineral lines.</h1>
                 <p class="hero-text">
                   Explore the three products at the center of the manufacturing setup: silica sand, quartz sand, and feldspar manufactured in India for global buyers.
                 </p>
@@ -3812,7 +3812,7 @@ def render_product_page(product: dict) -> str:
     if product["slug"] == "silica-sand":
         hero_crosslink = dedent(
             """
-            <a class="hero-crosslink-card hero-crosslink-card--bridge" href="/products/quartz-sand-for-ceramics/">
+            <a class="hero-crosslink-card hero-crosslink-card--bridge" href="/products/quartz-sand-for-ceramics/" data-crosslink-target>
               <strong>For higher-purity requirements</strong>
               <span>Quartz Sand: &gt;99% SiO2 and high whiteness</span>
             </a>
@@ -3823,7 +3823,6 @@ def render_product_page(product: dict) -> str:
         bridge_row = dedent(
             f"""
             <div class="shell product-bridge-row" data-reveal>
-              <div class="product-bridge-row__spacer" aria-hidden="true"></div>
               {hero_crosslink}
             </div>
             """
@@ -4351,6 +4350,7 @@ STYLES = dedent(
     }
 
     .hero-crosslink-card {
+      position: relative;
       margin-top: 1rem;
       display: inline-grid;
       gap: 0.22rem;
@@ -4362,6 +4362,8 @@ STYLES = dedent(
         linear-gradient(120deg, rgba(0, 113, 227, 0.06), transparent 46%);
       color: var(--ink);
       text-decoration: none;
+      cursor: pointer;
+      pointer-events: auto;
       box-shadow: 0 10px 24px rgba(29, 29, 31, 0.06);
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
@@ -4398,16 +4400,22 @@ STYLES = dedent(
     }
 
     .product-bridge-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
-      gap: 1.4rem;
-      align-items: start;
-      margin-top: -1rem;
+      display: flex;
+      justify-content: center;
+      margin-top: -0.6rem;
       margin-bottom: 1.15rem;
+      position: relative;
+      z-index: 6;
     }
 
     .product-bridge-row .hero-crosslink-card--bridge {
       margin-top: 0;
+      width: min(100%, 22rem);
+      min-width: 0;
+      padding: 0.88rem 1.06rem;
+      border-color: rgba(0, 113, 227, 0.24);
+      box-shadow: 0 14px 30px rgba(29, 29, 31, 0.08);
+      pointer-events: auto;
     }
 
     .hero-visual {
@@ -5077,9 +5085,9 @@ STYLES = dedent(
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       gap: 1.6rem;
-      align-items: end;
-      min-height: 72vh;
-      padding-bottom: 1rem;
+      align-items: start;
+      min-height: auto;
+      padding-bottom: 0.35rem;
     }
 
     .manufacturing-hero__copy {
@@ -5098,7 +5106,7 @@ STYLES = dedent(
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 0.9rem;
-      margin-top: 1.7rem;
+      margin-top: 1.35rem;
       max-width: 52rem;
     }
 
@@ -5127,6 +5135,10 @@ STYLES = dedent(
       font-size: 0.98rem;
       line-height: 1.45;
       letter-spacing: -0.03em;
+    }
+
+    .hero--manufacturing-home + .section-block {
+      padding-top: 1.4rem;
     }
 
     .manufacturing-hero__media {
@@ -9553,6 +9565,10 @@ STYLES = dedent(
         padding-bottom: 0;
       }
 
+      .manufacturing-hero__facts {
+        gap: 0.85rem;
+      }
+
       .hero h1 {
         max-width: 12ch;
         font-size: clamp(2.5rem, 12vw, 4.4rem);
@@ -9846,6 +9862,7 @@ SCRIPT = dedent(
     const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
     const corridorStages = document.querySelectorAll("[data-corridor-stage]");
     const productGalleries = document.querySelectorAll("[data-product-gallery]");
+    const crosslinkTargets = document.querySelectorAll("[data-crosslink-target]");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     requestAnimationFrame(() => {{
@@ -10535,6 +10552,15 @@ SCRIPT = dedent(
 
     productGalleries.forEach((gallery) => {{
       initProductGallery(gallery);
+    }});
+
+    crosslinkTargets.forEach((link) => {{
+      link.addEventListener("click", (event) => {{
+        const href = link.getAttribute("href");
+        if (!href) return;
+        event.preventDefault();
+        window.location.assign(href);
+      }});
     }});
 
     syncHeader();
