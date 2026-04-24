@@ -882,9 +882,24 @@ LEGACY_REDIRECTS = [
         "target": "/hear-from-ceo/",
     },
     {
+        "path": "our-founder",
+        "title": "Founder page moved",
+        "target": "/hear-from-ceo/",
+    },
+    {
         "path": "terms-and-conditions",
         "title": "Terms moved",
         "target": "/terms-disclaimer/",
+    },
+    {
+        "path": "exporter-profile",
+        "title": "Exporter profile moved",
+        "target": "/industrial-minerals-exporter-india/",
+    },
+    {
+        "path": "exporter-markets",
+        "title": "Exporter markets moved",
+        "target": "/export-markets/",
     },
     {
         "path": "faq",
@@ -957,8 +972,28 @@ LEGACY_REDIRECTS = [
         "target": "/products/feldspar/",
     },
     {
+        "path": "potash-soda-feldspar",
+        "title": "Feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
+        "path": "potassium-feldspar",
+        "title": "Potassium feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
+        "path": "sodium-feldspar",
+        "title": "Sodium feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
         "path": "quartz",
         "title": "Quartz page moved",
+        "target": "/products/quartz-sand-for-ceramics/",
+    },
+    {
+        "path": "quartz-sand",
+        "title": "Quartz sand page moved",
         "target": "/products/quartz-sand-for-ceramics/",
     },
     {
@@ -972,9 +1007,74 @@ LEGACY_REDIRECTS = [
         "target": "/products/silica-sand/",
     },
     {
+        "path": "feldspar-india",
+        "title": "Feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
         "path": "bentonite-supplier-india",
         "title": "Bentonite page moved",
         "target": "/products/bentonite/",
+    },
+    {
+        "path": "products/quartz",
+        "title": "Quartz page moved",
+        "target": "/products/quartz-sand-for-ceramics/",
+    },
+    {
+        "path": "products/quartz-sand",
+        "title": "Quartz sand page moved",
+        "target": "/products/quartz-sand-for-ceramics/",
+    },
+    {
+        "path": "products/silicasand",
+        "title": "Silica sand page moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "products/silica-sand-india",
+        "title": "Silica sand page moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "products/silicasand-supplier-india",
+        "title": "Silica sand page moved",
+        "target": "/products/silica-sand/",
+    },
+    {
+        "path": "products/china-clay",
+        "title": "China clay page moved",
+        "target": "/products/kaolin--china-clay/",
+    },
+    {
+        "path": "products/kaolin-china-clay",
+        "title": "Kaolin page moved",
+        "target": "/products/kaolin--china-clay/",
+    },
+    {
+        "path": "products/potash-soda-feldspar",
+        "title": "Feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
+        "path": "products/potash-&-soda-feldspar",
+        "title": "Feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
+        "path": "products/potassium-feldspar",
+        "title": "Potassium feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
+        "path": "products/sodium-feldspar",
+        "title": "Sodium feldspar page moved",
+        "target": "/products/feldspar/",
+    },
+    {
+        "path": "products/feldspar-india",
+        "title": "Feldspar page moved",
+        "target": "/products/feldspar/",
     },
     {
         "path": "animal-feed-bentonite",
