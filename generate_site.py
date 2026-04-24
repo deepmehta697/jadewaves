@@ -687,6 +687,21 @@ for product in PRODUCTS:
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
 CORE_PRODUCT_SLUGS = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
 CORE_PRODUCT_SET = set(CORE_PRODUCT_SLUGS)
+NON_CORE_PRODUCT_SET = {product["slug"] for product in PRODUCTS if product["slug"] not in CORE_PRODUCT_SET}
+NOINDEX_PAGE_PARENTS = {
+    "export-markets",
+    "hear-from-ceo",
+    "industrial-minerals-exporter-india",
+    *(f"products/{slug}" for slug in NON_CORE_PRODUCT_SET),
+}
+ROBOTS_DISALLOWS = [
+    "/assets/coas/",
+    "/assets/grade-sheets/",
+    "/assets/tds/",
+    "/m/",
+    "/*?blogcategory=",
+    "/*?blog=",
+]
 
 
 def visible_products() -> list[dict]:
@@ -2064,10 +2079,19 @@ def analytics_snippet() -> str:
     ).strip()
 
 
-def page_shell(title: str, meta_description: str, path: str, body: str, schema: list[dict], body_class: str = "") -> str:
+def page_shell(
+    title: str,
+    meta_description: str,
+    path: str,
+    body: str,
+    schema: list[dict],
+    body_class: str = "",
+    indexable: bool = True,
+) -> str:
     page_url = f"{BASE_URL}{path}"
     schema_blob = json.dumps(schema, ensure_ascii=False)
     tracking_markup = analytics_snippet()
+    robots_content = "index,follow" if indexable else "noindex,follow"
     return make_project_pages_safe(
         dedent(
             f"""
@@ -2078,7 +2102,7 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>{escape(title)}</title>
                 <meta name="description" content="{escape(meta_description)}" />
-                <meta name="robots" content="index,follow" />
+                <meta name="robots" content="{robots_content}" />
                 <link rel="canonical" href="{escape(page_url)}" />
                 <meta property="og:title" content="{escape(title)}" />
                 <meta property="og:description" content="{escape(meta_description)}" />
@@ -3311,6 +3335,7 @@ def render_export_markets_page() -> str:
         body,
         schema,
         "page-export-markets",
+        indexable=False,
     )
 
 
@@ -3515,6 +3540,7 @@ def render_exporter_profile_page() -> str:
         body,
         schema,
         "page-exporter-profile",
+        indexable=False,
     )
 
 
@@ -3674,6 +3700,7 @@ def render_ceo_page() -> str:
         body,
         schema,
         "page-ceo",
+        indexable=False,
     )
 
 
@@ -4089,6 +4116,7 @@ def render_product_page(product: dict) -> str:
         product_body,
         schema,
         "page-product",
+        indexable=product["slug"] in CORE_PRODUCT_SET,
     )
 
 
@@ -10673,10 +10701,12 @@ SCRIPT = dedent(
 
 
 def render_robots() -> str:
+    disallow_lines = "\n".join(f"        Disallow: {rule}" for rule in ROBOTS_DISALLOWS)
     return dedent(
         f"""
         User-agent: *
         Allow: /
+{disallow_lines}
 
         Sitemap: {BASE_URL}/sitemap.xml
         """
@@ -10697,6 +10727,8 @@ def render_sitemap() -> str:
         if parent in legacy_product_paths:
             continue
         if parent in legacy_redirect_paths:
+            continue
+        if parent in NOINDEX_PAGE_PARENTS:
             continue
         url_path = "/" if parent == "." else f"/{parent}/"
         urls.append(url_path)
