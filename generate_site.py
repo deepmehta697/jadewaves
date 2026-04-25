@@ -18,7 +18,7 @@ CONTACT = {
     "company": "Jade Waves Enterprise",
     "phone": "+91-999-883-5503",
     "sales_email": "deep@jadewavesenterprise.com",
-    "address": "A-11 Florence, Science City Road, Ahmedabad, Gujarat 380060, India",
+    "address": "A-11 Florence, Science City Road, Ahmedabad-380060, Gujarat, India",
     "port": "Near Mundra Port",
 }
 
@@ -2038,6 +2038,7 @@ def footer_html() -> str:
                 <p class="footer-heading">Contact</p>
                 <a href="tel:{escape(CONTACT["phone"])}">{escape(CONTACT["phone"])}</a>
                 <a href="mailto:{escape(CONTACT["sales_email"])}">{escape(CONTACT["sales_email"])}</a>
+                <p>{escape(CONTACT["address"])}</p>
               </div>
               <div>
                 <p class="footer-heading">Navigate</p>
@@ -2145,6 +2146,7 @@ def form_block(product_name: str = "") -> str:
             <div class="contact-details">
               <a href="mailto:{escape(CONTACT["sales_email"])}">{escape(CONTACT["sales_email"])}</a>
               <a href="tel:{escape(CONTACT["phone"])}">{escape(CONTACT["phone"])}</a>
+              <p>{escape(CONTACT["address"])}</p>
             </div>
           </div>
           <form class="inquiry-form" data-inquiry-form data-reveal>
@@ -2654,7 +2656,11 @@ def render_homepage() -> str:
             "url": BASE_URL,
             "email": CONTACT["sales_email"],
             "telephone": CONTACT["phone"],
-            "addressCountry": "IN",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": CONTACT["address"],
+                "addressCountry": "IN",
+            },
         },
         {
             "@context": "https://schema.org",
