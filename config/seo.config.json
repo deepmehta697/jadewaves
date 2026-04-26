@@ -24,7 +24,7 @@
     "targets": [
       "industrial mineral exporter",
       "silica sand supplier",
-      "quartz supplier from india",
+      "quartz sand supplier from india",
       "feldspar supplier",
       "bentonite supplier",
       "industrial salt supplier",
@@ -79,7 +79,7 @@
     },
     {
       "path": "/products/quartz-sand-for-ceramics/",
-      "primary": "quartz supplier from india",
+      "primary": "quartz sand supplier from india",
       "secondary": [
         "quartz sand supplier",
         "quartz grits supplier",
