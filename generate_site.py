@@ -29,11 +29,11 @@ INDUSTRIES = [
     ),
     (
         "Ceramics",
-        "Quartz, feldspar, kaolin, talc, and silica flour for bodies, tiles, and glaze-linked production.",
+        "Quartz sand, feldspar, and silica sand for bodies, tiles, glaze systems, and ceramic process buying.",
     ),
     (
         "Construction",
-        "Fly ash, silica, and copper slag for concrete, infrastructure, and mineral-heavy site demand.",
+        "Silica sand and quartz inputs for construction-linked and engineered-stone-adjacent mineral demand.",
     ),
     (
         "Chemicals",
@@ -49,7 +49,7 @@ INDUSTRIES = [
     ),
     (
         "Foundry",
-        "Silica sand and bentonite for moulding systems that depend on repeatable sizing and binding strength.",
+        "Silica sand for moulding systems that depend on repeatable sizing and dependable export handling.",
     ),
 ]
 
@@ -573,38 +573,24 @@ for product in PRODUCTS:
 
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
 
+ACTIVE_PRODUCT_SLUGS = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
+REDIRECT_PRODUCT_TARGETS = {
+    "silica-flour": "/products/silica-sand/",
+}
+ACTIVE_PRODUCTS = [PRODUCTS_BY_SLUG[slug] for slug in ACTIVE_PRODUCT_SLUGS]
+ACTIVE_PRODUCT_SLUG_SET = set(ACTIVE_PRODUCT_SLUGS)
+
 PRODUCT_FAMILIES = [
     {
         "id": "silica-quartz-feldspar",
         "name": "Silica, Quartz & Feldspar",
         "copy": "Purity-led grades for glass, ceramics, filtration, and engineered stone.",
         "best_for": ["Glass", "Ceramics", "Filtration", "Engineered Stone"],
-        "products": ["silica-sand", "silica-flour", "quartz-sand-for-ceramics", "feldspar"],
-    },
-    {
-        "id": "clays-fillers",
-        "name": "Clays & Functional Fillers",
-        "copy": "Functional minerals for drilling, coatings, absorbents, ceramics, and process use.",
-        "best_for": ["Drilling", "Ceramics", "Coatings", "Absorbents"],
-        "products": ["bentonite", "kaolin--china-clay", "talc"],
-    },
-    {
-        "id": "salt-grades",
-        "name": "Industrial Salt Grades",
-        "copy": "Salt grades arranged for chemical processing, treatment systems, utilities, and volume buying.",
-        "best_for": ["Chemical Processing", "Water Treatment", "Utilities", "Food Supply"],
-        "products": ["salt"],
-    },
-    {
-        "id": "construction-media",
-        "name": "Construction & Industrial Media",
-        "copy": "Media and mineral inputs for concrete, blasting, infrastructure, and site-led demand.",
-        "best_for": ["Blasting", "Concrete", "Infrastructure", "Surface Preparation"],
-        "products": ["fly-ash", "copper-slag"],
+        "products": ACTIVE_PRODUCT_SLUGS,
     },
 ]
 
-HOME_FEATURED = ["silica-sand", "bentonite", "feldspar"]
+HOME_FEATURED = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
 
 BLOGS = [
     {
@@ -1243,7 +1229,7 @@ BLOGS = [
                 "heading": "What we offer",
                 "body": "If your team is sourcing silica sand from India, the first step is to align the right supply form against application and shipment basis.",
                 "points": [
-                    "Current silica line includes silica sand and silica flour",
+                    "Current silica line is focused on silica sand supply for active buyer programs",
                     "Supply discussion is aligned to end use before quotation",
                     "Packing and shipment planning are handled together with the grade discussion",
                 ],
@@ -1333,14 +1319,13 @@ BLOGS = [
 ]
 
 CURRENT_BLOG_SLUGS = [
+    "quartz-sand-supplier-india-vietnam-buyers-guide",
+    "potassium-vs-sodium-feldspar-import-buyer-guide",
+    "silica-sand-import-checklist-glass-foundry-filtration",
     "potassium-feldspar-supplier-for-ceramic-tiles",
     "quartz-powder-supplier-for-engineered-stone",
     "silica-sand-exporter-from-india",
-    "kaolin-supplier-for-paint-industry",
-    "bentonite-supplier-india",
-    "fly-ash-exporter-from-india-bulk-shipment",
-    "copper-slag-supplier-for-shipyard-blasting",
-    "industrial-salt-exporter",
+    "how-to-check-tds-and-sample-coa-before-mineral-import",
 ]
 
 
@@ -1350,37 +1335,7 @@ def write(path: Path, content: str) -> None:
 
 
 def make_project_pages_safe(markup: str) -> str:
-    base_bootstrap = dedent(
-        f"""
-        <script>
-          window.__JWE_SITE_BASE_PATH__ = (function() {{
-            var repoPath = "/{PROJECT_PAGES_REPO}";
-            var pathname = window.location.pathname;
-            if (pathname === repoPath || pathname.indexOf(repoPath + "/") === 0) {{
-              return repoPath;
-            }}
-            return "";
-          }})();
-          var baseHref = window.__JWE_SITE_BASE_PATH__ ? window.__JWE_SITE_BASE_PATH__ + "/" : "/";
-          document.write('<base href="' + baseHref + '">');
-        </script>
-        """
-    ).strip()
-    safe_markup = markup.replace(
-        '<link rel="stylesheet" href="/styles.css" />',
-        f"{base_bootstrap}\n            <link rel=\"stylesheet\" href=\"styles.css\" />",
-        1,
-    )
-    for source, target in (
-        ('href="/#', 'href="./#'),
-        ('href="/"', 'href="./"'),
-        ('href="/', 'href="'),
-        ('src="/', 'src="'),
-        ('poster="/', 'poster="'),
-        ('srcset="/', 'srcset="'),
-    ):
-        safe_markup = safe_markup.replace(source, target)
-    return safe_markup
+    return markup
 
 
 def nav_html() -> str:
@@ -1509,6 +1464,36 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
     )
 
 
+def render_redirect_page(title: str, description: str, from_path: str, to_path: str) -> str:
+    target_url = f"{BASE_URL}{to_path}"
+    return dedent(
+        f"""
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>{escape(title)}</title>
+            <meta name="description" content="{escape(description)}" />
+            <meta name="robots" content="noindex,follow" />
+            <link rel="canonical" href="{escape(target_url)}" />
+            <meta http-equiv="refresh" content="0; url={escape(target_url)}" />
+            <script>window.location.replace({json.dumps(target_url)});</script>
+            <link rel="stylesheet" href="/styles.css" />
+          </head>
+          <body class="antialiased page-redirect">
+            <main class="shell" style="padding: 6rem 1.5rem;">
+              <p class="section-label">Redirecting</p>
+              <h1>{escape(title)}</h1>
+              <p>{escape(description)}</p>
+              <p><a href="{escape(to_path)}">Continue to the current page</a></p>
+            </main>
+          </body>
+        </html>
+        """
+    ).strip()
+
+
 def form_block(product_name: str = "") -> str:
     product_field = (
         f'<input type="text" name="product" value="{escape(product_name)}" readonly />'
@@ -1588,7 +1573,7 @@ def form_block(product_name: str = "") -> str:
 
 def product_select() -> str:
     options = ['<option value="">Select product</option>']
-    for product in PRODUCTS:
+    for product in ACTIVE_PRODUCTS:
         options.append(f'<option value="{escape(product["name"])}">{escape(product["name"])}</option>')
     return "<select name=\"product\">" + "".join(options) + "</select>"
 
@@ -1596,6 +1581,8 @@ def product_select() -> str:
 def related_links(slugs: list[str]) -> str:
     links = []
     for slug in slugs:
+        if slug not in ACTIVE_PRODUCT_SLUG_SET:
+            continue
         product = PRODUCTS_BY_SLUG[slug]
         links.append(
             f'<a href="/products/{product["slug"]}/">{escape(product["name"])}</a>'
@@ -1983,7 +1970,7 @@ def render_homepage() -> str:
                     "url": f"{BASE_URL}/products/{product['slug']}/",
                     "name": product["name"],
                 }
-                for index, product in enumerate(PRODUCTS)
+                for index, product in enumerate(ACTIVE_PRODUCTS)
             ],
         },
     ]
@@ -2437,7 +2424,7 @@ def render_products_index() -> str:
                     "url": f"{BASE_URL}/products/{product['slug']}/",
                     "name": product["name"],
                 }
-                for index, product in enumerate(PRODUCTS)
+                for index, product in enumerate(ACTIVE_PRODUCTS)
             ],
         },
     ]
@@ -2513,8 +2500,6 @@ def render_export_markets_page() -> str:
             '<a href="/products/silica-sand/">Silica sand for glass, filtration, and foundry buyers</a>',
             '<a href="/products/quartz-sand-for-ceramics/">Quartz sand, grits, and powder for ceramic and glass buyers</a>',
             '<a href="/products/feldspar/">Potash and soda feldspar for ceramic and sanitaryware buyers</a>',
-            '<a href="/products/bentonite/">Bentonite for drilling, foundry, and sealing buyers</a>',
-            '<a href="/products/salt/">Industrial salt for water treatment and chemical buyers</a>',
         ]
     )
     body = dedent(
@@ -2684,8 +2669,6 @@ def render_exporter_profile_page() -> str:
             '<a href="/products/silica-sand/">Silica sand supplier and exporter</a>',
             '<a href="/products/quartz-sand-for-ceramics/">Quartz sand, grits, and powder supplier</a>',
             '<a href="/products/feldspar/">Potash and soda feldspar supplier</a>',
-            '<a href="/products/bentonite/">Bentonite supplier for drilling and foundry use</a>',
-            '<a href="/products/salt/">Industrial salt supplier for water treatment and chemical use</a>',
         ]
     )
     process_steps = [
@@ -2741,7 +2724,7 @@ def render_exporter_profile_page() -> str:
                   <div class="home-poster__metrics">
                     <article class="home-metric">
                       <span>Range</span>
-                      <strong>Silica, quartz, feldspar, bentonite, salt, and more</strong>
+                      <strong>Silica sand, quartz sand, and feldspar</strong>
                     </article>
                     <article class="home-metric">
                       <span>Focus</span>
@@ -2782,7 +2765,7 @@ def render_exporter_profile_page() -> str:
                 <article class="home-split__panel" data-reveal>
                   <p class="section-label">Core export range</p>
                   <h2>Products buyers usually ask for first.</h2>
-                  <p>These products usually matter most when the requirement is tied to ceramics, glass, drilling, foundry, water treatment, or process use.</p>
+                      <p>These products usually matter most when the requirement is tied to ceramics, glass, filtration, and engineered stone buying programs.</p>
                   <div class="related-links">{product_links}</div>
                 </article>
                 <article class="home-split__panel" data-reveal>
@@ -2849,7 +2832,7 @@ def render_exporter_profile_page() -> str:
 def render_ceo_page() -> str:
     proof_items = [
         ("Company base", "Ahmedabad, Gujarat, India"),
-        ("Manufacturer-backed supply", "Silica, quartz, feldspar, bentonite, and salt"),
+        ("Manufacturer-backed supply", "Silica sand, quartz sand, and feldspar"),
         ("Port linkage", CONTACT["port"]),
         ("Core export documents", "COA, COO, Packing List, B/L"),
     ]
@@ -2927,7 +2910,7 @@ def render_ceo_page() -> str:
                         We do not treat export supply as only cargo movement. Our responsibility is to make sure your team receives the material aligned to your end use, with the right packing, document discipline, and commercial clarity.
                       </p>
                       <p>
-                        We manufacture and export silica sand, quartz, feldspar, bentonite, salt, and other industrial minerals from India for buyers who value repeat-order reliability over one-time transactions.
+                        We manufacture and export silica sand, quartz sand, and feldspar from India for buyers who value repeat-order reliability over one-time transactions.
                       </p>
                       <p>
                         You will have a directly reachable team member during inquiry, sampling, documentation, and dispatch. That keeps decisions faster, execution cleaner, and avoidable risk lower.
@@ -9127,16 +9110,19 @@ def render_robots() -> str:
 
 
 def render_sitemap() -> str:
-    urls: list[str] = []
-    for path in sorted(ROOT.rglob("index.html")):
-        if "_site" in path.parts or ".git" in path.parts:
-            continue
-        rel = path.relative_to(ROOT)
-        if rel.name != "index.html":
-            continue
-        parent = rel.parent.as_posix()
-        url_path = "/" if parent == "." else f"/{parent}/"
-        urls.append(url_path)
+    urls = [
+        "/",
+        "/blog/",
+        "/hear-from-ceo/",
+        "/export-markets/",
+        "/industrial-minerals-exporter-india/",
+        "/operations/",
+        "/privacy-policy/",
+        "/products/",
+        "/terms-disclaimer/",
+        *[f"/blog/{post['slug']}/" for post in BLOGS if post["slug"] in CURRENT_BLOG_SLUGS],
+        *[f"/products/{product['slug']}/" for product in ACTIVE_PRODUCTS],
+    ]
     entries = "\n".join(
         f"  <url><loc>{BASE_URL}{path}</loc><lastmod>{TODAY}</lastmod></url>"
         for path in urls
@@ -9155,13 +9141,23 @@ def main() -> None:
     write(ROOT / "index.html", render_homepage())
     write(ROOT / "blog" / "index.html", render_blog_index_page())
     for blog_post in BLOGS:
-      write(ROOT / "blog" / blog_post["slug"] / "index.html", render_blog_post_page(blog_post))
+      if blog_post["slug"] in CURRENT_BLOG_SLUGS:
+        write(ROOT / "blog" / blog_post["slug"] / "index.html", render_blog_post_page(blog_post))
     write(ROOT / "hear-from-ceo" / "index.html", render_ceo_page())
     write(ROOT / "export-markets" / "index.html", render_export_markets_page())
     write(ROOT / "industrial-minerals-exporter-india" / "index.html", render_exporter_profile_page())
     write(ROOT / "products" / "index.html", render_products_index())
-    for product in PRODUCTS:
+    for product in ACTIVE_PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
+    write(
+        ROOT / "products" / "silica-flour" / "index.html",
+        render_redirect_page(
+            "Silica Flour Redirect | Jade Waves Enterprise",
+            "Silica Flour inquiries are now handled through the Silica Sand product page.",
+            "/products/silica-flour/",
+            REDIRECT_PRODUCT_TARGETS["silica-flour"],
+        ),
+    )
     write(ROOT / "robots.txt", render_robots())
     write(ROOT / "sitemap.xml", render_sitemap())
 

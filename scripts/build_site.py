@@ -17,8 +17,22 @@ SITE_DIRS = [
     "industrial-minerals-exporter-india",
     "operations",
     "privacy-policy",
-    "products",
     "terms-disclaimer",
+]
+ACTIVE_PRODUCT_DIRS = [
+    "silica-sand",
+    "quartz-sand-for-ceramics",
+    "feldspar",
+    "silica-flour",
+]
+ACTIVE_BLOG_DIRS = [
+    "quartz-sand-supplier-india-vietnam-buyers-guide",
+    "potassium-vs-sodium-feldspar-import-buyer-guide",
+    "silica-sand-import-checklist-glass-foundry-filtration",
+    "potassium-feldspar-supplier-for-ceramic-tiles",
+    "quartz-powder-supplier-for-engineered-stone",
+    "silica-sand-exporter-from-india",
+    "how-to-check-tds-and-sample-coa-before-mineral-import",
 ]
 
 
@@ -38,9 +52,15 @@ def copy_path(source: Path, target: Path) -> None:
 
 def validate_inputs() -> list[str]:
     missing: list[str] = []
-    for name in ROOT_FILES + SITE_DIRS:
+    for name in ROOT_FILES + SITE_DIRS + ["blog/index.html", "products/index.html"]:
         if not (ROOT / name).exists():
             missing.append(name)
+    for name in ACTIVE_BLOG_DIRS:
+        if not (ROOT / "blog" / name / "index.html").exists():
+            missing.append(f"blog/{name}/index.html")
+    for name in ACTIVE_PRODUCT_DIRS:
+        if not (ROOT / "products" / name / "index.html").exists():
+            missing.append(f"products/{name}/index.html")
     return missing
 
 
@@ -54,7 +74,16 @@ def build_site() -> None:
         if source.exists():
             copy_path(source, BUILD_DIR / name)
 
+    copy_path(ROOT / "blog" / "index.html", BUILD_DIR / "blog" / "index.html")
+    for slug in ACTIVE_BLOG_DIRS:
+        copy_path(ROOT / "blog" / slug, BUILD_DIR / "blog" / slug)
+
+    copy_path(ROOT / "products" / "index.html", BUILD_DIR / "products" / "index.html")
+    for slug in ACTIVE_PRODUCT_DIRS:
+        copy_path(ROOT / "products" / slug, BUILD_DIR / "products" / slug)
+
     expected = [BUILD_DIR / name for name in ROOT_FILES + SITE_DIRS]
+    expected.extend([BUILD_DIR / "blog" / "index.html", BUILD_DIR / "products" / "index.html"])
     missing_outputs = [str(path.relative_to(ROOT)) for path in expected if not path.exists()]
     if missing_outputs:
         raise SystemExit(

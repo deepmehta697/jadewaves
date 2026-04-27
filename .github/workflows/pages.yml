@@ -27,12 +27,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Assemble static site
-        run: |
-          rm -rf _site
-          mkdir -p _site
-          cp index.html styles.css script.js robots.txt sitemap.xml _site/
-          cp -R assets blog export-markets hear-from-ceo industrial-minerals-exporter-india operations privacy-policy products terms-disclaimer _site/
-          if [ -f CNAME ]; then cp CNAME _site/CNAME; fi
+        run: python3 scripts/build_site.py --regenerate
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
