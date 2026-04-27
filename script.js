@@ -10,8 +10,6 @@ const routeNetworks = document.querySelectorAll("[data-route-network]");
 const portfolioAnchors = document.querySelectorAll(".portfolio-anchor");
 const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
 const corridorStages = document.querySelectorAll("[data-corridor-stage]");
-const productGalleries = document.querySelectorAll("[data-product-gallery]");
-const crosslinkTargets = document.querySelectorAll("[data-crosslink-target]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 requestAnimationFrame(() => {
@@ -481,96 +479,6 @@ const initCorridorStage = (stage) => {
   startAutoplay();
 };
 
-const initProductGallery = (gallery) => {
-  const scroller = gallery.querySelector("[data-gallery-scroller]");
-  const controls = Array.from(gallery.querySelectorAll("[data-gallery-control]"));
-  if (!scroller) return;
-
-  let frameId = 0;
-  let paused = false;
-  let lastTime = 0;
-  let resumeTimer = 0;
-
-  const maxScroll = () => Math.max(0, scroller.scrollWidth - scroller.clientWidth);
-
-  const scheduleResume = () => {
-    if (resumeTimer) {
-      window.clearTimeout(resumeTimer);
-    }
-    resumeTimer = window.setTimeout(() => {
-      paused = false;
-    }, 2200);
-  };
-
-  const scrollByAmount = (direction) => {
-    const distance = Math.max(scroller.clientWidth * 0.82, 220) * direction;
-    scroller.scrollBy({ left: distance, behavior: "smooth" });
-  };
-
-  controls.forEach((control) => {
-    control.addEventListener("click", () => {
-      paused = true;
-      scrollByAmount(Number(control.dataset.galleryControl || 0));
-      scheduleResume();
-    });
-  });
-
-  const tick = (time) => {
-    if (!paused && !prefersReducedMotion.matches && maxScroll() > 0) {
-      if (lastTime) {
-        const delta = time - lastTime;
-        const next = scroller.scrollLeft + delta * 0.045;
-        scroller.scrollLeft = next >= maxScroll() ? 0 : next;
-      }
-    }
-    lastTime = time;
-    frameId = window.requestAnimationFrame(tick);
-  };
-
-  const pause = () => {
-    paused = true;
-    if (resumeTimer) {
-      window.clearTimeout(resumeTimer);
-    }
-  };
-
-  const resume = () => {
-    paused = false;
-    if (resumeTimer) {
-      window.clearTimeout(resumeTimer);
-    }
-    resumeTimer = 0;
-  };
-
-  gallery.addEventListener("mouseenter", pause);
-  gallery.addEventListener("mouseleave", resume);
-  gallery.addEventListener("focusin", pause);
-  gallery.addEventListener("focusout", resume);
-  scroller.addEventListener("pointerdown", () => {
-    pause();
-    scheduleResume();
-  });
-  scroller.addEventListener("touchstart", () => {
-    pause();
-    scheduleResume();
-  }, { passive: true });
-  scroller.addEventListener("wheel", () => {
-    pause();
-    scheduleResume();
-  }, { passive: true });
-  scroller.addEventListener("scroll", () => {
-    if (paused) {
-      scheduleResume();
-    }
-  }, { passive: true });
-
-  frameId = window.requestAnimationFrame(tick);
-  return () => {
-    if (frameId) window.cancelAnimationFrame(frameId);
-    if (resumeTimer) window.clearTimeout(resumeTimer);
-  };
-};
-
 const inquiryEndpoint = "https://formsubmit.co/ajax/deep@jadewavesenterprise.com";
 
 const setRequestType = (requestType) => {
@@ -697,19 +605,6 @@ routeNetworks.forEach((canvas) => {
 
 corridorStages.forEach((stage) => {
   initCorridorStage(stage);
-});
-
-productGalleries.forEach((gallery) => {
-  initProductGallery(gallery);
-});
-
-crosslinkTargets.forEach((link) => {
-  link.addEventListener("click", (event) => {
-    const href = link.getAttribute("href");
-    if (!href) return;
-    event.preventDefault();
-    window.location.assign(href);
-  });
 });
 
 syncHeader();

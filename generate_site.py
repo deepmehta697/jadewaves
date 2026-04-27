@@ -18,30 +18,38 @@ CONTACT = {
     "company": "Jade Waves Enterprise",
     "phone": "+91-999-883-5503",
     "sales_email": "deep@jadewavesenterprise.com",
-    "address": "A-11 Florence, Science City Road, Ahmedabad-380060, Gujarat, India",
+    "address": "A-11 Florence, Science City Road, Ahmedabad, Gujarat 380060, India",
     "port": "Near Mundra Port",
 }
 
 INDUSTRIES = [
     (
         "Glass",
-        "Silica sand, quartz, and feldspar programs aligned for glass batches where purity, grain control, and flux response need to stay dependable.",
+        "Purity-led silica, quartz, and feldspar for glass batches where low iron and steadier melt behavior carry through.",
     ),
     (
         "Ceramics",
-        "Quartz sand and feldspar supplied for tile bodies, ceramic blends, and glaze-linked production that depends on steadier firing behavior.",
+        "Quartz sand, feldspar, and silica sand for bodies, tiles, glaze systems, and ceramic process buying.",
+    ),
+    (
+        "Construction",
+        "Silica sand and quartz inputs for construction-linked and engineered-stone-adjacent mineral demand.",
+    ),
+    (
+        "Chemicals",
+        "Salt, silica, and selected mineral inputs for processing, treatment, and utility-led operations.",
+    ),
+    (
+        "Drilling",
+        "Bentonite grades for drilling programs that rely on stable swelling, viscosity, and moisture control.",
+    ),
+    (
+        "Agriculture",
+        "Selected minerals for carrier, absorbent, and process-linked agricultural use.",
     ),
     (
         "Foundry",
-        "Silica sand sized for foundry systems where grain distribution, consistency, and repeat shipment control matter early.",
-    ),
-    (
-        "Engineered Stone",
-        "Quartz grits and quartz powder arranged for engineered stone lines where whiteness, purity, and controlled sizing show up in the finish.",
-    ),
-    (
-        "Sanitaryware",
-        "Feldspar and quartz grades aligned for sanitaryware and vitrified systems where melting control and cleaner firing matter.",
+        "Silica sand for moulding systems that depend on repeatable sizing and dependable export handling.",
     ),
 ]
 
@@ -54,8 +62,6 @@ INDUSTRY_ICONS = {
     "Drilling": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l7-7"/><path d="M9 4l11 11"/><path d="M14 3l7 7"/></svg>',
     "Agriculture": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c5-1 8-5 8-11-6 0-10 3-11 8"/><path d="M4 13c1 4 4 7 8 7"/><path d="M12 20V9"/></svg>',
     "Foundry": '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>',
-    "Engineered Stone": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7 12 3l7 4v10l-7 4-7-4z"/><path d="M12 7v14M5 7l7 4 7-4"/></svg>',
-    "Sanitaryware": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h12v4a4 4 0 0 1-4 4h-1v2h3v4H8v-4h3v-2h-1a4 4 0 0 1-4-4z"/></svg>',
 }
 
 PRODUCTS = [
@@ -66,10 +72,10 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "silica",
         "eyebrow": "Glass / Filtration / Foundry / Construction",
-        "seo_title": "Silica Sand Manufacturer & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Silica sand manufactured and exported from India for glass manufacturing, filtration, foundry, and construction buyers who need steady grain size, cleaner chemistry, and dependable shipment handling.",
-        "hero_copy": "Silica sand manufactured in India for glass manufacturing, filtration, foundry, and construction buyers who need clean chemistry, steady grain size, and export handling that stays under control.",
-        "short_copy": "Manufacturer-backed silica sand for glass manufacturing, filtration, foundry, and construction use.",
+        "seo_title": "Silica Sand Supplier & Exporter from India | Jade Waves Enterprise",
+        "meta_description": "Silica sand supplier and exporter from India for glass manufacturing, filtration, foundry, and construction buyers across Vietnam, Thailand, UAE, Saudi Arabia, Mauritius, and Maldives.",
+        "hero_copy": "Silica sand for glass manufacturing, filtration, foundry, and construction buyers who need clean chemistry, steady grain size, and export handling that stays under control.",
+        "short_copy": "Silica sand supplier for glass manufacturing, filtration, foundry, and construction use.",
         "summary_spec": "SiO2 98.07% / Fe2O3 customizable to 150-200 PPM for glass",
         "applications": [
             "Glass manufacturing",
@@ -100,23 +106,6 @@ PRODUCTS = [
         ],
         "forms": ["Silica Sand", "Silica Flour"],
         "packing": "50 Kg/Jumbo Bags",
-        "hero_images": [
-            ("Processed grain", "/assets/silica-sand-1.png"),
-            ("Packing view", "/assets/silica-sand-packing.jpg"),
-        ],
-        "gallery_images": [
-            ("Silica sand grain view", "/assets/silica-sand-1.png"),
-            ("Silica sand close texture", "/assets/optimized/silica-sand.jpg"),
-            ("Silica sand packed for dispatch", "/assets/silica-sand-packing.jpg"),
-            ("Container-ready silica cargo", "/assets/container-1604.jpeg"),
-            ("Silica loading movement", "/assets/loading-poster.jpg"),
-        ],
-        "snapshot_rows": [
-            ("Form", "Silica sand and silica flour"),
-            ("Packing Basis", "50 Kg and jumbo bag programs"),
-            ("Sampling", "Grade and grain-specific sample flow"),
-            ("Dispatch Basis", "FCL cargo movement"),
-        ],
         "size_options": [
             "8 Mesh",
             "16 Mesh",
@@ -130,31 +119,9 @@ PRODUCTS = [
         ],
         "parameter_docs_copy": "Chemical and physical parameter file for silica sand.",
         "commercial_fit": "For buyers who need silica that holds up in process and in transit.",
-        "detail_cards": [
-            {
-                "label": "Grade Alignment",
-                "title": "How silica sand programs are usually separated.",
-                "body": "Silica sand enquiries move faster when the end use, grain direction, and chemistry expectation are fixed before samples and quote comparisons begin.",
-                "points": [
-                    "Glass buyers usually align SiO2, Fe2O3, and grain profile first.",
-                    "Foundry buyers usually compare AFS or mesh direction, fines, and moisture handling.",
-                    "Filtration programs usually start with grain band, wash basis, and packing format.",
-                ],
-            },
-            {
-                "label": "Sampling & Dispatch",
-                "title": "What usually sits behind the first shipment.",
-                "body": "Samples are normally tied to the selected size band, parameter sheet, packing basis, and destination planning before the loading window is discussed.",
-                "points": [
-                    "Samples can be aligned to the requested mesh or AFS basis.",
-                    "Packing can follow 50 Kg bags or jumbo bag dispatch programs.",
-                    "Commercial terms, documents, and cargo planning are locked before loading starts.",
-                ],
-            },
-        ],
         "industries": ["Glass", "Foundry", "Construction", "Water Treatment"],
-        "source_url": "https://jadewavesenterprise.com/products/silica-sand/",
-        "related": ["quartz-sand-for-ceramics", "feldspar"],
+        "source_url": "https://jadewavesenterprise.com/silica-sand",
+        "related": ["silica-flour", "quartz-sand-for-ceramics", "feldspar"],
     },
     {
         "slug": "silica-flour",
@@ -196,7 +163,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For buyers who care more about particle discipline than generic silica supply.",
         "industries": ["Ceramics", "Construction", "Coatings", "Chemicals"],
-        "source_url": "https://jadewavesenterprise.com/products/silica-flour/",
+        "source_url": "https://jadewavesenterprise.com/silica-flour",
         "related": ["silica-sand", "quartz-sand-for-ceramics", "kaolin--china-clay"],
     },
     {
@@ -206,10 +173,10 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "quartz",
         "eyebrow": "Ceramics / Glass / Engineered Stone / Building Materials",
-        "seo_title": "Quartz Sand Manufacturer from India | Grits & Powder Exporter | Jade Waves Enterprise",
-        "meta_description": "Quartz sand, grits, and powder manufactured in India for ceramics, glass, and engineered stone buyers who need higher purity, whiteness, and dependable export handling.",
-        "hero_copy": "Quartz sand, grits, and powder manufactured in India for ceramics, glass, and engineered stone buyers who need higher purity, whiteness, and dependable export handling.",
-        "short_copy": "Manufacturer-backed quartz sand, grits, and powder for ceramics, glass, and engineered stone.",
+        "seo_title": "Quartz Supplier from India | Quartz Sand, Grits & Powder Exporter | Jade Waves Enterprise",
+        "meta_description": "Quartz supplier from India for ceramics, glass, and engineered stone buyers needing quartz sand, quartz grits, and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
+        "hero_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits, quartz powder, and dependable export handling.",
+        "short_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone.",
         "summary_spec": "SiO2 >99.0% / L value 91 min",
         "applications": [
             "Tiles and ceramic body production",
@@ -255,50 +222,10 @@ PRODUCTS = [
         ],
         "parameter_docs_copy": "Chemical and physical parameter files for active quartz grits and powder grades.",
         "packing": "50 Kg/Jumbo Bags",
-        "hero_images": [
-            ("Quartz sand", "/assets/quartz-sand-detail.png"),
-            ("Quartz lumps", "/assets/quartz-lumps-1.png"),
-        ],
-        "gallery_images": [
-            ("Quartz sand sample", "/assets/quartz-sand-detail.png"),
-            ("Quartz grits sample", "/assets/quartz-grits-0-1-0-4mm-sample.webp"),
-            ("Quartz grits line", "/assets/quartz-grits-0-1-0-4mm-hero.webp"),
-            ("Quartz lumps", "/assets/quartz-lumps-1.png"),
-            ("Quartz lumps stock", "/assets/quartz-lumps-3.png"),
-            ("Quartz lump texture", "/assets/quartz-lumps-texture.jpg"),
-        ],
-        "snapshot_rows": [
-            ("Form", "Quartz sand, grits, and powder"),
-            ("Packing Basis", "50 Kg and jumbo bag programs"),
-            ("Color", "White, snow white, milky white"),
-            ("Dispatch Basis", "FCL cargo movement"),
-        ],
         "commercial_fit": "For ceramic, glass, and engineered stone lines where purity and brightness show up in the finish.",
-        "detail_cards": [
-            {
-                "label": "Grade Direction",
-                "title": "How quartz supply is normally separated.",
-                "body": "Quartz enquiries usually divide into sand, grits, and powder programs based on purity level, whiteness expectation, and particle range rather than one generic quartz brief.",
-                "points": [
-                    "Higher-purity quartz is usually reviewed where finish and brightness stay visible in the end product.",
-                    "Grit size is aligned to ceramic, engineered stone, or glass use before pricing begins.",
-                    "Powder discussions usually follow the target mesh range and whiteness direction.",
-                ],
-            },
-            {
-                "label": "Buyer Basis",
-                "title": "What buyers usually confirm before quote.",
-                "body": "Quartz discussions move better when form, grain or mesh range, target whiteness, and shipment basis are fixed before the supply program is priced.",
-                "points": [
-                    "Sand, grits, and powder can be planned as separate grades inside the same shipment program.",
-                    "Custom sizing can be aligned around the end use and plant requirement.",
-                    "Sample flow, packing, and dispatch are kept on one clear track before cargo movement.",
-                ],
-            },
-        ],
         "industries": ["Ceramics", "Glass", "Construction"],
-        "source_url": "https://jadewavesenterprise.com/products/quartz-sand-for-ceramics/",
-        "related": ["silica-sand", "feldspar"],
+        "source_url": "https://jadewavesenterprise.com/quartz-sand-for-ceramics",
+        "related": ["silica-sand", "silica-flour", "feldspar"],
     },
     {
         "slug": "bentonite",
@@ -342,7 +269,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For operations that need bentonite to perform the same way from batch to batch.",
         "industries": ["Drilling", "Foundry", "Construction", "Treatment"],
-        "source_url": "https://jadewavesenterprise.com/products/bentonite/",
+        "source_url": "https://jadewavesenterprise.com/bentonite#ace72553-7437-4a98-b346-2b25da28c515",
         "related": ["kaolin--china-clay", "talc", "fly-ash"],
     },
     {
@@ -385,7 +312,7 @@ PRODUCTS = [
         "packing": "Jumbo Bags",
         "commercial_fit": "For buyers chasing brightness, cleaner firing, and a tighter filler profile.",
         "industries": ["Ceramics", "Paper", "Coatings", "Fillers"],
-        "source_url": "https://jadewavesenterprise.com/products/kaolin--china-clay/",
+        "source_url": "https://jadewavesenterprise.com/kaolin--china-clay",
         "related": ["talc", "feldspar", "silica-flour"],
     },
     {
@@ -430,7 +357,7 @@ PRODUCTS = [
         "packing": "Jumbo Bags",
         "commercial_fit": "For formulations that depend on whiteness, smoothness, and finer control.",
         "industries": ["Plastics", "Coatings", "Ceramics", "Rubber"],
-        "source_url": "https://jadewavesenterprise.com/products/talc/",
+        "source_url": "https://jadewavesenterprise.com/talc",
         "related": ["kaolin--china-clay", "feldspar", "silica-flour"],
     },
     {
@@ -440,10 +367,10 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "feldspar",
         "eyebrow": "Ceramics / Sanitaryware / Glass",
-        "seo_title": "Potash & Soda Feldspar Manufacturer from India | Jade Waves Enterprise",
-        "meta_description": "Potash and soda feldspar manufactured and exported from India for ceramics, sanitaryware, glass, and engineered stone buyers who need dependable flux behavior and cleaner firing.",
-        "hero_copy": "Potash and soda feldspar manufactured in India for ceramic, sanitaryware, tile, glass, and engineered stone production where flux behavior, melting control, and cleaner firing matter.",
-        "short_copy": "Manufacturer-backed potash and soda feldspar for ceramics, sanitaryware, glass, and engineered stone production.",
+        "seo_title": "Potash & Soda Feldspar Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Potash and soda feldspar supplier from India for ceramics, sanitaryware, glass, and engineered stone buyers in Vietnam, Thailand, the Philippines, UAE, Malaysia, and Saudi Arabia.",
+        "hero_copy": "Potash and soda feldspar supplied for ceramic, sanitaryware, tile, glass, and engineered stone production where flux behavior, melting control, and cleaner firing matter.",
+        "short_copy": "Potash and soda feldspar for ceramics, sanitaryware, glass, and engineered stone production.",
         "summary_spec": "K2O up to 12% / Na2O up to 10%",
         "applications": [
             "Ceramic and tile production",
@@ -478,50 +405,10 @@ PRODUCTS = [
         ],
         "parameter_docs_copy": "Chemical and physical parameter files for sodium and potassium feldspar grades.",
         "packing": "Jumbo Bags",
-        "hero_images": [
-            ("Feldspar lumps", "/assets/feldspar-lumps.png"),
-            ("Feldspar powder", "/assets/feldspar-powder.jpeg"),
-        ],
-        "gallery_images": [
-            ("Feldspar lumps", "/assets/feldspar-lumps.png"),
-            ("Feldspar material view", "/assets/feldspar-lumps-1.png"),
-            ("Feldspar K2O: 11%", "/assets/feldspar-lumps-2.jpeg"),
-            ("Feldspar K2O: 10%", "/assets/feldspar-lumps-3.jpeg"),
-            ("Feldspar powder", "/assets/feldspar-powder.jpeg"),
-            ("Feldspar packed bags", "/assets/feldspar-bags.png"),
-        ],
-        "snapshot_rows": [
-            ("Form", "Lumps and powder"),
-            ("Packing Basis", "Jumbo bag programs"),
-            ("Grades", "Potassium and sodium feldspar"),
-            ("Dispatch Basis", "FCL cargo movement"),
-        ],
         "commercial_fit": "For manufacturers who need flux contribution to be predictable, not approximate.",
-        "detail_cards": [
-            {
-                "label": "Grade Direction",
-                "title": "How potash and soda feldspar are handled.",
-                "body": "Feldspar enquiries usually begin by separating potassium and sodium requirement, target firing behavior, and the mesh basis needed in the buyer's plant.",
-                "points": [
-                    "Potash feldspar is commonly reviewed for ceramic bodies, glazes, and tile production.",
-                    "Soda feldspar is usually compared where Na2O contribution and melt response matter more.",
-                    "Lumps and powder can be aligned to the selected manufacturing route.",
-                ],
-            },
-            {
-                "label": "Sampling & Fit",
-                "title": "What is usually confirmed before sampling.",
-                "body": "Most feldspar buyers move faster when flux type, Fe2O3 limit, mesh range, and packing basis are fixed before parameter sheets, samples, and commercial terms are compared.",
-                "points": [
-                    "Parameter sheets are available for both sodium and potassium grades.",
-                    "Mesh direction can be aligned to body, glaze, sanitaryware, or glass use.",
-                    "Dispatch planning follows the selected grade and packing program.",
-                ],
-            },
-        ],
         "industries": ["Ceramics", "Sanitaryware", "Glass", "Engineered Stone"],
-        "source_url": "https://jadewavesenterprise.com/products/feldspar/",
-        "related": ["silica-sand", "quartz-sand-for-ceramics"],
+        "source_url": "https://jadewavesenterprise.com/feldspar",
+        "related": ["quartz-sand-for-ceramics", "kaolin--china-clay", "talc"],
     },
     {
         "slug": "salt",
@@ -570,7 +457,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For buyers managing multiple grades, steady volumes, and flexible packing requirements.",
         "industries": ["Chemicals", "Water Treatment", "Infrastructure", "Food Processing"],
-        "source_url": "https://jadewavesenterprise.com/products/salt/",
+        "source_url": "https://jadewavesenterprise.com/salt",
         "related": ["silica-sand", "bentonite", "fly-ash"],
     },
     {
@@ -613,7 +500,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For cement and infrastructure buyers who need dispatch discipline as much as material fit.",
         "industries": ["Construction", "Cement", "Infrastructure"],
-        "source_url": "https://jadewavesenterprise.com/products/fly-ash/",
+        "source_url": "https://jadewavesenterprise.com/fly-ash",
         "related": ["copper-slag", "silica-sand", "bentonite"],
     },
     {
@@ -664,7 +551,7 @@ PRODUCTS = [
         "packing": "50 Kg/Jumbo Bags",
         "commercial_fit": "For abrasive work where particle performance and dependable supply both matter.",
         "industries": ["Blasting", "Surface Preparation", "Construction"],
-        "source_url": "https://jadewavesenterprise.com/products/copper-slag/",
+        "source_url": "https://jadewavesenterprise.com/copper-slag",
         "related": ["fly-ash", "silica-sand", "feldspar"],
     },
 ]
@@ -685,497 +572,21 @@ for product in PRODUCTS:
         product["packing"] = packing
 
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
-CORE_PRODUCT_SLUGS = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
-CORE_PRODUCT_SET = set(CORE_PRODUCT_SLUGS)
-NON_CORE_PRODUCT_SET = {product["slug"] for product in PRODUCTS if product["slug"] not in CORE_PRODUCT_SET}
-NOINDEX_PAGE_PARENTS = {
-    "export-markets",
-    "hear-from-ceo",
-    "industrial-minerals-exporter-india",
-    *(f"products/{slug}" for slug in NON_CORE_PRODUCT_SET),
+
+ACTIVE_PRODUCT_SLUGS = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
+REDIRECT_PRODUCT_TARGETS = {
+    "silica-flour": "/products/silica-sand/",
 }
-ROBOTS_DISALLOWS = [
-    "/assets/coas/",
-    "/assets/grade-sheets/",
-    "/assets/tds/",
-    "/m/",
-    "/*?blogcategory=",
-    "/*?blog=",
-]
-
-
-def visible_products() -> list[dict]:
-    return [product for product in PRODUCTS if product["slug"] in CORE_PRODUCT_SET]
-
-
-def visible_blog_posts() -> list[dict]:
-    return [
-        post
-        for post in BLOGS
-        if post["slug"] in CURRENT_BLOG_SLUGS and post["product_slug"] in CORE_PRODUCT_SET
-    ]
-
-LEGACY_REDIRECTS = [
-    {
-        "path": "blogs/f/silica-sand-maldives",
-        "title": "Silica Sand Maldives moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "blogs/f/bentonite-suppliers-in-saudi-arabia",
-        "title": "Bentonite Suppliers in Saudi Arabia moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "blogs/f/silica-sand-suppliers-in-mauritius-jade-waves-enterprise",
-        "title": "Silica Sand Suppliers in Mauritius moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "blogs/f/activated-bleaching-earth",
-        "title": "Activated bleaching earth moved",
-        "target": "/products/",
-    },
-    {
-        "path": "activated-bleaching-earth",
-        "title": "Activated bleaching earth moved",
-        "target": "/products/",
-    },
-    {
-        "path": "blogs/f/bentonite-clay-and-its-applications",
-        "title": "Bentonite applications article moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "blogs/f/bentonite-suppliers-in-malaysia",
-        "title": "Bentonite suppliers in Malaysia moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "contact-1",
-        "title": "Contact moved",
-        "target": "/#contact",
-    },
-    {
-        "path": "contact-1/ola/services/business-collaboration",
-        "title": "Business collaboration moved",
-        "target": "/#contact",
-    },
-    {
-        "path": "contact-1/ola/services/request-a-free-sample",
-        "title": "Sample request moved",
-        "target": "/#contact",
-    },
-    {
-        "path": "contact-1/ola/services/product-inquiry-call",
-        "title": "Product inquiry moved",
-        "target": "/#contact",
-    },
-    {
-        "path": "blogs/f/bentonite-suppliers-in-vietnam",
-        "title": "Bentonite suppliers in Vietnam moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "blogs/f/copper-slag-for-sandblasting",
-        "title": "Copper slag sandblasting article moved",
-        "target": "/blog/copper-slag-supplier-for-shipyard-blasting/",
-    },
-    {
-        "path": "blogs/f/copper-slag-suppliers-in-india",
-        "title": "Copper slag suppliers in India moved",
-        "target": "/products/copper-slag/",
-    },
-    {
-        "path": "blogs/f/drilling-bentonite",
-        "title": "Drilling bentonite article moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "blogs/f/fly-ash-suppliers-in-india",
-        "title": "Fly ash suppliers in India moved",
-        "target": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
-    },
-    {
-        "path": "blogs/f/innovations-in-recycling-fly-ash",
-        "title": "Fly ash recycling article moved",
-        "target": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
-    },
-    {
-        "path": "blogs/f/kaolin-china-clay-suppliers-in-india",
-        "title": "Kaolin suppliers in India moved",
-        "target": "/products/kaolin--china-clay/",
-    },
-    {
-        "path": "blogs/f/paint-bentonite",
-        "title": "Paint bentonite article moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "blogs/f/potash-feldspar-feldspar-suppliers-india",
-        "title": "Potash feldspar suppliers article moved",
-        "target": "/blog/potassium-feldspar-supplier-for-ceramic-tiles/",
-    },
-    {
-        "path": "blogs/f/quartz-supplier-in-vietnam---quartz-india",
-        "title": "Quartz supplier in Vietnam article moved",
-        "target": "/blog/quartz-sand-supplier-india-vietnam-buyers-guide/",
-    },
-    {
-        "path": "blogs/f/rubber-granules-maldives-rubber-granules-supplier-in-maldives",
-        "title": "Rubber granules Maldives article moved",
-        "target": "/products/",
-    },
-    {
-        "path": "blogs/f/salt-suppliers-in-mauritius-jade-waves-enterprise",
-        "title": "Salt suppliers in Mauritius moved",
-        "target": "/blog/industrial-salt-exporter/",
-    },
-    {
-        "path": "blogs/f/salt-suppliers-in-seychelles-jade-waves-enteprise",
-        "title": "Salt suppliers in Seychelles moved",
-        "target": "/blog/industrial-salt-exporter/",
-    },
-    {
-        "path": "blogs/f/salt-the-essential-mineral",
-        "title": "Salt article moved",
-        "target": "/products/salt/",
-    },
-    {
-        "path": "blogs/f/silica-sand-for-artificial-football-turf",
-        "title": "Silica sand turf article moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "blogs/f/silica-sand-suppliers-in-kenya",
-        "title": "Silica sand suppliers in Kenya moved",
-        "target": "/blog/silica-sand-exporter-from-india/",
-    },
-    {
-        "path": "blogs/f/the-future-of-fly-ash-utilization-in-green-building-practices",
-        "title": "Fly ash green building article moved",
-        "target": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
-    },
-    {
-        "path": "blogs/f/the-role-of-fly-ash-in-cement-manufacturing",
-        "title": "Fly ash cement article moved",
-        "target": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
-    },
-    {
-        "path": "blogs/f/top-silica-sand-suppliers-in-india-jade-waves-enterprise",
-        "title": "Silica sand suppliers article moved",
-        "target": "/blog/silica-sand-exporter-from-india/",
-    },
-    {
-        "path": "blogs",
-        "title": "Blog index moved",
-        "target": "/blog/",
-    },
-    {
-        "path": "about-us",
-        "title": "About us moved",
-        "target": "/industrial-minerals-exporter-india/",
-    },
-    {
-        "path": "company-profile",
-        "title": "Company profile moved",
-        "target": "/industrial-minerals-exporter-india/",
-    },
-    {
-        "path": "home",
-        "title": "Home moved",
-        "target": "/",
-    },
-    {
-        "path": "infrastructure",
-        "title": "Infrastructure moved",
-        "target": "/operations/",
-    },
-    {
-        "path": "hear-from-our-ceo",
-        "title": "CEO page moved",
-        "target": "/hear-from-ceo/",
-    },
-    {
-        "path": "our-founder",
-        "title": "Founder page moved",
-        "target": "/hear-from-ceo/",
-    },
-    {
-        "path": "terms-and-conditions",
-        "title": "Terms moved",
-        "target": "/terms-disclaimer/",
-    },
-    {
-        "path": "exporter-profile",
-        "title": "Exporter profile moved",
-        "target": "/industrial-minerals-exporter-india/",
-    },
-    {
-        "path": "exporter-markets",
-        "title": "Exporter markets moved",
-        "target": "/export-markets/",
-    },
-    {
-        "path": "faq",
-        "title": "FAQ moved",
-        "target": "/products/",
-    },
-    {
-        "path": "operations/industrial-minerals-exporter-india",
-        "title": "Exporter profile moved",
-        "target": "/industrial-minerals-exporter-india/",
-    },
-    {
-        "path": "m/login",
-        "title": "Login moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "m/reset",
-        "title": "Reset moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "m/create-account",
-        "title": "Account creation moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "export-markets/quartz-sand-vietnam",
-        "title": "Vietnam quartz page moved",
-        "target": "/products/quartz-sand-for-ceramics/",
-    },
-    {
-        "path": "export-markets/silica-sand-maldives",
-        "title": "Maldives silica sand page moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "export-markets/quartz-feldspar-ceramic-glass",
-        "title": "Ceramic and glass markets page moved",
-        "target": "/export-markets/",
-    },
-    {
-        "path": "export-markets/bentonite-vietnam-gulf",
-        "title": "Vietnam and Gulf bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "export-markets/feldspar-vietnam",
-        "title": "Vietnam feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "products/products/silica-sand",
-        "title": "Silica sand page moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "products/salt/products/silica-sand",
-        "title": "Silica sand page moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "products/kaolin--china-clay/products",
-        "title": "Kaolin page moved",
-        "target": "/products/kaolin--china-clay/",
-    },
-    {
-        "path": "potash-&-soda-feldspar",
-        "title": "Feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "potash-soda-feldspar",
-        "title": "Feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "potassium-feldspar",
-        "title": "Potassium feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "sodium-feldspar",
-        "title": "Sodium feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "quartz",
-        "title": "Quartz page moved",
-        "target": "/products/quartz-sand-for-ceramics/",
-    },
-    {
-        "path": "quartz-sand",
-        "title": "Quartz sand page moved",
-        "target": "/products/quartz-sand-for-ceramics/",
-    },
-    {
-        "path": "silica-sand-india",
-        "title": "Silica sand page moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "silicasand-supplier-india",
-        "title": "Silica sand page moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "feldspar-india",
-        "title": "Feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "bentonite-supplier-india",
-        "title": "Bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "products/quartz",
-        "title": "Quartz page moved",
-        "target": "/products/quartz-sand-for-ceramics/",
-    },
-    {
-        "path": "products/quartz-sand",
-        "title": "Quartz sand page moved",
-        "target": "/products/quartz-sand-for-ceramics/",
-    },
-    {
-        "path": "products/silicasand",
-        "title": "Silica sand page moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "products/silica-sand-india",
-        "title": "Silica sand page moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "products/silicasand-supplier-india",
-        "title": "Silica sand page moved",
-        "target": "/products/silica-sand/",
-    },
-    {
-        "path": "products/china-clay",
-        "title": "China clay page moved",
-        "target": "/products/kaolin--china-clay/",
-    },
-    {
-        "path": "products/kaolin-china-clay",
-        "title": "Kaolin page moved",
-        "target": "/products/kaolin--china-clay/",
-    },
-    {
-        "path": "products/potash-soda-feldspar",
-        "title": "Feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "products/potash-&-soda-feldspar",
-        "title": "Feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "products/potassium-feldspar",
-        "title": "Potassium feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "products/sodium-feldspar",
-        "title": "Sodium feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "products/feldspar-india",
-        "title": "Feldspar page moved",
-        "target": "/products/feldspar/",
-    },
-    {
-        "path": "animal-feed-bentonite",
-        "title": "Animal feed bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "oil-drilling-bentonite",
-        "title": "Drilling bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "pond-sealing-bentonite",
-        "title": "Pond sealing bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "cat-litter-bentonite",
-        "title": "Cat litter bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "ceramics-bentonite",
-        "title": "Ceramics bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "earthing-bentonite",
-        "title": "Earthing bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "foundry-bentonite",
-        "title": "Foundry bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "refractory-bentonite",
-        "title": "Refractory bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "fertilizer-bentonite",
-        "title": "Fertilizer bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "piling-bentonite",
-        "title": "Piling bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "hdd-bentonite",
-        "title": "HDD bentonite page moved",
-        "target": "/products/bentonite/",
-    },
-    {
-        "path": "dolomite",
-        "title": "Dolomite page moved",
-        "target": "/products/",
-    },
-    {
-        "path": "limestone-/-dolomite",
-        "title": "Dolomite page moved",
-        "target": "/products/",
-    },
-    {
-        "path": "talc-/-soapstone",
-        "title": "Talc page moved",
-        "target": "/products/talc/",
-    },
-    {
-        "path": "rubber-granules",
-        "title": "Rubber granules page moved",
-        "target": "/products/",
-    },
-]
+ACTIVE_PRODUCTS = [PRODUCTS_BY_SLUG[slug] for slug in ACTIVE_PRODUCT_SLUGS]
+ACTIVE_PRODUCT_SLUG_SET = set(ACTIVE_PRODUCT_SLUGS)
 
 PRODUCT_FAMILIES = [
     {
-        "id": "core-materials",
-        "name": "Silica Sand, Quartz Sand & Feldspar",
-        "copy": "Manufacturer-backed mineral programs for glass, ceramics, sanitaryware, foundry, filtration, and engineered stone buyers.",
-        "count_label": "3 core products",
-        "best_for": ["Glass", "Ceramics", "Foundry", "Engineered Stone"],
-        "products": ["silica-sand", "quartz-sand-for-ceramics", "feldspar"],
+        "id": "silica-quartz-feldspar",
+        "name": "Silica, Quartz & Feldspar",
+        "copy": "Purity-led grades for glass, ceramics, filtration, and engineered stone.",
+        "best_for": ["Glass", "Ceramics", "Filtration", "Engineered Stone"],
+        "products": ACTIVE_PRODUCT_SLUGS,
     },
 ]
 
@@ -1818,7 +1229,7 @@ BLOGS = [
                 "heading": "What we offer",
                 "body": "If your team is sourcing silica sand from India, the first step is to align the right supply form against application and shipment basis.",
                 "points": [
-                    "Current silica line includes silica sand and silica flour",
+                    "Current silica line is focused on silica sand supply for active buyer programs",
                     "Supply discussion is aligned to end use before quotation",
                     "Packing and shipment planning are handled together with the grade discussion",
                 ],
@@ -1908,73 +1319,14 @@ BLOGS = [
 ]
 
 CURRENT_BLOG_SLUGS = [
+    "quartz-sand-supplier-india-vietnam-buyers-guide",
+    "potassium-vs-sodium-feldspar-import-buyer-guide",
+    "silica-sand-import-checklist-glass-foundry-filtration",
     "potassium-feldspar-supplier-for-ceramic-tiles",
     "quartz-powder-supplier-for-engineered-stone",
     "silica-sand-exporter-from-india",
-    "kaolin-supplier-for-paint-industry",
-    "bentonite-supplier-india",
-    "fly-ash-exporter-from-india-bulk-shipment",
-    "copper-slag-supplier-for-shipyard-blasting",
-    "industrial-salt-exporter",
+    "how-to-check-tds-and-sample-coa-before-mineral-import",
 ]
-
-
-def crawler_cleanup_redirects() -> list[dict[str, str]]:
-    exported_paths = [
-        ("blog/industrial-salt-exporter/operations", "/operations/"),
-        ("blog/bentonite-supplier-india/blog/potassium-feldspar-supplier-for-ceramic-tiles", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
-        ("blog/bentonite-supplier-india/blog/kaolin-supplier-for-paint-industry", "/blog/kaolin-supplier-for-paint-industry/"),
-        ("blog/potassium-feldspar-supplier-for-ceramic-tiles/export-markets", "/export-markets/"),
-        ("products/bentonite/products/fly-ash", "/products/fly-ash/"),
-        ("blog/copper-slag-supplier-for-shipyard-blasting/products/copper-slag", "/products/copper-slag/"),
-        ("blog/copper-slag-supplier-for-shipyard-blasting/blog/bentonite-supplier-india", "/blog/bentonite-supplier-india/"),
-        ("industrial-minerals-exporter-india/export-markets", "/export-markets/"),
-        ("industrial-minerals-exporter-india/products", "/products/"),
-        ("industrial-minerals-exporter-india/blog", "/blog/"),
-        ("industrial-minerals-exporter-india/operations", "/operations/"),
-        ("industrial-minerals-exporter-india/hear-from-ceo", "/hear-from-ceo/"),
-        ("blog/copper-slag-supplier-for-shipyard-blasting/blog/potassium-feldspar-supplier-for-ceramic-tiles", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
-        ("blog/potassium-feldspar-supplier-for-ceramic-tiles/operations", "/operations/"),
-        ("blog/potassium-feldspar-supplier-for-ceramic-tiles/blog/bentonite-supplier-india", "/blog/bentonite-supplier-india/"),
-        ("blog/potassium-feldspar-supplier-for-ceramic-tiles/blog/fly-ash-exporter-from-india-bulk-shipment", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
-        ("blog/copper-slag-supplier-for-shipyard-blasting/blog/kaolin-supplier-for-paint-industry", "/blog/kaolin-supplier-for-paint-industry/"),
-        ("blog/industrial-salt-exporter/blog/kaolin-supplier-for-paint-industry", "/blog/kaolin-supplier-for-paint-industry/"),
-        ("blog/blog", "/blog/"),
-        ("blog/fly-ash-exporter-from-india-bulk-shipment/blog/bentonite-supplier-india", "/blog/bentonite-supplier-india/"),
-        ("blog/industrial-salt-exporter/blog/potassium-feldspar-supplier-for-ceramic-tiles", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
-        ("blog/products", "/products/"),
-        ("blog/export-markets", "/export-markets/"),
-        ("blog/blog/copper-slag-supplier-for-shipyard-blasting", "/blog/copper-slag-supplier-for-shipyard-blasting/"),
-        ("blog/industrial-salt-exporter/products/salt", "/products/salt/"),
-        ("blog/silica-sand-exporter-from-india/hear-from-ceo", "/hear-from-ceo/"),
-        ("blog/silica-sand-exporter-from-india/blog", "/blog/"),
-        ("blog/silica-sand-exporter-from-india/operations", "/operations/"),
-        ("blog/silica-sand-exporter-from-india/products", "/products/"),
-        ("blog/silica-sand-exporter-from-india/export-markets", "/export-markets/"),
-        ("blog/silica-sand-exporter-from-india/blog/bentonite-supplier-india", "/blog/bentonite-supplier-india/"),
-        ("blog/silica-sand-exporter-from-india/blog/kaolin-supplier-for-paint-industry", "/blog/kaolin-supplier-for-paint-industry/"),
-        ("blog/silica-sand-exporter-from-india/blog/potassium-feldspar-supplier-for-ceramic-tiles", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
-    ]
-    return [
-        {
-            "path": path,
-            "title": "Malformed crawler URL moved",
-            "target": target,
-        }
-        for path, target in exported_paths
-    ]
-
-
-def all_redirects() -> list[dict[str, str]]:
-    redirects: list[dict[str, str]] = []
-    seen: set[str] = set()
-    for redirect in [*LEGACY_REDIRECTS, *crawler_cleanup_redirects()]:
-        path = redirect["path"].strip("/")
-        if path in seen:
-            continue
-        seen.add(path)
-        redirects.append({**redirect, "path": path})
-    return redirects
 
 
 def write(path: Path, content: str) -> None:
@@ -1999,6 +1351,7 @@ def nav_html() -> str:
               <a href="/products/">Products</a>
               <a href="/operations/">Operations</a>
               <a href="/blog/">Blog</a>
+              <a href="/export-markets/">Markets</a>
               <a href="/#contact">Contact</a>
             </nav>
             <div class="header-actions">
@@ -2013,6 +1366,7 @@ def nav_html() -> str:
             <a href="/products/">Products</a>
             <a href="/operations/">Operations</a>
             <a href="/blog/">Blog</a>
+            <a href="/export-markets/">Markets</a>
             <a href="/#contact">Contact</a>
           </div>
         </header>
@@ -2021,24 +1375,19 @@ def nav_html() -> str:
 
 
 def footer_html() -> str:
-    footer_blog_links = "".join(
-        f'<a href="/blog/{escape(post["slug"])}/">{escape(post.get("marquee_title", post["title"]))}</a>'
-        for post in visible_blog_posts()
-    )
     return dedent(
         f"""
         <footer class="site-footer">
           <div class="shell site-footer__inner">
             <div>
               <p class="footer-label">{escape(CONTACT["company"])}</p>
-              <p class="footer-copy">Silica sand, quartz sand, and feldspar manufactured and exported from India.</p>
+              <p class="footer-copy">Industrial minerals, supplied with more control.</p>
             </div>
             <div class="footer-grid">
               <div>
                 <p class="footer-heading">Contact</p>
                 <a href="tel:{escape(CONTACT["phone"])}">{escape(CONTACT["phone"])}</a>
                 <a href="mailto:{escape(CONTACT["sales_email"])}">{escape(CONTACT["sales_email"])}</a>
-                <p>{escape(CONTACT["address"])}</p>
               </div>
               <div>
                 <p class="footer-heading">Navigate</p>
@@ -2047,12 +1396,8 @@ def footer_html() -> str:
                 <a href="/operations/">Operations</a>
                 <a href="/blog/">Blog</a>
                 <a href="/hear-from-ceo/">Hear from Our CEO</a>
+                <a href="/export-markets/">Export Markets</a>
                 <a href="/#contact">Contact</a>
-              </div>
-              <div>
-                <p class="footer-heading">Buyer Guides</p>
-                {footer_blog_links}
-                <a href="/blog/">Open all guides</a>
               </div>
             </div>
           </div>
@@ -2080,19 +1425,10 @@ def analytics_snippet() -> str:
     ).strip()
 
 
-def page_shell(
-    title: str,
-    meta_description: str,
-    path: str,
-    body: str,
-    schema: list[dict],
-    body_class: str = "",
-    indexable: bool = True,
-) -> str:
+def page_shell(title: str, meta_description: str, path: str, body: str, schema: list[dict], body_class: str = "") -> str:
     page_url = f"{BASE_URL}{path}"
     schema_blob = json.dumps(schema, ensure_ascii=False)
     tracking_markup = analytics_snippet()
-    robots_content = "index,follow" if indexable else "noindex,follow"
     return make_project_pages_safe(
         dedent(
             f"""
@@ -2103,7 +1439,7 @@ def page_shell(
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>{escape(title)}</title>
                 <meta name="description" content="{escape(meta_description)}" />
-                <meta name="robots" content="{robots_content}" />
+                <meta name="robots" content="index,follow" />
                 <link rel="canonical" href="{escape(page_url)}" />
                 <meta property="og:title" content="{escape(title)}" />
                 <meta property="og:description" content="{escape(meta_description)}" />
@@ -2128,6 +1464,36 @@ def page_shell(
     )
 
 
+def render_redirect_page(title: str, description: str, from_path: str, to_path: str) -> str:
+    target_url = f"{BASE_URL}{to_path}"
+    return dedent(
+        f"""
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>{escape(title)}</title>
+            <meta name="description" content="{escape(description)}" />
+            <meta name="robots" content="noindex,follow" />
+            <link rel="canonical" href="{escape(target_url)}" />
+            <meta http-equiv="refresh" content="0; url={escape(target_url)}" />
+            <script>window.location.replace({json.dumps(target_url)});</script>
+            <link rel="stylesheet" href="/styles.css" />
+          </head>
+          <body class="antialiased page-redirect">
+            <main class="shell" style="padding: 6rem 1.5rem;">
+              <p class="section-label">Redirecting</p>
+              <h1>{escape(title)}</h1>
+              <p>{escape(description)}</p>
+              <p><a href="{escape(to_path)}">Continue to the current page</a></p>
+            </main>
+          </body>
+        </html>
+        """
+    ).strip()
+
+
 def form_block(product_name: str = "") -> str:
     product_field = (
         f'<input type="text" name="product" value="{escape(product_name)}" readonly />'
@@ -2146,7 +1512,6 @@ def form_block(product_name: str = "") -> str:
             <div class="contact-details">
               <a href="mailto:{escape(CONTACT["sales_email"])}">{escape(CONTACT["sales_email"])}</a>
               <a href="tel:{escape(CONTACT["phone"])}">{escape(CONTACT["phone"])}</a>
-              <p>{escape(CONTACT["address"])}</p>
             </div>
           </div>
           <form class="inquiry-form" data-inquiry-form data-reveal>
@@ -2208,7 +1573,7 @@ def form_block(product_name: str = "") -> str:
 
 def product_select() -> str:
     options = ['<option value="">Select product</option>']
-    for product in visible_products():
+    for product in ACTIVE_PRODUCTS:
         options.append(f'<option value="{escape(product["name"])}">{escape(product["name"])}</option>')
     return "<select name=\"product\">" + "".join(options) + "</select>"
 
@@ -2216,7 +1581,7 @@ def product_select() -> str:
 def related_links(slugs: list[str]) -> str:
     links = []
     for slug in slugs:
-        if slug not in CORE_PRODUCT_SET:
+        if slug not in ACTIVE_PRODUCT_SLUG_SET:
             continue
         product = PRODUCTS_BY_SLUG[slug]
         links.append(
@@ -2255,124 +1620,80 @@ def sentence_fragment(text: str) -> str:
 
 def render_homepage() -> str:
     proof_items = [
-        ("Manufacturing Base", "India"),
-        ("Core Materials", "Silica Sand / Quartz Sand / Feldspar"),
-        ("Plant Handling", "Intake, processing, packing, dispatch"),
         ("Port Access", CONTACT["port"]),
+        ("Commercial Terms", "FOB / CIF / CNF"),
+        ("Load Mode", "FCL"),
+        ("Sampling", "Sample-first flow"),
     ]
-    manufacturing_points = [
+    operating_points = [
         (
             "01",
-            "Quarry intake and raw sorting",
-            "Material enters the flow with quarry selection and raw sorting aligned to the end-use requirement before size control begins.",
+            "Start with the spec",
+            "Application, chemistry, sizing, moisture, and packing are aligned before pricing starts to drift.",
         ),
         (
             "02",
-            "Processing and size control",
-            "Silica sand, quartz sand, and feldspar are handled around target chemistry, mesh, and repeatable plant discipline before quote approval.",
+            "Align the commercials",
+            "Shipment basis, sample flow, documents, and payment expectations are made clear early.",
         ),
         (
             "03",
-            "Packing and dispatch readiness",
-            "Bagging basis, trial quantity, loading plan, and dispatch preparation are fixed early so the shipment basis stays clear.",
+            "Keep the flow visible",
+            "Loading, documents, and shipment updates stay in view until the cargo moves.",
         ),
         (
             "04",
-            "Repeat shipment execution",
-            "The first shipment is set up so repeat orders can move on the same manufacturing, packing, and communication standard.",
+            "Built to be reordered",
+            "The goal is simple: make the first order clear and the next one easier.",
         ),
     ]
-    process_steps = [
-        ("01", "Requirement review", "Share the product, application, destination, and target volume against the right manufacturing program."),
-        ("02", "Grade and sample alignment", "Sizing, chemistry, and packing basis are matched before sample or quote is finalized."),
-        ("03", "Commercial and document lock", "Shipment basis, packing plan, and export documents are confirmed before loading starts."),
-        ("04", "Dispatch visibility", "Updates continue through loading, vessel planning, and cargo movement so the buyer is not chasing status."),
-    ]
-    product_panels = {
-        "silica-sand": {
-            "image": "/assets/silica-sand-1.png",
-            "eyebrow": "Silica Sand Line",
-            "copy": "Processed for glass, foundry, filtration, and construction programs where grain discipline and packing readiness matter.",
-            "highlights": ["SiO2 98.07%", "Grits and powder", "50 Kg / Jumbo Bags"],
-            "alt": "Silica sand sample showing processed grains",
-        },
-        "quartz-sand-for-ceramics": {
-            "image": "/assets/quartz-sand-detail.png",
-            "eyebrow": "Quartz Sand Line",
-            "copy": "Quartz sand, grits, and powder produced for ceramics, glass, and engineered stone where purity and whiteness show up in the finish.",
-            "highlights": ["SiO2 >99%", "Grits and powder", "High whiteness"],
-            "alt": "Quartz sand sample showing bright processed material",
-        },
-        "feldspar": {
-            "image": "/assets/feldspar-lumps.png",
-            "eyebrow": "Feldspar Line",
-            "copy": "Potash and soda feldspar processed for ceramics, sanitaryware, and glass where flux behavior and firing response need to stay predictable.",
-            "highlights": ["Potash and soda grades", "Lumps and powder", "Custom sizing"],
-            "alt": "Feldspar material prepared for ceramic and glass manufacturing",
-        },
-    }
-    plant_visuals = [
-        (
-            "Quarry intake",
-            "/assets/quarry-quartz.png",
-            "Raw quartz intake before plant sorting and processing begins.",
-        ),
-        (
-            "Manual sorting",
-            "/assets/manual-sorting.png",
-            "Manual sorting stage used to remove off-spec material before processing.",
-        ),
-        (
-            "Processing area",
-            "/assets/processing-area.png",
-            "Processing area where material is handled into the next sizing stage.",
-        ),
-        (
-            "Packing area",
-            "/assets/packing-area.png",
-            "Packing area prepared for bagged cargo and repeat dispatch programs.",
-        ),
-    ]
-
-    proof_markup = "".join(
-        dedent(
-            f"""
-            <article class="proof-strip__item">
-              <span class="proof-strip__eyebrow">{escape(label)}</span>
-              <strong>{escape(value)}</strong>
-            </article>
-            """
-        ).strip()
-        for label, value in proof_items
-    )
-    manufacturing_cards_markup = "".join(
-        dedent(
-            f"""
-            <article class="manufacturing-stage-card" data-reveal>
-              <span class="manufacturing-stage-card__index">{escape(number)}</span>
-              <h3>{escape(title)}</h3>
-              <p>{escape(copy)}</p>
-            </article>
-            """
-        ).strip()
-        for number, title, copy in manufacturing_points
-    )
+    family_blocks = []
+    for index, family in enumerate(PRODUCT_FAMILIES, start=1):
+        family_count = len(family["products"])
+        count_label = f"{family_count} product" if family_count == 1 else f"{family_count} products"
+        family_products = "".join(
+            f'''
+            <a class="home-family-row__product" href="/products/{escape(slug)}/">
+              <span>{escape(PRODUCTS_BY_SLUG[slug]["name"])}</span>
+              <em aria-hidden="true">→</em>
+            </a>
+            '''
+            for slug in family["products"]
+        )
+        family_blocks.append(
+            dedent(
+                f"""
+                <article class="home-family-row" data-reveal>
+                  <span class="home-family-row__index">{index:02d}</span>
+                  <div class="home-family-row__main">
+                    <p class="home-family-row__count">{escape(count_label)}</p>
+                    <h3><a class="home-family-row__family-link" href="/products/#{escape(family["id"])}">{escape(family["name"])}</a></h3>
+                    <p>{escape(family["copy"])}</p>
+                    <div class="home-family-row__products">{family_products}</div>
+                  </div>
+                  <a class="home-family-row__cta" href="/products/#{escape(family["id"])}">View family</a>
+                </article>
+                """
+            ).strip()
+        )
     industry_blocks = []
     for name, copy in INDUSTRIES:
-        icon = INDUSTRY_ICONS.get(name, INDUSTRY_ICONS["Glass"])
         industry_blocks.append(
             dedent(
                 f"""
                 <article class="industry-line" data-reveal>
-                  <div class="industry-line__title">
-                    <span class="industry-line__icon" aria-hidden="true">{icon}</span>
-                    <h3>{escape(name)}</h3>
-                  </div>
+                  <h3>{escape(name)}</h3>
                   <p>{escape(copy)}</p>
                 </article>
                 """
             ).strip()
         )
+    process_steps = [
+        ("01", "Inquiry", "Share the product, application, destination, and target volume."),
+        ("02", "Quote or sample", "Pricing or sampling is aligned to the right grade, packing, and end use."),
+        ("03", "Documentation", "Commercial terms, packing, and export documents are locked before loading."),
+        ("04", "Dispatch", "Shipment updates continue through loading, vessel planning, and cargo movement."),
+    ]
     process_markup = "".join(
         dedent(
             f"""
@@ -2387,110 +1708,105 @@ def render_homepage() -> str:
         ).strip()
         for number, title, copy in process_steps
     )
-    product_rows = []
-    for index, slug in enumerate(CORE_PRODUCT_SLUGS):
-        product = PRODUCTS_BY_SLUG[slug]
-        panel = product_panels[slug]
-        reverse_class = " manufacturing-product-row--reverse" if index % 2 else ""
-        highlights = "".join(
-            f'<span class="manufacturing-product-row__fact">{escape(item)}</span>'
-            for item in panel["highlights"]
-        )
-        product_rows.append(
-            dedent(
-                f"""
-                <article class="manufacturing-product-row{reverse_class}" data-reveal>
-                  <figure class="manufacturing-product-row__media">
-                    <img src="{escape(panel["image"])}" alt="{escape(panel["alt"])}" loading="lazy" />
-                  </figure>
-                  <div class="manufacturing-product-row__content">
-                    <p class="section-label">{escape(panel["eyebrow"])}</p>
-                    <h3>{escape(product["name"])}</h3>
-                    <p>{escape(panel["copy"])}</p>
-                    <div class="manufacturing-product-row__facts">{highlights}</div>
-                    <a class="button button--ghost" href="/products/{escape(product["slug"])}/">Open {escape(product["name"])}</a>
-                  </div>
-                </article>
-                """
-            ).strip()
-        )
-    plant_gallery_markup = "".join(
+    operating_markup = "".join(
         dedent(
             f"""
-            <figure class="manufacturing-gallery__card" data-reveal>
-              <img src="{escape(src)}" alt="{escape(title)}" loading="lazy" />
-              <figcaption>
+            <article class="home-ledger-row" data-reveal>
+              <span>{escape(number)}</span>
+              <div>
                 <strong>{escape(title)}</strong>
-                <span>{escape(copy)}</span>
-              </figcaption>
-            </figure>
+                <p>{escape(copy)}</p>
+              </div>
+            </article>
             """
         ).strip()
-        for title, src, copy in plant_visuals
+        for number, title, copy in operating_points
     )
-
+    guide_links_once = "".join(
+        f'<a class="buyer-guide-pill" href="/blog/">{escape(post.get("marquee_title", post["title"]))}</a>'
+        for post in BLOGS
+        if post["slug"] in CURRENT_BLOG_SLUGS
+    )
+    guide_links_markup = guide_links_once + guide_links_once
     home_body = dedent(
         f"""
         {nav_html()}
         <main>
-          <section class="hero hero--manufacturing-home">
+          <section class="hero hero--home">
             <div class="hero__strata" aria-hidden="true">
               <span class="strata strata--a"></span>
               <span class="strata strata--b"></span>
               <span class="strata strata--c"></span>
               <span class="route-line route-line--hero"></span>
             </div>
-            <div class="shell manufacturing-hero">
-              <div class="manufacturing-hero__copy" data-reveal>
-                <p class="hero-label">Manufacturer &amp; Exporter From India</p>
-                <h1>Manufacturer-led mineral supply.<br />Export-ready by design.</h1>
+            <div class="shell home-hero">
+              <div class="hero-copy hero-copy--home" data-reveal>
+                <h1>Manufacturer-backed mineral<br />supply for global buyers.</h1>
                 <p class="hero-text">
-                  A manufacturing-led supply flow for global buyers who need clearer specifications, steadier packing discipline, and dispatch visibility before cargo moves.
+                  Industrial minerals exported from India with clear specs, direct communication, and visible dispatch.
                 </p>
                 <div class="hero-actions">
-                  <a class="button button--light" href="/products/">Explore Products</a>
-                  <a class="button button--ghost" href="/operations/">See Operations</a>
+                  <a class="button button--light" href="/products/">Explore Portfolio</a>
                   <a class="button button--ghost" href="/#contact" data-set-request="Quote">Request Quote</a>
+                  <a class="button button--ghost" href="/#contact" data-set-request="Sample">Request Sample</a>
                 </div>
                 <p class="hero-subline">Fast Response. Reliable Supply. No Surprises.</p>
-                <div class="manufacturing-hero__facts">
-                  <article class="manufacturing-fact">
-                    <span>Plant Focus</span>
-                    <strong>Quartz, silica sand, feldspar</strong>
-                  </article>
-                  <article class="manufacturing-fact">
-                    <span>Packing Basis</span>
-                    <strong>25 Kg/50 Kg &amp; Jumbo Bags</strong>
-                  </article>
-                  <article class="manufacturing-fact">
-                    <span>Dispatch</span>
-                    <strong>FCL cargo movement</strong>
-                  </article>
+              </div>
+              <div class="home-poster" data-reveal data-parallax="0.14">
+                <div class="home-poster__surface">
+                  <span class="ore-slab ore-slab--a"></span>
+                  <span class="ore-slab ore-slab--b"></span>
+                  <span class="ore-slab ore-slab--c"></span>
+                  <div class="home-poster__summary">
+                    <p class="home-poster__eyebrow">At a glance</p>
+                    <strong>Right material. Right detail. Ready to move.</strong>
+                    <p>Specification-led supply with packing and shipment aligned before the cargo moves.</p>
+                  </div>
+                  <div class="home-poster__metrics">
+                    <article class="home-metric">
+                      <span>Specification Focus</span>
+                      <strong>Chemistry, sizing, and packing</strong>
+                    </article>
+                    <article class="home-metric">
+                      <span>Packing</span>
+                      <strong>50 Kg/Jumbo Bags</strong>
+                    </article>
+                    <article class="home-metric">
+                      <span>Shipment</span>
+                      <strong>FCL</strong>
+                    </article>
+                  </div>
+                  <span class="route-line route-line--visual"></span>
                 </div>
               </div>
             </div>
-          </section>
-
-          <section class="section-block section-block--contrast">
-            <div class="shell">
-              <div class="proof-strip" data-reveal>
-                {proof_markup}
-              </div>
+            <div class="shell proof-strip" data-reveal>
+              {"".join(
+                  dedent(
+                      f'''
+                      <article class="proof-strip__item">
+                        <span class="proof-strip__eyebrow">{escape(label)}</span>
+                        <strong>{escape(value)}</strong>
+                      </article>
+                      '''
+                  ).strip()
+                  for label, value in proof_items
+              )}
             </div>
           </section>
 
           <section class="section-block" id="about">
             <div class="shell section-shell">
-              <div class="manufacturing-stage">
-                <div class="manufacturing-stage__intro" data-reveal>
-                  <p class="section-kicker">Manufacturing Flow</p>
-                  <h2>How the plant side is organized before shipment.</h2>
-                  <p>
-                    Buyers usually need proof that material control, sizing, packing, and cargo planning stay connected. This section is built around that manufacturing logic.
-                  </p>
+              <div class="home-ledger">
+                <div class="home-ledger__intro" data-reveal>
+                  <p class="section-kicker">Clarity, end to end.</p>
+                  <h2>The details are handled early.</h2>
+                    <p>
+                      The material, the spec, the packing, the documents, the shipment. The work is set up for import buyers across Southeast Asia, the Gulf, Mauritius, and Maldives to feel settled before cargo moves.
+                    </p>
                 </div>
-                <div class="manufacturing-stage__cards">
-                  {manufacturing_cards_markup}
+                <div class="home-ledger__rows">
+                  {operating_markup}
                 </div>
               </div>
             </div>
@@ -2500,28 +1816,13 @@ def render_homepage() -> str:
             <div class="shell section-shell">
               <div class="section-topline section-topline--stack" data-reveal>
                 <div class="section-topline__copy">
-                  <p class="section-kicker">Core Products</p>
+                  <p class="section-kicker">Material families</p>
+                  <h2>Find the right family first.</h2>
                 </div>
-                <a class="section-link" href="/products/">Explore products</a>
+                <a class="section-link" href="/products/">Explore portfolio</a>
               </div>
-              <div class="manufacturing-product-list">
-                {"".join(product_rows)}
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block">
-            <div class="shell section-shell">
-              <div class="section-topline section-topline--stack" data-reveal>
-                <div class="section-topline__copy">
-                  <p class="section-kicker">Plant View</p>
-                  <h2>Visual proof from intake to packing.</h2>
-                  <p>Real images from quarry intake, sorting, processing, and packing arranged as one manufacturing sequence.</p>
-                </div>
-                <a class="section-link" href="/operations/">Open operations</a>
-              </div>
-              <div class="manufacturing-gallery">
-                {plant_gallery_markup}
+              <div class="home-family-list">
+                {''.join(family_blocks)}
               </div>
             </div>
           </section>
@@ -2531,16 +1832,16 @@ def render_homepage() -> str:
               <div class="home-split home-split--stack">
                 <article class="home-split__panel" data-reveal>
                   <p class="section-label">Industries</p>
-                  <h2>Specified into processes that need steadier mineral input.</h2>
-                  <p>These three material lines are mapped around the industries where purity, grain control, whiteness, and flux behavior matter most.</p>
+                  <h2>Specified into the work that keeps moving.</h2>
+                  <p>The range is built around glass, ceramics, construction, chemicals, drilling, agriculture, and foundry demand.</p>
                   <div class="industry-rail">
                     {''.join(industry_blocks)}
                   </div>
                 </article>
                 <article class="home-split__panel" id="process" data-reveal>
-                  <p class="section-label">Inquiry to Dispatch</p>
-                  <h2>How the commercial side stays aligned to the plant side.</h2>
-                  <p>Short steps. Clean documents. One visible manufacturing-to-export flow.</p>
+                  <p class="section-label">Process</p>
+                  <h2>From inquiry to dispatch.</h2>
+                  <p>Short steps. Clean documents. One visible export flow.</p>
                   <div class="home-process-list">
                     {process_markup}
                   </div>
@@ -2633,8 +1934,8 @@ def render_homepage() -> str:
             <div class="shell section-shell">
               <article class="relationship-band" data-reveal>
                 <p class="section-label">Supply Relationships</p>
-                <h2>Built for long-term supply relationships.</h2>
-                <p>We work with buyers who value consistent manufactured quality, direct communication, and repeat-order shipment execution.</p>
+                <h2>Built for Long-Term Supply Relationships</h2>
+                <p>We work with buyers who value consistency in quality, communication, and shipment execution across repeat orders.</p>
               </article>
             </div>
           </section>
@@ -2656,11 +1957,7 @@ def render_homepage() -> str:
             "url": BASE_URL,
             "email": CONTACT["sales_email"],
             "telephone": CONTACT["phone"],
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": CONTACT["address"],
-                "addressCountry": "IN",
-            },
+            "addressCountry": "IN",
         },
         {
             "@context": "https://schema.org",
@@ -2673,13 +1970,13 @@ def render_homepage() -> str:
                     "url": f"{BASE_URL}/products/{product['slug']}/",
                     "name": product["name"],
                 }
-                for index, product in enumerate(visible_products())
+                for index, product in enumerate(ACTIVE_PRODUCTS)
             ],
         },
     ]
     return page_shell(
-        "Silica Sand, Quartz Sand & Feldspar Manufacturer-Exporter from India | Jade Waves Enterprise",
-        "Manufacturer-exporter from India for silica sand, quartz sand, and feldspar with plant-backed processing, clear specifications, and visible dispatch for global buyers.",
+        "Industrial Mineral Exporter from India | Supplier for Global Buyers | Jade Waves Enterprise",
+        "Industrial mineral exporter from India supplying global buyers across Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
         "/",
         home_body,
         schema,
@@ -2688,7 +1985,7 @@ def render_homepage() -> str:
 
 
 def render_blog_index_page() -> str:
-    current_posts = visible_blog_posts()
+    current_posts = [post for post in BLOGS if post["slug"] in CURRENT_BLOG_SLUGS]
     post_cards = []
     for post in current_posts:
         product = PRODUCTS_BY_SLUG[post["product_slug"]]
@@ -2723,7 +2020,7 @@ def render_blog_index_page() -> str:
                 <p class="hero-label">Buyer Guides</p>
                 <h1>Buyer<br />guides.</h1>
                 <p class="hero-text">
-                  Buyer guides tied directly to silica sand, quartz sand, and feldspar sourcing, sampling, and export planning.
+                  This section is being rebuilt around real buyer questions on specification, sampling, and export planning.
                 </p>
                 <div class="hero-actions">
                   <a class="button button--light" href="/#contact" data-set-request="Quote">Start Inquiry</a>
@@ -2779,7 +2076,7 @@ def render_blog_index_page() -> str:
                     <span>01</span>
                     <div>
                       <strong><a href="/products/">Open product portfolio</a></strong>
-                      <p>Compare grades, forms, and specification focus across the three core products.</p>
+                      <p>Compare grades, forms, and specification focus across all products.</p>
                     </div>
                   </article>
                   <article class="home-ledger-row" data-reveal>
@@ -2866,8 +2163,6 @@ def render_blog_post_page(post: dict) -> str:
     related_cards = []
     for related in BLOGS:
         if related["slug"] not in CURRENT_BLOG_SLUGS:
-            continue
-        if related["product_slug"] not in CORE_PRODUCT_SET:
             continue
         if related["slug"] == post["slug"]:
             continue
@@ -3020,10 +2315,7 @@ def render_products_index() -> str:
     family_sections = []
     for index, family in enumerate(PRODUCT_FAMILIES, start=1):
         family_product_count = len(family["products"])
-        count_label = family.get(
-            "count_label",
-            f"{family_product_count} product" if family_product_count == 1 else f"{family_product_count} products",
-        )
+        count_label = f"{family_product_count} product" if family_product_count == 1 else f"{family_product_count} products"
         family_number = f"{index:02d}"
         family_focus = "".join(
             f'<span class="portfolio-stage__pill">{escape(item)}</span>' for item in family.get("best_for", [])
@@ -3075,17 +2367,6 @@ def render_products_index() -> str:
                 """
             ).strip()
         )
-    anchor_rail = ""
-    if len(family_nav) > 1:
-        anchor_rail = dedent(
-            f"""
-          <section class="section-block">
-            <div class="shell portfolio-anchor-rail" data-reveal>
-              {''.join(family_nav)}
-            </div>
-          </section>
-            """
-        ).strip()
     body = dedent(
         f"""
         {nav_html()}
@@ -3099,10 +2380,10 @@ def render_products_index() -> str:
             </div>
             <div class="shell hero__inner hero__inner--single">
               <div class="hero-copy hero-copy--portfolio" data-reveal>
-                <p class="hero-label">Products</p>
-                <h1>Three core mineral lines.</h1>
+                <p class="hero-label">Portfolio</p>
+                <h1>Browse by application first.</h1>
                 <p class="hero-text">
-                  Explore the three products at the center of the manufacturing setup: silica sand, quartz sand, and feldspar manufactured in India for global buyers.
+                  Use the portfolio to find industrial minerals supplied and exported from India for import buyers in Southeast Asia, the Gulf, Mauritius, and Maldives.
                 </p>
                 <div class="hero-actions">
                   <a class="button button--light" href="/#contact" data-set-request="Quote">Request Quote</a>
@@ -3111,7 +2392,11 @@ def render_products_index() -> str:
               </div>
             </div>
           </section>
-          {anchor_rail}
+          <section class="section-block">
+            <div class="shell portfolio-anchor-rail" data-reveal>
+              {''.join(family_nav)}
+            </div>
+          </section>
           <section class="section-block">
             <div class="shell portfolio-shell">
               {''.join(family_sections)}
@@ -3131,7 +2416,7 @@ def render_products_index() -> str:
         {
             "@context": "https://schema.org",
             "@type": "ItemList",
-            "name": "Core mineral products",
+            "name": "Industrial Minerals",
             "itemListElement": [
                 {
                     "@type": "ListItem",
@@ -3139,13 +2424,13 @@ def render_products_index() -> str:
                     "url": f"{BASE_URL}/products/{product['slug']}/",
                     "name": product["name"],
                 }
-                for index, product in enumerate(visible_products())
+                for index, product in enumerate(ACTIVE_PRODUCTS)
             ],
         },
     ]
     return page_shell(
-        "Silica Sand, Quartz Sand & Feldspar Products | Jade Waves Enterprise",
-        "Explore silica sand, quartz sand, and feldspar manufactured and exported from India for global buyers who need clear specifications and dependable dispatch.",
+        "Industrial Minerals Supplier & Exporter from India | Jade Waves Enterprise",
+        "Industrial minerals supplier and exporter from India for import buyers across Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.",
         "/products/",
         body,
         schema,
@@ -3215,8 +2500,6 @@ def render_export_markets_page() -> str:
             '<a href="/products/silica-sand/">Silica sand for glass, filtration, and foundry buyers</a>',
             '<a href="/products/quartz-sand-for-ceramics/">Quartz sand, grits, and powder for ceramic and glass buyers</a>',
             '<a href="/products/feldspar/">Potash and soda feldspar for ceramic and sanitaryware buyers</a>',
-            '<a href="/products/bentonite/">Bentonite for drilling, foundry, and sealing buyers</a>',
-            '<a href="/products/salt/">Industrial salt for water treatment and chemical buyers</a>',
         ]
     )
     body = dedent(
@@ -3341,7 +2624,6 @@ def render_export_markets_page() -> str:
         body,
         schema,
         "page-export-markets",
-        indexable=False,
     )
 
 
@@ -3387,8 +2669,6 @@ def render_exporter_profile_page() -> str:
             '<a href="/products/silica-sand/">Silica sand supplier and exporter</a>',
             '<a href="/products/quartz-sand-for-ceramics/">Quartz sand, grits, and powder supplier</a>',
             '<a href="/products/feldspar/">Potash and soda feldspar supplier</a>',
-            '<a href="/products/bentonite/">Bentonite supplier for drilling and foundry use</a>',
-            '<a href="/products/salt/">Industrial salt supplier for water treatment and chemical use</a>',
         ]
     )
     process_steps = [
@@ -3444,7 +2724,7 @@ def render_exporter_profile_page() -> str:
                   <div class="home-poster__metrics">
                     <article class="home-metric">
                       <span>Range</span>
-                      <strong>Silica, quartz, feldspar, bentonite, salt, and more</strong>
+                      <strong>Silica sand, quartz sand, and feldspar</strong>
                     </article>
                     <article class="home-metric">
                       <span>Focus</span>
@@ -3485,7 +2765,7 @@ def render_exporter_profile_page() -> str:
                 <article class="home-split__panel" data-reveal>
                   <p class="section-label">Core export range</p>
                   <h2>Products buyers usually ask for first.</h2>
-                  <p>These products usually matter most when the requirement is tied to ceramics, glass, drilling, foundry, water treatment, or process use.</p>
+                      <p>These products usually matter most when the requirement is tied to ceramics, glass, filtration, and engineered stone buying programs.</p>
                   <div class="related-links">{product_links}</div>
                 </article>
                 <article class="home-split__panel" data-reveal>
@@ -3546,7 +2826,6 @@ def render_exporter_profile_page() -> str:
         body,
         schema,
         "page-exporter-profile",
-        indexable=False,
     )
 
 
@@ -3706,7 +2985,6 @@ def render_ceo_page() -> str:
         body,
         schema,
         "page-ceo",
-        indexable=False,
     )
 
 
@@ -3723,7 +3001,7 @@ def render_faq(product: dict) -> tuple[str, list[dict]]:
         },
         {
             "q": f"How is {product['name']} handled for export?",
-            "a": f"Manufacturing and packing formats include {product['packing']}. Jade Waves aligns samples, export documents, and shipment planning from India to suit the destination and order size.",
+            "a": f"Supply formats include {product['packing']}. Jade Waves aligns samples, export documents, and shipment planning from India to suit the destination and order size.",
         },
     ]
     markup = "".join(
@@ -3750,14 +3028,6 @@ def render_faq(product: dict) -> tuple[str, list[dict]]:
 
 def render_product_page(product: dict) -> str:
     booking_points = product.get("booking_points", product["specs"])
-    snapshot_rows_config = product.get(
-        "snapshot_rows",
-        [
-            ("Form", natural_join(product["forms"][:3])),
-            ("Packing Basis", product["packing"]),
-            ("Dispatch Basis", "FCL"),
-        ],
-    )
     application_lines = "".join(
         dedent(
             f"""
@@ -3803,58 +3073,6 @@ def render_product_page(product: dict) -> str:
         f'<a class="button button--ghost button--compact" href="{escape(href)}" target="_blank" rel="noopener">{escape(label)}</a>'
         for label, href in product.get("parameter_docs", [])
     )
-    hero_gallery_markup = "".join(
-        dedent(
-            f"""
-            <figure class="product-poster__image{' product-poster__image--lead' if index == 0 else ''}">
-              <img src="{escape(src)}" alt="{escape(label)}" loading="eager" />
-              <figcaption>{escape(label)}</figcaption>
-            </figure>
-            """
-        ).strip()
-        for index, (label, src) in enumerate(product.get("hero_images", [])[:1])
-    )
-    product_gallery_cards = "".join(
-        dedent(
-            f"""
-            <figure class="product-gallery-card">
-              <img src="{escape(src)}" alt="{escape(label)}" loading="lazy" />
-              <figcaption>{escape(label)}</figcaption>
-            </figure>
-            """
-        ).strip()
-        for label, src in product.get("gallery_images", [])
-    )
-    gallery_section = ""
-    if product_gallery_cards:
-        gallery_section = dedent(
-            f"""
-          <section class="section-block section-block--contrast">
-            <div class="shell section-shell">
-              <div class="section-topline section-topline--stack" data-reveal>
-                <div class="section-topline__copy">
-                  <p class="section-kicker">Material Gallery</p>
-                  <h2>Material views from the active line.</h2>
-                  <p>Actual product visuals arranged as a continuous gallery for faster grade comparison.</p>
-                </div>
-              </div>
-              <div class="product-gallery-marquee" data-reveal data-product-gallery>
-                <button class="product-gallery-control product-gallery-control--prev" type="button" aria-label="Scroll gallery left" data-gallery-control="-1">
-                  <span aria-hidden="true">&#8592;</span>
-                </button>
-                <div class="product-gallery-scroller" data-gallery-scroller tabindex="0">
-                  <div class="product-gallery-marquee__track">
-                    {product_gallery_cards}
-                  </div>
-                </div>
-                <button class="product-gallery-control product-gallery-control--next" type="button" aria-label="Scroll gallery right" data-gallery-control="1">
-                  <span aria-hidden="true">&#8594;</span>
-                </button>
-              </div>
-            </div>
-          </section>
-            """
-        ).strip()
     parameter_doc_block = ""
     if parameter_doc_links:
         parameter_doc_block = dedent(
@@ -3882,42 +3100,15 @@ def render_product_page(product: dict) -> str:
               </article>
             """
         ).strip()
-    detail_cards_markup = ""
-    if product.get("detail_cards"):
-        detail_cards_markup = "".join(
-            dedent(
-                f"""
-                <article class="product-sheet" data-reveal>
-                  <p class="section-label">{escape(card["label"])}</p>
-                  <h2>{escape(card["title"])}</h2>
-                  <p class="product-sheet__body">{escape(card["body"])}</p>
-                  <div class="product-note-list">
-                    {"".join(
-                        dedent(
-                            f'''
-                            <article class="product-note">
-                              <span aria-hidden="true"></span>
-                              <p>{escape(point)}</p>
-                            </article>
-                            '''
-                        ).strip()
-                        for point in card["points"]
-                    )}
-                  </div>
-                </article>
-                """
-            ).strip()
-            for card in product["detail_cards"]
-        )
     commercial_tags = "".join(f'<span>{escape(item)}</span>' for item in product["industries"])
     related = related_links(product["related"])
     faq_markup, faq_schema = render_faq(product)
     summary_spec = product.get("summary_spec")
     poster_metrics = [
-        ("End Use", product["applications"][0]),
-        ("Spec Focus" if summary_spec else "Specification", summary_spec or booking_points[0]),
-        ("Packing Basis", product["packing"]),
-        ("Dispatch Basis", "FCL"),
+        ("Primary Use", product["applications"][0]),
+        ("Typical Spec" if summary_spec else "Specification", summary_spec or booking_points[0]),
+        ("Packing", product["packing"]),
+        ("Shipment", "FCL"),
     ]
     poster_metric_markup = "".join(
         dedent(
@@ -3939,13 +3130,17 @@ def render_product_page(product: dict) -> str:
             </article>
             """
         ).strip()
-        for label, value in snapshot_rows_config
+        for label, value in [
+            ("Forms", natural_join(product["forms"][:3])),
+            ("Packing", product["packing"]),
+            ("Shipment", "FCL"),
+        ]
     )
     hero_crosslink = ""
     if product["slug"] == "silica-sand":
         hero_crosslink = dedent(
             """
-            <a class="hero-crosslink-card hero-crosslink-card--bridge" href="/products/quartz-sand-for-ceramics/" data-crosslink-target>
+            <a class="hero-crosslink-card hero-crosslink-card--bridge" href="/products/quartz-sand-for-ceramics/">
               <strong>For higher-purity requirements</strong>
               <span>Quartz Sand: &gt;99% SiO2 and high whiteness</span>
             </a>
@@ -3956,6 +3151,7 @@ def render_product_page(product: dict) -> str:
         bridge_row = dedent(
             f"""
             <div class="shell product-bridge-row" data-reveal>
+              <div class="product-bridge-row__spacer" aria-hidden="true"></div>
               {hero_crosslink}
             </div>
             """
@@ -3990,17 +3186,17 @@ def render_product_page(product: dict) -> str:
               </div>
               <aside class="product-poster" data-reveal data-parallax="0.12">
                 <div class="product-poster__surface">
-                  <p class="product-poster__eyebrow">Manufacturing Snapshot</p>
+                  <span class="ore-pillar ore-pillar--a"></span>
+                  <span class="ore-pillar ore-pillar--b"></span>
+                  <span class="ore-pillar ore-pillar--c"></span>
+                  <p class="product-poster__eyebrow">At a glance</p>
                   <strong class="product-poster__title">{escape(product["name"])}</strong>
                   <p class="product-poster__copy">{escape(product["short_copy"])}</p>
-                  <div class="product-poster__gallery">
-                    {hero_gallery_markup}
-                  </div>
                   <div class="product-poster__metrics">
                     {poster_metric_markup}
                   </div>
                   <div class="product-poster__caption">
-                    <p>Manufacturing, sample, documents, and dispatch stay on one clear track.</p>
+                    <p>Sample, documents, and dispatch stay on one clear track.</p>
                   </div>
                   <span class="route-line route-line--snapshot"></span>
                 </div>
@@ -4014,12 +3210,12 @@ def render_product_page(product: dict) -> str:
               <article class="product-sheet product-sheet--wide" data-reveal>
                 <p class="section-label">Applications</p>
                 <h2>Where it fits best.</h2>
-                <p class="product-sheet__intro">Common end uses where grade, plant sizing, packing, and delivery have to line up.</p>
+                <p class="product-sheet__intro">Common end uses where grade, form, and delivery have to line up.</p>
                 <div class="product-line-list">{application_lines}</div>
               </article>
               <article class="product-sheet" data-reveal>
-                <p class="section-label">Production Snapshot</p>
-                <h2>Material form, packing, and dispatch basis.</h2>
+                <p class="section-label">Supply Snapshot</p>
+                <h2>Supply, packing, and shipment.</h2>
                 <div class="product-info-list">{supply_rows}</div>
                 <div class="form-cloud product-form-cloud">{form_pills}</div>
               </article>
@@ -4044,21 +3240,11 @@ def render_product_page(product: dict) -> str:
             </div>
           </section>
 
-          {gallery_section}
-
-          {f'''
-          <section class="section-block">
-            <div class="shell product-ledger">
-              {detail_cards_markup}
-            </div>
-          </section>
-          ''' if detail_cards_markup else ''}
-
           <section class="section-block">
             <div class="shell section-shell">
               <div class="section-intro" data-reveal>
-                <p class="section-label">Also Manufactured</p>
-                <h2>More from the core range.</h2>
+                <p class="section-label">Also In The Portfolio</p>
+                <h2>More from the range.</h2>
               </div>
               <div class="related-links" data-reveal>{related}</div>
             </div>
@@ -4068,8 +3254,8 @@ def render_product_page(product: dict) -> str:
             <div class="shell section-shell">
               <div class="section-intro" data-reveal>
                 <p class="section-label">FAQ</p>
-                <h2>Technical questions that usually come first.</h2>
-                <p>Direct answers before pricing, sample approval, and dispatch.</p>
+                <h2>Questions that usually come first.</h2>
+                <p>Direct answers before pricing, sampling, and dispatch.</p>
               </div>
               <div class="faq-shell">{faq_markup}</div>
             </div>
@@ -4085,6 +3271,16 @@ def render_product_page(product: dict) -> str:
         """
     ).strip()
     schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": product["name"],
+            "description": product["meta_description"],
+            "category": "Industrial Mineral",
+            "brand": {"@type": "Brand", "name": CONTACT["company"]},
+            "manufacturer": {"@type": "Organization", "name": CONTACT["company"]},
+            "url": f"{BASE_URL}/products/{product['slug']}/",
+        },
         {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
@@ -4122,7 +3318,6 @@ def render_product_page(product: dict) -> str:
         product_body,
         schema,
         "page-product",
-        indexable=product["slug"] in CORE_PRODUCT_SET,
     )
 
 
@@ -4484,7 +3679,6 @@ STYLES = dedent(
     }
 
     .hero-crosslink-card {
-      position: relative;
       margin-top: 1rem;
       display: inline-grid;
       gap: 0.22rem;
@@ -4496,8 +3690,6 @@ STYLES = dedent(
         linear-gradient(120deg, rgba(0, 113, 227, 0.06), transparent 46%);
       color: var(--ink);
       text-decoration: none;
-      cursor: pointer;
-      pointer-events: auto;
       box-shadow: 0 10px 24px rgba(29, 29, 31, 0.06);
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
@@ -4534,22 +3726,16 @@ STYLES = dedent(
     }
 
     .product-bridge-row {
-      display: flex;
-      justify-content: center;
-      margin-top: -0.6rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 1.4rem;
+      align-items: start;
+      margin-top: -1rem;
       margin-bottom: 1.15rem;
-      position: relative;
-      z-index: 6;
     }
 
     .product-bridge-row .hero-crosslink-card--bridge {
       margin-top: 0;
-      width: min(100%, 22rem);
-      min-width: 0;
-      padding: 0.88rem 1.06rem;
-      border-color: rgba(0, 113, 227, 0.24);
-      box-shadow: 0 14px 30px rgba(29, 29, 31, 0.08);
-      pointer-events: auto;
     }
 
     .hero-visual {
@@ -5206,368 +4392,6 @@ STYLES = dedent(
 
     .hero-copy--home .hero-actions {
       justify-content: center;
-    }
-
-    .hero--manufacturing-home {
-      overflow: hidden;
-      padding-bottom: 3.2rem;
-    }
-
-    .manufacturing-hero {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1.6rem;
-      align-items: start;
-      min-height: auto;
-      padding-bottom: 0.35rem;
-    }
-
-    .manufacturing-hero__copy {
-      max-width: 58rem;
-    }
-
-    .manufacturing-hero__copy h1 {
-      max-width: 15ch;
-    }
-
-    .manufacturing-hero__copy .hero-text {
-      max-width: 42rem;
-    }
-
-    .manufacturing-hero__facts {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.9rem;
-      margin-top: 1.35rem;
-      max-width: 52rem;
-    }
-
-    .manufacturing-fact {
-      min-width: 0;
-      padding: 0.95rem 1rem;
-      border-radius: 1.35rem;
-      border: 1px solid rgba(29, 29, 31, 0.08);
-      background: rgba(255, 255, 255, 0.84);
-      box-shadow: 0 16px 34px rgba(29, 29, 31, 0.06);
-      backdrop-filter: blur(16px);
-    }
-
-    .manufacturing-fact span {
-      display: block;
-      margin-bottom: 0.32rem;
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(29, 29, 31, 0.44);
-    }
-
-    .manufacturing-fact strong {
-      display: block;
-      font-size: 0.98rem;
-      line-height: 1.45;
-      letter-spacing: -0.03em;
-    }
-
-    .hero--manufacturing-home + .section-block {
-      padding-top: 1.4rem;
-    }
-
-    .manufacturing-hero__media {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-      align-self: stretch;
-    }
-
-    .manufacturing-hero__card,
-    .manufacturing-hero__panel {
-      position: relative;
-      overflow: hidden;
-      border-radius: 2rem;
-      border: 1px solid rgba(29, 29, 31, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 247, 250, 0.88));
-      box-shadow: 0 24px 54px rgba(29, 29, 31, 0.08);
-      backdrop-filter: blur(18px);
-    }
-
-    .manufacturing-hero__card {
-      min-height: 15rem;
-      display: grid;
-      grid-template-rows: minmax(0, 1fr) auto;
-    }
-
-    .manufacturing-hero__card::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 42%;
-      background: linear-gradient(180deg, rgba(10, 19, 31, 0), rgba(10, 19, 31, 0.68));
-      pointer-events: none;
-    }
-
-    .manufacturing-hero__card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .manufacturing-hero__card figcaption {
-      position: absolute;
-      inset: auto 1.15rem 1.15rem;
-      z-index: 1;
-      display: grid;
-      gap: 0.24rem;
-      color: white;
-    }
-
-    .manufacturing-hero__card figcaption strong {
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .manufacturing-hero__card figcaption span {
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.84);
-    }
-
-    .manufacturing-hero__card--lead {
-      grid-row: span 2;
-      min-height: 31rem;
-    }
-
-    .manufacturing-hero__panel {
-      padding: 1.35rem;
-      display: grid;
-      align-content: start;
-      gap: 0.65rem;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(0, 113, 227, 0.12), transparent 24%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 247, 250, 0.92));
-    }
-
-    .manufacturing-hero__panel-label {
-      margin: 0;
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(29, 29, 31, 0.42);
-    }
-
-    .manufacturing-hero__panel strong {
-      display: block;
-      max-width: 11ch;
-      font-size: clamp(1.9rem, 3vw, 2.7rem);
-      line-height: 0.96;
-      letter-spacing: -0.06em;
-    }
-
-    .manufacturing-hero__panel p:last-child {
-      margin: 0;
-      color: var(--ink-soft);
-      line-height: 1.7;
-    }
-
-    .manufacturing-stage {
-      display: grid;
-      grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
-      gap: 2.2rem;
-      align-items: start;
-      padding-top: 1rem;
-    }
-
-    .manufacturing-stage__intro h2 {
-      margin: 0;
-      max-width: 11ch;
-      font-size: clamp(2.5rem, 5vw, 4.8rem);
-      line-height: 0.96;
-      letter-spacing: -0.06em;
-    }
-
-    .manufacturing-stage__intro p:last-child {
-      margin: 1rem 0 0;
-      max-width: 34rem;
-      color: var(--ink-soft);
-      line-height: 1.74;
-    }
-
-    .manufacturing-stage__cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .manufacturing-stage-card {
-      min-height: 15rem;
-      padding: 1.35rem;
-      border-radius: 1.8rem;
-      border: 1px solid rgba(29, 29, 31, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 247, 249, 0.92));
-      box-shadow: 0 20px 42px rgba(29, 29, 31, 0.06);
-    }
-
-    .manufacturing-stage-card__index {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2.4rem;
-      height: 2.4rem;
-      border-radius: 999px;
-      background: rgba(0, 113, 227, 0.08);
-      color: var(--ore);
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-    }
-
-    .manufacturing-stage-card h3 {
-      margin: 1rem 0 0.45rem;
-      max-width: 14ch;
-      font-size: 1.3rem;
-      line-height: 1.12;
-      letter-spacing: -0.04em;
-    }
-
-    .manufacturing-stage-card p {
-      margin: 0;
-      color: var(--ink-soft);
-      line-height: 1.72;
-    }
-
-    .manufacturing-product-list {
-      display: grid;
-      gap: 1.2rem;
-      margin-top: 1.4rem;
-    }
-
-    .manufacturing-product-row {
-      display: grid;
-      grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
-      gap: 1.3rem;
-      align-items: center;
-      padding: 1rem;
-      border-radius: 2rem;
-      border: 1px solid rgba(29, 29, 31, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 247, 249, 0.92));
-      box-shadow: 0 22px 46px rgba(29, 29, 31, 0.06);
-    }
-
-    .manufacturing-product-row--reverse {
-      grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
-    }
-
-    .manufacturing-product-row--reverse .manufacturing-product-row__media {
-      order: 2;
-    }
-
-    .manufacturing-product-row--reverse .manufacturing-product-row__content {
-      order: 1;
-    }
-
-    .manufacturing-product-row__media {
-      overflow: hidden;
-      border-radius: 1.6rem;
-      min-height: 22rem;
-      background: rgba(241, 242, 246, 0.8);
-    }
-
-    .manufacturing-product-row__media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 320ms ease;
-    }
-
-    .manufacturing-product-row:hover .manufacturing-product-row__media img {
-      transform: scale(1.02);
-    }
-
-    .manufacturing-product-row__content {
-      padding: 0.3rem 0.25rem 0.3rem 0;
-    }
-
-    .manufacturing-product-row__content h3 {
-      margin: 0;
-      font-size: clamp(2rem, 3.8vw, 3.2rem);
-      line-height: 0.96;
-      letter-spacing: -0.06em;
-    }
-
-    .manufacturing-product-row__content p:not(.section-label) {
-      margin: 1rem 0 0;
-      max-width: 34rem;
-      color: var(--ink-soft);
-      line-height: 1.76;
-    }
-
-    .manufacturing-product-row__facts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin: 1.2rem 0 1.35rem;
-    }
-
-    .manufacturing-product-row__fact {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2.55rem;
-      padding: 0.64rem 0.96rem;
-      border-radius: 999px;
-      border: 1px solid rgba(29, 29, 31, 0.08);
-      background: rgba(255, 255, 255, 0.9);
-      color: rgba(29, 29, 31, 0.72);
-      font-size: 0.88rem;
-      font-weight: 700;
-      box-shadow: 0 14px 28px rgba(29, 29, 31, 0.04);
-    }
-
-    .manufacturing-gallery {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 1.4rem;
-    }
-
-    .manufacturing-gallery__card {
-      overflow: hidden;
-      border-radius: 1.7rem;
-      border: 1px solid rgba(29, 29, 31, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 247, 249, 0.92));
-      box-shadow: 0 20px 42px rgba(29, 29, 31, 0.06);
-    }
-
-    .manufacturing-gallery__card img {
-      width: 100%;
-      height: 15.5rem;
-      object-fit: cover;
-      display: block;
-    }
-
-    .manufacturing-gallery__card figcaption {
-      display: grid;
-      gap: 0.28rem;
-      padding: 1rem 1rem 1.1rem;
-    }
-
-    .manufacturing-gallery__card strong {
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .manufacturing-gallery__card span {
-      color: var(--ink-soft);
-      line-height: 1.68;
-      font-size: 0.93rem;
     }
 
     body.is-ready .hero-copy > * {
@@ -7733,60 +6557,6 @@ STYLES = dedent(
       line-height: 1.72;
     }
 
-    .product-poster__gallery {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.8rem;
-      margin-top: 1.2rem;
-    }
-
-    .product-poster__image {
-      position: relative;
-      overflow: hidden;
-      min-height: 10rem;
-      border-radius: 1.4rem;
-      border: 1px solid rgba(29, 29, 31, 0.06);
-      background: rgba(255, 255, 255, 0.88);
-      box-shadow: 0 12px 30px rgba(29, 29, 31, 0.06);
-    }
-
-    .product-poster__image--lead {
-      min-height: 16rem;
-    }
-
-    .product-poster__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 320ms ease;
-    }
-
-    .product-poster:hover .product-poster__image img {
-      transform: scale(1.03);
-    }
-
-    .product-poster__image::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 42%;
-      background: linear-gradient(180deg, rgba(10, 19, 31, 0), rgba(10, 19, 31, 0.62));
-      pointer-events: none;
-    }
-
-    .product-poster__image figcaption {
-      position: absolute;
-      inset: auto 0.9rem 0.8rem;
-      z-index: 1;
-      color: rgba(255, 255, 255, 0.94);
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
     .product-poster__metrics {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -7967,123 +6737,6 @@ STYLES = dedent(
       max-width: 34rem;
       color: var(--ink-soft);
       line-height: 1.75;
-    }
-
-    .product-gallery-marquee {
-      position: relative;
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      gap: 0.8rem;
-      align-items: center;
-      margin-top: 1.45rem;
-      padding: 0.3rem 0;
-    }
-
-    .product-gallery-marquee::before,
-    .product-gallery-marquee::after {
-      content: "";
-      position: absolute;
-      top: 0.3rem;
-      bottom: 0.3rem;
-      width: 4rem;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .product-gallery-marquee::before {
-      left: 3.2rem;
-      background: linear-gradient(90deg, rgba(245, 245, 247, 0.98), rgba(245, 245, 247, 0));
-    }
-
-    .product-gallery-marquee::after {
-      right: 3.2rem;
-      background: linear-gradient(270deg, rgba(245, 245, 247, 0.98), rgba(245, 245, 247, 0));
-    }
-
-    .product-gallery-scroller {
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-behavior: smooth;
-      scroll-snap-type: x proximity;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(29, 29, 31, 0.18) rgba(255, 255, 255, 0.6);
-    }
-
-    .product-gallery-scroller::-webkit-scrollbar {
-      height: 0.45rem;
-    }
-
-    .product-gallery-scroller::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.72);
-      border-radius: 999px;
-    }
-
-    .product-gallery-scroller::-webkit-scrollbar-thumb {
-      background: rgba(29, 29, 31, 0.18);
-      border-radius: 999px;
-    }
-
-    .product-gallery-marquee__track {
-      display: flex;
-      gap: 1rem;
-      width: max-content;
-      padding-bottom: 0.55rem;
-      will-change: scroll-position;
-    }
-
-    .product-gallery-card {
-      scroll-snap-align: start;
-      flex: 0 0 clamp(16rem, 22vw, 19rem);
-      overflow: hidden;
-      border-radius: 1.55rem;
-      border: 1px solid rgba(29, 29, 31, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 248, 251, 0.92));
-      box-shadow: 0 18px 38px rgba(29, 29, 31, 0.06);
-    }
-
-    .product-gallery-card img {
-      width: 100%;
-      height: 13.5rem;
-      object-fit: cover;
-      display: block;
-    }
-
-    .product-gallery-card figcaption {
-      padding: 0.9rem 1rem 1rem;
-      color: rgba(29, 29, 31, 0.74);
-      font-size: 0.92rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.45;
-    }
-
-    .product-gallery-control {
-      position: relative;
-      z-index: 3;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2.9rem;
-      height: 2.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(29, 29, 31, 0.08);
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 12px 28px rgba(29, 29, 31, 0.06);
-      color: var(--ink);
-      cursor: pointer;
-      transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
-    }
-
-    .product-gallery-control:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 32px rgba(29, 29, 31, 0.08);
-    }
-
-    .product-gallery-control span {
-      font-size: 1.05rem;
-      line-height: 1;
-      font-weight: 800;
     }
 
     .product-line-list,
@@ -8687,7 +7340,7 @@ STYLES = dedent(
     }
 
     .hero-copy--portfolio h1 {
-      max-width: 13ch;
+      max-width: 10.5ch;
     }
 
     .hero-copy--portfolio .hero-text {
@@ -9369,8 +8022,6 @@ STYLES = dedent(
       .hero__inner,
       .home-ledger,
       .home-split,
-      .manufacturing-hero,
-      .manufacturing-stage,
       .about-frame,
       .operating-stage,
       .split-stage,
@@ -9384,38 +8035,6 @@ STYLES = dedent(
 
       .process-shell {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .manufacturing-hero {
-        min-height: auto;
-        gap: 1.8rem;
-      }
-
-      .manufacturing-hero__media {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .manufacturing-hero__card--lead {
-        min-height: 24rem;
-      }
-
-      .manufacturing-stage__cards,
-      .manufacturing-gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .manufacturing-product-row,
-      .manufacturing-product-row--reverse {
-        grid-template-columns: 1fr;
-      }
-
-      .manufacturing-product-row--reverse .manufacturing-product-row__media,
-      .manufacturing-product-row--reverse .manufacturing-product-row__content {
-        order: initial;
-      }
-
-      .manufacturing-product-row__media {
-        min-height: 18rem;
       }
 
       .route-line--process {
@@ -9500,9 +8119,6 @@ STYLES = dedent(
       }
 
       .proof-strip,
-      .manufacturing-hero__facts,
-      .manufacturing-stage__cards,
-      .manufacturing-gallery,
       .home-poster__metrics,
       .blog-grid,
       .industry-rail,
@@ -9522,27 +8138,6 @@ STYLES = dedent(
 
       .process-media-grid--dispatch {
         grid-template-columns: 1fr;
-      }
-
-      .product-poster__gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .manufacturing-hero__media {
-        grid-template-columns: 1fr;
-      }
-
-      .manufacturing-hero__card--lead {
-        grid-row: auto;
-        min-height: 20rem;
-      }
-
-      .manufacturing-hero__panel strong {
-        max-width: none;
-      }
-
-      .manufacturing-product-row {
-        padding: 0.9rem;
       }
 
       .process-media-card--lead,
@@ -9609,8 +8204,7 @@ STYLES = dedent(
       .feature-row,
       .portfolio-row,
       .portfolio-product,
-      .home-family-row,
-      .manufacturing-product-row {
+      .home-family-row {
         grid-template-columns: 1fr;
       }
 
@@ -9690,68 +8284,9 @@ STYLES = dedent(
         padding-bottom: 2.5rem;
       }
 
-      .hero--manufacturing-home {
-        padding-bottom: 2.2rem;
-      }
-
-      .manufacturing-hero {
-        gap: 1.3rem;
-        padding-bottom: 0;
-      }
-
-      .manufacturing-hero__facts {
-        gap: 0.85rem;
-      }
-
       .hero h1 {
         max-width: 12ch;
         font-size: clamp(2.5rem, 12vw, 4.4rem);
-      }
-
-      .manufacturing-hero__copy h1,
-      .manufacturing-stage__intro h2 {
-        max-width: 11ch;
-      }
-
-      .manufacturing-fact,
-      .manufacturing-stage-card,
-      .manufacturing-gallery__card,
-      .manufacturing-product-row,
-      .manufacturing-hero__card,
-      .manufacturing-hero__panel {
-        border-radius: 1.5rem;
-      }
-
-      .manufacturing-hero__card,
-      .manufacturing-hero__card--lead,
-      .manufacturing-product-row__media {
-        min-height: 16rem;
-      }
-
-      .manufacturing-stage-card {
-        min-height: 0;
-      }
-
-      .manufacturing-stage-card h3 {
-        max-width: none;
-      }
-
-      .manufacturing-product-row__content h3 {
-        font-size: clamp(2rem, 10vw, 3rem);
-      }
-
-      .manufacturing-product-row__facts {
-        gap: 0.55rem;
-      }
-
-      .manufacturing-product-row__fact {
-        min-height: 2.35rem;
-        padding: 0.58rem 0.84rem;
-        font-size: 0.84rem;
-      }
-
-      .manufacturing-gallery__card img {
-        height: 13rem;
       }
 
       .hero-track,
@@ -9780,44 +8315,6 @@ STYLES = dedent(
       .home-poster__metrics,
       .product-poster__metrics {
         grid-template-columns: 1fr;
-      }
-
-      .product-poster__gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .product-poster__image,
-      .product-poster__image--lead {
-        min-height: 12rem;
-      }
-
-      .product-gallery-marquee::before,
-      .product-gallery-marquee::after {
-        width: 2rem;
-      }
-
-      .product-gallery-marquee {
-        grid-template-columns: 1fr;
-      }
-
-      .product-gallery-control {
-        display: none;
-      }
-
-      .product-gallery-marquee::before {
-        left: 0;
-      }
-
-      .product-gallery-marquee::after {
-        right: 0;
-      }
-
-      .product-gallery-card {
-        flex-basis: 13.5rem;
-      }
-
-      .product-gallery-card img {
-        height: 11rem;
       }
 
       .home-poster__surface {
@@ -9995,8 +8492,6 @@ SCRIPT = dedent(
     const portfolioAnchors = document.querySelectorAll(".portfolio-anchor");
     const portfolioStages = document.querySelectorAll(".portfolio-stage[id]");
     const corridorStages = document.querySelectorAll("[data-corridor-stage]");
-    const productGalleries = document.querySelectorAll("[data-product-gallery]");
-    const crosslinkTargets = document.querySelectorAll("[data-crosslink-target]");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     requestAnimationFrame(() => {{
@@ -10466,96 +8961,6 @@ SCRIPT = dedent(
       startAutoplay();
     }};
 
-    const initProductGallery = (gallery) => {{
-      const scroller = gallery.querySelector("[data-gallery-scroller]");
-      const controls = Array.from(gallery.querySelectorAll("[data-gallery-control]"));
-      if (!scroller) return;
-
-      let frameId = 0;
-      let paused = false;
-      let lastTime = 0;
-      let resumeTimer = 0;
-
-      const maxScroll = () => Math.max(0, scroller.scrollWidth - scroller.clientWidth);
-
-      const scheduleResume = () => {{
-        if (resumeTimer) {{
-          window.clearTimeout(resumeTimer);
-        }}
-        resumeTimer = window.setTimeout(() => {{
-          paused = false;
-        }}, 2200);
-      }};
-
-      const scrollByAmount = (direction) => {{
-        const distance = Math.max(scroller.clientWidth * 0.82, 220) * direction;
-        scroller.scrollBy({{ left: distance, behavior: "smooth" }});
-      }};
-
-      controls.forEach((control) => {{
-        control.addEventListener("click", () => {{
-          paused = true;
-          scrollByAmount(Number(control.dataset.galleryControl || 0));
-          scheduleResume();
-        }});
-      }});
-
-      const tick = (time) => {{
-        if (!paused && !prefersReducedMotion.matches && maxScroll() > 0) {{
-          if (lastTime) {{
-            const delta = time - lastTime;
-            const next = scroller.scrollLeft + delta * 0.045;
-            scroller.scrollLeft = next >= maxScroll() ? 0 : next;
-          }}
-        }}
-        lastTime = time;
-        frameId = window.requestAnimationFrame(tick);
-      }};
-
-      const pause = () => {{
-        paused = true;
-        if (resumeTimer) {{
-          window.clearTimeout(resumeTimer);
-        }}
-      }};
-
-      const resume = () => {{
-        paused = false;
-        if (resumeTimer) {{
-          window.clearTimeout(resumeTimer);
-        }}
-        resumeTimer = 0;
-      }};
-
-      gallery.addEventListener("mouseenter", pause);
-      gallery.addEventListener("mouseleave", resume);
-      gallery.addEventListener("focusin", pause);
-      gallery.addEventListener("focusout", resume);
-      scroller.addEventListener("pointerdown", () => {{
-        pause();
-        scheduleResume();
-      }});
-      scroller.addEventListener("touchstart", () => {{
-        pause();
-        scheduleResume();
-      }}, {{ passive: true }});
-      scroller.addEventListener("wheel", () => {{
-        pause();
-        scheduleResume();
-      }}, {{ passive: true }});
-      scroller.addEventListener("scroll", () => {{
-        if (paused) {{
-          scheduleResume();
-        }}
-      }}, {{ passive: true }});
-
-      frameId = window.requestAnimationFrame(tick);
-      return () => {{
-        if (frameId) window.cancelAnimationFrame(frameId);
-        if (resumeTimer) window.clearTimeout(resumeTimer);
-      }};
-    }};
-
     const inquiryEndpoint = "https://formsubmit.co/ajax/{CONTACT["sales_email"]}";
 
     const setRequestType = (requestType) => {{
@@ -10684,19 +9089,6 @@ SCRIPT = dedent(
       initCorridorStage(stage);
     }});
 
-    productGalleries.forEach((gallery) => {{
-      initProductGallery(gallery);
-    }});
-
-    crosslinkTargets.forEach((link) => {{
-      link.addEventListener("click", (event) => {{
-        const href = link.getAttribute("href");
-        if (!href) return;
-        event.preventDefault();
-        window.location.assign(href);
-      }});
-    }});
-
     syncHeader();
     syncParallax();
     window.addEventListener("scroll", syncHeader, {{ passive: true }});
@@ -10707,12 +9099,10 @@ SCRIPT = dedent(
 
 
 def render_robots() -> str:
-    disallow_lines = "\n".join(f"        Disallow: {rule}" for rule in ROBOTS_DISALLOWS)
     return dedent(
         f"""
         User-agent: *
         Allow: /
-{disallow_lines}
 
         Sitemap: {BASE_URL}/sitemap.xml
         """
@@ -10720,24 +9110,19 @@ def render_robots() -> str:
 
 
 def render_sitemap() -> str:
-    urls: list[str] = []
-    legacy_product_paths = {product["slug"] for product in PRODUCTS}
-    legacy_redirect_paths = {redirect["path"] for redirect in all_redirects()}
-    for path in sorted(ROOT.rglob("index.html")):
-        if "_site" in path.parts or ".git" in path.parts:
-            continue
-        rel = path.relative_to(ROOT)
-        if rel.name != "index.html":
-            continue
-        parent = rel.parent.as_posix()
-        if parent in legacy_product_paths:
-            continue
-        if parent in legacy_redirect_paths:
-            continue
-        if parent in NOINDEX_PAGE_PARENTS:
-            continue
-        url_path = "/" if parent == "." else f"/{parent}/"
-        urls.append(url_path)
+    urls = [
+        "/",
+        "/blog/",
+        "/hear-from-ceo/",
+        "/export-markets/",
+        "/industrial-minerals-exporter-india/",
+        "/operations/",
+        "/privacy-policy/",
+        "/products/",
+        "/terms-disclaimer/",
+        *[f"/blog/{post['slug']}/" for post in BLOGS if post["slug"] in CURRENT_BLOG_SLUGS],
+        *[f"/products/{product['slug']}/" for product in ACTIVE_PRODUCTS],
+    ]
     entries = "\n".join(
         f"  <url><loc>{BASE_URL}{path}</loc><lastmod>{TODAY}</lastmod></url>"
         for path in urls
@@ -10750,49 +9135,29 @@ def render_sitemap() -> str:
     )
 
 
-def render_redirect_page(title: str, target: str) -> str:
-    target_url = f"{BASE_URL}{target}"
-    return dedent(
-        f"""
-        <!DOCTYPE html>
-        <html lang="en">
-          <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>{escape(title)} | {CONTACT['company']}</title>
-            <meta name="robots" content="noindex,follow" />
-            <link rel="canonical" href="{escape(target_url)}" />
-            <meta http-equiv="refresh" content="0; url={escape(target)}" />
-            <script>window.location.replace("{escape(target)}");</script>
-          </head>
-          <body>
-            <p>{escape(title)} to <a href="{escape(target)}">{escape(target_url)}</a>.</p>
-          </body>
-        </html>
-        """
-    ).strip()
-
-
-def render_legacy_product_redirect(product: dict) -> str:
-    return render_redirect_page(f"{product['name']} moved", f"/products/{product['slug']}/")
-
-
 def main() -> None:
     write(ROOT / "styles.css", STYLES)
     write(ROOT / "script.js", SCRIPT)
     write(ROOT / "index.html", render_homepage())
     write(ROOT / "blog" / "index.html", render_blog_index_page())
     for blog_post in BLOGS:
-      write(ROOT / "blog" / blog_post["slug"] / "index.html", render_blog_post_page(blog_post))
+      if blog_post["slug"] in CURRENT_BLOG_SLUGS:
+        write(ROOT / "blog" / blog_post["slug"] / "index.html", render_blog_post_page(blog_post))
     write(ROOT / "hear-from-ceo" / "index.html", render_ceo_page())
     write(ROOT / "export-markets" / "index.html", render_export_markets_page())
     write(ROOT / "industrial-minerals-exporter-india" / "index.html", render_exporter_profile_page())
     write(ROOT / "products" / "index.html", render_products_index())
-    for product in PRODUCTS:
+    for product in ACTIVE_PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
-      write(ROOT / product["slug"] / "index.html", render_legacy_product_redirect(product))
-    for redirect in all_redirects():
-      write(ROOT / redirect["path"] / "index.html", render_redirect_page(redirect["title"], redirect["target"]))
+    write(
+        ROOT / "products" / "silica-flour" / "index.html",
+        render_redirect_page(
+            "Silica Flour Redirect | Jade Waves Enterprise",
+            "Silica Flour inquiries are now handled through the Silica Sand product page.",
+            "/products/silica-flour/",
+            REDIRECT_PRODUCT_TARGETS["silica-flour"],
+        ),
+    )
     write(ROOT / "robots.txt", render_robots())
     write(ROOT / "sitemap.xml", render_sitemap())
 
