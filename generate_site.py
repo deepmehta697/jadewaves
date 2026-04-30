@@ -572,19 +572,9 @@ for product in PRODUCTS:
         product["packing"] = packing
 
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
-
-ACTIVE_PRODUCT_SLUGS = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
-REDIRECT_PRODUCT_TARGETS = {
-    "bentonite": "/products/",
-    "copper-slag": "/products/",
-    "fly-ash": "/products/",
-    "kaolin--china-clay": "/products/",
-    "salt": "/products/",
-    "silica-flour": "/products/silica-sand/",
-    "talc": "/products/",
-}
-ACTIVE_PRODUCTS = [PRODUCTS_BY_SLUG[slug] for slug in ACTIVE_PRODUCT_SLUGS]
-ACTIVE_PRODUCT_SLUG_SET = set(ACTIVE_PRODUCT_SLUGS)
+PUBLISHED_PRODUCTS = PRODUCTS
+PUBLISHED_PRODUCT_SLUGS = [product["slug"] for product in PUBLISHED_PRODUCTS]
+PUBLISHED_PRODUCT_SLUG_SET = set(PUBLISHED_PRODUCT_SLUGS)
 
 PRODUCT_FAMILIES = [
     {
@@ -592,7 +582,7 @@ PRODUCT_FAMILIES = [
         "name": "Silica, Quartz & Feldspar",
         "copy": "Purity-led grades for glass, ceramics, filtration, and engineered stone.",
         "best_for": ["Glass", "Ceramics", "Filtration", "Engineered Stone"],
-        "products": ACTIVE_PRODUCT_SLUGS,
+        "products": PUBLISHED_PRODUCT_SLUGS,
     },
 ]
 
@@ -1324,25 +1314,82 @@ BLOGS = [
     },
 ]
 
-CURRENT_BLOG_SLUGS = [
-    "quartz-sand-supplier-india-vietnam-buyers-guide",
-    "potassium-vs-sodium-feldspar-import-buyer-guide",
-    "silica-sand-import-checklist-glass-foundry-filtration",
-    "potassium-feldspar-supplier-for-ceramic-tiles",
-    "quartz-powder-supplier-for-engineered-stone",
-    "silica-sand-exporter-from-india",
-    "how-to-check-tds-and-sample-coa-before-mineral-import",
-]
+PUBLISHED_BLOGS = BLOGS
+PUBLISHED_BLOG_SLUGS = [post["slug"] for post in PUBLISHED_BLOGS]
 
-REDIRECT_BLOG_TARGETS = {
-    "bentonite-grade-selection-guide-for-importers": "/blog/",
-    "bentonite-supplier-india": "/blog/",
-    "copper-slag-supplier-for-shipyard-blasting": "/blog/",
-    "fly-ash-exporter-from-india-bulk-shipment": "/blog/",
-    "industrial-salt-exporter": "/blog/",
-    "industrial-salt-import-guide-gulf-buyers": "/blog/",
-    "kaolin-supplier-for-paint-industry": "/blog/",
-}
+LEGACY_ALIAS_REDIRECTS = [
+    ("about-us", "About us moved", "/industrial-minerals-exporter-india/"),
+    ("activated-bleaching-earth", "Activated bleaching earth moved", "/products/"),
+    ("animal-feed-bentonite", "Animal feed bentonite moved", "/products/bentonite/"),
+    ("bentonite", "Bentonite moved", "/products/bentonite/"),
+    ("bentonite-supplier-india", "Bentonite supplier article moved", "/blog/bentonite-supplier-india/"),
+    ("blogs", "Blog index moved", "/blog/"),
+    ("blogs/f/activated-bleaching-earth", "Activated bleaching earth article moved", "/products/"),
+    ("blogs/f/bentonite-clay-and-its-applications", "Bentonite applications article moved", "/products/bentonite/"),
+    ("blogs/f/bentonite-suppliers-in-malaysia", "Bentonite Malaysia article moved", "/products/bentonite/"),
+    ("blogs/f/bentonite-suppliers-in-saudi-arabia", "Bentonite Saudi Arabia article moved", "/products/bentonite/"),
+    ("blogs/f/bentonite-suppliers-in-vietnam", "Bentonite Vietnam article moved", "/products/bentonite/"),
+    ("blogs/f/copper-slag-for-sandblasting", "Copper slag sandblasting article moved", "/blog/copper-slag-supplier-for-shipyard-blasting/"),
+    ("blogs/f/copper-slag-suppliers-in-india", "Copper slag supplier article moved", "/products/copper-slag/"),
+    ("blogs/f/drilling-bentonite", "Drilling bentonite article moved", "/products/bentonite/"),
+    ("blogs/f/fly-ash-suppliers-in-india", "Fly ash supplier article moved", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
+    ("blogs/f/innovations-in-recycling-fly-ash", "Fly ash recycling article moved", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
+    ("blogs/f/kaolin-china-clay-suppliers-in-india", "Kaolin article moved", "/products/kaolin--china-clay/"),
+    ("blogs/f/paint-bentonite", "Paint bentonite article moved", "/products/bentonite/"),
+    ("blogs/f/potash-feldspar-feldspar-suppliers-india", "Potash feldspar article moved", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
+    ("blogs/f/quartz-supplier-in-vietnam---quartz-india", "Quartz Vietnam article moved", "/blog/quartz-sand-supplier-india-vietnam-buyers-guide/"),
+    ("blogs/f/rubber-granules-maldives-rubber-granules-supplier-in-maldives", "Rubber granules article moved", "/products/"),
+    ("blogs/f/salt-suppliers-in-mauritius-jade-waves-enterprise", "Salt Mauritius article moved", "/blog/industrial-salt-exporter/"),
+    ("blogs/f/salt-suppliers-in-seychelles-jade-waves-enteprise", "Salt Seychelles article moved", "/blog/industrial-salt-exporter/"),
+    ("blogs/f/salt-the-essential-mineral", "Salt article moved", "/products/salt/"),
+    ("blogs/f/silica-sand-for-artificial-football-turf", "Silica turf article moved", "/products/silica-sand/"),
+    ("blogs/f/silica-sand-maldives", "Silica sand Maldives article moved", "/products/silica-sand/"),
+    ("blogs/f/silica-sand-suppliers-in-kenya", "Silica Kenya article moved", "/blog/silica-sand-exporter-from-india/"),
+    ("blogs/f/silica-sand-suppliers-in-mauritius-jade-waves-enterprise", "Silica Mauritius article moved", "/products/silica-sand/"),
+    ("blogs/f/the-future-of-fly-ash-utilization-in-green-building-practices", "Fly ash green building article moved", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
+    ("blogs/f/the-role-of-fly-ash-in-cement-manufacturing", "Fly ash cement article moved", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
+    ("blogs/f/top-silica-sand-suppliers-in-india-jade-waves-enterprise", "Silica suppliers article moved", "/blog/silica-sand-exporter-from-india/"),
+    ("cat-litter-bentonite", "Cat litter bentonite moved", "/products/bentonite/"),
+    ("ceramics-bentonite", "Ceramics bentonite moved", "/products/bentonite/"),
+    ("company-profile", "Company profile moved", "/industrial-minerals-exporter-india/"),
+    ("contact-1", "Contact moved", "/#contact"),
+    ("contact-1/ola/services/business-collaboration", "Business collaboration moved", "/#contact"),
+    ("contact-1/ola/services/product-inquiry-call", "Product inquiry moved", "/#contact"),
+    ("contact-1/ola/services/request-a-free-sample", "Sample request moved", "/#contact"),
+    ("copper-slag", "Copper slag moved", "/products/copper-slag/"),
+    ("dolomite", "Dolomite moved", "/products/"),
+    ("earthing-bentonite", "Earthing bentonite moved", "/products/bentonite/"),
+    ("faq", "FAQ moved", "/products/"),
+    ("feldspar", "Feldspar moved", "/products/feldspar/"),
+    ("fertilizer-bentonite", "Fertilizer bentonite moved", "/products/bentonite/"),
+    ("fly-ash", "Fly ash moved", "/products/fly-ash/"),
+    ("foundry-bentonite", "Foundry bentonite moved", "/products/bentonite/"),
+    ("hdd-bentonite", "HDD bentonite moved", "/products/bentonite/"),
+    ("hear-from-our-ceo", "CEO page moved", "/hear-from-ceo/"),
+    ("home", "Home moved", "/"),
+    ("infrastructure", "Infrastructure moved", "/operations/"),
+    ("kaolin--china-clay", "Kaolin moved", "/products/kaolin--china-clay/"),
+    ("limestone-/-dolomite", "Dolomite moved", "/products/"),
+    ("m/create-account", "Account creation moved", "/#contact"),
+    ("m/login", "Login moved", "/#contact"),
+    ("m/reset", "Reset moved", "/#contact"),
+    ("oil-drilling-bentonite", "Oil drilling bentonite moved", "/products/bentonite/"),
+    ("piling-bentonite", "Piling bentonite moved", "/products/bentonite/"),
+    ("pond-sealing-bentonite", "Pond sealing bentonite moved", "/products/bentonite/"),
+    ("potash-&-soda-feldspar", "Feldspar moved", "/products/feldspar/"),
+    ("quartz", "Quartz moved", "/products/quartz-sand-for-ceramics/"),
+    ("quartz-sand-for-ceramics", "Quartz sand moved", "/products/quartz-sand-for-ceramics/"),
+    ("refractory-bentonite", "Refractory bentonite moved", "/products/bentonite/"),
+    ("rubber-granules", "Rubber granules moved", "/products/"),
+    ("salt", "Salt moved", "/products/salt/"),
+    ("silica-flour", "Silica flour moved", "/products/silica-flour/"),
+    ("silica-sand", "Silica sand moved", "/products/silica-sand/"),
+    ("silica-sand-india", "Silica sand moved", "/products/silica-sand/"),
+    ("silicasand-supplier-india", "Silica sand moved", "/products/silica-sand/"),
+    ("talc", "Talc moved", "/products/talc/"),
+    ("talc-/-soapstone", "Talc moved", "/products/talc/"),
+    ("terms-and-conditions", "Terms moved", "/terms-disclaimer/"),
+]
 
 
 def write(path: Path, content: str) -> None:
@@ -1491,7 +1538,7 @@ def render_redirect_page(title: str, description: str, from_path: str, to_path: 
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>{escape(title)}</title>
             <meta name="description" content="{escape(description)}" />
-            <meta name="robots" content="noindex,follow" />
+            <meta name="robots" content="index,follow" />
             <link rel="canonical" href="{escape(target_url)}" />
             <meta http-equiv="refresh" content="0; url={escape(target_url)}" />
             <script>window.location.replace({json.dumps(target_url)});</script>
@@ -1589,7 +1636,7 @@ def form_block(product_name: str = "") -> str:
 
 def product_select() -> str:
     options = ['<option value="">Select product</option>']
-    for product in ACTIVE_PRODUCTS:
+    for product in PUBLISHED_PRODUCTS:
         options.append(f'<option value="{escape(product["name"])}">{escape(product["name"])}</option>')
     return "<select name=\"product\">" + "".join(options) + "</select>"
 
@@ -1597,7 +1644,7 @@ def product_select() -> str:
 def related_links(slugs: list[str]) -> str:
     links = []
     for slug in slugs:
-        if slug not in ACTIVE_PRODUCT_SLUG_SET:
+        if slug not in PUBLISHED_PRODUCT_SLUG_SET:
             continue
         product = PRODUCTS_BY_SLUG[slug]
         links.append(
@@ -1740,8 +1787,7 @@ def render_homepage() -> str:
     )
     guide_links_once = "".join(
         f'<a class="buyer-guide-pill" href="/blog/">{escape(post.get("marquee_title", post["title"]))}</a>'
-        for post in BLOGS
-        if post["slug"] in CURRENT_BLOG_SLUGS
+        for post in PUBLISHED_BLOGS
     )
     guide_links_markup = guide_links_once + guide_links_once
     home_body = dedent(
@@ -1986,7 +2032,7 @@ def render_homepage() -> str:
                     "url": f"{BASE_URL}/products/{product['slug']}/",
                     "name": product["name"],
                 }
-                for index, product in enumerate(ACTIVE_PRODUCTS)
+                for index, product in enumerate(PUBLISHED_PRODUCTS)
             ],
         },
     ]
@@ -2001,7 +2047,7 @@ def render_homepage() -> str:
 
 
 def render_blog_index_page() -> str:
-    current_posts = [post for post in BLOGS if post["slug"] in CURRENT_BLOG_SLUGS]
+    current_posts = PUBLISHED_BLOGS
     post_cards = []
     for post in current_posts:
         product = PRODUCTS_BY_SLUG[post["product_slug"]]
@@ -2178,8 +2224,6 @@ def render_blog_post_page(post: dict) -> str:
     questions_markup = "".join(f"<li>{escape(question)}</li>" for question in post["questions"])
     related_cards = []
     for related in BLOGS:
-        if related["slug"] not in CURRENT_BLOG_SLUGS:
-            continue
         if related["slug"] == post["slug"]:
             continue
         related_cards.append(
@@ -2440,7 +2484,7 @@ def render_products_index() -> str:
                     "url": f"{BASE_URL}/products/{product['slug']}/",
                     "name": product["name"],
                 }
-                for index, product in enumerate(ACTIVE_PRODUCTS)
+                for index, product in enumerate(PUBLISHED_PRODUCTS)
             ],
         },
     ]
@@ -9136,8 +9180,8 @@ def render_sitemap() -> str:
         "/privacy-policy/",
         "/products/",
         "/terms-disclaimer/",
-        *[f"/blog/{post['slug']}/" for post in BLOGS if post["slug"] in CURRENT_BLOG_SLUGS],
-        *[f"/products/{product['slug']}/" for product in ACTIVE_PRODUCTS],
+        *[f"/blog/{post['slug']}/" for post in PUBLISHED_BLOGS],
+        *[f"/products/{product['slug']}/" for product in PUBLISHED_PRODUCTS],
     ]
     entries = "\n".join(
         f"  <url><loc>{BASE_URL}{path}</loc><lastmod>{TODAY}</lastmod></url>"
@@ -9156,33 +9200,30 @@ def main() -> None:
     write(ROOT / "script.js", SCRIPT)
     write(ROOT / "index.html", render_homepage())
     write(ROOT / "blog" / "index.html", render_blog_index_page())
-    for blog_post in BLOGS:
-      if blog_post["slug"] in CURRENT_BLOG_SLUGS:
-        write(ROOT / "blog" / blog_post["slug"] / "index.html", render_blog_post_page(blog_post))
-    for slug, target in REDIRECT_BLOG_TARGETS.items():
-      write(
-          ROOT / "blog" / slug / "index.html",
-          render_redirect_page(
-              "Blog Redirect | Jade Waves Enterprise",
-              "This article has been consolidated into the current Jade Waves content hub.",
-              f"/blog/{slug}/",
-              target,
-          ),
-      )
+    for blog_post in PUBLISHED_BLOGS:
+      write(ROOT / "blog" / blog_post["slug"] / "index.html", render_blog_post_page(blog_post))
     write(ROOT / "hear-from-ceo" / "index.html", render_ceo_page())
     write(ROOT / "export-markets" / "index.html", render_export_markets_page())
     write(ROOT / "industrial-minerals-exporter-india" / "index.html", render_exporter_profile_page())
     write(ROOT / "products" / "index.html", render_products_index())
-    for product in ACTIVE_PRODUCTS:
+    for product in PUBLISHED_PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
-    for slug, target in REDIRECT_PRODUCT_TARGETS.items():
-      product_name = slug.replace("-", " ").replace("--", " ")
       write(
-          ROOT / "products" / slug / "index.html",
+          ROOT / product["slug"] / "index.html",
           render_redirect_page(
-              f"{product_name.title()} Redirect | Jade Waves Enterprise",
-              "This product page has been consolidated into the current Jade Waves portfolio.",
-              f"/products/{slug}/",
+              f"{product['name']} moved",
+              "This legacy product URL now points to the canonical product page.",
+              f"/{product['slug']}/",
+              f"/products/{product['slug']}/",
+          ),
+      )
+    for path, title, target in LEGACY_ALIAS_REDIRECTS:
+      write(
+          ROOT / path / "index.html",
+          render_redirect_page(
+              title,
+              "This legacy URL now points to the current Jade Waves page.",
+              f"/{path.strip('/')}/",
               target,
           ),
       )
