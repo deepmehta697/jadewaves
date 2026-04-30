@@ -4,7 +4,9 @@ import argparse
 import shutil
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +16,7 @@ OPTIONAL_FILES = ["CNAME"]
 SITE_DIRS = [
     "assets",
     "export-markets",
+    "hear-from-ceo",
     "industrial-minerals-exporter-india",
     "operations",
     "privacy-policy",
@@ -25,6 +28,14 @@ ACTIVE_PRODUCT_DIRS = [
     "feldspar",
     "silica-flour",
 ]
+REDIRECT_PRODUCT_DIRS = [
+    "bentonite",
+    "copper-slag",
+    "fly-ash",
+    "kaolin--china-clay",
+    "salt",
+    "talc",
+]
 ACTIVE_BLOG_DIRS = [
     "quartz-sand-supplier-india-vietnam-buyers-guide",
     "potassium-vs-sodium-feldspar-import-buyer-guide",
@@ -33,6 +44,15 @@ ACTIVE_BLOG_DIRS = [
     "quartz-powder-supplier-for-engineered-stone",
     "silica-sand-exporter-from-india",
     "how-to-check-tds-and-sample-coa-before-mineral-import",
+]
+REDIRECT_BLOG_DIRS = [
+    "bentonite-grade-selection-guide-for-importers",
+    "bentonite-supplier-india",
+    "copper-slag-supplier-for-shipyard-blasting",
+    "fly-ash-exporter-from-india-bulk-shipment",
+    "industrial-salt-exporter",
+    "industrial-salt-import-guide-gulf-buyers",
+    "kaolin-supplier-for-paint-industry",
 ]
 
 
@@ -55,13 +75,36 @@ def validate_inputs() -> list[str]:
     for name in ROOT_FILES + SITE_DIRS + ["blog/index.html", "products/index.html"]:
         if not (ROOT / name).exists():
             missing.append(name)
-    for name in ACTIVE_BLOG_DIRS:
+    for name in ACTIVE_BLOG_DIRS + REDIRECT_BLOG_DIRS:
         if not (ROOT / "blog" / name / "index.html").exists():
             missing.append(f"blog/{name}/index.html")
-    for name in ACTIVE_PRODUCT_DIRS:
+    for name in ACTIVE_PRODUCT_DIRS + REDIRECT_PRODUCT_DIRS:
         if not (ROOT / "products" / name / "index.html").exists():
             missing.append(f"products/{name}/index.html")
     return missing
+
+
+def sitemap_output_targets() -> list[Path]:
+    sitemap_path = ROOT / "sitemap.xml"
+    if not sitemap_path.exists():
+        return []
+
+    ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    root = ET.fromstring(sitemap_path.read_text(encoding="utf-8"))
+    targets: list[Path] = []
+
+    for loc in root.findall("sm:url/sm:loc", ns):
+        if not loc.text:
+            continue
+        parsed = urlparse(loc.text)
+        path = parsed.path.rstrip("/")
+        if not path:
+            targets.append(BUILD_DIR / "index.html")
+            continue
+        segments = [segment for segment in path.split("/") if segment]
+        targets.append(BUILD_DIR.joinpath(*segments) / "index.html")
+
+    return targets
 
 
 def build_site() -> None:
@@ -75,15 +118,16 @@ def build_site() -> None:
             copy_path(source, BUILD_DIR / name)
 
     copy_path(ROOT / "blog" / "index.html", BUILD_DIR / "blog" / "index.html")
-    for slug in ACTIVE_BLOG_DIRS:
+    for slug in ACTIVE_BLOG_DIRS + REDIRECT_BLOG_DIRS:
         copy_path(ROOT / "blog" / slug, BUILD_DIR / "blog" / slug)
 
     copy_path(ROOT / "products" / "index.html", BUILD_DIR / "products" / "index.html")
-    for slug in ACTIVE_PRODUCT_DIRS:
+    for slug in ACTIVE_PRODUCT_DIRS + REDIRECT_PRODUCT_DIRS:
         copy_path(ROOT / "products" / slug, BUILD_DIR / "products" / slug)
 
     expected = [BUILD_DIR / name for name in ROOT_FILES + SITE_DIRS]
     expected.extend([BUILD_DIR / "blog" / "index.html", BUILD_DIR / "products" / "index.html"])
+    expected.extend(sitemap_output_targets())
     missing_outputs = [str(path.relative_to(ROOT)) for path in expected if not path.exists()]
     if missing_outputs:
         raise SystemExit(
