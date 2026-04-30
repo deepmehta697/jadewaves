@@ -15,45 +15,26 @@ ROOT_FILES = ["index.html", "styles.css", "script.js", "robots.txt", "sitemap.xm
 OPTIONAL_FILES = ["CNAME"]
 SITE_DIRS = [
     "assets",
+    "blog",
     "export-markets",
     "hear-from-ceo",
     "industrial-minerals-exporter-india",
     "operations",
     "privacy-policy",
+    "products",
     "terms-disclaimer",
 ]
-ACTIVE_PRODUCT_DIRS = [
-    "silica-sand",
-    "quartz-sand-for-ceramics",
-    "feldspar",
-    "silica-flour",
-]
-REDIRECT_PRODUCT_DIRS = [
-    "bentonite",
-    "copper-slag",
-    "fly-ash",
-    "kaolin--china-clay",
-    "salt",
-    "talc",
-]
-ACTIVE_BLOG_DIRS = [
-    "quartz-sand-supplier-india-vietnam-buyers-guide",
-    "potassium-vs-sodium-feldspar-import-buyer-guide",
-    "silica-sand-import-checklist-glass-foundry-filtration",
-    "potassium-feldspar-supplier-for-ceramic-tiles",
-    "quartz-powder-supplier-for-engineered-stone",
-    "silica-sand-exporter-from-india",
-    "how-to-check-tds-and-sample-coa-before-mineral-import",
-]
-REDIRECT_BLOG_DIRS = [
-    "bentonite-grade-selection-guide-for-importers",
-    "bentonite-supplier-india",
-    "copper-slag-supplier-for-shipyard-blasting",
-    "fly-ash-exporter-from-india-bulk-shipment",
-    "industrial-salt-exporter",
-    "industrial-salt-import-guide-gulf-buyers",
-    "kaolin-supplier-for-paint-industry",
-]
+EXCLUDED_TOP_LEVEL_DIRS = {
+    ".git",
+    ".github",
+    "_site",
+    "__pycache__",
+    "config",
+    "docs",
+    "reports",
+    "scripts",
+    "tmp",
+}
 
 
 def run_regeneration() -> None:
@@ -70,17 +51,29 @@ def copy_path(source: Path, target: Path) -> None:
         shutil.copy2(source, target)
 
 
+def publishable_root_dirs() -> list[Path]:
+    dirs: list[Path] = []
+    for path in ROOT.iterdir():
+        if not path.is_dir():
+            continue
+        if path.name.startswith(".") or path.name in EXCLUDED_TOP_LEVEL_DIRS:
+            continue
+        if path.name in SITE_DIRS:
+            dirs.append(path)
+            continue
+        if any(child.name == "index.html" for child in path.rglob("index.html")):
+            dirs.append(path)
+    return sorted(dirs, key=lambda item: item.name)
+
+
 def validate_inputs() -> list[str]:
     missing: list[str] = []
-    for name in ROOT_FILES + SITE_DIRS + ["blog/index.html", "products/index.html"]:
+    for name in ROOT_FILES:
         if not (ROOT / name).exists():
             missing.append(name)
-    for name in ACTIVE_BLOG_DIRS + REDIRECT_BLOG_DIRS:
-        if not (ROOT / "blog" / name / "index.html").exists():
-            missing.append(f"blog/{name}/index.html")
-    for name in ACTIVE_PRODUCT_DIRS + REDIRECT_PRODUCT_DIRS:
-        if not (ROOT / "products" / name / "index.html").exists():
-            missing.append(f"products/{name}/index.html")
+    for path in publishable_root_dirs():
+        if not path.exists():
+            missing.append(path.name)
     return missing
 
 
@@ -112,21 +105,16 @@ def build_site() -> None:
         shutil.rmtree(BUILD_DIR)
     BUILD_DIR.mkdir(parents=True, exist_ok=True)
 
-    for name in ROOT_FILES + OPTIONAL_FILES + SITE_DIRS:
+    for name in ROOT_FILES + OPTIONAL_FILES:
         source = ROOT / name
         if source.exists():
             copy_path(source, BUILD_DIR / name)
 
-    copy_path(ROOT / "blog" / "index.html", BUILD_DIR / "blog" / "index.html")
-    for slug in ACTIVE_BLOG_DIRS + REDIRECT_BLOG_DIRS:
-        copy_path(ROOT / "blog" / slug, BUILD_DIR / "blog" / slug)
+    for source in publishable_root_dirs():
+        copy_path(source, BUILD_DIR / source.name)
 
-    copy_path(ROOT / "products" / "index.html", BUILD_DIR / "products" / "index.html")
-    for slug in ACTIVE_PRODUCT_DIRS + REDIRECT_PRODUCT_DIRS:
-        copy_path(ROOT / "products" / slug, BUILD_DIR / "products" / slug)
-
-    expected = [BUILD_DIR / name for name in ROOT_FILES + SITE_DIRS]
-    expected.extend([BUILD_DIR / "blog" / "index.html", BUILD_DIR / "products" / "index.html"])
+    expected = [BUILD_DIR / name for name in ROOT_FILES]
+    expected.extend(BUILD_DIR / path.name for path in publishable_root_dirs())
     expected.extend(sitemap_output_targets())
     missing_outputs = [str(path.relative_to(ROOT)) for path in expected if not path.exists()]
     if missing_outputs:
