@@ -575,7 +575,13 @@ PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
 
 ACTIVE_PRODUCT_SLUGS = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
 REDIRECT_PRODUCT_TARGETS = {
+    "bentonite": "/products/",
+    "copper-slag": "/products/",
+    "fly-ash": "/products/",
+    "kaolin--china-clay": "/products/",
+    "salt": "/products/",
     "silica-flour": "/products/silica-sand/",
+    "talc": "/products/",
 }
 ACTIVE_PRODUCTS = [PRODUCTS_BY_SLUG[slug] for slug in ACTIVE_PRODUCT_SLUGS]
 ACTIVE_PRODUCT_SLUG_SET = set(ACTIVE_PRODUCT_SLUGS)
@@ -1327,6 +1333,16 @@ CURRENT_BLOG_SLUGS = [
     "silica-sand-exporter-from-india",
     "how-to-check-tds-and-sample-coa-before-mineral-import",
 ]
+
+REDIRECT_BLOG_TARGETS = {
+    "bentonite-grade-selection-guide-for-importers": "/blog/",
+    "bentonite-supplier-india": "/blog/",
+    "copper-slag-supplier-for-shipyard-blasting": "/blog/",
+    "fly-ash-exporter-from-india-bulk-shipment": "/blog/",
+    "industrial-salt-exporter": "/blog/",
+    "industrial-salt-import-guide-gulf-buyers": "/blog/",
+    "kaolin-supplier-for-paint-industry": "/blog/",
+}
 
 
 def write(path: Path, content: str) -> None:
@@ -9143,21 +9159,33 @@ def main() -> None:
     for blog_post in BLOGS:
       if blog_post["slug"] in CURRENT_BLOG_SLUGS:
         write(ROOT / "blog" / blog_post["slug"] / "index.html", render_blog_post_page(blog_post))
+    for slug, target in REDIRECT_BLOG_TARGETS.items():
+      write(
+          ROOT / "blog" / slug / "index.html",
+          render_redirect_page(
+              "Blog Redirect | Jade Waves Enterprise",
+              "This article has been consolidated into the current Jade Waves content hub.",
+              f"/blog/{slug}/",
+              target,
+          ),
+      )
     write(ROOT / "hear-from-ceo" / "index.html", render_ceo_page())
     write(ROOT / "export-markets" / "index.html", render_export_markets_page())
     write(ROOT / "industrial-minerals-exporter-india" / "index.html", render_exporter_profile_page())
     write(ROOT / "products" / "index.html", render_products_index())
     for product in ACTIVE_PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
-    write(
-        ROOT / "products" / "silica-flour" / "index.html",
-        render_redirect_page(
-            "Silica Flour Redirect | Jade Waves Enterprise",
-            "Silica Flour inquiries are now handled through the Silica Sand product page.",
-            "/products/silica-flour/",
-            REDIRECT_PRODUCT_TARGETS["silica-flour"],
-        ),
-    )
+    for slug, target in REDIRECT_PRODUCT_TARGETS.items():
+      product_name = slug.replace("-", " ").replace("--", " ")
+      write(
+          ROOT / "products" / slug / "index.html",
+          render_redirect_page(
+              f"{product_name.title()} Redirect | Jade Waves Enterprise",
+              "This product page has been consolidated into the current Jade Waves portfolio.",
+              f"/products/{slug}/",
+              target,
+          ),
+      )
     write(ROOT / "robots.txt", render_robots())
     write(ROOT / "sitemap.xml", render_sitemap())
 
