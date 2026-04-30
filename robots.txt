@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /m/
+Disallow: /assets/coas/
+Disallow: /*?blog=
+Disallow: /*?blogcategory=
+Disallow: /*?trk=
+Disallow: /*?r=
 
 Sitemap: https://jadewavesenterprise.com/sitemap.xml
