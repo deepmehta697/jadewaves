@@ -1340,6 +1340,7 @@ LEGACY_ALIAS_REDIRECTS = [
     ("blogs/f/quartz-supplier-in-vietnam---quartz-india", "Quartz Vietnam article moved", "/blog/quartz-sand-supplier-india-vietnam-buyers-guide/"),
     ("blogs/f/rubber-granules-maldives-rubber-granules-supplier-in-maldives", "Rubber granules article moved", "/products/"),
     ("blogs/f/salt-suppliers-in-mauritius-jade-waves-enterprise", "Salt Mauritius article moved", "/blog/industrial-salt-exporter/"),
+    ("blogs/f/salt-suppliers-in-seychelles-jade-waves-enterprise", "Salt Seychelles article moved", "/blog/industrial-salt-exporter/"),
     ("blogs/f/salt-suppliers-in-seychelles-jade-waves-enteprise", "Salt Seychelles article moved", "/blog/industrial-salt-exporter/"),
     ("blogs/f/salt-the-essential-mineral", "Salt article moved", "/products/salt/"),
     ("blogs/f/silica-sand-for-artificial-football-turf", "Silica turf article moved", "/products/silica-sand/"),
@@ -1359,6 +1360,11 @@ LEGACY_ALIAS_REDIRECTS = [
     ("copper-slag", "Copper slag moved", "/products/copper-slag/"),
     ("dolomite", "Dolomite moved", "/products/"),
     ("earthing-bentonite", "Earthing bentonite moved", "/products/bentonite/"),
+    ("export-markets/bentonite-vietnam-gulf", "Export market page moved", "/export-markets/"),
+    ("export-markets/feldspar-vietnam", "Export market page moved", "/export-markets/"),
+    ("export-markets/quartz-feldspar-ceramic-glass", "Export market page moved", "/export-markets/"),
+    ("export-markets/quartz-sand-vietnam", "Export market page moved", "/export-markets/"),
+    ("export-markets/silica-sand-maldives", "Export market page moved", "/export-markets/"),
     ("faq", "FAQ moved", "/products/"),
     ("feldspar", "Feldspar moved", "/products/feldspar/"),
     ("fertilizer-bentonite", "Fertilizer bentonite moved", "/products/bentonite/"),
@@ -1397,8 +1403,24 @@ def write(path: Path, content: str) -> None:
     path.write_text(content.rstrip() + "\n", encoding="utf-8")
 
 
+def copy_file(source: Path, destination: Path) -> None:
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_bytes(source.read_bytes())
+
+
 def make_project_pages_safe(markup: str) -> str:
     return markup
+
+
+SECTION_REDIRECTS = {
+    "blog": "/blog/",
+    "products": "/products/",
+    "operations": "/operations/",
+    "export-markets": "/export-markets/",
+    "hear-from-ceo": "/hear-from-ceo/",
+    "privacy-policy": "/privacy-policy/",
+    "terms-disclaimer": "/terms-disclaimer/",
+}
 
 
 def nav_html() -> str:
@@ -9195,6 +9217,94 @@ def render_sitemap() -> str:
     )
 
 
+def malformed_redirect_entries() -> list[tuple[str, str, str]]:
+    entries: list[tuple[str, str, str]] = [
+        ("blog/blog", "Blog moved", "/blog/"),
+        ("blog/products", "Products moved", "/products/"),
+        ("blog/operations", "Operations moved", "/operations/"),
+        ("blog/export-markets", "Markets moved", "/export-markets/"),
+        ("products/blog", "Blog moved", "/blog/"),
+        ("products/products", "Products moved", "/products/"),
+        ("products/operations", "Operations moved", "/operations/"),
+        ("products/export-markets", "Markets moved", "/export-markets/"),
+        ("operations/blog", "Blog moved", "/blog/"),
+        ("operations/operations", "Operations moved", "/operations/"),
+        ("operations/export-markets", "Markets moved", "/export-markets/"),
+        ("operations/privacy-policy", "Privacy Policy moved", "/privacy-policy/"),
+        ("operations/terms-disclaimer", "Terms moved", "/terms-disclaimer/"),
+        ("privacy-policy/privacy-policy", "Privacy Policy moved", "/privacy-policy/"),
+        ("privacy-policy/terms-disclaimer", "Terms moved", "/terms-disclaimer/"),
+        ("terms-disclaimer/privacy-policy", "Privacy Policy moved", "/privacy-policy/"),
+        ("terms-disclaimer/terms-disclaimer", "Terms moved", "/terms-disclaimer/"),
+    ]
+
+    for product in PUBLISHED_PRODUCTS:
+        slug = product["slug"]
+        entries.extend(
+            (
+                (f"products/{slug}/{section}", f"{section.replace('-', ' ').title()} moved", target)
+                for section, target in SECTION_REDIRECTS.items()
+            )
+        )
+        entries.append((f"operations/products/{slug}", f"{product['name']} moved", f"/products/{slug}/"))
+        entries.append((f"products/products/{slug}", f"{product['name']} moved", f"/products/{slug}/"))
+        for target_product in PUBLISHED_PRODUCTS:
+            target_slug = target_product["slug"]
+            entries.append(
+                (
+                    f"products/{slug}/products/{target_slug}",
+                    f"{target_product['name']} moved",
+                    f"/products/{target_slug}/",
+                )
+            )
+
+    for post in PUBLISHED_BLOGS:
+        slug = post["slug"]
+        entries.extend(
+            (
+                (f"blog/{slug}/{section}", f"{section.replace('-', ' ').title()} moved", target)
+                for section, target in SECTION_REDIRECTS.items()
+            )
+        )
+        entries.append((f"blog/blog/{slug}", f"{post['title']} moved", f"/blog/{slug}/"))
+        for target_post in PUBLISHED_BLOGS:
+            target_slug = target_post["slug"]
+            entries.append(
+                (
+                    f"blog/{slug}/blog/{target_slug}",
+                    f"{target_post['title']} moved",
+                    f"/blog/{target_slug}/",
+                )
+            )
+        for product in PUBLISHED_PRODUCTS:
+            target_slug = product["slug"]
+            entries.append(
+                (
+                    f"blog/{slug}/products/{target_slug}",
+                    f"{product['name']} moved",
+                    f"/products/{target_slug}/",
+                )
+            )
+
+    return entries
+
+
+def parameter_doc_aliases() -> list[tuple[Path, Path]]:
+    aliases: list[tuple[Path, Path]] = []
+    for product in PUBLISHED_PRODUCTS:
+        for _, href in product.get("parameter_docs", []):
+            source = ROOT / href.lstrip("/")
+            if not source.exists():
+                continue
+            aliases.append(
+                (
+                    source,
+                    ROOT / "products" / product["slug"] / href.lstrip("/"),
+                )
+            )
+    return aliases
+
+
 def main() -> None:
     write(ROOT / "styles.css", STYLES)
     write(ROOT / "script.js", SCRIPT)
@@ -9227,6 +9337,18 @@ def main() -> None:
               target,
           ),
       )
+    for path, title, target in malformed_redirect_entries():
+      write(
+          ROOT / path / "index.html",
+          render_redirect_page(
+              title,
+              "This malformed legacy URL now points to the canonical Jade Waves page.",
+              f"/{path.strip('/')}/",
+              target,
+          ),
+      )
+    for source, destination in parameter_doc_aliases():
+      copy_file(source, destination)
     write(ROOT / "robots.txt", render_robots())
     write(ROOT / "sitemap.xml", render_sitemap())
 
