@@ -1560,7 +1560,7 @@ def render_redirect_page(title: str, description: str, from_path: str, to_path: 
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>{escape(title)}</title>
             <meta name="description" content="{escape(description)}" />
-            <meta name="robots" content="index,follow" />
+            <meta name="robots" content="noindex,follow" />
             <link rel="canonical" href="{escape(target_url)}" />
             <meta http-equiv="refresh" content="0; url={escape(target_url)}" />
             <script>window.location.replace({json.dumps(target_url)});</script>
@@ -9185,6 +9185,12 @@ def render_robots() -> str:
         f"""
         User-agent: *
         Allow: /
+        Disallow: /m/
+        Disallow: /assets/coas/
+        Disallow: /*?blog=
+        Disallow: /*?blogcategory=
+        Disallow: /*?trk=
+        Disallow: /*?r=
 
         Sitemap: {BASE_URL}/sitemap.xml
         """
