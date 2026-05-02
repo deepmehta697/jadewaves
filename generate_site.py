@@ -36,18 +36,6 @@ INDUSTRIES = [
         "Silica sand and quartz inputs for construction-linked and engineered-stone-adjacent mineral demand.",
     ),
     (
-        "Chemicals",
-        "Salt, silica, and selected mineral inputs for processing, treatment, and utility-led operations.",
-    ),
-    (
-        "Drilling",
-        "Bentonite grades for drilling programs that rely on stable swelling, viscosity, and moisture control.",
-    ),
-    (
-        "Agriculture",
-        "Selected minerals for carrier, absorbent, and process-linked agricultural use.",
-    ),
-    (
         "Foundry",
         "Silica sand for moulding systems that depend on repeatable sizing and dependable export handling.",
     ),
@@ -572,9 +560,19 @@ for product in PRODUCTS:
         product["packing"] = packing
 
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
-PUBLISHED_PRODUCTS = PRODUCTS
+ACTIVE_PRODUCT_SLUGS = {
+    "silica-sand",
+    "quartz-sand-for-ceramics",
+    "feldspar",
+}
+PUBLISHED_PRODUCTS = [
+    product for product in PRODUCTS if product["slug"] in ACTIVE_PRODUCT_SLUGS
+]
 PUBLISHED_PRODUCT_SLUGS = [product["slug"] for product in PUBLISHED_PRODUCTS]
 PUBLISHED_PRODUCT_SLUG_SET = set(PUBLISHED_PRODUCT_SLUGS)
+UNPUBLISHED_PRODUCTS = [
+    product for product in PRODUCTS if product["slug"] not in PUBLISHED_PRODUCT_SLUG_SET
+]
 
 PRODUCT_FAMILIES = [
     {
@@ -1314,8 +1312,43 @@ BLOGS = [
     },
 ]
 
-PUBLISHED_BLOGS = BLOGS
+BLOGS_BY_SLUG = {post["slug"]: post for post in BLOGS}
+PUBLISHED_BLOGS = [
+    post for post in BLOGS if post["product_slug"] in PUBLISHED_PRODUCT_SLUG_SET
+]
 PUBLISHED_BLOG_SLUGS = [post["slug"] for post in PUBLISHED_BLOGS]
+PUBLISHED_BLOG_SLUG_SET = set(PUBLISHED_BLOG_SLUGS)
+UNPUBLISHED_BLOGS = [
+    post for post in BLOGS if post["slug"] not in PUBLISHED_BLOG_SLUG_SET
+]
+
+
+def canonical_product_target(slug: str) -> str:
+    if slug == "silica-flour":
+        return "/products/silica-sand/"
+    if slug in PUBLISHED_PRODUCT_SLUG_SET:
+        return f"/products/{slug}/"
+    return "/products/"
+
+
+def canonical_blog_target(slug: str) -> str:
+    if slug in PUBLISHED_BLOG_SLUG_SET:
+        return f"/blog/{slug}/"
+    post = BLOGS_BY_SLUG.get(slug)
+    if post and post["product_slug"] in PUBLISHED_PRODUCT_SLUG_SET:
+        return canonical_product_target(post["product_slug"])
+    return "/blog/"
+
+
+def normalize_legacy_target(target: str) -> str:
+    normalized = target if target.endswith("/") else f"{target}/"
+    if normalized.startswith("/products/"):
+        slug = normalized.removeprefix("/products/").strip("/")
+        return canonical_product_target(slug) if slug else "/products/"
+    if normalized.startswith("/blog/"):
+        slug = normalized.removeprefix("/blog/").strip("/")
+        return canonical_blog_target(slug) if slug else "/blog/"
+    return normalized
 
 LEGACY_ALIAS_REDIRECTS = [
     ("about-us", "About us moved", "/industrial-minerals-exporter-india/"),
@@ -1395,6 +1428,10 @@ LEGACY_ALIAS_REDIRECTS = [
     ("talc", "Talc moved", "/products/talc/"),
     ("talc-/-soapstone", "Talc moved", "/products/talc/"),
     ("terms-and-conditions", "Terms moved", "/terms-disclaimer/"),
+]
+LEGACY_ALIAS_REDIRECTS = [
+    (path, title, normalize_legacy_target(target))
+    for path, title, target in LEGACY_ALIAS_REDIRECTS
 ]
 
 
@@ -9244,7 +9281,7 @@ def malformed_redirect_entries() -> list[tuple[str, str, str]]:
         ("terms-disclaimer/terms-disclaimer", "Terms moved", "/terms-disclaimer/"),
     ]
 
-    for product in PUBLISHED_PRODUCTS:
+    for product in PRODUCTS:
         slug = product["slug"]
         entries.extend(
             (
@@ -9252,19 +9289,20 @@ def malformed_redirect_entries() -> list[tuple[str, str, str]]:
                 for section, target in SECTION_REDIRECTS.items()
             )
         )
-        entries.append((f"operations/products/{slug}", f"{product['name']} moved", f"/products/{slug}/"))
-        entries.append((f"products/products/{slug}", f"{product['name']} moved", f"/products/{slug}/"))
-        for target_product in PUBLISHED_PRODUCTS:
+        canonical_target = canonical_product_target(slug)
+        entries.append((f"operations/products/{slug}", f"{product['name']} moved", canonical_target))
+        entries.append((f"products/products/{slug}", f"{product['name']} moved", canonical_target))
+        for target_product in PRODUCTS:
             target_slug = target_product["slug"]
             entries.append(
                 (
                     f"products/{slug}/products/{target_slug}",
                     f"{target_product['name']} moved",
-                    f"/products/{target_slug}/",
+                    canonical_product_target(target_slug),
                 )
             )
 
-    for post in PUBLISHED_BLOGS:
+    for post in BLOGS:
         slug = post["slug"]
         entries.extend(
             (
@@ -9272,23 +9310,23 @@ def malformed_redirect_entries() -> list[tuple[str, str, str]]:
                 for section, target in SECTION_REDIRECTS.items()
             )
         )
-        entries.append((f"blog/blog/{slug}", f"{post['title']} moved", f"/blog/{slug}/"))
-        for target_post in PUBLISHED_BLOGS:
+        entries.append((f"blog/blog/{slug}", f"{post['title']} moved", canonical_blog_target(slug)))
+        for target_post in BLOGS:
             target_slug = target_post["slug"]
             entries.append(
                 (
                     f"blog/{slug}/blog/{target_slug}",
                     f"{target_post['title']} moved",
-                    f"/blog/{target_slug}/",
+                    canonical_blog_target(target_slug),
                 )
             )
-        for product in PUBLISHED_PRODUCTS:
+        for product in PRODUCTS:
             target_slug = product["slug"]
             entries.append(
                 (
                     f"blog/{slug}/products/{target_slug}",
                     f"{product['name']} moved",
-                    f"/products/{target_slug}/",
+                    canonical_product_target(target_slug),
                 )
             )
 
@@ -9318,6 +9356,16 @@ def main() -> None:
     write(ROOT / "blog" / "index.html", render_blog_index_page())
     for blog_post in PUBLISHED_BLOGS:
       write(ROOT / "blog" / blog_post["slug"] / "index.html", render_blog_post_page(blog_post))
+    for blog_post in UNPUBLISHED_BLOGS:
+      write(
+          ROOT / "blog" / blog_post["slug"] / "index.html",
+          render_redirect_page(
+              f"{blog_post['title']} moved",
+              "This legacy article URL now points to the current Jade Waves section.",
+              f"/blog/{blog_post['slug']}/",
+              canonical_blog_target(blog_post["slug"]),
+          ),
+      )
     write(ROOT / "hear-from-ceo" / "index.html", render_ceo_page())
     write(ROOT / "export-markets" / "index.html", render_export_markets_page())
     write(ROOT / "industrial-minerals-exporter-india" / "index.html", render_exporter_profile_page())
@@ -9331,6 +9379,16 @@ def main() -> None:
               "This legacy product URL now points to the canonical product page.",
               f"/{product['slug']}/",
               f"/products/{product['slug']}/",
+          ),
+      )
+    for product in UNPUBLISHED_PRODUCTS:
+      write(
+          ROOT / "products" / product["slug"] / "index.html",
+          render_redirect_page(
+              f"{product['name']} moved",
+              "This legacy product URL now points to the current Jade Waves portfolio.",
+              f"/products/{product['slug']}/",
+              canonical_product_target(product["slug"]),
           ),
       )
     for path, title, target in LEGACY_ALIAS_REDIRECTS:
