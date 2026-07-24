@@ -11,6 +11,7 @@ ROOT = Path(__file__).parent
 BASE_URL = "https://jadewavesenterprise.com"
 PROJECT_PAGES_REPO = "jadewaves"
 TODAY = date.today().isoformat()
+DEFAULT_CONTENT_DATE = "2026-04-11"
 CEO_LINKEDIN_URL = "https://www.linkedin.com/in/deep-mehta-034230226/"
 GA4_MEASUREMENT_ID = "G-9BRL4JKNN6"
 
@@ -173,8 +174,9 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "quartz",
         "eyebrow": "Ceramics / Glass / Engineered Stone / Building Materials",
-        "seo_title": "Quartz Sand Supplier from India | Grits & Powder Exporter | Jade Waves Enterprise",
-        "meta_description": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
+        "seo_title": "Quartz Supplier from India | Quartz Sand, Grits & Powder Exporter | Jade Waves Enterprise",
+        "meta_description": "Quartz supplier from India for ceramics, glass, and engineered stone buyers needing quartz sand, quartz grits, and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
+        "lastmod": TODAY,
         "hero_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits, quartz powder, and dependable export handling.",
         "short_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone.",
         "summary_spec": "SiO2 >99.0% / L value 91 min",
@@ -2283,6 +2285,8 @@ def render_blog_post_page(post: dict) -> str:
         """
     ).strip()
     post_url = f"{BASE_URL}/blog/{post['slug']}/"
+    published_on = post.get("published_on", DEFAULT_CONTENT_DATE)
+    updated_on = post.get("updated_on", published_on)
     schema = [
         {
             "@context": "https://schema.org",
@@ -2291,8 +2295,8 @@ def render_blog_post_page(post: dict) -> str:
             "description": post["meta_description"],
             "mainEntityOfPage": post_url,
             "url": post_url,
-            "datePublished": TODAY,
-            "dateModified": TODAY,
+            "datePublished": published_on,
+            "dateModified": updated_on,
             "author": {"@type": "Organization", "name": CONTACT["company"]},
             "publisher": {
                 "@type": "Organization",
@@ -9127,6 +9131,29 @@ def render_robots() -> str:
 
 
 def render_sitemap() -> str:
+    route_lastmod = {
+        "/": DEFAULT_CONTENT_DATE,
+        "/blog/": DEFAULT_CONTENT_DATE,
+        "/export-markets/": DEFAULT_CONTENT_DATE,
+        "/hear-from-ceo/": DEFAULT_CONTENT_DATE,
+        "/industrial-minerals-exporter-india/": DEFAULT_CONTENT_DATE,
+        "/operations/": DEFAULT_CONTENT_DATE,
+        "/privacy-policy/": DEFAULT_CONTENT_DATE,
+        "/products/": DEFAULT_CONTENT_DATE,
+        "/terms-disclaimer/": DEFAULT_CONTENT_DATE,
+    }
+    route_lastmod.update(
+        {
+            f"/blog/{post['slug']}/": post.get("updated_on", post.get("published_on", DEFAULT_CONTENT_DATE))
+            for post in BLOGS
+        }
+    )
+    route_lastmod.update(
+        {
+            f"/products/{product['slug']}/": product.get("lastmod", DEFAULT_CONTENT_DATE)
+            for product in PRODUCTS
+        }
+    )
     urls: list[str] = []
     for path in sorted(ROOT.rglob("index.html")):
         if "_site" in path.parts or ".git" in path.parts:
@@ -9138,7 +9165,7 @@ def render_sitemap() -> str:
         url_path = "/" if parent == "." else f"/{parent}/"
         urls.append(url_path)
     entries = "\n".join(
-        f"  <url><loc>{BASE_URL}{path}</loc><lastmod>{TODAY}</lastmod></url>"
+        f"  <url><loc>{BASE_URL}{path}</loc><lastmod>{route_lastmod.get(path, DEFAULT_CONTENT_DATE)}</lastmod></url>"
         for path in urls
     )
     return (
