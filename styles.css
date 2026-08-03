@@ -3093,6 +3093,10 @@ a.blog-card {
   transition: border-color 180ms ease, background-color 180ms ease;
 }
 
+.form-grid input[readonly] {
+  color: rgba(29, 29, 31, 0.72);
+}
+
 .form-security {
   position: relative;
   z-index: 1;
@@ -3119,10 +3123,6 @@ a.blog-card {
 
 .form-security--warning p {
   margin: 0;
-}
-
-.form-grid input[readonly] {
-  color: rgba(29, 29, 31, 0.72);
 }
 
 .form-grid textarea {

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import json
-from datetime import date
+import os
+from datetime import date, datetime
 from html import escape
 from pathlib import Path
 from textwrap import dedent
@@ -11,8 +12,17 @@ ROOT = Path(__file__).parent
 BASE_URL = "https://jadewavesenterprise.com"
 PROJECT_PAGES_REPO = "jadewaves"
 TODAY = date.today().isoformat()
+BUILD_VERSION = os.environ.get("SITE_BUILD_VERSION", datetime.utcnow().strftime("%Y%m%d%H%M%S"))
 CEO_LINKEDIN_URL = "https://www.linkedin.com/in/deep-mehta-034230226/"
 GA4_MEASUREMENT_ID = "G-9BRL4JKNN6"
+INQUIRY_ENDPOINT = (
+    os.environ.get("INQUIRY_ENDPOINT", "https://jadewaves-crm.pages.dev/api/inquiry").strip()
+    or "https://jadewaves-crm.pages.dev/api/inquiry"
+)
+RECAPTCHA_SITE_KEY = os.environ.get(
+    "RECAPTCHA_SITE_KEY",
+    "6Lf79G8tAAAAANbgXZMp8-l_abmdtPtagvt3TTsm",
+).strip()
 
 CONTACT = {
     "company": "Jade Waves Enterprise",
@@ -1547,10 +1557,17 @@ def analytics_snippet() -> str:
     ).strip()
 
 
+def recaptcha_script_markup() -> str:
+    if not RECAPTCHA_SITE_KEY:
+        return ""
+    return '<script src="https://www.google.com/recaptcha/api.js" async defer></script>'
+
+
 def page_shell(title: str, meta_description: str, path: str, body: str, schema: list[dict], body_class: str = "") -> str:
     page_url = f"{BASE_URL}{path}"
     schema_blob = json.dumps(schema, ensure_ascii=False)
     tracking_markup = analytics_snippet()
+    recaptcha_markup = recaptcha_script_markup()
     return make_project_pages_safe(
         dedent(
             f"""
@@ -1572,10 +1589,11 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-                <link rel="stylesheet" href="/styles.css" />
+                <link rel="stylesheet" href="/styles.css?v={BUILD_VERSION}" />
                 {tracking_markup}
+                {recaptcha_markup}
                 <script type="application/ld+json">{schema_blob}</script>
-                <script defer src="/script.js"></script>
+                <script defer src="/script.js?v={BUILD_VERSION}"></script>
               </head>
               <body class="antialiased {escape(body_class)}">
                 {body}
@@ -1622,6 +1640,21 @@ def form_block(product_name: str = "") -> str:
         if product_name
         else product_select()
     )
+    recaptcha_configured = bool(RECAPTCHA_SITE_KEY)
+    recaptcha_block = (
+        f"""
+              <div class="form-security">
+                <div class="g-recaptcha" data-sitekey="{escape(RECAPTCHA_SITE_KEY)}"></div>
+                <p class="form-security__hint">Protected by Google reCAPTCHA.</p>
+              </div>
+        """.strip()
+        if recaptcha_configured
+        else """
+              <div class="form-security form-security--warning">
+                <p>Form security is not configured yet. Set the Google reCAPTCHA site key before using this form live.</p>
+              </div>
+        """.strip()
+    )
     return dedent(
         f"""
         <div class="contact-shell" id="contact">
@@ -1635,14 +1668,16 @@ def form_block(product_name: str = "") -> str:
               <a href="mailto:{escape(CONTACT["sales_email"])}">{escape(CONTACT["sales_email"])}</a>
               <a href="tel:{escape(CONTACT["phone"])}">{escape(CONTACT["phone"])}</a>
             </div>
-          </div>
-          <form class="inquiry-form" data-inquiry-form data-reveal>
+            </div>
+          <form class="inquiry-form" data-inquiry-form data-reveal data-recaptcha-configured="{str(recaptcha_configured).lower()}">
+            <input type="hidden" name="company_website" value="" autocomplete="off" tabindex="-1" />
             <div class="form-grid">
               <label>
                 <span>Request Type</span>
                 <select name="request_type">
                   <option>Quote</option>
                   <option>Sample</option>
+                  <option>TDS</option>
                   <option>General Inquiry</option>
                 </select>
               </label>
@@ -1675,6 +1710,10 @@ def form_block(product_name: str = "") -> str:
                 <input type="text" name="volume" placeholder="Trial / monthly volume" />
               </label>
               <label>
+                <span>Destination</span>
+                <input type="text" name="destination" placeholder="Country / discharge port" />
+              </label>
+              <label>
                 <span>Packing Size</span>
                 <input type="text" name="packing_size" placeholder="50 Kg bags / Jumbo bags / bulk" />
               </label>
@@ -1683,6 +1722,7 @@ def form_block(product_name: str = "") -> str:
                 <textarea name="notes" rows="4" placeholder="Share grade, packing, destination, or any spec points that matter."></textarea>
               </label>
             </div>
+            {recaptcha_block}
             <div class="form-actions">
               <button class="button button--dark" type="submit">Send Inquiry</button>
               <p class="form-note" data-form-note>Send the form directly. We'll review the requirement and respond by email.</p>
@@ -6541,6 +6581,34 @@ STYLES = dedent(
       color: rgba(29, 29, 31, 0.72);
     }
 
+    .form-security {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 1rem;
+    }
+
+    .form-security__hint {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+    }
+
+    .form-security--warning {
+      padding: 0.9rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(183, 100, 57, 0.18);
+      background: rgba(183, 100, 57, 0.08);
+      color: #8a4b28;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .form-security--warning p {
+      margin: 0;
+    }
+
     .form-grid textarea {
       resize: vertical;
       min-height: 7rem;
@@ -9080,7 +9148,34 @@ SCRIPT = dedent(
       startAutoplay();
     }};
 
-    const inquiryEndpoint = "https://formsubmit.co/ajax/{CONTACT["sales_email"]}";
+    const inquiryEndpoint = "{INQUIRY_ENDPOINT}";
+    const fallbackContactMessage = "Please email {CONTACT["sales_email"]} or call {CONTACT["phone"]}.";
+
+    const stripHtml = (value) => {{
+      const template = document.createElement("template");
+      template.innerHTML = String(value ?? "");
+      return (template.content.textContent || template.innerText || "")
+        .replace(/[\\u0000-\\u001F\\u007F]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }};
+
+    const sanitizePayload = (data) => {{
+      const payload = {{}};
+
+      data.forEach((value, key) => {{
+        if (key === "g-recaptcha-response") {{
+          payload[key] = String(value || "").trim();
+          return;
+        }}
+
+        payload[key] = stripHtml(value);
+      }});
+
+      payload.source_page = window.location.href;
+      payload.page_title = document.title;
+      return payload;
+    }};
 
     const setRequestType = (requestType) => {{
       formTargets.forEach((form) => {{
@@ -9114,16 +9209,23 @@ SCRIPT = dedent(
         if (!submitButton) return;
 
         const data = new FormData(form);
-        const requestType = data.get("request_type")?.toString().trim() || "Inquiry";
-        const product = data.get("product")?.toString().trim() || "Not specified";
-        const email = data.get("email")?.toString().trim() || "Not provided";
+        const captchaConfigured = form.dataset.recaptchaConfigured === "true";
+        const captchaResponse = data.get("g-recaptcha-response")?.toString().trim() || "";
+        const payload = sanitizePayload(data);
 
-        data.append("_subject", `${{requestType}} | ${{product}}`);
-        data.append("_template", "table");
-        data.append("_captcha", "false");
-        data.append("_replyto", email);
-        data.append("Source Page", window.location.href);
-        data.append("Page Title", document.title);
+        if (!captchaConfigured) {{
+          if (note) {{
+            note.textContent = `Form security is not configured yet. ${{fallbackContactMessage}}`;
+          }}
+          return;
+        }}
+
+        if (!captchaResponse) {{
+          if (note) {{
+            note.textContent = "Please complete the Google reCAPTCHA check before submitting.";
+          }}
+          return;
+        }}
 
         submitButton.disabled = true;
         submitButton.textContent = "Sending...";
@@ -9135,8 +9237,9 @@ SCRIPT = dedent(
         try {{
           const response = await fetch(inquiryEndpoint, {{
             method: "POST",
-            body: data,
+            body: JSON.stringify(payload),
             headers: {{
+              "Content-Type": "application/json",
               Accept: "application/json",
             }},
           }});
@@ -9147,12 +9250,17 @@ SCRIPT = dedent(
           }}
 
           form.reset();
+          if (window.grecaptcha) {{
+            window.grecaptcha.reset();
+          }}
           if (note) {{
-            note.textContent = "Inquiry sent. We will review the requirement and respond by email.";
+            note.textContent = result?.message || "Inquiry sent. We will review the requirement and respond by email.";
           }}
         }} catch (error) {{
           if (note) {{
-            note.textContent = "Submission did not go through. Please email {CONTACT["sales_email"]} or call {CONTACT["phone"]}.";
+            note.textContent = error?.message
+              ? `${{error.message}} ${{fallbackContactMessage}}`
+              : `Submission did not go through. ${{fallbackContactMessage}}`;
           }}
         }} finally {{
           submitButton.disabled = false;

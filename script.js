@@ -584,9 +584,9 @@ formTargets.forEach((form) => {
       if (window.grecaptcha) {
         window.grecaptcha.reset();
       }
-  if (note) {
-    note.textContent = result?.message || "Inquiry sent. We will review the requirement and respond by email.";
-  }
+      if (note) {
+        note.textContent = result?.message || "Inquiry sent. We will review the requirement and respond by email.";
+      }
     } catch (error) {
       if (note) {
         note.textContent = error?.message
