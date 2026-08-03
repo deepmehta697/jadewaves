@@ -1,0 +1,8 @@
+name = "jadewaves-crm"
+compatibility_date = "2026-04-18"
+pages_build_output_dir = "./public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "jadewaves-crm"
+database_id = "cb12deb3-c68b-4623-8114-0f3e4d0a6650"

@@ -4,6 +4,9 @@ tmp_footer_check.html
 .env
 .env.*
 !.env.example
+.clasprc.json
+**/.clasp.json
+**/.wrangler/
 .venv/
 _site/
 reports/seo/latest.md

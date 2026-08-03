@@ -1,18 +1,44 @@
 from __future__ import annotations
 
 import json
-from datetime import date
+import os
+import re
+from datetime import date, datetime
 from html import escape
 from pathlib import Path
 from textwrap import dedent
 
 
 ROOT = Path(__file__).parent
+
+
+def load_local_env(path: Path) -> None:
+    if not path.exists():
+        return
+
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+        key = key.removeprefix("export ").strip()
+        if not key or key in os.environ:
+            continue
+
+        os.environ[key] = value.strip().strip('"').strip("'")
+
+
+load_local_env(ROOT / ".env.local")
+
 BASE_URL = "https://jadewavesenterprise.com"
 PROJECT_PAGES_REPO = "jadewaves"
 TODAY = date.today().isoformat()
+BUILD_VERSION = os.environ.get("SITE_BUILD_VERSION", datetime.utcnow().strftime("%Y%m%d%H%M%S"))
 CEO_LINKEDIN_URL = "https://www.linkedin.com/in/deep-mehta-034230226/"
 GA4_MEASUREMENT_ID = "G-9BRL4JKNN6"
+INQUIRY_ENDPOINT = os.environ.get("INQUIRY_ENDPOINT", "/api/inquiry").strip() or "/api/inquiry"
+RECAPTCHA_SITE_KEY = os.environ.get("RECAPTCHA_SITE_KEY", "").strip()
 
 CONTACT = {
     "company": "Jade Waves Enterprise",
@@ -29,27 +55,15 @@ INDUSTRIES = [
     ),
     (
         "Ceramics",
-        "Quartz, feldspar, kaolin, talc, and silica flour for bodies, tiles, and glaze-linked production.",
+        "Quartz sand, feldspar, and silica sand for ceramic bodies, tiles, and glaze-linked production.",
     ),
     (
         "Construction",
-        "Fly ash, silica, and copper slag for concrete, infrastructure, and mineral-heavy site demand.",
-    ),
-    (
-        "Chemicals",
-        "Salt, silica, and selected mineral inputs for processing, treatment, and utility-led operations.",
-    ),
-    (
-        "Drilling",
-        "Bentonite grades for drilling programs that rely on stable swelling, viscosity, and moisture control.",
-    ),
-    (
-        "Agriculture",
-        "Selected minerals for carrier, absorbent, and process-linked agricultural use.",
+        "Silica sand and feldspar for construction systems and mineral-heavy site demand.",
     ),
     (
         "Foundry",
-        "Silica sand and bentonite for moulding systems that depend on repeatable sizing and binding strength.",
+        "Silica sand for foundry systems that depend on repeatable sizing and cleaner supply control.",
     ),
 ]
 
@@ -571,6 +585,9 @@ for product in PRODUCTS:
     if packing:
         product["packing"] = packing
 
+CORE_PRODUCT_SLUGS = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
+PRODUCTS = [product for product in PRODUCTS if product["slug"] in CORE_PRODUCT_SLUGS]
+
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
 
 PRODUCT_FAMILIES = [
@@ -579,32 +596,11 @@ PRODUCT_FAMILIES = [
         "name": "Silica, Quartz & Feldspar",
         "copy": "Purity-led grades for glass, ceramics, filtration, and engineered stone.",
         "best_for": ["Glass", "Ceramics", "Filtration", "Engineered Stone"],
-        "products": ["silica-sand", "silica-flour", "quartz-sand-for-ceramics", "feldspar"],
-    },
-    {
-        "id": "clays-fillers",
-        "name": "Clays & Functional Fillers",
-        "copy": "Functional minerals for drilling, coatings, absorbents, ceramics, and process use.",
-        "best_for": ["Drilling", "Ceramics", "Coatings", "Absorbents"],
-        "products": ["bentonite", "kaolin--china-clay", "talc"],
-    },
-    {
-        "id": "salt-grades",
-        "name": "Industrial Salt Grades",
-        "copy": "Salt grades arranged for chemical processing, treatment systems, utilities, and volume buying.",
-        "best_for": ["Chemical Processing", "Water Treatment", "Utilities", "Food Supply"],
-        "products": ["salt"],
-    },
-    {
-        "id": "construction-media",
-        "name": "Construction & Industrial Media",
-        "copy": "Media and mineral inputs for concrete, blasting, infrastructure, and site-led demand.",
-        "best_for": ["Blasting", "Concrete", "Infrastructure", "Surface Preparation"],
-        "products": ["fly-ash", "copper-slag"],
+        "products": CORE_PRODUCT_SLUGS,
     },
 ]
 
-HOME_FEATURED = ["silica-sand", "bentonite", "feldspar"]
+HOME_FEATURED = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
 
 BLOGS = [
     {
@@ -1332,16 +1328,57 @@ BLOGS = [
     },
 ]
 
-CURRENT_BLOG_SLUGS = [
+CORE_BLOG_SLUGS = [
+    "quartz-sand-supplier-india-vietnam-buyers-guide",
+    "potassium-vs-sodium-feldspar-import-buyer-guide",
+    "silica-sand-import-checklist-glass-foundry-filtration",
     "potassium-feldspar-supplier-for-ceramic-tiles",
     "quartz-powder-supplier-for-engineered-stone",
     "silica-sand-exporter-from-india",
-    "kaolin-supplier-for-paint-industry",
-    "bentonite-supplier-india",
-    "fly-ash-exporter-from-india-bulk-shipment",
-    "copper-slag-supplier-for-shipyard-blasting",
-    "industrial-salt-exporter",
+    "how-to-check-tds-and-sample-coa-before-mineral-import",
 ]
+BLOGS = [post for post in BLOGS if post["slug"] in CORE_BLOG_SLUGS]
+
+CURRENT_BLOG_SLUGS = CORE_BLOG_SLUGS
+
+LEGACY_REDIRECTS = {
+    "silica-sand": "/products/silica-sand/",
+    "silica-flour": "/products/silica-sand/",
+    "quartz-sand-for-ceramics": "/products/quartz-sand-for-ceramics/",
+    "bentonite": "/products/",
+    "kaolin--china-clay": "/products/",
+    "talc": "/products/",
+    "feldspar": "/products/feldspar/",
+    "potash-&-soda-feldspar": "/products/feldspar/",
+    "potash-%26-soda-feldspar": "/products/feldspar/",
+    "salt": "/products/",
+    "fly-ash": "/products/",
+    "copper-slag": "/products/",
+    "activated-bleaching-earth": "/products/",
+    "blogs/f/activated-bleaching-earth": "/products/",
+    "blogs/f/bentonite-suppliers-in-malaysia": "/products/",
+    "blogs/f/silica-sand-maldives": "/products/silica-sand/",
+    "blogs/f/silica-sand-suppliers-in-kenya": "/products/silica-sand/",
+    "blogs/f/silica-sand-suppliers-in-mauritius-jade-waves-enterprise": "/products/silica-sand/",
+    "about-us": "/industrial-minerals-exporter-india/",
+    "contact-1": "/#contact",
+    "faq": "/",
+    "infrastructure": "/operations/",
+    "products/silica-flour": "/products/silica-sand/",
+    "products/bentonite": "/products/",
+    "products/kaolin--china-clay": "/products/",
+    "products/talc": "/products/",
+    "products/salt": "/products/",
+    "products/fly-ash": "/products/",
+    "products/copper-slag": "/products/",
+    "blog/bentonite-grade-selection-guide-for-importers": "/blog/",
+    "blog/industrial-salt-import-guide-gulf-buyers": "/blog/",
+    "blog/kaolin-supplier-for-paint-industry": "/blog/",
+    "blog/bentonite-supplier-india": "/blog/",
+    "blog/fly-ash-exporter-from-india-bulk-shipment": "/blog/",
+    "blog/copper-slag-supplier-for-shipyard-blasting": "/blog/",
+    "blog/industrial-salt-exporter": "/blog/",
+}
 
 
 def write(path: Path, content: str) -> None:
@@ -1367,8 +1404,8 @@ def make_project_pages_safe(markup: str) -> str:
         """
     ).strip()
     safe_markup = markup.replace(
-        '<link rel="stylesheet" href="/styles.css" />',
-        f"{base_bootstrap}\n            <link rel=\"stylesheet\" href=\"styles.css\" />",
+        "<head>",
+        f"<head>\n                {base_bootstrap}",
         1,
     )
     for source, target in (
@@ -1381,6 +1418,42 @@ def make_project_pages_safe(markup: str) -> str:
     ):
         safe_markup = safe_markup.replace(source, target)
     return safe_markup
+
+
+def render_redirect_page(legacy_path: str, target_path: str) -> str:
+    legacy_url = f"{BASE_URL}/{legacy_path.strip('/')}/"
+    target_url = f"{BASE_URL}{target_path}"
+    target_label = target_path.strip("/") or "homepage"
+    return dedent(
+        f"""
+        <!doctype html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>Moved | {escape(CONTACT["company"])}</title>
+            <meta name="robots" content="noindex, follow" />
+            <meta name="description" content="This page has moved to {escape(target_label)}." />
+            <link rel="canonical" href="{escape(target_url)}" />
+            <meta http-equiv="refresh" content="0; url={escape(target_url)}" />
+            <script>
+              window.location.replace({json.dumps(target_url)});
+            </script>
+          </head>
+          <body>
+            <main>
+              <h1>This page has moved</h1>
+              <p>
+                The Jade Waves Enterprise page at
+                <a href="{escape(legacy_url)}">{escape(legacy_url)}</a>
+                now lives at
+                <a href="{escape(target_url)}">{escape(target_url)}</a>.
+              </p>
+            </main>
+          </body>
+        </html>
+        """
+    ).strip()
 
 
 def nav_html() -> str:
@@ -1470,10 +1543,17 @@ def analytics_snippet() -> str:
     ).strip()
 
 
+def recaptcha_script_markup() -> str:
+    if not RECAPTCHA_SITE_KEY:
+        return ""
+    return '<script src="https://www.google.com/recaptcha/api.js" async defer></script>'
+
+
 def page_shell(title: str, meta_description: str, path: str, body: str, schema: list[dict], body_class: str = "") -> str:
     page_url = f"{BASE_URL}{path}"
     schema_blob = json.dumps(schema, ensure_ascii=False)
     tracking_markup = analytics_snippet()
+    recaptcha_markup = recaptcha_script_markup()
     return make_project_pages_safe(
         dedent(
             f"""
@@ -1495,10 +1575,11 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-                <link rel="stylesheet" href="/styles.css" />
+                <link rel="stylesheet" href="/styles.css?v={BUILD_VERSION}" />
                 {tracking_markup}
+                {recaptcha_markup}
                 <script type="application/ld+json">{schema_blob}</script>
-                <script defer src="/script.js"></script>
+                <script defer src="/script.js?v={BUILD_VERSION}"></script>
               </head>
               <body class="antialiased {escape(body_class)}">
                 {body}
@@ -1515,6 +1596,21 @@ def form_block(product_name: str = "") -> str:
         if product_name
         else product_select()
     )
+    recaptcha_configured = bool(RECAPTCHA_SITE_KEY)
+    recaptcha_block = (
+        f"""
+              <div class="form-security">
+                <div class="g-recaptcha" data-sitekey="{escape(RECAPTCHA_SITE_KEY)}"></div>
+                <p class="form-security__hint">Protected by Google reCAPTCHA.</p>
+              </div>
+        """.strip()
+        if recaptcha_configured
+        else """
+              <div class="form-security form-security--warning">
+                <p>Form security is not configured yet. Set the Google reCAPTCHA site key before using this form live.</p>
+              </div>
+        """.strip()
+    )
     return dedent(
         f"""
         <div class="contact-shell" id="contact">
@@ -1528,14 +1624,16 @@ def form_block(product_name: str = "") -> str:
               <a href="mailto:{escape(CONTACT["sales_email"])}">{escape(CONTACT["sales_email"])}</a>
               <a href="tel:{escape(CONTACT["phone"])}">{escape(CONTACT["phone"])}</a>
             </div>
-          </div>
-          <form class="inquiry-form" data-inquiry-form data-reveal>
+            </div>
+          <form class="inquiry-form" data-inquiry-form data-reveal data-recaptcha-configured="{str(recaptcha_configured).lower()}">
+            <input type="hidden" name="company_website" value="" autocomplete="off" tabindex="-1" />
             <div class="form-grid">
               <label>
                 <span>Request Type</span>
                 <select name="request_type">
                   <option>Quote</option>
                   <option>Sample</option>
+                  <option>TDS</option>
                   <option>General Inquiry</option>
                 </select>
               </label>
@@ -1568,6 +1666,10 @@ def form_block(product_name: str = "") -> str:
                 <input type="text" name="volume" placeholder="Trial / monthly volume" />
               </label>
               <label>
+                <span>Destination</span>
+                <input type="text" name="destination" placeholder="Country / discharge port" />
+              </label>
+              <label>
                 <span>Packing Size</span>
                 <input type="text" name="packing_size" placeholder="50 Kg bags / Jumbo bags / bulk" />
               </label>
@@ -1576,6 +1678,7 @@ def form_block(product_name: str = "") -> str:
                 <textarea name="notes" rows="4" placeholder="Share grade, packing, destination, or any spec points that matter."></textarea>
               </label>
             </div>
+            {recaptcha_block}
             <div class="form-actions">
               <button class="button button--dark" type="submit">Send Inquiry</button>
               <p class="form-note" data-form-note>Send the form directly. We'll review the requirement and respond by email.</p>
@@ -1596,7 +1699,9 @@ def product_select() -> str:
 def related_links(slugs: list[str]) -> str:
     links = []
     for slug in slugs:
-        product = PRODUCTS_BY_SLUG[slug]
+        product = PRODUCTS_BY_SLUG.get(slug)
+        if product is None:
+            continue
         links.append(
             f'<a href="/products/{product["slug"]}/">{escape(product["name"])}</a>'
         )
@@ -1846,7 +1951,7 @@ def render_homepage() -> str:
                 <article class="home-split__panel" data-reveal>
                   <p class="section-label">Industries</p>
                   <h2>Specified into the work that keeps moving.</h2>
-                  <p>The range is built around glass, ceramics, construction, chemicals, drilling, agriculture, and foundry demand.</p>
+                  <p>The range is built around glass, ceramics, construction, and foundry demand.</p>
                   <div class="industry-rail">
                     {''.join(industry_blocks)}
                   </div>
@@ -2513,8 +2618,6 @@ def render_export_markets_page() -> str:
             '<a href="/products/silica-sand/">Silica sand for glass, filtration, and foundry buyers</a>',
             '<a href="/products/quartz-sand-for-ceramics/">Quartz sand, grits, and powder for ceramic and glass buyers</a>',
             '<a href="/products/feldspar/">Potash and soda feldspar for ceramic and sanitaryware buyers</a>',
-            '<a href="/products/bentonite/">Bentonite for drilling, foundry, and sealing buyers</a>',
-            '<a href="/products/salt/">Industrial salt for water treatment and chemical buyers</a>',
         ]
     )
     body = dedent(
@@ -2684,8 +2787,6 @@ def render_exporter_profile_page() -> str:
             '<a href="/products/silica-sand/">Silica sand supplier and exporter</a>',
             '<a href="/products/quartz-sand-for-ceramics/">Quartz sand, grits, and powder supplier</a>',
             '<a href="/products/feldspar/">Potash and soda feldspar supplier</a>',
-            '<a href="/products/bentonite/">Bentonite supplier for drilling and foundry use</a>',
-            '<a href="/products/salt/">Industrial salt supplier for water treatment and chemical use</a>',
         ]
     )
     process_steps = [
@@ -2741,7 +2842,7 @@ def render_exporter_profile_page() -> str:
                   <div class="home-poster__metrics">
                     <article class="home-metric">
                       <span>Range</span>
-                      <strong>Silica, quartz, feldspar, bentonite, salt, and more</strong>
+                      <strong>Silica sand, quartz sand, and feldspar</strong>
                     </article>
                     <article class="home-metric">
                       <span>Focus</span>
@@ -2849,7 +2950,7 @@ def render_exporter_profile_page() -> str:
 def render_ceo_page() -> str:
     proof_items = [
         ("Company base", "Ahmedabad, Gujarat, India"),
-        ("Manufacturer-backed supply", "Silica, quartz, feldspar, bentonite, and salt"),
+        ("Manufacturer-backed supply", "Silica sand, quartz sand, and feldspar"),
         ("Port linkage", CONTACT["port"]),
         ("Core export documents", "COA, COO, Packing List, B/L"),
     ]
@@ -2927,7 +3028,7 @@ def render_ceo_page() -> str:
                         We do not treat export supply as only cargo movement. Our responsibility is to make sure your team receives the material aligned to your end use, with the right packing, document discipline, and commercial clarity.
                       </p>
                       <p>
-                        We manufacture and export silica sand, quartz, feldspar, bentonite, salt, and other industrial minerals from India for buyers who value repeat-order reliability over one-time transactions.
+                        We manufacture and export silica sand, quartz sand, and feldspar from India for buyers who value repeat-order reliability over one-time transactions.
                       </p>
                       <p>
                         You will have a directly reachable team member during inquiry, sampling, documentation, and dispatch. That keeps decisions faster, execution cleaner, and avoidable risk lower.
@@ -6435,6 +6536,34 @@ STYLES = dedent(
       transition: border-color 180ms ease, background-color 180ms ease;
     }
 
+    .form-security {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 1rem;
+    }
+
+    .form-security__hint {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+    }
+
+    .form-security--warning {
+      padding: 0.9rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(183, 100, 57, 0.18);
+      background: rgba(183, 100, 57, 0.08);
+      color: #8a4b28;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .form-security--warning p {
+      margin: 0;
+    }
+
     .form-grid input[readonly] {
       color: rgba(29, 29, 31, 0.72);
     }
@@ -8978,7 +9107,34 @@ SCRIPT = dedent(
       startAutoplay();
     }};
 
-    const inquiryEndpoint = "https://formsubmit.co/ajax/{CONTACT["sales_email"]}";
+    const inquiryEndpoint = "{INQUIRY_ENDPOINT}";
+    const fallbackContactMessage = "Please email {CONTACT["sales_email"]} or call {CONTACT["phone"]}.";
+
+    const stripHtml = (value) => {{
+      const template = document.createElement("template");
+      template.innerHTML = String(value ?? "");
+      return (template.content.textContent || template.innerText || "")
+        .replace(/[\\u0000-\\u001F\\u007F]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }};
+
+    const sanitizePayload = (data) => {{
+      const payload = {{}};
+
+      data.forEach((value, key) => {{
+        if (key === "g-recaptcha-response") {{
+          payload[key] = String(value || "").trim();
+          return;
+        }}
+
+        payload[key] = stripHtml(value);
+      }});
+
+      payload.source_page = window.location.href;
+      payload.page_title = document.title;
+      return payload;
+    }};
 
     const setRequestType = (requestType) => {{
       formTargets.forEach((form) => {{
@@ -9012,16 +9168,23 @@ SCRIPT = dedent(
         if (!submitButton) return;
 
         const data = new FormData(form);
-        const requestType = data.get("request_type")?.toString().trim() || "Inquiry";
-        const product = data.get("product")?.toString().trim() || "Not specified";
-        const email = data.get("email")?.toString().trim() || "Not provided";
+        const captchaConfigured = form.dataset.recaptchaConfigured === "true";
+        const captchaResponse = data.get("g-recaptcha-response")?.toString().trim() || "";
+        const payload = sanitizePayload(data);
 
-        data.append("_subject", `${{requestType}} | ${{product}}`);
-        data.append("_template", "table");
-        data.append("_captcha", "false");
-        data.append("_replyto", email);
-        data.append("Source Page", window.location.href);
-        data.append("Page Title", document.title);
+        if (!captchaConfigured) {{
+          if (note) {{
+            note.textContent = `Form security is not configured yet. ${{fallbackContactMessage}}`;
+          }}
+          return;
+        }}
+
+        if (!captchaResponse) {{
+          if (note) {{
+            note.textContent = "Please complete the Google reCAPTCHA check before submitting.";
+          }}
+          return;
+        }}
 
         submitButton.disabled = true;
         submitButton.textContent = "Sending...";
@@ -9033,8 +9196,9 @@ SCRIPT = dedent(
         try {{
           const response = await fetch(inquiryEndpoint, {{
             method: "POST",
-            body: data,
+            body: JSON.stringify(payload),
             headers: {{
+              "Content-Type": "application/json",
               Accept: "application/json",
             }},
           }});
@@ -9045,12 +9209,17 @@ SCRIPT = dedent(
           }}
 
           form.reset();
-          if (note) {{
-            note.textContent = "Inquiry sent. We will review the requirement and respond by email.";
+          if (window.grecaptcha) {{
+            window.grecaptcha.reset();
           }}
+      if (note) {{
+        note.textContent = result?.message || "Inquiry sent. We will review the requirement and respond by email.";
+      }}
         }} catch (error) {{
           if (note) {{
-            note.textContent = "Submission did not go through. Please email {CONTACT["sales_email"]} or call {CONTACT["phone"]}.";
+            note.textContent = error?.message
+              ? `${{error.message}} ${{fallbackContactMessage}}`
+              : `Submission did not go through. ${{fallbackContactMessage}}`;
           }}
         }} finally {{
           submitButton.disabled = false;
@@ -9131,10 +9300,17 @@ def render_sitemap() -> str:
     for path in sorted(ROOT.rglob("index.html")):
         if "_site" in path.parts or ".git" in path.parts:
             continue
+        markup = path.read_text(encoding="utf-8")
+        robots_match = re.search(r'<meta\s+name="robots"\s+content="([^"]*)"', markup, re.I)
+        robots = robots_match.group(1).strip() if robots_match else ""
+        if "noindex" in robots.lower():
+            continue
         rel = path.relative_to(ROOT)
         if rel.name != "index.html":
             continue
         parent = rel.parent.as_posix()
+        if parent in LEGACY_REDIRECTS:
+            continue
         url_path = "/" if parent == "." else f"/{parent}/"
         urls.append(url_path)
     entries = "\n".join(
@@ -9162,6 +9338,8 @@ def main() -> None:
     write(ROOT / "products" / "index.html", render_products_index())
     for product in PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
+    for legacy_path, target_path in LEGACY_REDIRECTS.items():
+      write(ROOT / legacy_path / "index.html", render_redirect_page(legacy_path, target_path))
     write(ROOT / "robots.txt", render_robots())
     write(ROOT / "sitemap.xml", render_sitemap())
 

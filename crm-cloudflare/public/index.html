@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jade Waves CRM</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta
+      name="description"
+      content="Track outbound accounts, see reply status, and draft first-touch and follow-up emails for Jade Waves Enterprise."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="masthead">
+        <div class="masthead__copy">
+          <p class="eyebrow">Jade Waves CRM</p>
+          <h1>Outbound control room for trade leads and follow-ups.</h1>
+          <p class="intro">
+            Add companies, set product focus, scan Gmail for replies, and keep every next email ready to paste.
+          </p>
+          <div class="masthead__actions">
+            <button class="button button--primary" id="newCompanyButton" type="button">Add company</button>
+            <button class="button button--secondary" id="syncAllButton" type="button">Scan Gmail status</button>
+            <a class="button button--ghost" id="logoutButton" href="/logout">Log out</a>
+          </div>
+          <p class="storage-indicator" id="storageStatusText">Loading CRM data from secure cloud storage...</p>
+        </div>
+        <div class="masthead__media">
+          <img src="assets/loading-trucks.jpg" alt="Loaded mineral shipments ready for dispatch">
+        </div>
+      </header>
+
+      <section class="summary-strip" id="summaryStrip" aria-label="CRM summary"></section>
+
+      <main class="workspace">
+        <aside class="rail rail--left">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-heading__eyebrow">Workspace</p>
+                <h2>Profile and products</h2>
+              </div>
+            </div>
+
+            <form class="stack" id="settingsForm">
+              <label class="field">
+                <span>Sender name</span>
+                <input id="senderName" name="senderName" type="text" placeholder="Deep Mehta">
+              </label>
+              <label class="field">
+                <span>Sender company</span>
+                <input id="senderCompany" name="senderCompany" type="text" placeholder="Jade Waves Enterprise">
+              </label>
+              <label class="field">
+                <span>Sender email</span>
+                <input id="senderEmail" name="senderEmail" type="email" placeholder="deep@jadewaves.com">
+              </label>
+              <label class="field">
+                <span>Product library</span>
+                <textarea
+                  id="productLibrary"
+                  name="productLibrary"
+                  rows="4"
+                  placeholder="Silica Sand, Quartz Sand, Silica Flour"
+                ></textarea>
+              </label>
+              <div class="inline-actions">
+                <button class="button button--secondary" id="saveSettingsButton" type="submit">Save settings</button>
+                <button class="button button--ghost" id="exportDataButton" type="button">Export CRM</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-heading__eyebrow">Imports</p>
+                <h2>Bring in trade data</h2>
+              </div>
+            </div>
+
+            <div class="stack">
+              <label class="field field--file">
+                <span>Upload CSV or JSON</span>
+                <input id="importFileInput" type="file" accept=".csv,.json,application/json,text/csv">
+              </label>
+              <p class="help">
+                Supported columns: company, contact, email, country, industry, application, products, website, notes,
+                followupcount, lastoutboundat, lastinboundat, ignorefollowups.
+              </p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-heading__eyebrow">Gmail sync</p>
+                <h2>Inbox scan</h2>
+              </div>
+            </div>
+
+            <div class="stack">
+              <label class="field">
+                <span>Google OAuth client ID</span>
+                <input
+                  id="googleClientId"
+                  type="text"
+                  placeholder="Paste your Google web client ID"
+                  autocomplete="off"
+                >
+              </label>
+              <div class="inline-actions">
+                <button class="button button--secondary" id="gmailConnectButton" type="button">Connect Gmail</button>
+                <button class="button button--ghost" id="gmailRefreshButton" type="button">Refresh inbox scan</button>
+              </div>
+              <p class="help" id="gmailStatusText">
+                Add a Google web client ID, connect Gmail, then the app will read sent and reply timestamps for saved
+                contacts. It never sends email automatically.
+              </p>
+              <ul class="checklist">
+                <li>Tracks whether a company has replied after the last outbound email.</li>
+                <li>Updates follow-up timing from Gmail data when a matching email exists.</li>
+                <li>Lets you ignore any company so it stays out of follow-up queues.</li>
+              </ul>
+            </div>
+          </section>
+        </aside>
+
+        <section class="main-panel">
+          <section class="panel panel--list">
+            <div class="section-heading section-heading--spread">
+              <div>
+                <p class="section-heading__eyebrow">Pipeline</p>
+                <h2>Company tracker</h2>
+              </div>
+              <div class="toolbar">
+                <label class="search">
+                  <span class="sr-only">Search companies</span>
+                  <input id="searchInput" type="search" placeholder="Search company, email, country, product">
+                </label>
+              </div>
+            </div>
+
+            <div class="filter-row" id="filterRow">
+              <button class="filter-chip is-active" data-filter="all" type="button">All</button>
+              <button class="filter-chip" data-filter="ready" type="button">Ready</button>
+              <button class="filter-chip" data-filter="due" type="button">Due</button>
+              <button class="filter-chip" data-filter="waiting" type="button">Waiting</button>
+              <button class="filter-chip" data-filter="replied" type="button">Replied</button>
+              <button class="filter-chip" data-filter="ignored" type="button">Ignored</button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Product focus</th>
+                    <th>Status</th>
+                    <th>Last touch</th>
+                    <th>Next action</th>
+                  </tr>
+                </thead>
+                <tbody id="companyTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <aside class="rail rail--right">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-heading__eyebrow">Selected company</p>
+                <h2 id="formTitle">Add a company</h2>
+              </div>
+            </div>
+
+            <form class="stack" id="companyForm">
+              <input id="companyId" name="companyId" type="hidden">
+              <label class="field">
+                <span>Company name</span>
+                <input id="companyName" name="companyName" type="text" placeholder="ABC Ceramics LLC" required>
+              </label>
+              <label class="field">
+                <span>Contact name</span>
+                <input id="contactName" name="contactName" type="text" placeholder="Amina Rahman">
+              </label>
+              <label class="field">
+                <span>Email</span>
+                <input id="contactEmail" name="contactEmail" type="email" placeholder="buyer@company.com" required>
+              </label>
+              <div class="field-grid">
+                <label class="field">
+                  <span>Country</span>
+                  <input id="country" name="country" type="text" placeholder="UAE">
+                </label>
+                <label class="field">
+                  <span>Industry</span>
+                  <input id="industry" name="industry" type="text" placeholder="Ceramics">
+                </label>
+              </div>
+              <label class="field">
+                <span>Application</span>
+                <input id="application" name="application" type="text" placeholder="Ceramic tiles, glazing, construction">
+              </label>
+              <label class="field">
+                <span>Products</span>
+                <input id="products" name="products" type="text" placeholder="Silica Sand, Quartz Sand">
+              </label>
+              <label class="field">
+                <span>Website</span>
+                <input id="website" name="website" type="url" placeholder="https://company.com">
+              </label>
+              <label class="field">
+                <span>Account state</span>
+                <select id="accountState" name="accountState">
+                  <option value="active">Active</option>
+                  <option value="interested">Interested</option>
+                  <option value="on_hold">On hold</option>
+                  <option value="closed">Closed</option>
+                </select>
+              </label>
+              <div class="field-grid">
+                <label class="field">
+                  <span>Last outbound</span>
+                  <input id="lastOutboundAt" name="lastOutboundAt" type="datetime-local">
+                </label>
+                <label class="field">
+                  <span>Last reply</span>
+                  <input id="lastInboundAt" name="lastInboundAt" type="datetime-local">
+                </label>
+              </div>
+              <div class="field-grid">
+                <label class="field">
+                  <span>Follow-ups sent</span>
+                  <input id="followUpCount" name="followUpCount" type="number" min="0" step="1" value="0">
+                </label>
+                <label class="field field--toggle">
+                  <span>Ignore follow-ups</span>
+                  <input id="ignoreFollowUps" name="ignoreFollowUps" type="checkbox">
+                </label>
+              </div>
+              <label class="field">
+                <span>Internal notes</span>
+                <textarea id="notes" name="notes" rows="4" placeholder="Importer of ceramic bodies in Sharjah. Trade data shows steady silica imports."></textarea>
+              </label>
+
+              <div class="inline-actions inline-actions--spread">
+                <button class="button button--primary" type="submit">Save company</button>
+                <div class="inline-actions">
+                  <button class="button button--ghost" id="resetFormButton" type="button">Reset</button>
+                  <button class="button button--danger" id="deleteCompanyButton" type="button">Delete</button>
+                </div>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel">
+            <div class="section-heading section-heading--spread">
+              <div>
+                <p class="section-heading__eyebrow">Draft studio</p>
+                <h2>Copy-ready email</h2>
+              </div>
+              <label class="field field--compact">
+                <span>Draft type</span>
+                <select id="draftMode">
+                  <option value="auto">Auto</option>
+                  <option value="first_touch">First touch</option>
+                  <option value="follow_up_1">Follow-up 1</option>
+                  <option value="follow_up_2">Follow-up 2</option>
+                  <option value="follow_up_3">Follow-up 3</option>
+                  <option value="follow_up_4">Follow-up 4</option>
+                  <option value="nudge_close">Final nudge</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="stack" id="draftPanel">
+              <div class="draft-note" id="draftSummaryText">
+                Select a company to generate the next email based on reply status and follow-up timing.
+              </div>
+              <label class="field">
+                <span>Subject</span>
+                <textarea id="draftSubject" rows="2" readonly></textarea>
+              </label>
+              <label class="field">
+                <span>Email body</span>
+                <textarea id="draftBody" rows="15" readonly></textarea>
+              </label>
+              <div class="inline-actions">
+                <button class="button button--secondary" id="copySubjectButton" type="button">Copy subject</button>
+                <button class="button button--primary" id="copyBodyButton" type="button">Copy email</button>
+              </div>
+              <div class="inline-actions inline-actions--spread">
+                <button class="button button--ghost" id="markSentButton" type="button">Mark email sent now</button>
+                <button class="button button--ghost" id="markReplyButton" type="button">Mark reply received</button>
+              </div>
+            </div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
