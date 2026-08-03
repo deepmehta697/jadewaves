@@ -479,7 +479,34 @@ const initCorridorStage = (stage) => {
   startAutoplay();
 };
 
-const inquiryEndpoint = "https://formsubmit.co/ajax/deep@jadewavesenterprise.com";
+const inquiryEndpoint = "https://jadewaves-crm.pages.dev/api/inquiry";
+const fallbackContactMessage = "Please email deep@jadewavesenterprise.com or call +91-999-883-5503.";
+
+const stripHtml = (value) => {
+  const template = document.createElement("template");
+  template.innerHTML = String(value ?? "");
+  return (template.content.textContent || template.innerText || "")
+    .replace(/[\u0000-\u001F\u007F]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+};
+
+const sanitizePayload = (data) => {
+  const payload = {};
+
+  data.forEach((value, key) => {
+    if (key === "g-recaptcha-response") {
+      payload[key] = String(value || "").trim();
+      return;
+    }
+
+    payload[key] = stripHtml(value);
+  });
+
+  payload.source_page = window.location.href;
+  payload.page_title = document.title;
+  return payload;
+};
 
 const setRequestType = (requestType) => {
   formTargets.forEach((form) => {
@@ -513,16 +540,23 @@ formTargets.forEach((form) => {
     if (!submitButton) return;
 
     const data = new FormData(form);
-    const requestType = data.get("request_type")?.toString().trim() || "Inquiry";
-    const product = data.get("product")?.toString().trim() || "Not specified";
-    const email = data.get("email")?.toString().trim() || "Not provided";
+    const captchaConfigured = form.dataset.recaptchaConfigured === "true";
+    const captchaResponse = data.get("g-recaptcha-response")?.toString().trim() || "";
+    const payload = sanitizePayload(data);
 
-    data.append("_subject", `${requestType} | ${product}`);
-    data.append("_template", "table");
-    data.append("_captcha", "false");
-    data.append("_replyto", email);
-    data.append("Source Page", window.location.href);
-    data.append("Page Title", document.title);
+    if (!captchaConfigured) {
+      if (note) {
+        note.textContent = `Form security is not configured yet. ${fallbackContactMessage}`;
+      }
+      return;
+    }
+
+    if (!captchaResponse) {
+      if (note) {
+        note.textContent = "Please complete the Google reCAPTCHA check before submitting.";
+      }
+      return;
+    }
 
     submitButton.disabled = true;
     submitButton.textContent = "Sending...";
@@ -534,8 +568,9 @@ formTargets.forEach((form) => {
     try {
       const response = await fetch(inquiryEndpoint, {
         method: "POST",
-        body: data,
+        body: JSON.stringify(payload),
         headers: {
+          "Content-Type": "application/json",
           Accept: "application/json",
         },
       });
@@ -546,12 +581,17 @@ formTargets.forEach((form) => {
       }
 
       form.reset();
-      if (note) {
-        note.textContent = "Inquiry sent. We will review the requirement and respond by email.";
+      if (window.grecaptcha) {
+        window.grecaptcha.reset();
       }
+  if (note) {
+    note.textContent = result?.message || "Inquiry sent. We will review the requirement and respond by email.";
+  }
     } catch (error) {
       if (note) {
-        note.textContent = "Submission did not go through. Please email deep@jadewavesenterprise.com or call +91-999-883-5503.";
+        note.textContent = error?.message
+          ? `${error.message} ${fallbackContactMessage}`
+          : `Submission did not go through. ${fallbackContactMessage}`;
       }
     } finally {
       submitButton.disabled = false;

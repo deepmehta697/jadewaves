@@ -3093,6 +3093,34 @@ a.blog-card {
   transition: border-color 180ms ease, background-color 180ms ease;
 }
 
+.form-security {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.form-security__hint {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.form-security--warning {
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(183, 100, 57, 0.18);
+  background: rgba(183, 100, 57, 0.08);
+  color: #8a4b28;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.form-security--warning p {
+  margin: 0;
+}
+
 .form-grid input[readonly] {
   color: rgba(29, 29, 31, 0.72);
 }
