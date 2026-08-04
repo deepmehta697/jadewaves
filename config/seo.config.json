@@ -35,11 +35,10 @@
   "priority_pages": [
     "/",
     "/products/",
-    "/products/quartz-sand-for-ceramics/",
-    "/products/feldspar/",
     "/products/silica-sand/",
-    "/products/salt/",
-    "/products/bentonite/"
+    "/products/silica-flour/",
+    "/products/quartz-sand-for-ceramics/",
+    "/products/feldspar/"
   ],
   "keyword_targets": [
     {
@@ -97,56 +96,47 @@
       ]
     },
     {
-      "path": "/products/bentonite/",
-      "primary": "bentonite supplier",
+      "path": "/blog/bentonite-supplier-india/",
+      "primary": "bentonite supplier india",
       "secondary": [
+        "bentonite supplier",
         "bentonite exporter",
-        "bentonite for drilling",
-        "foundry bentonite supplier"
+        "bentonite for drilling"
       ]
     },
     {
-      "path": "/products/talc/",
-      "primary": "talc powder supplier",
-      "secondary": [
-        "talc exporter",
-        "industrial talc supplier",
-        "talc for plastics"
-      ]
-    },
-    {
-      "path": "/products/kaolin--china-clay/",
-      "primary": "china clay supplier",
+      "path": "/blog/kaolin-supplier-for-paint-industry/",
+      "primary": "kaolin supplier for paint industry",
       "secondary": [
         "kaolin supplier",
-        "china clay exporter",
+        "china clay supplier",
         "kaolin exporter"
       ]
     },
     {
-      "path": "/products/salt/",
-      "primary": "industrial salt supplier",
+      "path": "/blog/industrial-salt-exporter/",
+      "primary": "industrial salt exporter",
       "secondary": [
-        "salt exporter",
+        "industrial salt supplier",
         "bulk salt supplier",
         "iodized salt supplier"
       ]
     },
     {
-      "path": "/products/fly-ash/",
-      "primary": "fly ash supplier",
+      "path": "/blog/fly-ash-exporter-from-india-bulk-shipment/",
+      "primary": "fly ash exporter from india",
       "secondary": [
-        "fly ash exporter",
+        "fly ash supplier",
         "fly ash for cement",
         "fly ash for concrete"
       ]
     },
     {
-      "path": "/products/copper-slag/",
-      "primary": "copper slag supplier",
+      "path": "/blog/copper-slag-supplier-for-shipyard-blasting/",
+      "primary": "copper slag supplier for shipyard blasting",
       "secondary": [
+        "copper slag supplier",
         "copper slag exporter",
-        "copper slag abrasive",
         "blasting media supplier"
       ]
     }
