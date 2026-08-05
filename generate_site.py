@@ -187,8 +187,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "quartz",
         "eyebrow": "Ceramics / Glass / Engineered Stone / Building Materials",
-        "seo_title": "Quartz Sand Supplier from India | Grits & Powder Exporter | Jade Waves Enterprise",
-        "meta_description": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
+        "seo_title": "Quartz Supplier from India | Quartz Sand, Grits & Powder Exporter | Jade Waves Enterprise",
+        "meta_description": "Quartz supplier from India for ceramics, glass, and engineered stone buyers needing quartz sand, quartz grits, and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
         "hero_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits, quartz powder, and dependable export handling.",
         "short_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone.",
         "summary_spec": "SiO2 >99.0% / L value 91 min",
@@ -1364,13 +1364,6 @@ LEGACY_REDIRECTS = {
     "contact-1": "/#contact",
     "faq": "/",
     "infrastructure": "/operations/",
-    "products/silica-flour": "/products/silica-sand/",
-    "products/bentonite": "/products/",
-    "products/kaolin--china-clay": "/products/",
-    "products/talc": "/products/",
-    "products/salt": "/products/",
-    "products/fly-ash": "/products/",
-    "products/copper-slag": "/products/",
     "blog/bentonite-grade-selection-guide-for-importers": "/blog/",
     "blog/industrial-salt-import-guide-gulf-buyers": "/blog/",
     "blog/kaolin-supplier-for-paint-industry": "/blog/",
@@ -1454,6 +1447,22 @@ def render_redirect_page(legacy_path: str, target_path: str) -> str:
         </html>
         """
     ).strip()
+
+
+def generated_index_paths() -> set[str]:
+    return {
+        "",
+        "blog",
+        "hear-from-ceo",
+        "export-markets",
+        "industrial-minerals-exporter-india",
+        "products",
+        "operations",
+        "privacy-policy",
+        "terms-disclaimer",
+        *(f"blog/{post['slug']}" for post in BLOGS),
+        *(f"products/{product['slug']}" for product in PRODUCTS),
+    }
 
 
 def nav_html() -> str:
@@ -9338,6 +9347,13 @@ def main() -> None:
     write(ROOT / "products" / "index.html", render_products_index())
     for product in PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
+    reserved_paths = generated_index_paths()
+    conflicting_redirects = sorted(path for path in LEGACY_REDIRECTS if path in reserved_paths)
+    if conflicting_redirects:
+      raise ValueError(
+          "Legacy redirects collide with generated pages:\n- " + "\n- ".join(conflicting_redirects)
+      )
+
     for legacy_path, target_path in LEGACY_REDIRECTS.items():
       write(ROOT / legacy_path / "index.html", render_redirect_page(legacy_path, target_path))
     write(ROOT / "robots.txt", render_robots())
