@@ -55,6 +55,9 @@ def collect_pages() -> list[PageAudit]:
         if any(part in IGNORE_DIRS for part in path.parts):
             continue
         markup = path.read_text(encoding="utf-8")
+        robots = match_group(r'<meta\s+name="robots"\s+content="([^"]*)"', markup)
+        if "noindex" in robots.lower():
+            continue
         pages.append(
             PageAudit(
                 path=url_path_for_file(path),
@@ -63,7 +66,7 @@ def collect_pages() -> list[PageAudit]:
                 meta_description=match_group(
                     r'<meta\s+name="description"\s+content="([^"]*)"', markup
                 ),
-                robots=match_group(r'<meta\s+name="robots"\s+content="([^"]*)"', markup),
+                robots=robots,
                 canonical=match_group(r'<link\s+rel="canonical"\s+href="([^"]*)"', markup),
                 h1_count=len(re.findall(r"<h1\b", markup, re.IGNORECASE)),
                 json_ld_count=len(
