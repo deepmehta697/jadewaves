@@ -479,7 +479,7 @@ const initCorridorStage = (stage) => {
   startAutoplay();
 };
 
-const inquiryEndpoint = "https://jadewaves-crm.pages.dev/api/inquiry";
+const inquiryEndpoint = "/api/inquiry";
 const fallbackContactMessage = "Please email deep@jadewavesenterprise.com or call +91-999-883-5503.";
 
 const stripHtml = (value) => {

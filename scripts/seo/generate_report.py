@@ -419,28 +419,38 @@ def build_local_metrics(
     trends_data: dict[str, Any] | None = None,
 ) -> tuple[dict[str, Any], list[str], list[str], list[str]]:
     pages = collect_pages()
+    indexable_pages = [page for page in pages if "noindex" not in page.robots.lower()]
+    indexable_page_map = {page.path: page for page in indexable_pages}
     page_map = {page.path: page for page in pages}
     sitemap_metrics = read_sitemap_metrics()
     tracking = detect_tracking(config, pages)
 
-    duplicate_titles = [item for item, count in Counter(page.title for page in pages if page.title).items() if count > 1]
+    duplicate_titles = [
+        item
+        for item, count in Counter(page.title for page in indexable_pages if page.title).items()
+        if count > 1
+    ]
     duplicate_descriptions = [
         item
-        for item, count in Counter(page.meta_description for page in pages if page.meta_description).items()
+        for item, count in Counter(
+            page.meta_description for page in indexable_pages if page.meta_description
+        ).items()
         if count > 1
     ]
 
     issues: list[str] = []
-    if sitemap_metrics["url_count"] != len(pages):
+    if sitemap_metrics["url_count"] != len(indexable_pages):
         issues.append(
-            f"Sitemap lists {sitemap_metrics['url_count']} URLs while the repo contains {len(pages)} HTML index pages."
+            "Sitemap lists "
+            f"{sitemap_metrics['url_count']} URLs while the repo contains {len(indexable_pages)} "
+            "indexable HTML pages."
         )
     if duplicate_titles:
         issues.append(f"Found {len(duplicate_titles)} duplicate title tag values across the site.")
     if duplicate_descriptions:
         issues.append(f"Found {len(duplicate_descriptions)} duplicate meta description values across the site.")
 
-    opportunities = keyword_opportunities(config, page_map, trends_data=trends_data)
+    opportunities = keyword_opportunities(config, indexable_page_map, trends_data=trends_data)
     if not tracking["has_gtag"] and not tracking["has_gtm"]:
         issues.append("No GA4 or GTM client-side tracking snippet is present in the site code.")
 
@@ -451,18 +461,21 @@ def build_local_metrics(
         )
     if duplicate_titles:
         actions.append("Resolve duplicate titles in the shared templates before adding more pages.")
-    if sitemap_metrics["url_count"] != len(pages):
+    if sitemap_metrics["url_count"] != len(indexable_pages):
         actions.append("Rebuild or refresh sitemap generation so published URLs match the repo pages.")
     if opportunities:
         actions.append("Refresh title and meta copy on the highest-priority pages missing their primary keyword.")
 
     metrics = {
         "page_count": len(pages),
+        "indexable_page_count": len(indexable_pages),
         "sitemap_url_count": sitemap_metrics["url_count"],
-        "pages_missing_meta_description": sum(1 for page in pages if not page.meta_description),
-        "pages_missing_h1": sum(1 for page in pages if page.h1_count == 0),
-        "pages_with_multiple_h1": sum(1 for page in pages if page.h1_count > 1),
-        "pages_with_json_ld": sum(1 for page in pages if page.json_ld_count > 0),
+        "pages_missing_meta_description": sum(
+            1 for page in indexable_pages if not page.meta_description
+        ),
+        "pages_missing_h1": sum(1 for page in indexable_pages if page.h1_count == 0),
+        "pages_with_multiple_h1": sum(1 for page in indexable_pages if page.h1_count > 1),
+        "pages_with_json_ld": sum(1 for page in indexable_pages if page.json_ld_count > 0),
         "duplicate_title_count": len(duplicate_titles),
         "duplicate_meta_description_count": len(duplicate_descriptions),
         "tracking_has_gtag": tracking["has_gtag"],
@@ -511,19 +524,26 @@ def summarize_crawlability(
     previous_metrics: dict[str, Any] | None,
 ) -> list[str]:
     notes = [
-        f"Repo audit found {local_metrics['page_count']} HTML pages and {local_metrics['sitemap_url_count']} sitemap URLs.",
+        "Repo audit found "
+        f"{local_metrics['page_count']} HTML pages, including "
+        f"{local_metrics['indexable_page_count']} indexable pages, and "
+        f"{local_metrics['sitemap_url_count']} sitemap URLs.",
         (
             f"Live checks: homepage {live_checks['homepage'].get('status')}, robots.txt "
             f"{live_checks['robots'].get('status')}, sitemap.xml {live_checks['sitemap'].get('status')}."
         ),
     ]
     if previous_metrics:
-        page_delta = local_metrics["page_count"] - previous_metrics.get("page_count", local_metrics["page_count"])
+        page_delta = local_metrics["indexable_page_count"] - previous_metrics.get(
+            "indexable_page_count",
+            previous_metrics.get("page_count", local_metrics["indexable_page_count"]),
+        )
         sitemap_delta = local_metrics["sitemap_url_count"] - previous_metrics.get(
             "sitemap_url_count", local_metrics["sitemap_url_count"]
         )
         notes.append(
-            f"Since the previous report, page count changed by {page_delta:+d} and sitemap URL count changed by {sitemap_delta:+d}."
+            "Since the previous report, indexable page count changed by "
+            f"{page_delta:+d} and sitemap URL count changed by {sitemap_delta:+d}."
         )
     return notes
 
