@@ -30,6 +30,10 @@ class PageAudit:
     h1_count: int
     json_ld_count: int
 
+    @property
+    def is_indexable(self) -> bool:
+        return "noindex" not in self.robots.lower()
+
 
 def url_path_for_file(path: Path) -> str:
     rel = path.relative_to(ROOT)
@@ -419,21 +423,30 @@ def build_local_metrics(
     trends_data: dict[str, Any] | None = None,
 ) -> tuple[dict[str, Any], list[str], list[str], list[str]]:
     pages = collect_pages()
-    page_map = {page.path: page for page in pages}
+    indexable_pages = [page for page in pages if page.is_indexable]
+    page_map = {page.path: page for page in indexable_pages}
     sitemap_metrics = read_sitemap_metrics()
     tracking = detect_tracking(config, pages)
 
-    duplicate_titles = [item for item, count in Counter(page.title for page in pages if page.title).items() if count > 1]
+    duplicate_titles = [
+        item
+        for item, count in Counter(page.title for page in indexable_pages if page.title).items()
+        if count > 1
+    ]
     duplicate_descriptions = [
         item
-        for item, count in Counter(page.meta_description for page in pages if page.meta_description).items()
+        for item, count in Counter(
+            page.meta_description for page in indexable_pages if page.meta_description
+        ).items()
         if count > 1
     ]
 
     issues: list[str] = []
-    if sitemap_metrics["url_count"] != len(pages):
+    if sitemap_metrics["url_count"] != len(indexable_pages):
         issues.append(
-            f"Sitemap lists {sitemap_metrics['url_count']} URLs while the repo contains {len(pages)} HTML index pages."
+            "Sitemap lists "
+            f"{sitemap_metrics['url_count']} URLs while the repo contains "
+            f"{len(indexable_pages)} indexable HTML pages."
         )
     if duplicate_titles:
         issues.append(f"Found {len(duplicate_titles)} duplicate title tag values across the site.")
@@ -451,18 +464,20 @@ def build_local_metrics(
         )
     if duplicate_titles:
         actions.append("Resolve duplicate titles in the shared templates before adding more pages.")
-    if sitemap_metrics["url_count"] != len(pages):
+    if sitemap_metrics["url_count"] != len(indexable_pages):
         actions.append("Rebuild or refresh sitemap generation so published URLs match the repo pages.")
     if opportunities:
         actions.append("Refresh title and meta copy on the highest-priority pages missing their primary keyword.")
 
     metrics = {
-        "page_count": len(pages),
+        "page_count": len(indexable_pages),
         "sitemap_url_count": sitemap_metrics["url_count"],
-        "pages_missing_meta_description": sum(1 for page in pages if not page.meta_description),
-        "pages_missing_h1": sum(1 for page in pages if page.h1_count == 0),
-        "pages_with_multiple_h1": sum(1 for page in pages if page.h1_count > 1),
-        "pages_with_json_ld": sum(1 for page in pages if page.json_ld_count > 0),
+        "pages_missing_meta_description": sum(
+            1 for page in indexable_pages if not page.meta_description
+        ),
+        "pages_missing_h1": sum(1 for page in indexable_pages if page.h1_count == 0),
+        "pages_with_multiple_h1": sum(1 for page in indexable_pages if page.h1_count > 1),
+        "pages_with_json_ld": sum(1 for page in indexable_pages if page.json_ld_count > 0),
         "duplicate_title_count": len(duplicate_titles),
         "duplicate_meta_description_count": len(duplicate_descriptions),
         "tracking_has_gtag": tracking["has_gtag"],
