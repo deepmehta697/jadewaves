@@ -11,15 +11,37 @@ ROOT = Path(__file__).resolve().parents[1]
 BUILD_DIR = ROOT / "_site"
 ROOT_FILES = ["index.html", "styles.css", "script.js", "robots.txt", "sitemap.xml"]
 OPTIONAL_FILES = ["CNAME"]
+LEGACY_REDIRECT_DIRS = [
+    "silica-sand",
+    "silica-flour",
+    "quartz-sand-for-ceramics",
+    "bentonite",
+    "kaolin--china-clay",
+    "talc",
+    "feldspar",
+    "potash-&-soda-feldspar",
+    "potash-%26-soda-feldspar",
+    "salt",
+    "fly-ash",
+    "copper-slag",
+    "activated-bleaching-earth",
+    "blogs",
+    "about-us",
+    "contact-1",
+    "faq",
+    "infrastructure",
+]
 SITE_DIRS = [
     "assets",
+    "blog",
     "export-markets",
+    "hear-from-ceo",
     "industrial-minerals-exporter-india",
     "operations",
     "privacy-policy",
     "products",
     "terms-disclaimer",
-]
+] + LEGACY_REDIRECT_DIRS
 
 
 def run_regeneration() -> None:

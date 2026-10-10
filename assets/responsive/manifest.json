@@ -1,0 +1,558 @@
+{
+  "/assets/bentonite-sample-reference.png": {
+    "width": 764,
+    "height": 456,
+    "variants": [
+      {
+        "src": "/assets/responsive/bentonite-sample-reference-cb3a7b-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/bentonite-sample-reference-cb3a7b-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/bentonite-sample-reference-cb3a7b-764.webp",
+        "width": 764
+      }
+    ]
+  },
+  "/assets/china-clay-lumps.png": {
+    "width": 1020,
+    "height": 682,
+    "variants": [
+      {
+        "src": "/assets/responsive/china-clay-lumps-2c1cde-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/china-clay-lumps-2c1cde-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/china-clay-lumps-2c1cde-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/china-clay-lumps-2c1cde-1020.webp",
+        "width": 1020
+      }
+    ]
+  },
+  "/assets/china-clay-powder.png": {
+    "width": 786,
+    "height": 906,
+    "variants": [
+      {
+        "src": "/assets/responsive/china-clay-powder-0179f4-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/china-clay-powder-0179f4-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/china-clay-powder-0179f4-786.webp",
+        "width": 786
+      }
+    ]
+  },
+  "/assets/container-1604.jpeg": {
+    "width": 768,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/responsive/container-1604-6ef876-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/container-1604-6ef876-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/container-1604-6ef876-768.webp",
+        "width": 768
+      }
+    ]
+  },
+  "/assets/container-loading-wide.jpeg": {
+    "width": 3024,
+    "height": 4032,
+    "variants": [
+      {
+        "src": "/assets/responsive/container-loading-wide-055087-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/container-loading-wide-055087-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/container-loading-wide-055087-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/container-loading-wide-055087-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/copper-slag-processing.png": {
+    "width": 1196,
+    "height": 1108,
+    "variants": [
+      {
+        "src": "/assets/responsive/copper-slag-processing-34864f-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/copper-slag-processing-34864f-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/copper-slag-processing-34864f-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/copper-slag-processing-34864f-1196.webp",
+        "width": 1196
+      }
+    ]
+  },
+  "/assets/deep-mehta-ceo.jpg": {
+    "width": 700,
+    "height": 748,
+    "variants": [
+      {
+        "src": "/assets/responsive/deep-mehta-ceo-ccde70-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/deep-mehta-ceo-ccde70-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/deep-mehta-ceo-ccde70-700.webp",
+        "width": 700
+      }
+    ]
+  },
+  "/assets/feldspar-lumps-visual.webp": {
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/assets/responsive/feldspar-lumps-visual-b3eb21-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/feldspar-lumps-visual-b3eb21-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/feldspar-lumps-visual-b3eb21-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/feldspar-lumps-visual-b3eb21-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/jade-waves-logo-transparent.png": {
+    "width": 612,
+    "height": 408
+  },
+  "/assets/optimized/factory-view.jpg": {
+    "width": 1800,
+    "height": 691,
+    "variants": [
+      {
+        "src": "/assets/responsive/factory-view-2873a7-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/factory-view-2873a7-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/factory-view-2873a7-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/factory-view-2873a7-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/optimized/jumbo-bags-1.jpg": {
+    "width": 1800,
+    "height": 1041,
+    "variants": [
+      {
+        "src": "/assets/responsive/jumbo-bags-1-fb2e44-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/jumbo-bags-1-fb2e44-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/jumbo-bags-1-fb2e44-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/jumbo-bags-1-fb2e44-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/optimized/loading-trucks.jpg": {
+    "width": 1800,
+    "height": 933,
+    "variants": [
+      {
+        "src": "/assets/responsive/loading-trucks-023aea-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/loading-trucks-023aea-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/loading-trucks-023aea-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/loading-trucks-023aea-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/optimized/manual-sorting.jpg": {
+    "width": 1800,
+    "height": 952,
+    "variants": [
+      {
+        "src": "/assets/responsive/manual-sorting-aad6fd-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/manual-sorting-aad6fd-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/manual-sorting-aad6fd-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/manual-sorting-aad6fd-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/optimized/packing-area.jpg": {
+    "width": 1800,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/responsive/packing-area-1e2dbc-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/packing-area-1e2dbc-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/packing-area-1e2dbc-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/packing-area-1e2dbc-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/optimized/processing-area.jpg": {
+    "width": 1800,
+    "height": 1032,
+    "variants": [
+      {
+        "src": "/assets/responsive/processing-area-7077e1-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/processing-area-7077e1-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/processing-area-7077e1-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/processing-area-7077e1-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/optimized/quarry-quartz.jpg": {
+    "width": 1800,
+    "height": 803,
+    "variants": [
+      {
+        "src": "/assets/responsive/quarry-quartz-024a8a-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/quarry-quartz-024a8a-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/quarry-quartz-024a8a-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/quarry-quartz-024a8a-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/quality-control.png": {
+    "width": 1108,
+    "height": 626,
+    "variants": [
+      {
+        "src": "/assets/responsive/quality-control-c964ce-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/quality-control-c964ce-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/quality-control-c964ce-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/quality-control-c964ce-1108.webp",
+        "width": 1108
+      }
+    ]
+  },
+  "/assets/quartz-lumps-3-visual.webp": {
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/assets/responsive/quartz-lumps-3-visual-087f22-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/quartz-lumps-3-visual-087f22-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/quartz-lumps-3-visual-087f22-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/quartz-lumps-3-visual-087f22-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/quartz-sand-detail-visual.webp": {
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/assets/responsive/quartz-sand-detail-visual-987c8d-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/quartz-sand-detail-visual-987c8d-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/quartz-sand-detail-visual-987c8d-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/quartz-sand-detail-visual-987c8d-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/rubber-granules-samples.png": {
+    "width": 1168,
+    "height": 1170,
+    "variants": [
+      {
+        "src": "/assets/responsive/rubber-granules-samples-dc2edd-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/rubber-granules-samples-dc2edd-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/rubber-granules-samples-dc2edd-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/rubber-granules-samples-dc2edd-1168.webp",
+        "width": 1168
+      }
+    ]
+  },
+  "/assets/salt-sample-reference.png": {
+    "width": 2044,
+    "height": 1360,
+    "variants": [
+      {
+        "src": "/assets/responsive/salt-sample-reference-6fcaaf-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/salt-sample-reference-6fcaaf-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/salt-sample-reference-6fcaaf-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/salt-sample-reference-6fcaaf-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/silica-flour-visual.webp": {
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/assets/responsive/silica-flour-visual-b95e90-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/silica-flour-visual-b95e90-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/silica-flour-visual-b95e90-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/silica-flour-visual-b95e90-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/assets/silica-sand-coa-preview.png": {
+    "width": 1131,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/assets/responsive/silica-sand-coa-preview-8e1c20-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/silica-sand-coa-preview-8e1c20-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/silica-sand-coa-preview-8e1c20-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/silica-sand-coa-preview-8e1c20-1131.webp",
+        "width": 1131
+      }
+    ]
+  },
+  "/assets/silica-sand-samples.png": {
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/assets/responsive/silica-sand-samples-6b80e3-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/silica-sand-samples-6b80e3-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/silica-sand-samples-6b80e3-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/silica-sand-samples-6b80e3-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/stock-fly-ash-clean.png": {
+    "width": 1086,
+    "height": 1448,
+    "variants": [
+      {
+        "src": "/assets/responsive/stock-fly-ash-clean-5bd471-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/stock-fly-ash-clean-5bd471-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/stock-fly-ash-clean-5bd471-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/stock-fly-ash-clean-5bd471-1086.webp",
+        "width": 1086
+      }
+    ]
+  },
+  "/assets/talc-chips.png": {
+    "width": 946,
+    "height": 936,
+    "variants": [
+      {
+        "src": "/assets/responsive/talc-chips-f4bb8c-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/talc-chips-f4bb8c-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/talc-chips-f4bb8c-946.webp",
+        "width": 946
+      }
+    ]
+  },
+  "/assets/talc-powder.png": {
+    "width": 1198,
+    "height": 772,
+    "variants": [
+      {
+        "src": "/assets/responsive/talc-powder-6056ad-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/responsive/talc-powder-6056ad-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/responsive/talc-powder-6056ad-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/talc-powder-6056ad-1198.webp",
+        "width": 1198
+      }
+    ]
+  }
+}

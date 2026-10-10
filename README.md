@@ -16,26 +16,30 @@ python3 -m http.server 4173
 
 ## Project Files
 
-- `index.html` - homepage
-- `products/` - product listing and product detail pages
-- `styles.css` - site styling
-- `script.js` - client-side interactions
-- `assets/` - images and supporting assets
+- `generate_site.py` — product/blog data, metadata, and static page generation
+- `templates/material_pages.py` — homepage, portfolio, product, company, markets, and journal layouts
+- `templates/material_layout.py` — shared navigation, footer, and procurement form
+- `templates/material_support.py` — operations and policy pages
+- `templates/material-ledger.css` — the shared design system
+- `templates/material-ledger.js` — navigation, form requests, and restrained reveals
+- `assets/responsive/` — responsive WebP images and their source manifest
+- `index.html`, `products/`, `styles.css`, and `script.js` — generated output; edit the sources above
 
-## Git Status
+## Build and Verify
 
-Local commit created:
-
-```text
-948375e Update Jade Waves website pages
-```
-
-Push is currently blocked because GitHub authentication is not configured on this machine for the HTTPS remote.
-
-To push after authenticating:
+Regenerate and assemble the static artifact:
 
 ```bash
-cd /Users/deepmehta/Documents/Jadewaves
-gh auth login
-git push
+python3 scripts/build_site.py --regenerate
+python3 scripts/verify_site.py --root _site
 ```
+
+When authored images change, prepare their responsive copies after an initial regeneration. This optional preparation step requires Pillow; regular builds use the saved manifest and do not require it.
+
+```bash
+python3 generate_site.py
+python3 scripts/prepare_site_images.py
+python3 scripts/build_site.py --regenerate
+```
+
+The source verifier checks active pages, metadata, structured data, document and image references, section anchors, inquiry fields, and design invariants. Desktop/mobile browser review is also required for visual release approval.
