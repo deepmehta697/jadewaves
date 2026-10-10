@@ -4,33 +4,15 @@ import argparse
 import shutil
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILD_DIR = ROOT / "_site"
 ROOT_FILES = ["index.html", "styles.css", "script.js", "robots.txt", "sitemap.xml"]
 OPTIONAL_FILES = ["CNAME"]
-LEGACY_REDIRECT_DIRS = [
-    "silica-sand",
-    "silica-flour",
-    "quartz-sand-for-ceramics",
-    "bentonite",
-    "kaolin--china-clay",
-    "talc",
-    "feldspar",
-    "potash-&-soda-feldspar",
-    "potash-%26-soda-feldspar",
-    "salt",
-    "fly-ash",
-    "copper-slag",
-    "activated-bleaching-earth",
-    "blogs",
-    "about-us",
-    "contact-1",
-    "faq",
-    "infrastructure",
-]
 SITE_DIRS = [
     "assets",
     "blog",
@@ -41,7 +23,18 @@ SITE_DIRS = [
     "privacy-policy",
     "products",
     "terms-disclaimer",
-] + LEGACY_REDIRECT_DIRS
+]
+EXCLUDED_TOP_LEVEL_DIRS = {
+    ".git",
+    ".github",
+    "_site",
+    "__pycache__",
+    "config",
+    "docs",
+    "reports",
+    "scripts",
+    "tmp",
+}
 
 
 def run_regeneration() -> None:
@@ -58,12 +51,50 @@ def copy_path(source: Path, target: Path) -> None:
         shutil.copy2(source, target)
 
 
+def publishable_root_dirs() -> list[Path]:
+    # Publish known site sections and generated SEO aliases, never arbitrary
+    # workspace apps, CRM source, or design previews with an index.html.
+    sys.path.insert(0, str(ROOT))
+    import generate_site
+
+    names = set(SITE_DIRS)
+    names.update(path.split("/", 1)[0] for path in generate_site.LEGACY_REDIRECTS)
+    names.update(path.split("/", 1)[0] for path, _, _ in generate_site.malformed_redirect_entries())
+    return [ROOT / name for name in sorted(names) if (ROOT / name).is_dir()]
+
+
 def validate_inputs() -> list[str]:
     missing: list[str] = []
-    for name in ROOT_FILES + SITE_DIRS:
+    for name in ROOT_FILES:
         if not (ROOT / name).exists():
             missing.append(name)
+    for path in publishable_root_dirs():
+        if not path.exists():
+            missing.append(path.name)
     return missing
+
+
+def sitemap_output_targets() -> list[Path]:
+    sitemap_path = ROOT / "sitemap.xml"
+    if not sitemap_path.exists():
+        return []
+
+    ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    root = ET.fromstring(sitemap_path.read_text(encoding="utf-8"))
+    targets: list[Path] = []
+
+    for loc in root.findall("sm:url/sm:loc", ns):
+        if not loc.text:
+            continue
+        parsed = urlparse(loc.text)
+        path = parsed.path.rstrip("/")
+        if not path:
+            targets.append(BUILD_DIR / "index.html")
+            continue
+        segments = [segment for segment in path.split("/") if segment]
+        targets.append(BUILD_DIR.joinpath(*segments) / "index.html")
+
+    return targets
 
 
 def build_site() -> None:
@@ -71,12 +102,17 @@ def build_site() -> None:
         shutil.rmtree(BUILD_DIR)
     BUILD_DIR.mkdir(parents=True, exist_ok=True)
 
-    for name in ROOT_FILES + OPTIONAL_FILES + SITE_DIRS:
+    for name in ROOT_FILES + OPTIONAL_FILES:
         source = ROOT / name
         if source.exists():
             copy_path(source, BUILD_DIR / name)
 
-    expected = [BUILD_DIR / name for name in ROOT_FILES + SITE_DIRS]
+    for source in publishable_root_dirs():
+        copy_path(source, BUILD_DIR / source.name)
+
+    expected = [BUILD_DIR / name for name in ROOT_FILES]
+    expected.extend(BUILD_DIR / path.name for path in publishable_root_dirs())
+    expected.extend(sitemap_output_targets())
     missing_outputs = [str(path.relative_to(ROOT)) for path in expected if not path.exists()]
     if missing_outputs:
         raise SystemExit(

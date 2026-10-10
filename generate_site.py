@@ -40,8 +40,13 @@ TODAY = date.today().isoformat()
 BUILD_VERSION = os.environ.get("SITE_BUILD_VERSION", datetime.utcnow().strftime("%Y%m%d%H%M%S"))
 CEO_LINKEDIN_URL = "https://www.linkedin.com/in/deep-mehta-034230226/"
 GA4_MEASUREMENT_ID = "G-9BRL4JKNN6"
-INQUIRY_ENDPOINT = os.environ.get("INQUIRY_ENDPOINT", "/api/inquiry").strip() or "/api/inquiry"
-RECAPTCHA_SITE_KEY = os.environ.get("RECAPTCHA_SITE_KEY", "").strip()
+INQUIRY_ENDPOINT = (
+    os.environ.get("INQUIRY_ENDPOINT", "https://jadewaves-crm.pages.dev/api/inquiry").strip()
+    or "https://jadewaves-crm.pages.dev/api/inquiry"
+)
+RECAPTCHA_SITE_KEY = os.environ.get(
+    "RECAPTCHA_SITE_KEY", "6Lf79G8tAAAAANbgXZMp8-l_abmdtPtagvt3TTsm"
+).strip()
 
 CONTACT = {
     "company": "Jade Waves Enterprise",
@@ -58,15 +63,15 @@ INDUSTRIES = [
     ),
     (
         "Ceramics",
-        "Quartz sand, feldspar, and silica sand for ceramic bodies, tiles, and glaze-linked production.",
+        "Quartz sand, feldspar, and silica sand for bodies, tiles, glaze systems, and ceramic process buying.",
     ),
     (
         "Construction",
-        "Silica sand and feldspar for construction systems and mineral-heavy site demand.",
+        "Silica sand and quartz inputs for construction-linked and engineered-stone-adjacent mineral demand.",
     ),
     (
         "Foundry",
-        "Silica sand for foundry systems that depend on repeatable sizing and cleaner supply control.",
+        "Silica sand for moulding systems that depend on repeatable sizing and dependable export handling.",
     ),
 ]
 
@@ -190,8 +195,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "quartz",
         "eyebrow": "Ceramics / Glass / Engineered Stone / Building Materials",
-        "seo_title": "Quartz Sand Supplier from India | Grits & Powder Exporter | Jade Waves Enterprise",
-        "meta_description": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
+        "seo_title": "Quartz Supplier from India | Quartz Sand, Grits & Powder Exporter | Jade Waves Enterprise",
+        "meta_description": "Quartz supplier from India for ceramics, glass, and engineered stone buyers needing quartz sand, quartz grits, and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
         "hero_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits, quartz powder, and dependable export handling.",
         "short_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone.",
         "summary_spec": "SiO2 >99.0% / L value 91 min",
@@ -1430,6 +1435,7 @@ CORE_BLOG_SLUGS = [
     "silica-sand-exporter-from-india",
     "how-to-check-tds-and-sample-coa-before-mineral-import",
 ]
+ALL_BLOGS = BLOGS
 BLOGS = [post for post in BLOGS if post["slug"] in CORE_BLOG_SLUGS]
 
 CURRENT_BLOG_SLUGS = CORE_BLOG_SLUGS
@@ -1805,6 +1811,12 @@ def render_robots() -> str:
         f"""
         User-agent: *
         Allow: /
+        Disallow: /m/
+        Disallow: /assets/coas/
+        Disallow: /*?blog=
+        Disallow: /*?blogcategory=
+        Disallow: /*?trk=
+        Disallow: /*?r=
 
         Sitemap: {BASE_URL}/sitemap.xml
         """
@@ -1831,6 +1843,219 @@ def render_sitemap() -> str:
     )
 
 
+def canonical_product_target(slug: str) -> str:
+    return f"/products/{slug}/" if slug in PRODUCTS_BY_SLUG else "/products/"
+
+
+def canonical_blog_target(slug: str) -> str:
+    if slug in CURRENT_BLOG_SLUGS:
+        return f"/blog/{slug}/"
+    post = next((post for post in ALL_BLOGS if post["slug"] == slug), None)
+    return canonical_product_target(post["product_slug"]) if post else "/blog/"
+
+
+def normalize_legacy_target(target: str) -> str:
+    if target.startswith("/products/"):
+        slug = target.removeprefix("/products/").strip("/")
+        return canonical_product_target(slug) if slug else "/products/"
+    if target.startswith("/blog/"):
+        slug = target.removeprefix("/blog/").strip("/")
+        return canonical_blog_target(slug) if slug else "/blog/"
+    return target
+
+
+LEGACY_ALIAS_REDIRECTS = [
+    ("about-us", "About us moved", "/industrial-minerals-exporter-india/"),
+    ("activated-bleaching-earth", "Activated bleaching earth moved", "/products/"),
+    ("animal-feed-bentonite", "Animal feed bentonite moved", "/products/bentonite/"),
+    ("bentonite", "Bentonite moved", "/products/bentonite/"),
+    ("bentonite-supplier-india", "Bentonite supplier article moved", "/blog/bentonite-supplier-india/"),
+    ("blogs", "Blog index moved", "/blog/"),
+    ("blogs/f/activated-bleaching-earth", "Activated bleaching earth article moved", "/products/"),
+    ("blogs/f/bentonite-clay-and-its-applications", "Bentonite applications article moved", "/products/bentonite/"),
+    ("blogs/f/bentonite-suppliers-in-malaysia", "Bentonite Malaysia article moved", "/products/bentonite/"),
+    ("blogs/f/bentonite-suppliers-in-saudi-arabia", "Bentonite Saudi Arabia article moved", "/products/bentonite/"),
+    ("blogs/f/bentonite-suppliers-in-vietnam", "Bentonite Vietnam article moved", "/products/bentonite/"),
+    ("blogs/f/copper-slag-for-sandblasting", "Copper slag sandblasting article moved", "/blog/copper-slag-supplier-for-shipyard-blasting/"),
+    ("blogs/f/copper-slag-suppliers-in-india", "Copper slag supplier article moved", "/products/copper-slag/"),
+    ("blogs/f/drilling-bentonite", "Drilling bentonite article moved", "/products/bentonite/"),
+    ("blogs/f/fly-ash-suppliers-in-india", "Fly ash supplier article moved", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
+    ("blogs/f/innovations-in-recycling-fly-ash", "Fly ash recycling article moved", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
+    ("blogs/f/kaolin-china-clay-suppliers-in-india", "Kaolin article moved", "/products/kaolin--china-clay/"),
+    ("blogs/f/paint-bentonite", "Paint bentonite article moved", "/products/bentonite/"),
+    ("blogs/f/potash-feldspar-feldspar-suppliers-india", "Potash feldspar article moved", "/blog/potassium-feldspar-supplier-for-ceramic-tiles/"),
+    ("blogs/f/quartz-supplier-in-vietnam---quartz-india", "Quartz Vietnam article moved", "/blog/quartz-sand-supplier-india-vietnam-buyers-guide/"),
+    ("blogs/f/rubber-granules-maldives-rubber-granules-supplier-in-maldives", "Rubber granules article moved", "/products/rubber-granules/"),
+    ("blogs/f/salt-suppliers-in-mauritius-jade-waves-enterprise", "Salt Mauritius article moved", "/blog/industrial-salt-exporter/"),
+    ("blogs/f/salt-suppliers-in-seychelles-jade-waves-enterprise", "Salt Seychelles article moved", "/blog/industrial-salt-exporter/"),
+    ("blogs/f/salt-suppliers-in-seychelles-jade-waves-enteprise", "Salt Seychelles article moved", "/blog/industrial-salt-exporter/"),
+    ("blogs/f/salt-the-essential-mineral", "Salt article moved", "/products/salt/"),
+    ("blogs/f/silica-sand-for-artificial-football-turf", "Silica turf article moved", "/products/silica-sand/"),
+    ("blogs/f/silica-sand-maldives", "Silica sand Maldives article moved", "/products/silica-sand/"),
+    ("blogs/f/silica-sand-suppliers-in-kenya", "Silica Kenya article moved", "/blog/silica-sand-exporter-from-india/"),
+    ("blogs/f/silica-sand-suppliers-in-mauritius-jade-waves-enterprise", "Silica Mauritius article moved", "/products/silica-sand/"),
+    ("blogs/f/the-future-of-fly-ash-utilization-in-green-building-practices", "Fly ash green building article moved", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
+    ("blogs/f/the-role-of-fly-ash-in-cement-manufacturing", "Fly ash cement article moved", "/blog/fly-ash-exporter-from-india-bulk-shipment/"),
+    ("blogs/f/top-silica-sand-suppliers-in-india-jade-waves-enterprise", "Silica suppliers article moved", "/blog/silica-sand-exporter-from-india/"),
+    ("cat-litter-bentonite", "Cat litter bentonite moved", "/products/bentonite/"),
+    ("ceramics-bentonite", "Ceramics bentonite moved", "/products/bentonite/"),
+    ("company-profile", "Company profile moved", "/industrial-minerals-exporter-india/"),
+    ("contact-1", "Contact moved", "/#contact"),
+    ("contact-1/ola/services/business-collaboration", "Business collaboration moved", "/#contact"),
+    ("contact-1/ola/services/product-inquiry-call", "Product inquiry moved", "/#contact"),
+    ("contact-1/ola/services/request-a-free-sample", "Sample request moved", "/#contact"),
+    ("copper-slag", "Copper slag moved", "/products/copper-slag/"),
+    ("dolomite", "Dolomite moved", "/products/"),
+    ("earthing-bentonite", "Earthing bentonite moved", "/products/bentonite/"),
+    ("export-markets/bentonite-vietnam-gulf", "Export market page moved", "/export-markets/"),
+    ("export-markets/feldspar-vietnam", "Export market page moved", "/export-markets/"),
+    ("export-markets/quartz-feldspar-ceramic-glass", "Export market page moved", "/export-markets/"),
+    ("export-markets/quartz-sand-vietnam", "Export market page moved", "/export-markets/"),
+    ("export-markets/silica-sand-maldives", "Export market page moved", "/export-markets/"),
+    ("faq", "FAQ moved", "/products/"),
+    ("feldspar", "Feldspar moved", "/products/feldspar/"),
+    ("fertilizer-bentonite", "Fertilizer bentonite moved", "/products/bentonite/"),
+    ("fly-ash", "Fly ash moved", "/products/fly-ash/"),
+    ("foundry-bentonite", "Foundry bentonite moved", "/products/bentonite/"),
+    ("hdd-bentonite", "HDD bentonite moved", "/products/bentonite/"),
+    ("hear-from-our-ceo", "CEO page moved", "/hear-from-ceo/"),
+    ("home", "Home moved", "/"),
+    ("infrastructure", "Infrastructure moved", "/operations/"),
+    ("kaolin--china-clay", "Kaolin moved", "/products/kaolin--china-clay/"),
+    ("limestone-/-dolomite", "Dolomite moved", "/products/"),
+    ("m/create-account", "Account creation moved", "/#contact"),
+    ("m/login", "Login moved", "/#contact"),
+    ("m/reset", "Reset moved", "/#contact"),
+    ("oil-drilling-bentonite", "Oil drilling bentonite moved", "/products/bentonite/"),
+    ("piling-bentonite", "Piling bentonite moved", "/products/bentonite/"),
+    ("pond-sealing-bentonite", "Pond sealing bentonite moved", "/products/bentonite/"),
+    ("potash-&-soda-feldspar", "Feldspar moved", "/products/feldspar/"),
+    ("quartz", "Quartz moved", "/products/quartz-sand-for-ceramics/"),
+    ("quartz-sand-for-ceramics", "Quartz sand moved", "/products/quartz-sand-for-ceramics/"),
+    ("refractory-bentonite", "Refractory bentonite moved", "/products/bentonite/"),
+    ("rubber-granules", "Rubber granules moved", "/products/rubber-granules/"),
+    ("salt", "Salt moved", "/products/salt/"),
+    ("silica-flour", "Silica flour moved", "/products/silica-flour/"),
+    ("silica-sand", "Silica sand moved", "/products/silica-sand/"),
+    ("silica-sand-india", "Silica sand moved", "/products/silica-sand/"),
+    ("silicasand-supplier-india", "Silica sand moved", "/products/silica-sand/"),
+    ("talc", "Talc moved", "/products/talc/"),
+    ("talc-/-soapstone", "Talc moved", "/products/talc/"),
+    ("terms-and-conditions", "Terms moved", "/terms-disclaimer/"),
+]
+
+
+SECTION_REDIRECTS = {
+    "blog": "/blog/",
+    "products": "/products/",
+    "operations": "/operations/",
+    "export-markets": "/export-markets/",
+    "hear-from-ceo": "/hear-from-ceo/",
+    "privacy-policy": "/privacy-policy/",
+    "terms-disclaimer": "/terms-disclaimer/",
+}
+
+
+def malformed_redirect_entries() -> list[tuple[str, str, str]]:
+    entries: list[tuple[str, str, str]] = [
+        ("blog/blog", "Blog moved", "/blog/"),
+        ("blog/products", "Products moved", "/products/"),
+        ("blog/operations", "Operations moved", "/operations/"),
+        ("blog/export-markets", "Markets moved", "/export-markets/"),
+        ("products/blog", "Blog moved", "/blog/"),
+        ("products/products", "Products moved", "/products/"),
+        ("products/operations", "Operations moved", "/operations/"),
+        ("products/export-markets", "Markets moved", "/export-markets/"),
+        ("operations/blog", "Blog moved", "/blog/"),
+        ("operations/operations", "Operations moved", "/operations/"),
+        ("operations/export-markets", "Markets moved", "/export-markets/"),
+        ("operations/privacy-policy", "Privacy Policy moved", "/privacy-policy/"),
+        ("operations/terms-disclaimer", "Terms moved", "/terms-disclaimer/"),
+        ("privacy-policy/privacy-policy", "Privacy Policy moved", "/privacy-policy/"),
+        ("privacy-policy/terms-disclaimer", "Terms moved", "/terms-disclaimer/"),
+        ("terms-disclaimer/privacy-policy", "Privacy Policy moved", "/privacy-policy/"),
+        ("terms-disclaimer/terms-disclaimer", "Terms moved", "/terms-disclaimer/"),
+    ]
+
+    for product in PRODUCTS:
+        slug = product["slug"]
+        entries.extend(
+            (
+                (f"products/{slug}/{section}", f"{section.replace('-', ' ').title()} moved", target)
+                for section, target in SECTION_REDIRECTS.items()
+            )
+        )
+        canonical_target = canonical_product_target(slug)
+        entries.append((f"operations/products/{slug}", f"{product['name']} moved", canonical_target))
+        entries.append((f"products/products/{slug}", f"{product['name']} moved", canonical_target))
+        for target_product in PRODUCTS:
+            target_slug = target_product["slug"]
+            entries.append(
+                (
+                    f"products/{slug}/products/{target_slug}",
+                    f"{target_product['name']} moved",
+                    canonical_product_target(target_slug),
+                )
+            )
+
+    for post in ALL_BLOGS:
+        slug = post["slug"]
+        entries.extend(
+            (
+                (f"blog/{slug}/{section}", f"{section.replace('-', ' ').title()} moved", target)
+                for section, target in SECTION_REDIRECTS.items()
+            )
+        )
+        entries.append((f"blog/blog/{slug}", f"{post['title']} moved", canonical_blog_target(slug)))
+        for target_post in ALL_BLOGS:
+            target_slug = target_post["slug"]
+            entries.append(
+                (
+                    f"blog/{slug}/blog/{target_slug}",
+                    f"{target_post['title']} moved",
+                    canonical_blog_target(target_slug),
+                )
+            )
+        for product in PRODUCTS:
+            target_slug = product["slug"]
+            entries.append(
+                (
+                    f"blog/{slug}/products/{target_slug}",
+                    f"{product['name']} moved",
+                    canonical_product_target(target_slug),
+                )
+            )
+
+    return entries
+
+
+def parameter_doc_aliases() -> list[tuple[Path, Path]]:
+    aliases: list[tuple[Path, Path]] = []
+    for product in PRODUCTS:
+        for _, href in product.get("parameter_docs", []):
+            source = ROOT / href.lstrip("/")
+            if not source.exists():
+                continue
+            aliases.append(
+                (
+                    source,
+                    ROOT / "products" / product["slug"] / href.lstrip("/"),
+                )
+            )
+    return aliases
+
+
+LEGACY_REDIRECTS.update({
+    path: normalize_legacy_target(target)
+    for path, _, target in LEGACY_ALIAS_REDIRECTS
+})
+LEGACY_REDIRECTS.update({
+    f"blog/{post['slug']}": canonical_blog_target(post["slug"])
+    for post in ALL_BLOGS if post["slug"] not in CURRENT_BLOG_SLUGS
+})
+
+
+
 def main() -> None:
     write(ROOT / "styles.css", STYLES)
     write(ROOT / "script.js", SCRIPT)
@@ -1849,6 +2074,11 @@ def main() -> None:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
     for legacy_path, target_path in LEGACY_REDIRECTS.items():
       write(ROOT / legacy_path / "index.html", render_redirect_page(legacy_path, target_path))
+    for legacy_path, _, target_path in malformed_redirect_entries():
+      write(ROOT / legacy_path / "index.html", render_redirect_page(legacy_path, target_path))
+    for source, destination in parameter_doc_aliases():
+      destination.parent.mkdir(parents=True, exist_ok=True)
+      destination.write_bytes(source.read_bytes())
     write(ROOT / "robots.txt", render_robots())
     write(ROOT / "sitemap.xml", render_sitemap())
 

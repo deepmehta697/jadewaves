@@ -21,4 +21,8 @@ The source lives in `templates/material_pages.py`, `material_layout.py`, `materi
 
 Desktop and 360px browser visual review remains unverified. The browser tool rejected access to `http://127.0.0.1:4173/` because permission was denied. No alternate browser, port, remote preview, or browser automation workaround was attempted. This leaves actual line wrapping, focal crops, viewport fit, touch/keyboard interaction, and measured browser performance pending.
 
-The local source and built artifact are ready for review. Browser permission is required to finish that gate; the redesign has not been published.
+The user requested committing and pushing to `main`, explicitly retaining all 11 products. Publication proceeds with this browser review still pending; pushing does not complete that acceptance gate.
+
+## Main-branch integration
+
+The newer remote history is merged without rewriting it. Its public CRM inquiry endpoint and reCAPTCHA site key are retained as build defaults, while environment overrides still work. Existing SEO aliases, malformed-URL redirects, parameter-document aliases, crawl exclusions, and the regenerate-on-deploy workflow are retained. Product redirects now resolve against the complete 11-product portfolio. The production builder uses explicit site sections and generated alias roots, excluding CRM source, integrations, templates, and workspace previews.

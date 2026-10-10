@@ -5,7 +5,7 @@ import re
 import socket
 from collections import Counter
 from dataclasses import dataclass
-from datetime import date, timedelta
+from datetime import date
 from html import unescape
 from pathlib import Path
 from typing import Any
@@ -29,6 +29,10 @@ class PageAudit:
     canonical: str
     h1_count: int
     json_ld_count: int
+
+
+def is_indexable(page: PageAudit) -> bool:
+    return "noindex" not in page.robots.lower()
 
 
 def url_path_for_file(path: Path) -> str:
@@ -132,6 +136,29 @@ def trends_client_available() -> tuple[bool, str]:
     except ModuleNotFoundError:
         return False, "Python Google Trends client library is not installed."
     return True, ""
+
+
+def google_reporting_window(config: dict[str, Any]) -> tuple[date, date]:
+    end_date = date.today() - date.resolution
+    start_date_raw = config.get("google_reporting_start_date", "").strip()
+    if start_date_raw:
+        try:
+            start_date = date.fromisoformat(start_date_raw)
+        except ValueError:
+            start_date = end_date
+    else:
+        start_date = end_date
+
+    if start_date > end_date:
+        start_date = end_date
+    return start_date, end_date
+
+
+def excluded_search_console_countries(config: dict[str, Any]) -> list[str]:
+    raw = config.get("search_console_excluded_countries", [])
+    if isinstance(raw, str):
+        raw = [item.strip() for item in raw.split(",") if item.strip()]
+    return [item.strip().lower() for item in raw if item and item.strip()]
 
 
 def configured_trend_targets(config: dict[str, Any]) -> list[str]:
@@ -283,8 +310,7 @@ def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]
         blockers.append(f"Could not load the service account JSON key: {exc}")
         return result, blockers
 
-    end_date = date.today() - timedelta(days=1)
-    start_date = end_date - timedelta(days=27)
+    start_date, end_date = google_reporting_window(config)
 
     try:
         search_console = build("searchconsole", "v1", credentials=credentials, cache_discovery=False)
@@ -298,12 +324,26 @@ def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]
             blockers.append(f"Could not initialize the Search Console API client: {exc}")
     if search_console is not None:
         try:
+            excluded_countries = excluded_search_console_countries(config)
             payload = {
                 "startDate": start_date.isoformat(),
                 "endDate": end_date.isoformat(),
                 "dimensions": ["page"],
-                "rowLimit": 10,
+                "rowLimit": 250,
             }
+            if excluded_countries:
+                payload["dimensionFilterGroups"] = [
+                    {
+                        "groupType": "and",
+                        "filters": [
+                            {
+                                "dimension": "country",
+                                "operator": "excludingRegex",
+                                "expression": f"^({'|'.join(re.escape(code) for code in excluded_countries)})$",
+                            }
+                        ],
+                    }
+                ]
             response = (
                 search_console.searchanalytics()
                 .query(siteUrl=search_console_property, body=payload)
@@ -312,6 +352,7 @@ def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]
             rows = response.get("rows", [])
             result["search_console"] = {
                 "date_range": [start_date.isoformat(), end_date.isoformat()],
+                "excluded_countries": excluded_countries,
                 "clicks": round(sum(row.get("clicks", 0) for row in rows), 2),
                 "impressions": round(sum(row.get("impressions", 0) for row in rows), 2),
                 "top_pages": rows[:5],
@@ -329,7 +370,12 @@ def fetch_google_data(config: dict[str, Any]) -> tuple[dict[str, Any], list[str]
             .runReport(
                 property=f"properties/{ga4_property_id}",
                 body={
-                    "dateRanges": [{"startDate": "28daysAgo", "endDate": "yesterday"}],
+                    "dateRanges": [
+                        {
+                            "startDate": start_date.isoformat(),
+                            "endDate": end_date.isoformat(),
+                        }
+                    ],
                     "metrics": [{"name": "sessions"}, {"name": "totalUsers"}, {"name": "conversions"}],
                     "dimensions": [{"name": "eventName"}],
                     "limit": 10,
@@ -419,21 +465,28 @@ def build_local_metrics(
     trends_data: dict[str, Any] | None = None,
 ) -> tuple[dict[str, Any], list[str], list[str], list[str]]:
     pages = collect_pages()
-    page_map = {page.path: page for page in pages}
+    indexable_pages = [page for page in pages if is_indexable(page)]
+    page_map = {page.path: page for page in indexable_pages}
     sitemap_metrics = read_sitemap_metrics()
     tracking = detect_tracking(config, pages)
 
-    duplicate_titles = [item for item, count in Counter(page.title for page in pages if page.title).items() if count > 1]
+    duplicate_titles = [
+        item
+        for item, count in Counter(page.title for page in indexable_pages if page.title).items()
+        if count > 1
+    ]
     duplicate_descriptions = [
         item
-        for item, count in Counter(page.meta_description for page in pages if page.meta_description).items()
+        for item, count in Counter(
+            page.meta_description for page in indexable_pages if page.meta_description
+        ).items()
         if count > 1
     ]
 
     issues: list[str] = []
-    if sitemap_metrics["url_count"] != len(pages):
+    if sitemap_metrics["url_count"] != len(indexable_pages):
         issues.append(
-            f"Sitemap lists {sitemap_metrics['url_count']} URLs while the repo contains {len(pages)} HTML index pages."
+            f"Sitemap lists {sitemap_metrics['url_count']} URLs while the repo contains {len(indexable_pages)} indexable HTML pages."
         )
     if duplicate_titles:
         issues.append(f"Found {len(duplicate_titles)} duplicate title tag values across the site.")
@@ -451,18 +504,22 @@ def build_local_metrics(
         )
     if duplicate_titles:
         actions.append("Resolve duplicate titles in the shared templates before adding more pages.")
-    if sitemap_metrics["url_count"] != len(pages):
+    if sitemap_metrics["url_count"] != len(indexable_pages):
         actions.append("Rebuild or refresh sitemap generation so published URLs match the repo pages.")
     if opportunities:
         actions.append("Refresh title and meta copy on the highest-priority pages missing their primary keyword.")
 
     metrics = {
-        "page_count": len(pages),
+        "page_count": len(indexable_pages),
+        "total_html_page_count": len(pages),
+        "noindex_page_count": len(pages) - len(indexable_pages),
         "sitemap_url_count": sitemap_metrics["url_count"],
-        "pages_missing_meta_description": sum(1 for page in pages if not page.meta_description),
-        "pages_missing_h1": sum(1 for page in pages if page.h1_count == 0),
-        "pages_with_multiple_h1": sum(1 for page in pages if page.h1_count > 1),
-        "pages_with_json_ld": sum(1 for page in pages if page.json_ld_count > 0),
+        "pages_missing_meta_description": sum(
+            1 for page in indexable_pages if not page.meta_description
+        ),
+        "pages_missing_h1": sum(1 for page in indexable_pages if page.h1_count == 0),
+        "pages_with_multiple_h1": sum(1 for page in indexable_pages if page.h1_count > 1),
+        "pages_with_json_ld": sum(1 for page in indexable_pages if page.json_ld_count > 0),
         "duplicate_title_count": len(duplicate_titles),
         "duplicate_meta_description_count": len(duplicate_descriptions),
         "tracking_has_gtag": tracking["has_gtag"],
@@ -481,9 +538,15 @@ def summarize_search_demand(
 ) -> list[str]:
     notes: list[str] = []
     if google_data.get("search_console"):
+        start_date, end_date = google_data["search_console"]["date_range"]
+        excluded_countries = google_data["search_console"].get("excluded_countries", [])
+        scope = ""
+        if excluded_countries:
+            scope = f", excluding countries: {', '.join(code.upper() for code in excluded_countries)}"
         notes.append(
-            f"Search Console 28-day clicks: {google_data['search_console']['clicks']}, "
-            f"impressions: {google_data['search_console']['impressions']}."
+            f"Search Console clicks ({start_date} to {end_date}{scope}): "
+            f"{google_data['search_console']['clicks']}, impressions: "
+            f"{google_data['search_console']['impressions']}."
         )
     elif google_blockers:
         notes.append("Search Console demand data is unavailable until the Google blockers are cleared.")

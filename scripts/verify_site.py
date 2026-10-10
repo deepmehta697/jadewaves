@@ -56,6 +56,23 @@ def verify(root):
     sitemap_routes = {urlsplit(node.text).path for node in sitemap.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
     if sitemap_routes != set(routes):
         errors.append(f'Sitemap differs from production pages: {sitemap_routes ^ set(routes)}')
+    redirects = dict(g.LEGACY_REDIRECTS)
+    redirects.update({path: target for path, _, target in g.malformed_redirect_entries()})
+    for source, target in redirects.items():
+        path = root / source / 'index.html'
+        if not path.exists():
+            errors.append(f'/{source}/: missing SEO redirect')
+            continue
+        page = Page(path.read_text())
+        canonical = next((a.get('href') for t, a in page.tags if t == 'link' and a.get('rel') == 'canonical'), '')
+        robots = next((a.get('content', '') for t, a in page.tags if t == 'meta' and a.get('name') == 'robots'), '')
+        if canonical != g.BASE_URL + target or 'noindex' not in robots:
+            errors.append(f'/{source}/: incorrect SEO redirect canonical or indexing policy')
+        if target.split('#', 1)[0] not in routes:
+            errors.append(f'/{source}/: redirect does not target an active route: {target}')
+    for private_name in ('crm-cloudflare', 'integrations', 'templates', 'website-templates', 'demos'):
+        if root.resolve() != ROOT.resolve() and (root / private_name).exists():
+            errors.append(f'Unexpected private source or preview in site artifact: {private_name}')
     for route in routes:
         path = root / route.strip('/') / 'index.html'
         if not path.exists():
