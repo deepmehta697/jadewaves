@@ -20,6 +20,7 @@ python3 -m http.server 4173
 - `templates/material_pages.py` — homepage, portfolio, product, company, markets, and journal layouts
 - `templates/material_layout.py` — shared navigation, footer, and procurement form
 - `templates/material_support.py` — operations and policy pages
+- `templates/product_guides.py` — evidence-grounded product buyer guides
 - `templates/material-ledger.css` — the shared design system
 - `templates/material-ledger.js` — navigation, form requests, and restrained reveals
 - `assets/responsive/` — responsive WebP images and their source manifest
@@ -43,3 +44,12 @@ python3 scripts/build_site.py --regenerate
 ```
 
 The source verifier checks active pages, metadata, structured data, document and image references, section anchors, inquiry fields, and design invariants. Desktop/mobile browser review is also required for visual release approval.
+
+SEO regressions and successful-inquiry tracking can be tested offline:
+
+```bash
+python3 -m unittest discover -s scripts/tests -p 'test_seo_metadata.py'
+node --test scripts/tests/inquiry_analytics.test.cjs
+```
+
+See [the SEO implementation notes](docs/seo-implementation.md) for the search baseline, date provenance, release status, and Google-property follow-up. Article dates are persisted in source; routine builds must not reset them. The eight new guides record their authorized first release on 13 October 2026.

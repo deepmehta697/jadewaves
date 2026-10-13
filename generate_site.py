@@ -10,6 +10,7 @@ from textwrap import dedent
 
 from templates import material_layout, material_pages, material_support
 from templates.material_media import enhance_images
+from templates.product_guides import PRODUCT_GUIDES, PRODUCT_GUIDE_SLUGS
 
 
 ROOT = Path(__file__).parent
@@ -36,7 +37,6 @@ load_local_env(ROOT / ".env.local")
 
 BASE_URL = "https://jadewavesenterprise.com"
 PROJECT_PAGES_REPO = "jadewaves"
-TODAY = date.today().isoformat()
 BUILD_VERSION = os.environ.get("SITE_BUILD_VERSION", datetime.utcnow().strftime("%Y%m%d%H%M%S"))
 CEO_LINKEDIN_URL = "https://www.linkedin.com/in/deep-mehta-034230226/"
 GA4_MEASUREMENT_ID = "G-9BRL4JKNN6"
@@ -94,8 +94,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "silica",
         "eyebrow": "Glass / Filtration / Foundry / Construction",
-        "seo_title": "Silica Sand Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Silica sand supplier and exporter from India for glass manufacturing, filtration, foundry, and construction buyers across Vietnam, Thailand, UAE, Saudi Arabia, Mauritius, and Maldives.",
+        "seo_title": "Silica Sand Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Silica sand from India for glass, filtration, foundry, and construction. Review chemistry, grain size, packing, and export requirements before quotation.",
         "hero_copy": "Silica sand for glass manufacturing, filtration, foundry, and construction buyers who need clean chemistry, steady grain size, and export handling that stays under control.",
         "short_copy": "Silica sand supplier for glass manufacturing, filtration, foundry, and construction use.",
         "summary_spec": "SiO2 98.07% / Fe2O3 customizable to 150-200 PPM for glass",
@@ -152,8 +152,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "silica",
         "eyebrow": "Ceramics / Coatings / Fillers / Construction",
-        "seo_title": "Silica Flour Supplier from India for Import Buyers | Jade Waves Enterprise",
-        "meta_description": "Silica flour supplier from India for import buyers in Vietnam, Thailand, Malaysia, UAE, Saudi Arabia, Mauritius, and Maldives.",
+        "seo_title": "Silica Flour Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Silica flour from India for ceramics, coatings, fillers, and sealants. Compare chemistry, mesh options, technical documents, and packing before ordering.",
         "hero_copy": "Silica flour with controlled sizing for ceramics, coatings, fillers, sealants, and construction systems that depend on a reliable micron profile.",
         "short_copy": "Controlled-size silica flour for ceramics, coatings, fillers, and specialty construction.",
         "summary_spec": "SiO2 99.10% / Fe2O3 0.036%",
@@ -195,8 +195,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "quartz",
         "eyebrow": "Ceramics / Glass / Engineered Stone / Building Materials",
-        "seo_title": "Quartz Supplier from India | Quartz Sand, Grits & Powder Exporter | Jade Waves Enterprise",
-        "meta_description": "Quartz supplier from India for ceramics, glass, and engineered stone buyers needing quartz sand, quartz grits, and quartz powder supply across Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
+        "seo_title": "Quartz Supplier from India: Sand, Grits & Powder | Jade Waves",
+        "meta_description": "Quartz sand, grits, and powder from India for ceramics, glass, and engineered stone. Review chemistry, sizing, technical references, and export packing.",
         "hero_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone buyers needing quartz grits, quartz powder, and dependable export handling.",
         "short_copy": "Quartz sand supplier from India for ceramics, glass, and engineered stone.",
         "summary_spec": "SiO2 >99.0% / L value 91 min",
@@ -256,8 +256,8 @@ PRODUCTS = [
         "anchor": "clays-fillers",
         "theme": "clay",
         "eyebrow": "Drilling / Foundry / Civil / Absorbent Grades",
-        "seo_title": "Bentonite Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Bulk bentonite supplier and exporter from India for drilling, foundry, sealing, and absorbent buyers in Vietnam, UAE, Oman, Qatar, Bahrain, Saudi Arabia, and Malaysia.",
+        "seo_title": "Bentonite Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Bentonite from India for drilling, foundry, sealing, and absorbent applications. Compare grade requirements, technical references, packing, and export plans.",
         "hero_copy": "Bentonite for drilling, foundry, sealing, absorbent, and bleaching grades where swelling, viscosity, and moisture control need to stay dependable for bulk export buyers.",
         "short_copy": "Bentonite supplier for drilling, foundry, sealing, absorbent, and bleaching use.",
         "summary_spec": "pH 9-11 / Liquid limit 450 min",
@@ -301,8 +301,8 @@ PRODUCTS = [
         "anchor": "clays-fillers",
         "theme": "kaolin",
         "eyebrow": "Ceramics / Coatings / Paper / Fillers",
-        "seo_title": "China Clay Supplier from India | Kaolin Exporter | Jade Waves Enterprise",
-        "meta_description": "China clay supplier from India for import buyers in Vietnam, Thailand, Malaysia, UAE, and Saudi Arabia.",
+        "seo_title": "Kaolin & China Clay Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Kaolin and china clay from India for ceramics, coatings, paper, and fillers. Review brightness, chemistry, lumps and powder forms, and export packing.",
         "hero_copy": "Kaolin with high brightness and a cleaner impurity profile for ceramics, coatings, paper, rubber, and filler systems.",
         "short_copy": "High-brightness kaolin for ceramics, coatings, paper, rubber, and fillers.",
         "summary_spec": "Whiteness 86.17 / Fe2O3 0.29%",
@@ -344,8 +344,8 @@ PRODUCTS = [
         "anchor": "clays-fillers",
         "theme": "talc",
         "eyebrow": "Plastics / Paints / Ceramics / Rubber",
-        "seo_title": "Talc Powder Supplier from India for Import Buyers | Jade Waves Enterprise",
-        "meta_description": "Talc powder supplier from India for import buyers in Vietnam, Thailand, Malaysia, UAE, Oman, Qatar, Bahrain, and Saudi Arabia.",
+        "seo_title": "Talc Powder Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Talc powder from India for plastics, paints, ceramics, rubber, and fillers. Review whiteness, fineness, chemistry, packing, and the required application.",
         "hero_copy": "Talc powder for plastics, paints, ceramics, rubber, cable, detergents, and fillers where whiteness, fineness, and smoother processing matter.",
         "short_copy": "High-whiteness talc powder for plastics, coatings, ceramics, rubber, cable, detergents, and fillers.",
         "applications": [
@@ -389,8 +389,8 @@ PRODUCTS = [
         "anchor": "silica-quartz-feldspar",
         "theme": "feldspar",
         "eyebrow": "Ceramics / Sanitaryware / Glass",
-        "seo_title": "Potash & Soda Feldspar Supplier from India | Jade Waves Enterprise",
-        "meta_description": "Potash and soda feldspar supplier from India for ceramics, sanitaryware, glass, and engineered stone buyers in Vietnam, Thailand, the Philippines, UAE, Malaysia, and Saudi Arabia.",
+        "seo_title": "Potash & Soda Feldspar Supplier from India | Jade Waves",
+        "meta_description": "Potash and soda feldspar from India for ceramics, sanitaryware, and glass. Compare alkali content, iron limits, mesh options, technical sheets, and packing.",
         "hero_copy": "Potash and soda feldspar supplied for ceramic, sanitaryware, tile, glass, and engineered stone production where flux behavior, melting control, and cleaner firing matter.",
         "short_copy": "Potash and soda feldspar for ceramics, sanitaryware, glass, and engineered stone production.",
         "summary_spec": "K2O up to 12% / Na2O up to 10%",
@@ -439,8 +439,8 @@ PRODUCTS = [
         "anchor": "salt-grades",
         "theme": "salt",
         "eyebrow": "Chemical / Water Treatment / Utility / Food-Linked Supply",
-        "seo_title": "Industrial Salt Supplier & Exporter from India | Jade Waves Enterprise",
-        "meta_description": "Industrial salt supplier and exporter from India for water treatment, chemical processing, de-icing, and iodized salt buyers in UAE, Oman, Qatar, Bahrain, Saudi Arabia, Mauritius, and Maldives.",
+        "seo_title": "Industrial Salt Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Industrial and iodized salt from India for chemical, water treatment, and food-linked use. Review purity, iodine requirements, packing, and export handling.",
         "hero_copy": "Industrial and iodized salt grades for water treatment, chemical processing, infrastructure, and food-linked demand, with flexible packing and dependable export flow.",
         "short_copy": "Iodized and non-iodized salt grades for water treatment, chemical, utility, and food-linked supply.",
         "summary_spec": "NaCl 99.00% / Moisture 0.2% max",
@@ -489,8 +489,8 @@ PRODUCTS = [
         "anchor": "construction-media",
         "theme": "ash",
         "eyebrow": "Concrete / Cement / Blocks / Roads",
-        "seo_title": "Fly Ash Supplier from India for Import Buyers | Jade Waves Enterprise",
-        "meta_description": "Fly ash supplier from India for import buyers in the Philippines, Malaysia, UAE, Oman, Qatar, Bahrain, and Saudi Arabia.",
+        "seo_title": "Fly Ash Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Fly ash from India for cement, concrete, blocks, and infrastructure. Review technical requirements, jumbo bag packing, order volume, and export planning.",
         "hero_copy": "Fly ash for cement, concrete, blocks, and infrastructure work that depends on steady dispatch and consistent replacement performance.",
         "short_copy": "Fly ash supplied for cement, concrete, blocks, and infrastructure work.",
         "summary_spec": "SiO2 55.13% / Al2O3 24.45% / LOI <1%",
@@ -532,8 +532,8 @@ PRODUCTS = [
         "anchor": "construction-media",
         "theme": "copper",
         "eyebrow": "Blasting / Surface Preparation / Construction",
-        "seo_title": "Copper Slag Supplier from India for Import Buyers | Jade Waves Enterprise",
-        "meta_description": "Copper slag supplier from India for import buyers in UAE, Oman, Qatar, Bahrain, Saudi Arabia, Malaysia, and Singapore.",
+        "seo_title": "Copper Slag Supplier from India | Jade Waves Enterprise",
+        "meta_description": "Copper slag abrasive from India for blasting and surface preparation. Compare grit sizes, technical references, jumbo bag packing, and export requirements.",
         "hero_copy": "Copper slag abrasive for blasting and surface preparation where hardness, angularity, and cleaner handling matter.",
         "short_copy": "Copper slag grit supplied for blasting, surface preparation, and construction use.",
         "summary_spec": "Moh's 6.0-7.0 / Specific gravity 3.51",
@@ -585,7 +585,7 @@ PRODUCTS = [
         "theme": "rubber",
         "eyebrow": "Artificial Turf / Sports / Safety Surfaces",
         "seo_title": "Rubber Granules Supplier from India | Jade Waves Enterprise",
-        "meta_description": "Rubber granules supplier from India for artificial turf, sports surfaces, playground flooring, and impact-absorbing applications with export-ready packing and dispatch support.",
+        "meta_description": "Rubber granules from India for turf, sports surfaces, and playground flooring. Confirm material type, particle size, application, packing, and order volume.",
         "hero_copy": "Rubber granules for artificial turf, sports surfaces, playground flooring, and impact-absorbing systems where particle consistency and dependable export handling matter.",
         "short_copy": "Rubber granules for artificial turf, sports, playground, and safety surface applications.",
         "summary_spec": "Application-specific granule sizing / clean, dry export supply",
@@ -707,8 +707,8 @@ BLOGS = [
         "eyebrow": "Quartz Sand / Vietnam / Ceramics-Glass",
         "summary": "What import buyers should confirm before RFQ when sourcing quartz sand, grits, and powder from India.",
         "marquee_title": "Quartz Sand for Vietnam Buyers",
-        "seo_title": "Quartz Sand Supplier from India for Vietnam Buyers | Jade Waves Guide",
-        "meta_description": "Buyer guide for Vietnam importers sourcing quartz sand from India for ceramics and glass. Learn key checks before quote and dispatch.",
+        "seo_title": "Quartz Sand from India: Vietnam Buyer Guide | Jade Waves",
+        "meta_description": "A quartz sand sourcing guide for Vietnam ceramics and glass buyers. Confirm chemistry, grain size, moisture, packing, and shipment terms before quotation.",
         "product_slug": "quartz-sand-for-ceramics",
         "sections": [
             {
@@ -754,7 +754,7 @@ BLOGS = [
         "summary": "How buyers compare potash and soda feldspar grades for ceramic and glass applications before quote.",
         "marquee_title": "Potassium vs Sodium Feldspar",
         "seo_title": "Potassium vs Sodium Feldspar Import Guide | Jade Waves Enterprise",
-        "meta_description": "Import buyer guide on selecting potassium feldspar vs sodium feldspar from India for ceramic and glass applications.",
+        "meta_description": "Compare potassium and sodium feldspar for ceramic and glass use. Review alkali content, iron limits, firing needs, sizing, and documents before importing.",
         "product_slug": "feldspar",
         "sections": [
             {
@@ -799,7 +799,7 @@ BLOGS = [
         "summary": "A practical import checklist for buyers comparing silica sand suppliers and preparing a clean RFQ.",
         "marquee_title": "Silica Sand Import Checklist",
         "seo_title": "Silica Sand Import Checklist for Buyers | Jade Waves Enterprise",
-        "meta_description": "Silica sand buyer checklist covering grain size, SiO2, Fe2O3, packing, shipment basis, and documents before import order.",
+        "meta_description": "Use this silica sand import checklist for glass, foundry, and filtration. Confirm grain size, SiO2, Fe2O3, packing, shipment terms, and documents before order.",
         "product_slug": "silica-sand",
         "sections": [
             {
@@ -843,8 +843,8 @@ BLOGS = [
         "eyebrow": "Bentonite / Grade Selection",
         "summary": "How buyers shortlist bentonite grades by application and avoid mismatched trials.",
         "marquee_title": "Bentonite Grade Selection",
-        "seo_title": "Bentonite Grade Selection Guide for Import Buyers | Jade Waves",
-        "meta_description": "Import guide for selecting bentonite grades for drilling, foundry, piling, HDD, and earthing applications.",
+        "seo_title": "Bentonite Grade Selection for Import Buyers | Jade Waves",
+        "meta_description": "Compare bentonite requirements for drilling, foundry, piling, HDD, and earthing. Align grade, performance parameters, packing, and samples before importing.",
         "product_slug": "bentonite",
         "sections": [
             {
@@ -888,7 +888,7 @@ BLOGS = [
         "eyebrow": "Salt / Gulf Importers",
         "summary": "A buyer-side guide for industrial salt sourcing from India with packaging and dispatch clarity.",
         "marquee_title": "Industrial Salt for Gulf Buyers",
-        "seo_title": "Industrial Salt Import Guide for Gulf Buyers | Jade Waves Enterprise",
+        "seo_title": "Industrial Salt Import Guide for Gulf Buyers | Jade Waves",
         "meta_description": "Industrial salt import guide for UAE, Oman, Qatar, and Kuwait buyers covering grades, packing, and shipment planning.",
         "product_slug": "salt",
         "sections": [
@@ -937,8 +937,8 @@ BLOGS = [
         "eyebrow": "Potassium Feldspar / Ceramic Tiles",
         "summary": "A direct buyer guide for ceramic tile manufacturers reviewing potassium feldspar grade fit, particle size alignment, and export handling from India.",
         "marquee_title": "Potassium Feldspar for Ceramic Tiles",
-        "seo_title": "Potassium Feldspar Supplier for Ceramic Tiles | Export Supply from India",
-        "meta_description": "Looking for a potassium feldspar supplier for ceramic tiles? Get export-ready supply from India with grade alignment, mesh customization, packing options, and shipment support for ceramic manufacturers.",
+        "seo_title": "Potassium Feldspar for Ceramic Tiles from India | Jade Waves",
+        "meta_description": "Review potassium feldspar from India for ceramic tiles. Confirm K2O, iron limits, mesh, sample alignment, packing, and shipment plans before placing an order.",
         "product_slug": "feldspar",
         "sections": [
             {
@@ -994,7 +994,7 @@ BLOGS = [
         "eyebrow": "Kaolin / Paint Industry",
         "summary": "A direct kaolin supply guide for paint and coatings buyers reviewing forms, brightness focus, and export handling from India.",
         "marquee_title": "Kaolin for Paint Industry",
-        "seo_title": "Kaolin Supplier for Paint Industry | Forms, Brightness Focus, Export Supply",
+        "seo_title": "Kaolin for Paint: Forms & Buyer Checks | Jade Waves Enterprise",
         "meta_description": "Kaolin supply for paint industry buyers with forms, quality focus points, and export handling support from India.",
         "product_slug": "kaolin--china-clay",
         "sections": [
@@ -1050,7 +1050,7 @@ BLOGS = [
         "eyebrow": "Bentonite / India Supply",
         "summary": "A direct bentonite supply guide for buyers comparing grades, application fit, and export handling from India.",
         "marquee_title": "Bentonite Supplier India",
-        "seo_title": "Bentonite Supplier India | Grades, Quality Focus, and Export Supply",
+        "seo_title": "Bentonite from India: Grades & Buyer Checks | Jade Waves",
         "meta_description": "Bentonite supply from India with sodium and calcium grades, quality focus points, and export support for industrial buyers.",
         "product_slug": "bentonite",
         "sections": [
@@ -1106,7 +1106,7 @@ BLOGS = [
         "eyebrow": "Fly Ash / Bulk Shipment",
         "summary": "A direct fly ash supply guide for buyers reviewing forms, application fit, and bulk shipment handling from India.",
         "marquee_title": "Fly Ash Bulk Shipment",
-        "seo_title": "Fly Ash Exporter from India Bulk Shipment | Forms, Quality Focus, Export Supply",
+        "seo_title": "Fly Ash Bulk Exports from India: Buyer Guide | Jade Waves",
         "meta_description": "Fly ash export supply from India with dry and bulk forms, quality focus points, and dispatch planning for import buyers.",
         "product_slug": "fly-ash",
         "sections": [
@@ -1162,7 +1162,7 @@ BLOGS = [
         "eyebrow": "Copper Slag / Shipyard Blasting",
         "summary": "A direct copper slag grit guide for shipyard blasting buyers reviewing sizes, performance focus, and export handling from India.",
         "marquee_title": "Copper Slag for Shipyard Blasting",
-        "seo_title": "Copper Slag Supplier for Shipyard Blasting | Sizes and Export Supply",
+        "seo_title": "Copper Slag for Shipyard Blasting: Buyer Guide | Jade Waves",
         "meta_description": "Copper slag grit supply for shipyard blasting with available sizes, key performance focus points, and export handling support.",
         "product_slug": "copper-slag",
         "sections": [
@@ -1218,7 +1218,7 @@ BLOGS = [
         "eyebrow": "Industrial Salt / Export Supply",
         "summary": "A direct supply guide for buyers comparing industrial salt grades, packing basis, and export handling from India.",
         "marquee_title": "Industrial Salt Exporter",
-        "seo_title": "Industrial Salt Exporter | Grades, Packing, and Export Supply from India",
+        "seo_title": "Industrial Salt from India: Grades & Packing | Jade Waves",
         "meta_description": "Industrial salt export supply from India with multiple grades, quality focus points, and shipment support for import buyers.",
         "product_slug": "salt",
         "sections": [
@@ -1274,8 +1274,8 @@ BLOGS = [
         "eyebrow": "Quartz Powder / Engineered Stone",
         "summary": "A direct supply guide for engineered stone buyers reviewing available forms, sizes, quality focus, and export handling from India.",
         "marquee_title": "Quartz Powder for Engineered Stone",
-        "seo_title": "Quartz Powder Supplier for Engineered Stone | Sizes, Specs, and Export Supply",
-        "meta_description": "Quartz powder supply for engineered stone buyers from India, including available sizes, key quality focus points, and export handling support.",
+        "seo_title": "Quartz Powder for Engineered Stone: Buyer Guide | Jade Waves",
+        "meta_description": "Review quartz powder from India for engineered stone. Confirm particle size, chemistry, whiteness, trial requirements, packing, and export terms before order.",
         "product_slug": "quartz-sand-for-ceramics",
         "sections": [
             {
@@ -1329,8 +1329,8 @@ BLOGS = [
         "eyebrow": "Silica Sand / Export Supply",
         "summary": "A direct supply guide for import buyers reviewing silica sand forms, application fit, quality focus points, and export handling from India.",
         "marquee_title": "Silica Sand Exporter from India",
-        "seo_title": "Silica Sand Exporter from India | Forms, Quality Focus, and Export Supply",
-        "meta_description": "Silica sand export supply from India with available forms, quality focus points, and shipment support for import buyers.",
+        "seo_title": "Silica Sand Exports from India: Buyer Guide | Jade Waves",
+        "meta_description": "A guide to silica sand export supply from India. Review available forms, application fit, grain size, chemistry, packing, and shipment planning for imports.",
         "product_slug": "silica-sand",
         "sections": [
             {
@@ -1386,7 +1386,7 @@ BLOGS = [
         "summary": "A practical review framework for buyers before trial, quotation, and bulk dispatch.",
         "marquee_title": "How to Read TDS and Sample COA",
         "seo_title": "How to Review TDS and Sample COA for Mineral Imports | Jade Waves",
-        "meta_description": "Step-by-step guide for import buyers to review technical data sheets and sample COA before placing mineral orders.",
+        "meta_description": "Learn how to review mineral TDS and sample COA before ordering. Check grade identity, chemistry, particle size, test basis, and relevance to repeat shipments.",
         "product_slug": "silica-sand",
         "sections": [
             {
@@ -1436,9 +1436,95 @@ CORE_BLOG_SLUGS = [
     "how-to-check-tds-and-sample-coa-before-mineral-import",
 ]
 ALL_BLOGS = BLOGS
-BLOGS = [post for post in BLOGS if post["slug"] in CORE_BLOG_SLUGS]
+BLOGS = [post for post in BLOGS if post["slug"] in CORE_BLOG_SLUGS] + PRODUCT_GUIDES
 
-CURRENT_BLOG_SLUGS = CORE_BLOG_SLUGS
+CURRENT_BLOG_SLUGS = CORE_BLOG_SLUGS + PRODUCT_GUIDE_SLUGS
+
+# Persist editorial dates in source; builds must never imply republication.
+# These are the first documented publication of these exact guide URLs in this
+# repository (source + generated HTML), not dates claimed for older legacy posts.
+# 97a133a published the original buyer guides on 2026-04-11; fdd0e5e published
+# the silica exporter guide; b1a5bb6 published the ceramic-tile feldspar guide.
+# Last article-body changes: 0aa3229 (quartz powder, Apr 11), 6f3abec
+# (feldspar headline, Apr 11), 4dfe44d (silica supply forms, Oct 10).
+# lastmod records the separate title/description review on 2026-10-13.
+ARTICLE_METADATA = {
+    "quartz-sand-supplier-india-vietnam-buyers-guide": {
+        "date_published": "2026-04-11", "date_modified": "2026-04-11", "lastmod": "2026-10-13",
+    },
+    "potassium-vs-sodium-feldspar-import-buyer-guide": {
+        "date_published": "2026-04-11", "date_modified": "2026-04-11", "lastmod": "2026-10-13",
+    },
+    "silica-sand-import-checklist-glass-foundry-filtration": {
+        "date_published": "2026-04-11", "date_modified": "2026-04-11", "lastmod": "2026-10-13",
+    },
+    "potassium-feldspar-supplier-for-ceramic-tiles": {
+        "date_published": "2026-04-11", "date_modified": "2026-04-11", "lastmod": "2026-10-13",
+    },
+    "quartz-powder-supplier-for-engineered-stone": {
+        "date_published": "2026-04-11", "date_modified": "2026-04-11", "lastmod": "2026-10-13",
+    },
+    "silica-sand-exporter-from-india": {
+        "date_published": "2026-04-11", "date_modified": "2026-10-10", "lastmod": "2026-10-13",
+    },
+    "how-to-check-tds-and-sample-coa-before-mineral-import": {
+        "date_published": "2026-04-11", "date_modified": "2026-04-11", "lastmod": "2026-10-13",
+    },
+}
+
+
+def article_metadata(post: dict) -> dict:
+    """Allow new guides to supply recorded dates; never invent missing dates.
+
+    date_published requires a documented release. date_modified may record a
+    known editorial preparation date. lastmod may separately record a material
+    page/metadata revision. Use ISO dates and update these with actual changes.
+    """
+    metadata = dict(ARTICLE_METADATA.get(post["slug"], {}))
+    for key in ("date_published", "date_modified", "lastmod"):
+        if key in post:
+            metadata[key] = post[key]
+    for key, value in metadata.items():
+        if value is not None and date.fromisoformat(value).isoformat() != value:
+            raise ValueError(f"Invalid editorial date {key} for {post['slug']}: {value}")
+    published, modified = metadata.get("date_published"), metadata.get("date_modified")
+    if published and modified and modified < published:
+        raise ValueError(f"Article modification predates publication: {post['slug']}")
+    return {key: value for key, value in metadata.items() if value}
+
+
+def article_dates(post: dict) -> dict:
+    metadata = article_metadata(post)
+    return {
+        schema_key: metadata[key]
+        for key, schema_key in (("date_published", "datePublished"), ("date_modified", "dateModified"))
+        if key in metadata
+    }
+
+
+# Oct 10: Material Ledger source pages in 4dfe44d. Oct 13: this SEO review.
+# Unknown route dates are omitted rather than replaced by a build timestamp.
+PAGE_LASTMOD = {
+    "/": "2026-10-13",
+    "/products/": "2026-10-13",
+    "/blog/": "2026-10-13",
+    "/operations/": "2026-10-10",
+    "/export-markets/": "2026-10-13",
+    "/hear-from-ceo/": "2026-10-10",
+    "/industrial-minerals-exporter-india/": "2026-10-10",
+    "/privacy-policy/": "2026-10-10",
+    "/terms-disclaimer/": "2026-10-10",
+    **{f"/products/{product['slug']}/": "2026-10-13" for product in PRODUCTS},
+}
+
+
+def page_lastmod(path: str) -> str | None:
+    post = next((post for post in BLOGS if path == f"/blog/{post['slug']}/"), None)
+    if post:
+        metadata = article_metadata(post)
+        return metadata.get("lastmod") or metadata.get("date_modified") or metadata.get("date_published")
+    return PAGE_LASTMOD.get(path)
+
 
 LEGACY_REDIRECTS = {
     "silica-sand": "/products/silica-sand/",
@@ -1831,10 +1917,12 @@ def render_sitemap() -> str:
     urls += [f'/products/{product["slug"]}/' for product in PRODUCTS]
     urls += [f'/blog/{post["slug"]}/' for post in BLOGS]
     urls += [f'/{slug}/' for slug in material_support.POLICIES]
-    entries = "\n".join(
-        f"  <url><loc>{BASE_URL}{path}</loc><lastmod>{TODAY}</lastmod></url>"
-        for path in sorted(urls)
-    )
+    entries = []
+    for path in sorted(urls):
+        modified = page_lastmod(path)
+        lastmod = f"<lastmod>{modified}</lastmod>" if modified else ""
+        entries.append(f"  <url><loc>{BASE_URL}{path}</loc>{lastmod}</url>")
+    entries = "\n".join(entries)
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

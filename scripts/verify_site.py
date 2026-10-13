@@ -10,6 +10,7 @@ import importlib.util
 import json
 import re
 import xml.etree.ElementTree as ET
+from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -52,6 +53,8 @@ def verify(root):
     errors = []
     documents = set()
     cached = {}
+    titles = []
+    descriptions = []
     sitemap = ET.parse(root / 'sitemap.xml')
     sitemap_routes = {urlsplit(node.text).path for node in sitemap.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
     if sitemap_routes != set(routes):
@@ -79,8 +82,18 @@ def verify(root):
             errors.append(f'{route}: missing page')
             continue
         markup = path.read_text()
+        title = re.search(r'<title>(.*?)</title>', markup, re.S)
+        if not title or not title.group(1).strip():
+            errors.append(f'{route}: missing title')
+        else:
+            titles.append(title.group(1).strip())
         page = Page(markup)
         cached[route] = page
+        description = next((attrs.get('content', '') for tag, attrs in page.tags if tag == 'meta' and attrs.get('name') == 'description'), '')
+        if not description.strip():
+            errors.append(f'{route}: missing meta description')
+        else:
+            descriptions.append(description.strip())
         canonical = next((attrs.get('href') for tag, attrs in page.tags if tag == 'link' and attrs.get('rel') == 'canonical'), '')
         if canonical != g.BASE_URL + route:
             errors.append(f'{route}: wrong canonical {canonical}')
@@ -103,6 +116,13 @@ def verify(root):
             errors.append(f'{route}: missing product schema')
         if route.startswith('/blog/') and route != '/blog/' and 'BlogPosting' not in schema_types:
             errors.append(f'{route}: missing article schema')
+        if route.startswith('/blog/') and route != '/blog/':
+            post = next((post for post in g.BLOGS if route == f'/blog/{post["slug"]}/'), None)
+            article = next((item for item in schemas if item.get('@type') == 'BlogPosting'), {})
+            expected_dates = g.article_dates(post) if post else {}
+            actual_dates = {key: article[key] for key in ('datePublished', 'dateModified') if key in article}
+            if actual_dates != expected_dates:
+                errors.append(f'{route}: article dates do not match persisted content metadata')
         if any(term in markup for term in ['data-route-network', '<canvas', 'data-parallax', 'autoplay']):
             errors.append(f'{route}: obsolete decorative motion or autoplay')
         forms = [attrs for tag, attrs in page.tags if tag == 'form' and 'data-inquiry-form' in attrs]
@@ -148,6 +168,17 @@ def verify(root):
                         errors.append(f'{route}: missing responsive image {target}')
     css = (root / 'styles.css').read_text()
     js = (root / 'script.js').read_text()
+    for kind, values in (('title', titles), ('meta description', descriptions)):
+        if any(count > 1 for count in Counter(values).values()):
+            errors.append(f'Duplicate active-page {kind}s')
+    for product in g.PRODUCTS:
+        posts = [post for post in g.BLOGS if post['product_slug'] == product['slug']]
+        product_page = cached.get(f'/products/{product["slug"]}/')
+        product_links = {urlsplit(attrs.get('href', '')).path.lstrip('/') for tag, attrs in product_page.tags if tag == 'a'} if product_page else set()
+        if not posts or not any(f'blog/{post["slug"]}/' in product_links for post in posts):
+            errors.append(f'{product["slug"]}: missing linked supporting buyer guide')
+    if 'generate_lead' not in js:
+        errors.append('Missing successful-inquiry analytics event')
     for banned in ('backdrop-filter', 'radial-gradient', 'border-radius: 999', 'requestAnimationFrame', 'getContext("2d")'):
         if banned in css + js:
             errors.append(f'Design system retains {banned}')

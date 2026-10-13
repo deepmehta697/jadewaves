@@ -7,6 +7,11 @@
   const formTargets = [...document.querySelectorAll("[data-inquiry-form]")];
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const requestTypes = new Set(["Quote", "Sample", "TDS", "General Inquiry"]);
+  // Only catalogue labels can reach analytics; never send arbitrary form text.
+  const analyticsProducts = new Set([
+    "Silica Sand", "Silica Flour", "Quartz Sand", "Bentonite", "Kaolin (China Clay)",
+    "Talc", "Feldspar", "Salt", "Fly Ash", "Copper Slag", "Rubber Granules",
+  ]);
   const pendingRequestKey = "jade-waves-inquiry-request";
   let backgroundState = [];
 
@@ -153,6 +158,22 @@
     payload.page_title = document.title;
     return payload;
   };
+  const trackSuccessfulInquiry = (data) => {
+    try {
+      // The endpoint also acknowledges honeypot spam with success:true.
+      if (String(data.get("company_website") || "").trim() || typeof window.gtag !== "function") return;
+      const request = String(data.get("request_type") || "");
+      const product = String(data.get("product") || "");
+      window.gtag("event", "generate_lead", {
+        request_type: requestTypes.has(request) ? request : "General Inquiry",
+        product: analyticsProducts.has(product) ? product : "Unspecified",
+        // Override GA's URL defaults so query strings and fragments cannot leak.
+        page_location: `${window.location.origin}${window.location.pathname}`,
+        page_referrer: "",
+        page_title: "Jade Waves inquiry",
+      });
+    } catch (_) { /* Optional analytics must never change submission behavior. */ }
+  };
   formTargets.forEach((form) => {
     const note = form.querySelector("[data-form-note]");
     const submitButton = form.querySelector('button[type="submit"]');
@@ -188,6 +209,7 @@
         });
         const result = await response.json().catch(() => null);
         if (!response.ok || result?.success !== true) throw new Error(result?.message || "Submission could not be confirmed. Please try again.");
+        trackSuccessfulInquiry(data);
         form.reset();
         if (window.grecaptcha) window.grecaptcha.reset();
         setNote(result?.message || "Inquiry sent. We will review your requirement and respond by email.", "success");

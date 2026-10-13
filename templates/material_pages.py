@@ -194,7 +194,7 @@ def render_homepage(g):
         ("Packing", "50 kg and jumbo bag options matched to loading and unloading."),
         ("Export control", "Mundra access, FCL handling, documentation, and dispatch updates."),
     ]
-    content = _photo_hero(g, "Mineral supply, verified before dispatch.", "Chemistry, packing, and export handling aligned before your cargo moves.", "/assets/optimized/quarry-quartz.jpg", "Quartz quarry · India", "Jade Waves Enterprise / Industrial Mineral Export")
+    content = _photo_hero(g, "Industrial minerals from India.", "Chemistry, packing, and export handling aligned before your cargo moves.", "/assets/optimized/quarry-quartz.jpg", "Quartz quarry · India", "Jade Waves Enterprise / Industrial Mineral Export")
     content += f'''<section class="ml-section ml-section--ledger" id="about"><div class="ml-container">
       {_heading(g, "The supply brief", "Material clarity. Export discipline.", "Industrial mineral supply from India, with the buying details settled early.", "Company profile", "/industrial-minerals-exporter-india/")}
       {_ledger(g, proof)}
@@ -213,11 +213,11 @@ def render_homepage(g):
       <div><p>Gulf · Southeast Asia · Mauritius · Maldives</p><a class="ml-text-link" href="/export-markets/">Read the destination brief <span aria-hidden="true">↗</span></a></div>
     </div></section>'''
     content += _brief(g)
-    return _shell(g, "Industrial Mineral Exporter from India | Supplier for Global Buyers | Jade Waves Enterprise", "Industrial mineral exporter from India supplying global buyers across Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.", "/", content, [_organization(g), _product_list(g)], "page-home")
+    return _shell(g, "Industrial Mineral Exporter from India | Jade Waves Enterprise", "Industrial minerals from India for glass, ceramics, construction, and other industrial buyers. Review grades, technical references, packing, and export plans.", "/", content, [_organization(g), _product_list(g)], "page-home")
 
 
 def render_products_index(g):
-    content = _photo_hero(g, "The material portfolio.", "Compare materials by application, grade, and available form. Open the technical reference before you build the brief.", "/assets/optimized/quarry-quartz.jpg", "Quartz quarry · Mineral supply from India", "Jade Waves Enterprise / Material Portfolio", secondary="Browse materials", secondary_href="#material-directory", proof=[f'{len(g["PRODUCT_FAMILIES"])} material families', f'{len(g["PRODUCTS"])} products', "Technical references", "Sample-led approval"])
+    content = _photo_hero(g, "The industrial mineral portfolio.", "Compare materials by application, grade, and available form. Open the technical reference before you build the brief.", "/assets/optimized/quarry-quartz.jpg", "Quartz quarry · Mineral supply from India", "Jade Waves Enterprise / Material Portfolio", secondary="Browse materials", secondary_href="#material-directory", proof=[f'{len(g["PRODUCT_FAMILIES"])} material families', f'{len(g["PRODUCTS"])} products', "Technical references", "Sample-led approval"])
     anchors = ''.join(f'<a href="#{escape(family["id"])}">{escape(family["name"])}</a>' for family in g["PRODUCT_FAMILIES"])
     content += f'<div class="ml-container ml-family-nav" aria-label="Material families"><nav>{anchors}</nav></div><div id="material-directory">'
     for index, family in enumerate(g["PRODUCT_FAMILIES"], start=1):
@@ -229,7 +229,7 @@ def render_products_index(g):
         </div></section>'''
     content += '</div>' + _brief(g)
     schema = [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Jade Waves Enterprise Product Portfolio", "url": g["BASE_URL"] + "/products/"}, _product_list(g)]
-    return _shell(g, "Industrial Minerals Supplier & Exporter from India | Jade Waves Enterprise", "Industrial minerals supplier and exporter from India for import buyers across Vietnam, Thailand, the Philippines, UAE, Oman, Qatar, Bahrain, Mauritius, Maldives, Malaysia, Singapore, and Saudi Arabia.", "/products/", content, schema, "page-portfolio")
+    return _shell(g, "Industrial Minerals Supplier from India | Jade Waves Enterprise", "Compare silica sand, quartz, feldspar, clays, salt, and other materials from India. Review applications, grades, technical references, and packing for export.", "/products/", content, schema, "page-portfolio")
 
 
 def _specification_rows(g, product):
@@ -290,6 +290,9 @@ def render_product_page(g, product):
     faq_markup, faq_schema = g["render_faq"](product)
     faq_markup = faq_markup.replace('class="faq-item"', 'class="ml-faq"')
     content += f'<section class="ml-section"><div class="ml-container">{_heading(g, "Buyer questions", "Before you confirm supply.")}<div class="ml-faq-list">{faq_markup}</div></div></section>'
+    guides = [post for post in _current_posts(g) if post["product_slug"] == product["slug"]]
+    if guides:
+        content += f'<section class="ml-section ml-section--guides"><div class="ml-container">{_heading(g, "Buyer guides", "Prepare your material brief.", "Review grade selection, sample checks, and the questions to include in your inquiry.")}{_journal_rows(g, guides)}</div></section>'
     related = [g["PRODUCTS_BY_SLUG"][slug] for slug in product["related"] if slug in g["PRODUCTS_BY_SLUG"]]
     if related:
         content += f'<section class="ml-section ml-section--related"><div class="ml-container">{_heading(g, "Related materials", "Continue your comparison.")}{_directory(g, related)}</div></section>'
@@ -316,7 +319,7 @@ def render_export_markets_page(g):
     content += '</div></div></section>' + _process(g) + _brief(g)
     description = "Industrial mineral supply from India for buyers across the Gulf, Southeast Asia, Mauritius, and Maldives."
     schema = [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Export Markets", "description": description, "url": g["BASE_URL"] + "/export-markets/"}, _breadcrumbs(g, [("Export Markets", "/export-markets/")])]
-    return _shell(g, "Export Markets for Industrial Mineral Buyers | Jade Waves Enterprise", description, "/export-markets/", content, schema, "page-export-markets")
+    return _shell(g, "Industrial Mineral Export Markets | Jade Waves Enterprise", description, "/export-markets/", content, schema, "page-export-markets")
 
 
 def render_exporter_profile_page(g):
@@ -376,14 +379,14 @@ def _journal_rows(g, posts):
 
 def render_blog_index_page(g):
     posts = _current_posts(g)
-    content = _editorial_hero(g, "The buyer journal", "Better questions. Clearer specifications.", "Practical guides for import teams reviewing mineral grades, technical references, and export requirements.", "/assets/silica-sand-samples.png", "Silica sand samples · Grain-size comparison", contact=False, secondary="Browse material portfolio", secondary_href="/products/")
+    content = _editorial_hero(g, "The buyer journal", "Industrial mineral buyer guides.", "Practical guides for import teams reviewing mineral grades, technical references, and export requirements.", "/assets/silica-sand-samples.png", "Silica sand samples · Grain-size comparison", contact=False, secondary="Browse material portfolio", secondary_href="/products/")
     content += f'<section class="ml-section"><div class="ml-container">{_heading(g, "Buyer guides", "Before you prepare the RFQ.")}{_journal_rows(g, posts)}</div></section>'
     content += _brief(g)
     schema = [
         {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Buyer and Importer Blog", "url": g["BASE_URL"] + "/blog/", "description": "Buyer guide hub for import teams reviewing industrial mineral sourcing, specification checks, and export planning from India."},
         {"@context": "https://schema.org", "@type": "ItemList", "name": "Published Buyer Guides", "itemListElement": [{"@type": "ListItem", "position": index, "url": f'{g["BASE_URL"]}/blog/{post["slug"]}/', "name": post["title"]} for index, post in enumerate(posts, start=1)]},
     ]
-    return _shell(g, "Buyer Guides | Jade Waves Enterprise", "Buyer guide hub from Jade Waves Enterprise for import teams reviewing mineral sourcing, specification checks, and export planning.", "/blog/", content, schema, "page-blog")
+    return _shell(g, "Industrial Mineral Buyer Guides | Jade Waves Enterprise", "Buyer guides for 11 materials, from silica and feldspar to clays, salt, and industrial media. Review grade selection, sample evidence, and export requirements.", "/blog/", content, schema, "page-blog")
 
 
 def render_blog_post_page(g, post):
@@ -391,10 +394,16 @@ def render_blog_post_page(g, post):
     image, alt = _visual(g, product["slug"])
     title_lines = post.get("display_title_lines")
     visible_title = "<br />".join(escape(line) for line in title_lines) if title_lines else escape(post["title"])
+    dates = g["article_dates"](post)
+    date_markup = ''.join(
+        f'<span>{label} <time datetime="{escape(dates[key])}">{escape(dates[key])}</time></span>'
+        for key, label in (("datePublished", "Published"), ("dateModified", "Updated"))
+        if key in dates and (key != "dateModified" or dates[key] != dates.get("datePublished"))
+    )
     content = f'''<header class="ml-article-header"><div class="ml-container">
       <nav class="ml-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog/">Buyer guides</a></nav>
       <p class="ml-eyebrow" data-reveal>{escape(post["eyebrow"])}</p><h1 data-reveal>{visible_title}</h1><p class="ml-article-summary" data-reveal>{escape(post["summary"])}</p>
-      <div class="ml-article-meta"><span>Jade Waves Enterprise / Buyer guide</span><a class="ml-text-link" href="/products/{escape(product["slug"])}/">{escape(product["name"])} technical reference <span aria-hidden="true">↗</span></a></div>
+      <div class="ml-article-meta"><span>Jade Waves Enterprise / Buyer guide</span>{date_markup}<a class="ml-text-link" href="/products/{escape(product["slug"])}/">{escape(product["name"])} technical reference <span aria-hidden="true">↗</span></a></div>
     </div></header>
     <section class="ml-section ml-section--article"><div class="ml-container ml-article-layout"><article class="ml-reading ml-article">'''
     for section in post["sections"]:
@@ -402,13 +411,19 @@ def render_blog_post_page(g, post):
         content += f'<section class="ml-reading-section" data-reveal><h2>{escape(section["heading"])}</h2><p>{escape(section["body"])}</p><ul>{points}</ul></section>'
     questions = ''.join(f'<li>{escape(question)}</li>' for question in post["questions"])
     content += f'''</article><aside class="ml-article-aside"><figure class="ml-evidence"><img src="{escape(image)}" alt="{escape(alt)}" loading="lazy" /><figcaption>{escape(product["name"])} / Material reference</figcaption></figure><div class="ml-buying-checks" data-reveal><p class="ml-eyebrow">RFQ checklist</p><h2>Questions for your first inquiry.</h2><ul>{questions}</ul><a class="ml-text-link" href="#contact" data-set-request="Quote">Send your requirement <span aria-hidden="true">↗</span></a></div></aside></div></section>'''
-    related = [item for item in _current_posts(g) if item["slug"] != post["slug"]][:3]
+    related = sorted(
+        (item for item in _current_posts(g) if item["slug"] != post["slug"]),
+        key=lambda item: (
+            item["product_slug"] != post["product_slug"],
+            g["PRODUCTS_BY_SLUG"][item["product_slug"]]["family"] != product["family"],
+        ),
+    )[:3]
     if related:
         content += f'<section class="ml-section"><div class="ml-container">{_heading(g, "Further reading", "Continue the technical review.", link="All buyer guides", href="/blog/")}{_journal_rows(g, related)}</div></section>'
     content += _brief(g, product["name"])
     path = f'/blog/{post["slug"]}/'
     schema = [
-        {"@context": "https://schema.org", "@type": "BlogPosting", "headline": post["title"], "description": post["meta_description"], "mainEntityOfPage": g["BASE_URL"] + path, "url": g["BASE_URL"] + path, "datePublished": g["TODAY"], "dateModified": g["TODAY"], "author": {"@type": "Organization", "name": g["CONTACT"]["company"]}, "publisher": {"@type": "Organization", "name": g["CONTACT"]["company"], "logo": {"@type": "ImageObject", "url": g["BASE_URL"] + "/assets/jade-waves-logo-transparent.png"}}},
+        {"@context": "https://schema.org", "@type": "BlogPosting", "headline": post["title"], "description": post["meta_description"], "mainEntityOfPage": g["BASE_URL"] + path, "url": g["BASE_URL"] + path, "image": g["BASE_URL"] + image, **dates, "author": {"@type": "Organization", "name": g["CONTACT"]["company"]}, "publisher": {"@type": "Organization", "name": g["CONTACT"]["company"], "logo": {"@type": "ImageObject", "url": g["BASE_URL"] + "/assets/jade-waves-logo-transparent.png"}}},
         _breadcrumbs(g, [("Blog", "/blog/"), (post["title"], path)]),
     ]
     return _shell(g, post["seo_title"], post["meta_description"], path, content, schema, "page-blog-post")
