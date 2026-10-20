@@ -114,8 +114,6 @@ def render(g, slug):
     ]
     html = g['page_shell'](product['seo_title'], product['meta_description'],
                            path, body, schema, 'page-product page-ledger page-coated-sand page-' + slug)
-    html = html.replace('<meta property="og:image" content="' + base + '/assets/jade-waves-logo-transparent.png"',
-                        '<meta property="og:image" content="' + base + '/' + first['src'] + '"')
     html = html.replace('</head>', f'<link rel="stylesheet" href="assets/colour-coated-sand/coated-sand.css?v={g["BUILD_VERSION"]}" /></head>')
     html = add_styles(g, html)
     html = html.replace('</head>', f'<script defer src="assets/decorative-products/carousel.js?v={g["BUILD_VERSION"]}"></script></head>')

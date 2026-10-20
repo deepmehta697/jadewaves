@@ -65,7 +65,6 @@ def render(g):
         ]},
     ]
     html = g['page_shell'](PRODUCT['seo_title'], PRODUCT['meta_description'], PATH, body, schema, 'page-product page-ledger page-coated-sand')
-    html = html.replace(base + '/assets/jade-waves-logo-transparent.png', base + '/assets/colour-coated-sand/red.webp')
     html = add_styles(g, html)
     html = decorative_products.add_styles(g, html)
     html = html.replace('</head>', f'<script defer src="assets/colour-coated-sand/coated-sand.js?v={g["BUILD_VERSION"]}"></script></head>')

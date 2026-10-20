@@ -8,7 +8,7 @@ from html import escape
 from pathlib import Path
 from textwrap import dedent
 
-from templates import material_layout, material_pages, material_support, pebbles, colour_coated_sand, decorative_products
+from templates import material_layout, material_pages, material_support, pebbles, colour_coated_sand, decorative_products, media_seo
 from templates.material_media import enhance_images
 from templates.product_guides import PRODUCT_GUIDES, PRODUCT_GUIDE_SLUGS
 
@@ -1688,6 +1688,16 @@ def recaptcha_script_markup() -> str:
 
 def page_shell(title: str, meta_description: str, path: str, body: str, schema: list[dict], body_class: str = "") -> str:
     page_url = f"{BASE_URL}{path}"
+    media = media_seo.PageMedia(body)
+    videos = media_seo.video_schemas(BASE_URL, path, media)
+    schema = [dict(item) for item in schema]
+    if videos:
+        for item in schema:
+            if item.get('@type') == 'Product':
+                item['subjectOf'] = [{'@id': video['@id']} for video in videos]
+        schema.extend(videos)
+    share_image, share_alt, share_card = media_seo.social_image(BASE_URL, schema, media, CONTACT['company'])
+    og_type = 'article' if any(item.get('@type') == 'BlogPosting' for item in schema) else 'website'
     # The project-pages base element points to the site root, so bare fragment
     # links need the current page path to stay on product and article pages.
     body = body.replace('href="#', f'href="{path}#')
@@ -1716,10 +1726,16 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
                 <link rel="canonical" href="{escape(page_url)}" />
                 <meta property="og:title" content="{escape(title)}" />
                 <meta property="og:description" content="{escape(meta_description)}" />
-                <meta property="og:type" content="website" />
+                <meta property="og:type" content="{og_type}" />
                 <meta property="og:url" content="{escape(page_url)}" />
                 <meta property="og:site_name" content="{escape(CONTACT["company"])}" />
-                <meta property="og:image" content="{BASE_URL}/assets/jade-waves-logo-transparent.png" />
+                <meta property="og:image" content="{escape(share_image)}" />
+                <meta property="og:image:alt" content="{escape(share_alt)}" />
+                <meta name="twitter:card" content="{share_card}" />
+                <meta name="twitter:title" content="{escape(title)}" />
+                <meta name="twitter:description" content="{escape(meta_description)}" />
+                <meta name="twitter:image" content="{escape(share_image)}" />
+                <meta name="twitter:image:alt" content="{escape(share_alt)}" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
@@ -1960,6 +1976,9 @@ def product_sitemap_images(path: str) -> list[str]:
         photos = colour_coated_sand.catalogue()
     elif path in {f'/products/{p["slug"]}/' for p in decorative_products.PRODUCTS}:
         photos = decorative_products.catalogue(path.strip('/').split('/')[-1])
+    elif path in {f'/products/{p["slug"]}/' for p in PRODUCTS}:
+        slug = path.strip('/').split('/')[-1]
+        return [BASE_URL + PRODUCT_VISUALS[slug]['hero']]
     else:
         return []
     return [BASE_URL + '/' + photo['src'].lstrip('/') for photo in photos]

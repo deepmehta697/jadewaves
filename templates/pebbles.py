@@ -14,8 +14,8 @@ PRODUCT = {
     'applications': ['Colour and finish selection', 'Project-specific sizing'],
     'specs': ['31 colour and finish selections'],
     'summary_spec': 'Sizes vary by selection; compare the collection.',
-    'seo_title': 'Pebbles: Colours, Finishes & Sizes | Jade Waves Enterprise',
-    'meta_description': 'Explore 31 pebble selections, from natural and tumbled stone to polished colours. Compare sizes and packing references, then discuss a sample with Jade Waves.',
+    'seo_title': 'Decorative Pebbles Supplier in India | Jade Waves Enterprise',
+    'meta_description': 'Compare 31 decorative pebble selections from India, including natural, tumbled and polished stone. Review sizes and packing, then request a sample.',
 }
 
 
@@ -59,7 +59,7 @@ def render(g):
         {'@context': 'https://schema.org', '@type': 'Product', 'name': 'Pebbles',
          'description': PRODUCT['meta_description'], 'category': 'Decorative stone',
          'brand': {'@type': 'Brand', 'name': g['CONTACT']['company']},
-         'url': g['BASE_URL'] + PATH, 'image': g['BASE_URL'] + '/assets/pebbles/white-polished.webp'},
+         'url': g['BASE_URL'] + PATH, 'image': [g['BASE_URL'] + '/' + entry['src'] for entry in entries]},
         {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
             {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': g['BASE_URL'] + '/'},
             {'@type': 'ListItem', 'position': 2, 'name': 'Products', 'item': g['BASE_URL'] + '/products/'},
@@ -69,6 +69,4 @@ def render(g):
     markup = g['page_shell'](PRODUCT['seo_title'], PRODUCT['meta_description'], PATH, body, schema, 'pebble-page page-product page-ledger')
     assets = (f'<link rel="stylesheet" href="assets/pebbles/pebbles.css?v={g["BUILD_VERSION"]}" />'
               f'<script defer src="assets/pebbles/pebbles.js?v={g["BUILD_VERSION"]}"></script>')
-    markup = markup.replace(g['BASE_URL'] + '/assets/jade-waves-logo-transparent.png',
-                            g['BASE_URL'] + '/assets/pebbles/white-polished.webp')
     return decorative_inquiry.add_assets(g, markup.replace('</head>', assets + '</head>'))

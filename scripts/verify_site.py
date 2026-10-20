@@ -64,7 +64,7 @@ def verify(root):
         image_urls = [node.text for node in entry.findall('{http://www.google.com/schemas/sitemap-image/1.1}image/{http://www.google.com/schemas/sitemap-image/1.1}loc')]
         expected_images = g.product_sitemap_images(urlsplit(page_url).path)
         if image_urls != expected_images:
-            errors.append(f'{page_url}: incomplete carousel image sitemap')
+            errors.append(f'{page_url}: incomplete product image sitemap')
         for image_url in image_urls:
             if not image_url.startswith(g.BASE_URL + '/') or not (root / urlsplit(image_url).path.lstrip('/')).is_file():
                 errors.append(f'{page_url}: missing/non-local sitemap image {image_url}')
@@ -121,6 +121,21 @@ def verify(root):
         if not schemas:
             errors.append(f'{route}: missing JSON-LD')
         schema_types = {item.get('@type') for item in schemas if isinstance(item, dict)}
+        metas = {a.get('property', a.get('name')): a.get('content', '')
+                 for t, a in page.tags if t == 'meta'}
+        share_image = metas.get('og:image', '')
+        if not share_image or metas.get('twitter:image') != share_image or not metas.get('og:image:alt'):
+            errors.append(f'{route}: missing/inconsistent social image metadata')
+        if not share_image.startswith(g.BASE_URL + '/') or not (root / urlsplit(share_image).path.lstrip('/')).is_file():
+            errors.append(f'{route}: missing/non-local social image')
+        sources = {g.BASE_URL + '/' + a.get('src', '').lstrip('/') for t, a in page.tags if t == 'source'}
+        posters = {g.BASE_URL + '/' + a.get('poster', '').lstrip('/') for t, a in page.tags if t == 'video'}
+        for item in schemas:
+            if item.get('@type') != 'VideoObject': continue
+            if item.get('contentUrl') not in sources or not set(item.get('thumbnailUrl', [])) <= posters:
+                errors.append(f'{route}: video schema differs from visible media')
+            if not all(item.get(key) for key in ('name', 'description', 'thumbnailUrl', 'contentUrl', 'uploadDate', 'duration')):
+                errors.append(f'{route}: incomplete video metadata')
         decorative_routes = {'/products/pebbles/', '/products/colour-coated-silica-sand/', '/products/glass-chips/', '/products/grout-sand/', '/products/marble-chips/'}
         required_product_schema = {'Product', 'BreadcrumbList'} if route in decorative_routes else {'Product', 'FAQPage', 'BreadcrumbList'}
         if route.startswith('/products/') and route != '/products/' and not required_product_schema <= schema_types:
