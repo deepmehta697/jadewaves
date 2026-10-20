@@ -8,7 +8,7 @@ from html import escape
 from pathlib import Path
 from textwrap import dedent
 
-from templates import material_layout, material_pages, material_support
+from templates import material_layout, material_pages, material_support, pebbles
 from templates.material_media import enhance_images
 from templates.product_guides import PRODUCT_GUIDES, PRODUCT_GUIDE_SLUGS
 
@@ -654,6 +654,10 @@ CORE_PRODUCT_SLUGS = [
 PRODUCTS = [product for product in PRODUCTS if product["slug"] in CORE_PRODUCT_SLUGS]
 
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
+# Preserve the eleven core minerals and their buyer-guide contracts. Decorative
+# stone is an additional, independently rendered catalogue page.
+CATALOGUE_PRODUCTS = PRODUCTS + [pebbles.PRODUCT]
+CATALOGUE_BY_SLUG = {product['slug']: product for product in CATALOGUE_PRODUCTS}
 
 PRODUCT_FAMILIES = [
     {
@@ -697,6 +701,13 @@ PRODUCT_FAMILIES = [
         "visual_slug": "rubber-granules",
     },
 ]
+
+PRODUCT_FAMILIES.append({
+    'id': 'decorative-stone', 'name': 'Decorative Stone',
+    'copy': 'Pebbles in natural, tumbled, polished and coated finishes. Compare colour and size before confirming a sample.',
+    'best_for': ['Colour selection', 'Finish selection', 'Size comparison'],
+    'products': ['pebbles'], 'visual_slug': 'pebbles',
+})
 
 HOME_FEATURED = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
 
@@ -1505,8 +1516,9 @@ def article_dates(post: dict) -> dict:
 # Oct 10: Material Ledger source pages in 4dfe44d. Oct 13: this SEO review.
 # Unknown route dates are omitted rather than replaced by a build timestamp.
 PAGE_LASTMOD = {
-    "/": "2026-10-13",
-    "/products/": "2026-10-13",
+    "/": "2026-10-20",
+    "/products/": "2026-10-20",
+    "/products/pebbles/": "2026-10-20",
     "/blog/": "2026-10-13",
     "/operations/": "2026-10-10",
     "/export-markets/": "2026-10-13",
@@ -1717,6 +1729,11 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
 
 
 PRODUCT_VISUALS = {
+    'pebbles': {
+        'hero': '/assets/pebbles/white-polished.webp',
+        'thumb': '/assets/pebbles/white-polished.webp',
+        'alt': 'White polished pebble colour and finish reference',
+    },
     "silica-sand": {
         "hero": "/assets/silica-sand-samples.png",
         "thumb": "/assets/silica-sand-samples.png",
@@ -1865,6 +1882,8 @@ def render_products_index() -> str:
 
 
 def render_product_page(product: dict) -> str:
+    if product['slug'] == 'pebbles':
+        return pebbles.render(globals())
     return material_pages.render_product_page(globals(), product)
 
 
@@ -1914,7 +1933,7 @@ def render_sitemap() -> str:
     # previews and other applications must not leak into the public sitemap.
     urls = ['/', '/products/', '/blog/', '/operations/', '/export-markets/',
             '/hear-from-ceo/', '/industrial-minerals-exporter-india/']
-    urls += [f'/products/{product["slug"]}/' for product in PRODUCTS]
+    urls += [f'/products/{product["slug"]}/' for product in CATALOGUE_PRODUCTS]
     urls += [f'/blog/{post["slug"]}/' for post in BLOGS]
     urls += [f'/{slug}/' for slug in material_support.POLICIES]
     entries = []
@@ -2158,7 +2177,7 @@ def main() -> None:
     for policy_slug in material_support.POLICIES:
       write(ROOT / policy_slug / "index.html", material_support.render_policy_page(globals(), policy_slug))
     write(ROOT / "products" / "index.html", render_products_index())
-    for product in PRODUCTS:
+    for product in CATALOGUE_PRODUCTS:
       write(ROOT / "products" / product["slug"] / "index.html", render_product_page(product))
     for legacy_path, target_path in LEGACY_REDIRECTS.items():
       write(ROOT / legacy_path / "index.html", render_redirect_page(legacy_path, target_path))

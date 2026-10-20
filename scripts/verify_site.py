@@ -48,7 +48,7 @@ def load_generator():
 def verify(root):
     g = load_generator()
     routes = ['/', '/products/', '/blog/', '/operations/', '/export-markets/', '/hear-from-ceo/', '/industrial-minerals-exporter-india/', '/privacy-policy/', '/terms-disclaimer/']
-    routes += [f'/products/{p["slug"]}/' for p in g.PRODUCTS]
+    routes += [f'/products/{p["slug"]}/' for p in g.CATALOGUE_PRODUCTS]
     routes += [f'/blog/{p["slug"]}/' for p in g.BLOGS]
     errors = []
     documents = set()
@@ -73,7 +73,7 @@ def verify(root):
             errors.append(f'/{source}/: incorrect SEO redirect canonical or indexing policy')
         if target.split('#', 1)[0] not in routes:
             errors.append(f'/{source}/: redirect does not target an active route: {target}')
-    for private_name in ('crm-cloudflare', 'integrations', 'templates', 'website-templates', 'demos'):
+    for private_name in ('crm-cloudflare', 'integrations', 'templates', 'website-templates', 'demos', 'previews'):
         if root.resolve() != ROOT.resolve() and (root / private_name).exists():
             errors.append(f'Unexpected private source or preview in site artifact: {private_name}')
     for route in routes:
@@ -112,7 +112,8 @@ def verify(root):
         if not schemas:
             errors.append(f'{route}: missing JSON-LD')
         schema_types = {item.get('@type') for item in schemas if isinstance(item, dict)}
-        if route.startswith('/products/') and route != '/products/' and not {'Product', 'FAQPage', 'BreadcrumbList'} <= schema_types:
+        required_product_schema = {'Product', 'BreadcrumbList'} if route == '/products/pebbles/' else {'Product', 'FAQPage', 'BreadcrumbList'}
+        if route.startswith('/products/') and route != '/products/' and not required_product_schema <= schema_types:
             errors.append(f'{route}: missing product schema')
         if route.startswith('/blog/') and route != '/blog/' and 'BlogPosting' not in schema_types:
             errors.append(f'{route}: missing article schema')
@@ -126,8 +127,12 @@ def verify(root):
         if any(term in markup for term in ['data-route-network', '<canvas', 'data-parallax', 'autoplay']):
             errors.append(f'{route}: obsolete decorative motion or autoplay')
         forms = [attrs for tag, attrs in page.tags if tag == 'form' and 'data-inquiry-form' in attrs]
-        if route.startswith('/products/') and route != '/products/' and not forms:
+        if route.startswith('/products/') and route not in {'/products/', '/products/pebbles/'} and not forms:
             errors.append(f'{route}: missing contextual form')
+        if route == '/products/pebbles/':
+            email = [a.get('href', '') for t, a in page.tags if t == 'a' and 'data-email' in a]
+            if not email or not email[0].startswith('mailto:' + g.CONTACT['sales_email'] + '?') or 'data-carousel' not in markup:
+                errors.append(f'{route}: missing contextual email enquiry or collection carousel')
         if forms:
             names = {attrs.get('name') for tag, attrs in page.tags if tag in {'input', 'select', 'textarea'}}
             required = {'request_type', 'product', 'name', 'email', 'application', 'destination', 'volume', 'packing_size', 'notes', 'company_website'}

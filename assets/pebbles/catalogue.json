@@ -1,0 +1,424 @@
+[
+  {
+    "id": "white-polished",
+    "name": "White polished pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "8–18 mm",
+      "15–35 mm",
+      "30–40 mm",
+      "30–60 mm"
+    ],
+    "color": "White",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/white-polished.webp",
+    "width": 544,
+    "height": 429
+  },
+  {
+    "id": "black-polished",
+    "name": "Black polished pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "15–35 mm",
+      "30–50 mm",
+      "30–60 mm"
+    ],
+    "color": "Black",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/black-polished.webp",
+    "width": 529,
+    "height": 445
+  },
+  {
+    "id": "smoky-grey",
+    "name": "Smoky grey polished pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "15–35 mm",
+      "30–60 mm"
+    ],
+    "color": "Smoky grey",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/smoky-grey.webp",
+    "width": 774,
+    "height": 404
+  },
+  {
+    "id": "red-polished",
+    "name": "Red polished pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "15–35 mm",
+      "30–60 mm"
+    ],
+    "color": "Red",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/red-polished.webp",
+    "width": 523,
+    "height": 576
+  },
+  {
+    "id": "light-green",
+    "name": "Light green polished pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "15–35 mm",
+      "30–60 mm"
+    ],
+    "color": "Light green",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/light-green.webp",
+    "width": 600,
+    "height": 600
+  },
+  {
+    "id": "pink",
+    "name": "Pink polished pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "15–35 mm",
+      "30–60 mm"
+    ],
+    "color": "Pink",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/pink.webp",
+    "width": 462,
+    "height": 465
+  },
+  {
+    "id": "dark-green",
+    "name": "Dark green polished pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "15–35 mm",
+      "30–60 mm"
+    ],
+    "color": "Dark green",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/dark-green.webp",
+    "width": 640,
+    "height": 425
+  },
+  {
+    "id": "mixed-polished",
+    "name": "Mixed colour polished pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "15–35 mm",
+      "30–60 mm"
+    ],
+    "color": "Mixed colours",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/mixed-polished.webp",
+    "width": 529,
+    "height": 420
+  },
+  {
+    "id": "natural-black",
+    "name": "Black natural pebbles",
+    "finish": "Natural",
+    "sizes": [
+      "15–35 mm",
+      "30–60 mm"
+    ],
+    "color": "Black",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/natural-black.webp",
+    "width": 450,
+    "height": 298
+  },
+  {
+    "id": "black-semi-polished",
+    "name": "Black semi-polished pebbles",
+    "finish": "Semi-polished",
+    "sizes": [
+      "10–20 mm",
+      "20–30 mm",
+      "30–40 mm",
+      "30–50 mm"
+    ],
+    "color": "Black",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/black-semi-polished.webp",
+    "width": 637,
+    "height": 802
+  },
+  {
+    "id": "white-tumbled",
+    "name": "White tumbled pebbles",
+    "finish": "Tumbled",
+    "sizes": [
+      "15–35 mm",
+      "30–60 mm"
+    ],
+    "color": "White",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/white-tumbled.webp",
+    "width": 537,
+    "height": 426
+  },
+  {
+    "id": "yellow-tumbled",
+    "name": "Yellow tumbled pebbles",
+    "finish": "Tumbled",
+    "sizes": [
+      "30–60 mm"
+    ],
+    "color": "Yellow",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/yellow-tumbled.webp",
+    "width": 350,
+    "height": 214
+  },
+  {
+    "id": "river",
+    "name": "Natural river pebbles",
+    "finish": "Natural",
+    "sizes": [
+      "20–40 mm",
+      "30–70 mm",
+      "70–100 mm"
+    ],
+    "color": "Natural mix",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/river.webp",
+    "width": 667,
+    "height": 626
+  },
+  {
+    "id": "white-b-grade",
+    "name": "White polished pebbles · B grade",
+    "finish": "Polished",
+    "sizes": [
+      "15–35 mm"
+    ],
+    "color": "White",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/white-b-grade.webp",
+    "width": 538,
+    "height": 334
+  },
+  {
+    "id": "off-white",
+    "name": "Off-white natural pebbles",
+    "finish": "Natural",
+    "sizes": [
+      "30–70 mm"
+    ],
+    "color": "Off-white",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/off-white.webp",
+    "width": 532,
+    "height": 399
+  },
+  {
+    "id": "white-natural",
+    "name": "White natural pebbles",
+    "finish": "Natural",
+    "sizes": [
+      "30–70 mm"
+    ],
+    "color": "White",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/white-natural.webp",
+    "width": 720,
+    "height": 687
+  },
+  {
+    "id": "yellow-natural",
+    "name": "Yellow natural pebbles",
+    "finish": "Natural",
+    "sizes": [
+      "30–70 mm"
+    ],
+    "color": "Yellow",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/yellow-natural.webp",
+    "width": 720,
+    "height": 405
+  },
+  {
+    "id": "onyx-polished",
+    "name": "Natural polished onyx pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "15–30 mm",
+      "30–60 mm"
+    ],
+    "color": "Natural onyx mix",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/onyx-polished.webp",
+    "width": 536,
+    "height": 421
+  },
+  {
+    "id": "onyx-tumbled",
+    "name": "Natural tumbled onyx",
+    "finish": "Tumbled",
+    "sizes": [
+      "15–30 mm"
+    ],
+    "color": "Natural onyx mix",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/onyx-tumbled.webp",
+    "width": 539,
+    "height": 443
+  },
+  {
+    "id": "small-black",
+    "name": "Small round black natural pebbles",
+    "finish": "Natural",
+    "sizes": [
+      "6–12 mm"
+    ],
+    "color": "Black",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/small-black.webp",
+    "width": 540,
+    "height": 463
+  },
+  {
+    "id": "mixed-semi-polished",
+    "name": "Mixed colour semi-polished pebbles",
+    "finish": "Semi-polished",
+    "sizes": [
+      "30–50 mm"
+    ],
+    "color": "Mixed colours",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/mixed-semi-polished.webp",
+    "width": 705,
+    "height": 679
+  },
+  {
+    "id": "moss-agate",
+    "name": "Polished moss agate pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "30–60 mm"
+    ],
+    "color": "Moss green",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/moss-agate.webp",
+    "width": 539,
+    "height": 423
+  },
+  {
+    "id": "pink-agate",
+    "name": "Polished pink agate pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "30–60 mm"
+    ],
+    "color": "Pink",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/pink-agate.webp",
+    "width": 545,
+    "height": 419
+  },
+  {
+    "id": "brown-natural",
+    "name": "Brown natural pebbles",
+    "finish": "Natural",
+    "sizes": [
+      "30–70 mm"
+    ],
+    "color": "Brown",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/brown-natural.webp",
+    "width": 543,
+    "height": 406
+  },
+  {
+    "id": "red-jasper",
+    "name": "Red jasper agate pebbles",
+    "finish": "Finish to confirm",
+    "sizes": [
+      "30–60 mm"
+    ],
+    "color": "Red jasper",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/red-jasper.webp",
+    "width": 543,
+    "height": 438
+  },
+  {
+    "id": "fancy-onyx",
+    "name": "Fancy onyx high-polished pebbles",
+    "finish": "Polished",
+    "sizes": [
+      "20–60 mm"
+    ],
+    "color": "Natural onyx mix",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/fancy-onyx.webp",
+    "width": 542,
+    "height": 424
+  },
+  {
+    "id": "flat-brown",
+    "name": "Flat brown pebbles",
+    "finish": "Finish to confirm",
+    "sizes": [
+      "75–125 mm"
+    ],
+    "color": "Brown",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/flat-brown.webp",
+    "width": 542,
+    "height": 391
+  },
+  {
+    "id": "colour-coated",
+    "name": "Colour-coated pebbles",
+    "finish": "Coated",
+    "sizes": [
+      "10–30 mm"
+    ],
+    "color": "Mixed coated colours",
+    "packing": "Confirm packing",
+    "src": "assets/pebbles/colour-coated.webp",
+    "width": 713,
+    "height": 900
+  },
+  {
+    "id": "egyptian-agate",
+    "name": "Unpolished Egyptian agate stone",
+    "finish": "Unpolished",
+    "sizes": [
+      "30–75 mm"
+    ],
+    "color": "Natural agate mix",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/egyptian-agate.webp",
+    "width": 527,
+    "height": 396
+  },
+  {
+    "id": "premium-onyx",
+    "name": "Premium mixed onyx",
+    "finish": "Finish to confirm",
+    "sizes": [
+      "15–30 mm"
+    ],
+    "color": "Mixed colours",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/premium-onyx.webp",
+    "width": 597,
+    "height": 529
+  },
+  {
+    "id": "flat-grey",
+    "name": "Flat grey agate pebbles",
+    "finish": "Finish to confirm",
+    "sizes": [
+      "30–70 mm"
+    ],
+    "color": "Grey",
+    "packing": "25 kg bags",
+    "src": "assets/pebbles/flat-grey.webp",
+    "width": 529,
+    "height": 450
+  }
+]

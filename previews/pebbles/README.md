@@ -62,3 +62,10 @@ Real browser rendering and touch-device verification must be reported separately
 - At the initial preview handoff, nothing had been staged, committed, pushed or
   published. The subsequent approval is for a local commit of this folder only;
   no push or publication is included.
+
+## Subsequent production approval
+
+The user subsequently approved integrating and deploying Pebbles on the website.
+The production page is now generated separately at `/products/pebbles/`; see
+`docs/pebbles-release.md`. This original preview remains an excluded approval
+snapshot, not the source of the published route or part of the Pages artifact.

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="description" content="Explore pebble colours, finishes and size options with Jade Waves Enterprise.">
+  <meta name="referrer" content="no-referrer">
+  <title>Pebbles | Jade Waves Enterprise</title>
+  <link rel="icon" href="media/jade-waves-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="pebbles.css">
+  <script defer src="pebbles.js"></script>
+</head>
+<body class="pebble-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner shell">
+      <a class="brand-mark" href="https://jadewavesenterprise.com/" aria-label="Jade Waves Enterprise home">
+        <img src="media/jade-waves-logo.png" alt="" width="48" height="48">
+        <span class="brand-lockup"><strong>Jade Waves</strong><em>Industrial Mineral Export</em></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="https://jadewavesenterprise.com/products/">Materials</a>
+        <a href="https://jadewavesenterprise.com/hear-from-ceo/">Our company</a>
+      </nav>
+      <a class="button button--compact pebble-header-action" href="#enquire">Enquire <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main id="main-content" tabindex="-1">
+    <section class="pebble-intro" aria-labelledby="page-title">
+      <div class="shell pebble-intro-inner">
+        <div class="pebble-intro-copy">
+          <p class="ml-kicker">Jade Waves Enterprise / Decorative stone</p>
+          <h1 id="page-title">Pebbles.</h1>
+          <p class="pebble-lead">Natural, tumbled and polished stone. Explore the colours and finishes, then choose the size for your project.</p>
+        </div>
+        <a href="#collection" class="pebble-explore">Explore the collection <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="pebble-collection" id="collection" aria-labelledby="collection-title">
+      <div class="shell">
+        <div class="collection-heading">
+          <p class="ml-eyebrow" id="collection-title">The pebble collection</p>
+          <p>{{COUNT}} colour &amp; finish selections</p>
+        </div>
+        <div class="pebble-viewer" role="region" aria-roledescription="carousel" aria-label="Pebble colours and finishes" tabindex="0" data-carousel>
+          <div class="pebble-stage">
+            <div class="photo-topline"><span>Colour &amp; finish reference</span><span data-photo-index>01 / {{COUNT}}</span></div>
+            <figure class="pebble-photo" data-photo-frame role="group" aria-roledescription="slide" aria-label="1 of {{COUNT}}: White polished pebbles">
+              <img src="media/white-polished.webp" alt="White polished pebbles on a dark surface" width="{{FIRST_WIDTH}}" height="{{FIRST_HEIGHT}}" fetchpriority="high" decoding="async" data-photo>
+            </figure>
+            <div class="photo-bottomline"><span>Natural variations are part of the stone.</span><span aria-hidden="true">JWE / PEBBLES</span></div>
+          </div>
+          <div class="pebble-selection">
+            <div class="selection-overline"><span data-finish>Polished</span><span aria-hidden="true">↗</span></div>
+            <h2 data-name>White polished pebbles</h2>
+            <div class="pebble-select-wrap">
+              <label for="pebble-variant">Explore colour &amp; finish</label>
+              <select id="pebble-variant" data-variant disabled>{{OPTIONS}}</select>
+            </div>
+            <div class="pebble-specs">
+              <div><span class="spec-label">Size options</span><p data-sizes>8–18 mm · 15–35 mm · 30–40 mm · 30–60 mm</p></div>
+              <div class="spec-pair"><div><span class="spec-label">Colour</span><p data-colour>White</p></div><div><span class="spec-label">Packing reference</span><p data-packing>25 kg bags</p></div></div>
+            </div>
+            <a class="button pebble-enquire" href="#enquire" data-selection-link>Enquire about this pebble <span aria-hidden="true">↗</span></a>
+            <div class="pebble-carousel-controls" data-controls hidden>
+              <p>Browse the collection</p>
+              <div><button type="button" aria-label="Previous pebble" data-previous><span aria-hidden="true">←</span></button><button type="button" aria-label="Next pebble" data-next><span aria-hidden="true">→</span></button></div>
+            </div>
+            <p class="pebble-photo-note">Photos show appearance, not a calibrated size sample. Confirm colour, finish and sizing against a physical sample before ordering.</p>
+            <p class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-announcement></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pebble-details ml-section">
+      <div class="shell pebble-details-grid">
+        <div><p class="ml-eyebrow">Size before supply</p><h2>The right detail.<br>The right stone.</h2></div>
+        <div class="pebble-details-copy">
+          <p>Select a colour and finish above to see its size options. Ranges differ by selection; not every colour is offered in every size.</p>
+          <dl class="pebble-checklist"><div><dt>01 / Appearance</dt><dd>Confirm the colour mix and surface finish with a sample.</dd></div><div><dt>02 / Size</dt><dd>Share your required size range and any grading tolerance.</dd></div><div><dt>03 / Packing</dt><dd>25 kg bags are listed for most selections. Confirm the final packing and shipment quantity with our team.</dd></div></dl>
+        </div>
+      </div>
+      <div class="shell">
+        <details class="pebble-size-reference">
+          <summary>Compare all sizes <span aria-hidden="true">+</span></summary>
+          <div class="pebble-table-scroll" role="region" aria-label="All pebble sizes" tabindex="0"><table><caption>Pebble selection and size reference</caption><thead><tr><th scope="col">Selection</th><th scope="col">Finish</th><th scope="col">Size options</th></tr></thead><tbody>{{ROWS}}</tbody></table></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="pebble-contact" id="enquire" aria-labelledby="enquire-title">
+      <div class="shell pebble-contact-inner">
+        <div><p class="ml-eyebrow">Your selection, taken further</p><h2 id="enquire-title">Start with a sample.<br>Build your requirement.</h2><p>Tell us the colour, finish, size and quantity you have in mind. We’ll confirm the selection and packing before an order.</p></div>
+        <div class="pebble-brief">
+          <p class="spec-label">Selected pebble</p><p class="pebble-brief-name" data-brief-name>White polished pebbles</p>
+          <label for="enquiry-size">Preferred size</label><select id="enquiry-size" data-enquiry-size disabled><option>8–18 mm</option><option>15–35 mm</option><option>30–40 mm</option><option>30–60 mm</option></select>
+          <a class="button button--light" href="mailto:deep@jadewavesenterprise.com?subject=Pebble%20enquiry&amp;body=Selection%3A%20White%20polished%20pebbles%0ASize%3A%208%E2%80%9318%20mm" data-email>Discuss this selection <span aria-hidden="true">↗</span></a>
+          <p class="pebble-mail-note">Opens an email draft. Nothing is sent automatically.</p>
+          <a class="pebble-direct-email" href="mailto:deep@jadewavesenterprise.com">deep@jadewavesenterprise.com</a>
+        </div>
+      </div>
+    </section>
+    <noscript><p class="shell pebble-noscript">Enable JavaScript to browse the photo carousel. The full size reference above remains available.</p></noscript>
+  </main>
+  <footer class="pebble-footer"><div class="shell"><p>© 2026 Jade Waves Enterprise</p><a href="https://jadewavesenterprise.com/products/">Back to the material portfolio <span aria-hidden="true">↗</span></a></div></footer>
+  <script type="application/json" id="pebble-data">{{DATA}}</script>
+</body>
+</html>

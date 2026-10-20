@@ -67,15 +67,16 @@ class SEORegressionTests(unittest.TestCase):
         ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
         sitemap = ET.fromstring(site.render_sitemap())
         urls = [n.text for n in sitemap.findall('s:url/s:loc', ns)]
-        self.assertEqual(len(urls), 35)
-        self.assertEqual(len(set(urls)), 35)
+        self.assertEqual(len(urls), 36)
+        self.assertEqual(len(set(urls)), 36)
+        self.assertIn(site.BASE_URL + '/products/pebbles/', urls)
         for post in site.BLOGS:
             self.assertIn(site.BASE_URL + '/blog/' + post['slug'] + '/', urls)
         for url in urls:
             self.assertNotIn('/blog/blog/', url)
 
     def test_no_active_page_is_overwritten_by_a_redirect(self):
-        active = {f'products/{p["slug"]}' for p in site.PRODUCTS}
+        active = {f'products/{p["slug"]}' for p in site.CATALOGUE_PRODUCTS}
         active.update(f'blog/{p["slug"]}' for p in site.BLOGS)
         redirects = set(site.LEGACY_REDIRECTS)
         redirects.update(path for path, _, _ in site.malformed_redirect_entries())

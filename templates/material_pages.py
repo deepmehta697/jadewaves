@@ -44,7 +44,7 @@ def _product_list(g):
         "name": "Jade Waves Enterprise Product Portfolio",
         "itemListElement": [
             {"@type": "ListItem", "position": index, "url": f'{g["BASE_URL"]}/products/{product["slug"]}/', "name": product["name"]}
-            for index, product in enumerate(g["PRODUCTS"], start=1)
+            for index, product in enumerate(g["CATALOGUE_PRODUCTS"], start=1)
         ],
     }
 
@@ -95,7 +95,7 @@ def _ledger(g, rows):
 
 def _family(g, family, index):
     image, alt = _visual(g, family["visual_slug"])
-    by_slug = g["PRODUCTS_BY_SLUG"]
+    by_slug = g["CATALOGUE_BY_SLUG"]
     links = "".join(
         f'<a href="/products/{escape(slug)}/"><span>{escape(by_slug[slug]["name"])}</span><span aria-hidden="true">↗</span></a>'
         for slug in family["products"] if slug in by_slug
@@ -120,6 +120,8 @@ def _directory(g, products, detailed=False):
         if detailed:
             tds = g["TDS_BY_SLUG"].get(product["slug"])
             document = f'<a class="ml-text-link ml-directory-document" href="{escape(tds)}" target="_blank" rel="noopener">TDS <span aria-hidden="true">↗</span></a>' if tds else f'<a class="ml-text-link ml-directory-document" href="/products/{escape(product["slug"])}/#contact" data-set-request="TDS">Request technical data <span aria-hidden="true">↗</span></a>'
+            if product['slug'] == 'pebbles':
+                document = '<a class="ml-text-link ml-directory-document" href="/products/pebbles/#collection">Explore colours &amp; sizes <span aria-hidden="true">↗</span></a>'
             rows.append(f'''<article class="ml-directory-row ml-directory-row--detailed" data-reveal>
               <a class="ml-directory-thumb" href="/products/{escape(product["slug"])}/" tabindex="-1" aria-hidden="true"><img class="ml-thumbnail" src="{escape(image)}" alt="" loading="lazy" /></a>
               <div class="ml-directory-name"><h3><a href="/products/{escape(product["slug"])}/">{escape(product["name"])}</a></h3><p>{escape(" · ".join(product["forms"]))}</p></div>
@@ -205,7 +207,7 @@ def render_homepage(g):
     </div></section>
     <section class="ml-section ml-section--directory"><div class="ml-container">
       {_heading(g, "The complete directory", "Every material, in one place.", link="Compare the portfolio", href="/products/")}
-      {_directory(g, g["PRODUCTS"])}
+      {_directory(g, g["CATALOGUE_PRODUCTS"])}
     </div></section>'''
     content += _process(g) + _gallery(g)
     content += f'''<section class="ml-section ml-section--markets" id="countries-served"><div class="ml-container ml-market-note" data-reveal>
@@ -217,11 +219,11 @@ def render_homepage(g):
 
 
 def render_products_index(g):
-    content = _photo_hero(g, "The industrial mineral portfolio.", "Compare materials by application, grade, and available form. Open the technical reference before you build the brief.", "/assets/optimized/quarry-quartz.jpg", "Quartz quarry · Mineral supply from India", "Jade Waves Enterprise / Material Portfolio", secondary="Browse materials", secondary_href="#material-directory", proof=[f'{len(g["PRODUCT_FAMILIES"])} material families', f'{len(g["PRODUCTS"])} products', "Technical references", "Sample-led approval"])
+    content = _photo_hero(g, "The industrial mineral portfolio.", "Compare materials by application, grade, and available form. Open the technical reference before you build the brief.", "/assets/optimized/quarry-quartz.jpg", "Quartz quarry · Mineral supply from India", "Jade Waves Enterprise / Material Portfolio", secondary="Browse materials", secondary_href="#material-directory", proof=[f'{len(g["PRODUCT_FAMILIES"])} material families', f'{len(g["CATALOGUE_PRODUCTS"])} products', "Technical references", "Sample-led approval"])
     anchors = ''.join(f'<a href="#{escape(family["id"])}">{escape(family["name"])}</a>' for family in g["PRODUCT_FAMILIES"])
     content += f'<div class="ml-container ml-family-nav" aria-label="Material families"><nav>{anchors}</nav></div><div id="material-directory">'
     for index, family in enumerate(g["PRODUCT_FAMILIES"], start=1):
-        products = [g["PRODUCTS_BY_SLUG"][slug] for slug in family["products"] if slug in g["PRODUCTS_BY_SLUG"]]
+        products = [g["CATALOGUE_BY_SLUG"][slug] for slug in family["products"] if slug in g["CATALOGUE_BY_SLUG"]]
         content += f'''<section class="ml-section ml-section--portfolio" id="{escape(family["id"])}"><div class="ml-container">
           {_heading(g, f"Family / {index:02d}", family["name"], family["copy"])}
           <p class="ml-family-applications">{' / '.join(escape(item) for item in family["best_for"])}</p>
