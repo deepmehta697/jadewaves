@@ -8,7 +8,7 @@ from html import escape
 from pathlib import Path
 from textwrap import dedent
 
-from templates import material_layout, material_pages, material_support, pebbles, colour_coated_sand, decorative_products, media_seo
+from templates import material_layout, material_pages, material_support, pebbles, colour_coated_sand, decorative_products, media_seo, rubber_granules
 from templates.material_media import enhance_images
 from templates.product_guides import PRODUCT_GUIDES, PRODUCT_GUIDE_SLUGS
 
@@ -1978,7 +1978,10 @@ def product_sitemap_images(path: str) -> list[str]:
         photos = decorative_products.catalogue(path.strip('/').split('/')[-1])
     elif path in {f'/products/{p["slug"]}/' for p in PRODUCTS}:
         slug = path.strip('/').split('/')[-1]
-        return [BASE_URL + PRODUCT_VISUALS[slug]['hero']]
+        images = [BASE_URL + PRODUCT_VISUALS[slug]['hero']]
+        if slug == 'rubber-granules':
+            images += [BASE_URL + '/' + entry['src'] for entry in rubber_granules.catalogue()]
+        return images
     else:
         return []
     return [BASE_URL + '/' + photo['src'].lstrip('/') for photo in photos]

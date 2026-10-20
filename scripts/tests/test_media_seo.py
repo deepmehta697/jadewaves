@@ -110,6 +110,8 @@ class MediaSEOTests(unittest.TestCase):
 
     def test_core_product_sitemap_uses_the_current_hero_including_bentonite(self):
         for product in site.PRODUCTS:
+            if product['slug'] == 'rubber-granules':
+                continue  # Its hero and all 23 colour references are covered separately.
             self.assertEqual(site.product_sitemap_images('/products/'+product['slug']+'/'),
                              [site.BASE_URL+site.PRODUCT_VISUALS[product['slug']]['hero']])
         self.assertEqual(site.product_sitemap_images('/operations/'), [])

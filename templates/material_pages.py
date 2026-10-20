@@ -6,6 +6,7 @@ inquiry behaviour, and the document shell remain a single source of truth.
 
 from html import escape
 import re
+from templates import rubber_granules
 
 
 def _shell(g, title, description, path, content, schema, page_class):
@@ -313,6 +314,8 @@ def render_product_page(g, product):
       <div>{_heading(g, "Specification snapshot", "Read the grade before the quote.", "Published references are a starting point. Confirm the required grade and sample COA against your application.")}</div>
       <div class="ml-table-wrap" data-reveal><table class="ml-spec-table"><caption>{escape(product["name"])} · Grade, form, and supply reference</caption><tbody>{_specification_rows(g, product)}</tbody></table></div>
     </div></section>'''
+    if product['slug'] == 'rubber-granules':
+        content += rubber_granules.render_colours()
     applications = [(item, "") for item in product["applications"]]
     checks = ''.join(f'<li>{escape(point)}</li>' for point in product.get("booking_points", product["specs"]))
     evidence = _product_evidence(product)
@@ -346,7 +349,11 @@ def render_product_page(g, product):
         _breadcrumbs(g, [("Products", "/products/"), (product["name"], path)]),
         {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faq_schema},
     ]
-    return _shell(g, product["seo_title"], product["meta_description"], path, content, schema, "page-product")
+    if product['slug'] == 'rubber-granules':
+        schema[0]['image'] = [g['BASE_URL'] + image] + [g['BASE_URL'] + '/' + entry['src'] for entry in rubber_granules.catalogue()]
+        schema[0]['color'] = [entry['name'] for entry in rubber_granules.catalogue()]
+    html = _shell(g, product["seo_title"], product["meta_description"], path, content, schema, "page-product")
+    return rubber_granules.add_assets(g, html) if product['slug'] == 'rubber-granules' else html
 
 
 def render_export_markets_page(g):

@@ -80,14 +80,15 @@ class DecorativeSEOTests(unittest.TestCase):
             self.assertIn('products/pebbles/', links)
             self.assertIn('products/#decorative-range', links)
 
-    def test_sitemap_has_40_pages_and_68_actual_product_photos(self):
+    def test_sitemap_has_40_pages_and_91_actual_product_photos(self):
         entries = self.sitemap.findall('s:url', self.ns)
         self.assertEqual(len(entries), 40)
         photos = self.sitemap.findall('s:url/i:image/i:loc', self.ns)
-        self.assertEqual(len(photos), 68)
-        self.assertEqual(len({n.text for n in photos}), 68)
+        self.assertEqual(len(photos), 91)
+        self.assertEqual(len({n.text for n in photos}), 91)
         expected_counts = {'glass-chips': 6, 'grout-sand': 2, 'colour-coated-silica-sand': 6, 'pebbles': 31, 'marble-chips': 12}
         expected_counts.update({p['slug']: 1 for p in site.PRODUCTS})
+        expected_counts['rubber-granules'] = 24
         for entry in entries:
             path = urlsplit(entry.findtext('s:loc', namespaces=self.ns)).path
             images = [n.text for n in entry.findall('i:image/i:loc', self.ns)]

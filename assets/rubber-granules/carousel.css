@@ -1,0 +1,22 @@
+/* A single colour reference, with space to compare rather than a photo grid. */
+.rubber-colours { background: var(--ml-chalk); }
+.rubber-colour-carousel { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); }
+.rubber-colour-stage { min-width: 0; padding: 1.5rem; background: #fff; }
+.rubber-colour-photo { display: grid; place-items: center; aspect-ratio: 4 / 3; min-height: 0; overflow: hidden; touch-action: pan-y; }
+.rubber-colour-photo img { display: block; width: 100%; height: 100%; min-height: 0; max-width: 340px; max-height: 340px; object-fit: contain; }
+.rubber-colour-photo img.is-changing { animation: rubber-colour-in 180ms ease both; }
+.rubber-colour-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; }
+.rubber-colour-controls[hidden] { display: none; }
+.rubber-colour-controls > span { font: .875rem/1.5 var(--ml-mono); color: var(--ml-slate); }
+.rubber-colour-controls > div { display: flex; gap: .5rem; }
+.rubber-colour-controls button { min-width: 44px; min-height: 44px; border: 1px solid var(--ml-rule); background: transparent; font-size: 1.25rem; transition: background-color 160ms, color 160ms; }
+.rubber-colour-controls button:hover { background: var(--ml-jade); color: #fff; }
+.rubber-colour-selection h3 { font: 400 clamp(2.2rem, 4vw, 3.6rem)/1.1 var(--ml-serif); letter-spacing: -.035em; }
+.rubber-colour-reference { margin-top: .75rem; font-size: .875rem; color: var(--ml-slate); }
+.rubber-colour-selection label { display: block; margin-block: 1.5rem .5rem; font-size: .875rem; }
+.rubber-colour-selection select { width: 100%; min-height: 48px; padding: .75rem; border: 1px solid var(--ml-rule); background: transparent; color: var(--ml-iron); font-size: 1rem; }
+.rubber-colour-note { margin-block: 1.5rem; max-width: 45ch; color: var(--ml-slate); font-size: .875rem; line-height: 1.6; }
+.rubber-colour-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@keyframes rubber-colour-in { from { opacity: .4; } to { opacity: 1; } }
+@media (max-width: 640px) { .rubber-colour-carousel { grid-template-columns: 1fr; gap: 1.5rem; } .rubber-colour-stage { padding: 1rem; } }
+@media (prefers-reduced-motion: reduce) { .rubber-colours *, .rubber-colours *::before, .rubber-colours *::after { animation: none !important; transition: none !important; } }
