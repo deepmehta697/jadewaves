@@ -25,7 +25,7 @@ class Tags(HTMLParser):
 class DecorativeSEOTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.slugs = ['glass-chips', 'grout-sand', 'colour-coated-silica-sand']
+        cls.slugs = ['glass-chips', 'grout-sand', 'colour-coated-silica-sand', 'marble-chips']
         cls.pages = {slug: site.render_product_page(site.CATALOGUE_BY_SLUG[slug]) for slug in cls.slugs}
         cls.schemas = {slug: next(s for s in json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', html, re.S).group(1)) if s['@type'] == 'Product') for slug, html in cls.pages.items()}
         cls.sitemap = ET.fromstring(site.render_sitemap())
@@ -57,6 +57,7 @@ class DecorativeSEOTests(unittest.TestCase):
             'glass-chips': decorative_products.catalogue('glass-chips'),
             'grout-sand': decorative_products.catalogue('grout-sand'),
             'colour-coated-silica-sand': colour_coated_sand.catalogue(),
+            'marble-chips': decorative_products.catalogue('marble-chips'),
         }
         for slug, entries in expected.items():
             self.assertEqual(self.schemas[slug]['image'], [site.BASE_URL + '/' + e['src'] for e in entries])
@@ -79,13 +80,13 @@ class DecorativeSEOTests(unittest.TestCase):
             self.assertIn('products/pebbles/', links)
             self.assertIn('products/#decorative-range', links)
 
-    def test_sitemap_keeps_39_pages_and_adds_45_actual_product_photos(self):
+    def test_sitemap_has_40_pages_and_57_actual_product_photos(self):
         entries = self.sitemap.findall('s:url', self.ns)
-        self.assertEqual(len(entries), 39)
+        self.assertEqual(len(entries), 40)
         photos = self.sitemap.findall('s:url/i:image/i:loc', self.ns)
-        self.assertEqual(len(photos), 45)
-        self.assertEqual(len({n.text for n in photos}), 45)
-        expected_counts = {'glass-chips': 6, 'grout-sand': 2, 'colour-coated-silica-sand': 6, 'pebbles': 31}
+        self.assertEqual(len(photos), 57)
+        self.assertEqual(len({n.text for n in photos}), 57)
+        expected_counts = {'glass-chips': 6, 'grout-sand': 2, 'colour-coated-silica-sand': 6, 'pebbles': 31, 'marble-chips': 12}
         for entry in entries:
             path = urlsplit(entry.findtext('s:loc', namespaces=self.ns)).path
             images = [n.text for n in entry.findall('i:image/i:loc', self.ns)]
@@ -113,7 +114,7 @@ class DecorativeSEOTests(unittest.TestCase):
                 self.assertNotIn(field, self.schemas[slug])
             self.assertIn('content="index,follow"', html)
             self.assertIn('rel="canonical" href="' + site.BASE_URL + '/products/' + slug + '/"', html)
-        self.assertEqual(len(site.PRODUCTS), 11); self.assertEqual(len(site.CATALOGUE_PRODUCTS), 15)
+        self.assertEqual(len(site.PRODUCTS), 11); self.assertEqual(len(site.CATALOGUE_PRODUCTS), 16)
 
 
 if __name__ == '__main__': unittest.main()

@@ -124,7 +124,7 @@ def _directory(g, products, detailed=False):
                 document = '<a class="ml-text-link ml-directory-document" href="/products/pebbles/#collection">Explore colours &amp; sizes <span aria-hidden="true">↗</span></a>'
             elif product['slug'] == 'colour-coated-silica-sand':
                 document = '<a class="ml-text-link ml-directory-document" href="/products/colour-coated-silica-sand/">Explore colours &amp; sizes <span aria-hidden="true">↗</span></a>'
-            elif product['slug'] in {'glass-chips', 'grout-sand'}:
+            elif product['slug'] in {'glass-chips', 'grout-sand', 'marble-chips'}:
                 document = f'<a class="ml-text-link ml-directory-document" href="/products/{escape(product["slug"])}/#collection">Explore finishes &amp; sizes <span aria-hidden="true">↗</span></a>'
             rows.append(f'''<article class="ml-directory-row ml-directory-row--detailed" data-reveal>
               <a class="ml-directory-thumb" href="/products/{escape(product["slug"])}/" tabindex="-1" aria-hidden="true"><img class="ml-thumbnail" src="{escape(image)}" alt="" loading="lazy" /></a>
@@ -142,7 +142,7 @@ def _directory(g, products, detailed=False):
     return '<div class="ml-directory">' + ''.join(rows) + '</div>'
 
 
-def _process(g, product=None):
+def _process(g, product=None, show_photo=True):
     product_name = product["name"] if product else "material"
     steps = [
         ("Requirement", f"Share the {product_name.lower()}, application, destination, and expected volume."),
@@ -154,10 +154,13 @@ def _process(g, product=None):
         f'<li class="ml-process-step" data-reveal><span>{index:02d}</span><h3>{escape(title)}</h3><p>{escape(text)}</p></li>'
         for index, (title, text) in enumerate(steps, start=1)
     )
+    photo = ('<figure class="ml-process-image" data-reveal><img src="/assets/optimized/packing-area.jpg" '
+             'alt="Industrial mineral packing area with material bags prepared for shipment" loading="lazy" />'
+             '<figcaption>Packing preparation · Export supply from India</figcaption></figure>') if show_photo else ''
     return f'''<section class="ml-section ml-section--process" id="process"><div class="ml-container">
       {_heading(g, "Supply route", "From specification to vessel.", "Four approvals that connect the material requirement to the loading plan.")}
       <ol class="ml-process">{steps_markup}</ol>
-      <figure class="ml-process-image" data-reveal><img src="/assets/optimized/packing-area.jpg" alt="Industrial mineral packing area with material bags prepared for shipment" loading="lazy" /><figcaption>Packing preparation · Export supply from India</figcaption></figure>
+      {photo}
     </div></section>'''
 
 
@@ -286,15 +289,27 @@ def render_product_page(g, product):
     </div></section>'''
     applications = [(item, "") for item in product["applications"]]
     checks = ''.join(f'<li>{escape(point)}</li>' for point in product.get("booking_points", product["specs"]))
+    evidence = ('<figure class="ml-evidence" data-reveal><img src="/assets/optimized/packing-area.jpg" '
+                'alt="Packing area for bagged industrial mineral shipments" loading="lazy" />'
+                f'<figcaption>Packing basis / {escape(product["packing"])}</figcaption></figure>')
+    if product['slug'] == 'bentonite':
+        evidence = '''<figure class="ml-evidence ml-product-video" data-reveal>
+          <video controls muted playsinline preload="none" width="848" height="480"
+            poster="/assets/bentonite/bentonite-clip-poster.webp" aria-label="Silent bentonite yard video" aria-describedby="bentonite-video-caption">
+            <source src="/assets/bentonite/bentonite-clip.mp4" type="video/mp4" />
+            <source src="/assets/bentonite/bentonite-clip.webm" type="video/webm" />
+            <a href="/assets/bentonite/bentonite-clip.mp4">Watch the silent bentonite yard video</a>.
+          </video><figcaption id="bentonite-video-caption">Bentonite yard footage · Silent clip. Visual reference, not a grade or performance test.</figcaption>
+        </figure>'''
     content += f'''<section class="ml-section ml-section--applications"><div class="ml-container ml-use-layout">
       <div>{_heading(g, "Application fit", "Where this material works.")}{_ledger(g, applications)}</div>
       <aside class="ml-buying-checks" data-reveal><p class="ml-eyebrow">Before ordering</p><h3>Build the technical brief.</h3><ul>{checks}</ul><p>{escape(product["commercial_fit"])}</p></aside>
     </div></section>
     <section class="ml-section ml-section--documents" id="technical-documents"><div class="ml-container ml-document-layout">
       <div>{_heading(g, "Technical evidence", "Documents for your review.", product.get("parameter_docs_copy", "TDS and sample COA references for the discussed material. Confirm the applicable grade before approval."))}{_documents(g, product)}</div>
-      <figure class="ml-evidence" data-reveal><img src="/assets/optimized/packing-area.jpg" alt="Packing area for bagged industrial mineral shipments" loading="lazy" /><figcaption>Packing basis / {escape(product["packing"])}</figcaption></figure>
+      {evidence}
     </div></section>'''
-    content += _process(g, product)
+    content += _process(g, product, show_photo=product['slug'] != 'bentonite')
     faq_markup, faq_schema = g["render_faq"](product)
     faq_markup = faq_markup.replace('class="faq-item"', 'class="ml-faq"')
     content += f'<section class="ml-section"><div class="ml-container">{_heading(g, "Buyer questions", "Before you confirm supply.")}<div class="ml-faq-list">{faq_markup}</div></div></section>'

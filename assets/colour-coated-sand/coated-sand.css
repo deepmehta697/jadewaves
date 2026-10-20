@@ -11,33 +11,33 @@
 .coated-sand-crosslink a { color: var(--ml-jade); margin-left: .5rem; }
 .coated-sand-related { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 3rem; font-size: .8125rem; color: var(--ml-slate); }
 .coated-sand-carousel { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: clamp(2rem,5vw,5rem); }
-.coated-sand-stage { min-width: 0; padding: 1.5rem; background: #e8e9e3; }
-.coated-sand-photo { display: grid; place-items: center; min-height: 340px; touch-action: pan-y; }
-.coated-sand-photo img { display: block; width: auto; height: auto; max-width: 100%; max-height: 380px; object-fit: contain; }
+.coated-sand-stage { min-width: 0; padding: 1.25rem; background: #e8e9e3; }
+.coated-sand-photo { display: grid; place-items: center; aspect-ratio: 4 / 3; min-height: 0; touch-action: pan-y; overflow: hidden; }
+.coated-sand-photo img { display: block; width: 100%; height: 100%; min-height: 0; max-width: 100%; object-fit: contain; }
 .coated-sand-photo img.is-changing { animation: coated-sand-in 200ms ease both; }
 .coated-sand-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; }
-.coated-sand-controls > span { font: .6875rem/1.5 var(--ml-mono); color: var(--ml-slate); }
+.coated-sand-controls > span { font: .875rem/1.5 var(--ml-mono); color: var(--ml-slate); }
 .coated-sand-controls > div { display: flex; gap: .5rem; }
 .coated-sand-controls button { display: grid; place-items: center; width: 44px; height: 44px; background: transparent; border: 1px solid #b7bdb3; font-size: 1.2rem; transition: background-color 160ms,color 160ms; }
 .coated-sand-controls button:hover { background: var(--ml-jade); color: white; border-color: var(--ml-jade); }
 .coated-sand-selection { min-width: 0; }
 .coated-sand-selection h3 { font: 400 clamp(2.5rem,3.5vw,3.6rem)/1.1 var(--ml-serif); letter-spacing: -.035em; }
-.coated-sand-size { margin-top: .6rem; color: var(--ml-slate); font-size: .875rem; }
-.coated-sand-selection label { display: block; margin-block: 1.5rem .5rem; font-size: .75rem; font-weight: 600; }
+.coated-sand-size { margin-top: .6rem; color: var(--ml-slate); font-size: .9375rem; }
+.coated-sand-selection label { display: block; margin-block: 1.5rem .5rem; font-size: .9375rem; font-weight: 600; }
 .coated-sand-selection select { width: 100%; min-height: 48px; padding: .7rem .85rem; border: 1px solid var(--ml-rule); background: var(--ml-chalk); color: var(--ml-iron); font-size: .875rem; }
 .coated-sand-use { margin-block: 1.75rem; }
-.coated-sand-use h4 { font: 600 .75rem/1.5 var(--ml-sans); margin-bottom: .7rem; }
-.coated-sand-use dl > div { display: grid; grid-template-columns: 5.25rem 1fr; gap: 1rem; padding-block: .45rem; font-size: .8125rem; }
+.coated-sand-use h4 { font: 600 .875rem/1.5 var(--ml-sans); margin-bottom: .7rem; }
+.coated-sand-use dl > div { display: grid; grid-template-columns: 5.25rem 1fr; gap: 1rem; padding-block: .45rem; font-size: .9375rem; }
 .coated-sand-use dt { color: var(--ml-slate); }
 .coated-sand-use dd { margin: 0; }
 .coated-sand-enquire { justify-content: space-between; width: 100%; }
-.coated-sand-caption { margin-top: .75rem; font-size: .6875rem; color: var(--ml-slate); }
+.coated-sand-caption { margin-top: .75rem; font-size: .875rem; line-height: 1.6; color: var(--ml-slate); }
 .coated-sand-notes { margin-top: 2rem; border-block: 1px solid var(--ml-rule); }
-.coated-sand-notes summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 56px; padding-block: .8rem; cursor: pointer; list-style: none; font-size: .8125rem; }
+.coated-sand-notes summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 56px; padding-block: .8rem; cursor: pointer; list-style: none; font-size: .9375rem; }
 .coated-sand-notes summary::-webkit-details-marker { display: none; }
 .coated-sand-notes summary span { font-size: 1.2rem; transition: transform 160ms; }
 .coated-sand-notes[open] summary span { transform: rotate(45deg); }
-.coated-sand-notes > div { max-width: 85ch; padding-block: .25rem 1.25rem; color: var(--ml-slate); font-size: .8125rem; }
+.coated-sand-notes > div { max-width: 72ch; padding-block: .25rem 1.25rem; color: var(--ml-slate); font-size: .9375rem; line-height: 1.7; }
 .coated-sand-notes p + p { margin-top: .75rem; }
 .coated-sand-status { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .coated-sand-noscript { margin-top: 1rem; font-size: .75rem; }
@@ -45,16 +45,12 @@
 @media (max-width: 960px) {
   .coated-sand-carousel { gap: 2rem; grid-template-columns: 1fr 1fr; }
   .coated-sand-stage { padding: 1rem; }
-  .coated-sand-photo { min-height: 280px; }
-  .coated-sand-photo img { max-height: 320px; }
   .coated-sand-use dl > div { grid-template-columns: 1fr; gap: .15rem; }
 }
 @media (max-width: 640px) {
   .coated-sand-heading h2, .coated-sand-heading h1 { font-size: 2.8rem; }
   .coated-sand-heading { margin-bottom: 1.5rem; }
   .coated-sand-carousel { grid-template-columns: 1fr; gap: 1.5rem; }
-  .coated-sand-photo { min-height: 240px; }
-  .coated-sand-photo img { max-height: 290px; }
   .coated-sand-selection h3 { font-size: 2.5rem; }
   .coated-sand-selection select { font-size: 16px; }
   .coated-sand-use dl > div { grid-template-columns: 5.25rem 1fr; gap: .75rem; }

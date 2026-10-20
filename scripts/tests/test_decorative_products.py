@@ -27,14 +27,14 @@ class DecorativeProductTests(unittest.TestCase):
 
     def test_core_eleven_preserved_with_four_decorative_catalogue_products(self):
         self.assertEqual(len(site.PRODUCTS), 11)
-        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 15)
-        self.assertEqual(len({p['slug'] for p in site.CATALOGUE_PRODUCTS}), 15)
+        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 16)
+        self.assertEqual(len({p['slug'] for p in site.CATALOGUE_PRODUCTS}), 16)
         family = next(f for f in site.PRODUCT_FAMILIES if f['id'] == 'decorative-range')
-        self.assertEqual(family['products'], ['pebbles', 'colour-coated-silica-sand', 'glass-chips', 'grout-sand'])
+        self.assertEqual(family['products'], ['pebbles', 'colour-coated-silica-sand', 'glass-chips', 'grout-sand', 'marble-chips'])
 
     def test_home_and_materials_link_to_both_new_pages_without_bogus_tds(self):
         home, materials = site.render_homepage(), site.render_products_index()
-        self.assertIn('15 products', materials)
+        self.assertIn('16 products', materials)
         for slug in self.pages:
             self.assertIn('href="products/' + slug + '/"', home)
             self.assertIn('href="products/' + slug + '/#collection"', materials)
@@ -122,7 +122,8 @@ class DecorativeProductTests(unittest.TestCase):
         for html in self.pages.values():
             self.assertIn('data-product-email', html)
             self.assertIn('mailto:' + site.CONTACT['sales_email'] + '?', html)
-            self.assertNotIn('data-inquiry-form', html)
+            self.assertIn('data-inquiry-form', html)
+            self.assertIn('data-decorative-form', html)
         source = (ROOT / 'assets/decorative-products/carousel.js').read_text()
         self.assertNotRegex(source, r'\bfetch\(|XMLHttpRequest|sendBeacon|gtag\(|setInterval|setTimeout')
 

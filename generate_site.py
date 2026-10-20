@@ -706,7 +706,7 @@ PRODUCT_FAMILIES.append({
     'id': 'decorative-range', 'name': 'Decorative Range',
     'copy': 'Pebbles, glass chips and coloured sands. Choose the colour, finish and size for your project.',
     'best_for': ['Decorative finishes', 'Colour selection', 'Sample-led approval'],
-    'products': ['pebbles', 'colour-coated-silica-sand', 'glass-chips', 'grout-sand'], 'visual_slug': 'pebbles',
+    'products': ['pebbles', 'colour-coated-silica-sand', 'glass-chips', 'grout-sand', 'marble-chips'], 'visual_slug': 'pebbles',
 })
 
 HOME_FEATURED = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
@@ -1531,6 +1531,8 @@ PAGE_LASTMOD = {
     "/products/colour-coated-silica-sand/": "2026-10-20",
     "/products/glass-chips/": "2026-10-20",
     "/products/grout-sand/": "2026-10-20",
+    "/products/marble-chips/": "2026-10-20",
+    "/products/bentonite/": "2026-10-20",
 }
 
 
@@ -1696,7 +1698,7 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
     schema_blob = json.dumps(schema, ensure_ascii=False)
     tracking_markup = analytics_snippet()
     decorative_path = path in {'/products/pebbles/', '/products/glass-chips/',
-                               '/products/grout-sand/', '/products/colour-coated-silica-sand/'}
+                               '/products/grout-sand/', '/products/colour-coated-silica-sand/', '/products/marble-chips/'}
     # Email-draft pages do not need the submission form's third-party CAPTCHA.
     # Any future real inquiry form automatically retains its protection.
     recaptcha_markup = recaptcha_script_markup() if not decorative_path or 'data-inquiry-form' in body else ''
@@ -1766,9 +1768,9 @@ PRODUCT_VISUALS = {
         "alt": "Quartz sand and quartz mineral material detail",
     },
     "bentonite": {
-        "hero": "/assets/bentonite-sample-reference.png",
-        "thumb": "/assets/bentonite-sample-reference.png",
-        "alt": "Bentonite powder sample in a glass dish",
+        "hero": "/assets/bentonite/bentonite-clay.webp",
+        "thumb": "/assets/bentonite/bentonite-clay.webp",
+        "alt": "Bentonite clay powder and small clumps",
     },
     "kaolin--china-clay": {
         "hero": "/assets/china-clay-powder.png",
@@ -1898,7 +1900,7 @@ def render_products_index() -> str:
 
 
 def render_product_page(product: dict) -> str:
-    if product['slug'] in {'glass-chips', 'grout-sand'}:
+    if product['slug'] in {p['slug'] for p in decorative_products.PRODUCTS}:
         return decorative_products.render(globals(), product['slug'])
     if product['slug'] == 'pebbles':
         return pebbles.render(globals())
@@ -1956,7 +1958,7 @@ def product_sitemap_images(path: str) -> list[str]:
         photos = pebbles.catalogue()
     elif path == '/products/colour-coated-silica-sand/':
         photos = colour_coated_sand.catalogue()
-    elif path in {'/products/glass-chips/', '/products/grout-sand/'}:
+    elif path in {f'/products/{p["slug"]}/' for p in decorative_products.PRODUCTS}:
         photos = decorative_products.catalogue(path.strip('/').split('/')[-1])
     else:
         return []

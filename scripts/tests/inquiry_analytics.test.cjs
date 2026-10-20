@@ -26,7 +26,11 @@ function createHarness(options = {}) {
   const attributes = new Map();
   const form = {
     dataset: { recaptchaConfigured: options.configured === false ? "false" : "true" },
-    elements: { namedItem() { return null; } },
+    elements: { namedItem(name) {
+      if (name !== "request_type" || !options.requestOptions) return null;
+      return {tagName: "SELECT", options: options.requestOptions.map(value => ({value})),
+        get value() {return values.get(name);}, set value(value) {values.set(name, value);}};
+    } },
     querySelector(selector) { return selector === "[data-form-note]" ? note : button; },
     addEventListener(type, callback) { if (type === "submit") submit = callback; },
     reportValidity() { return options.valid !== false; },
@@ -35,7 +39,10 @@ function createHarness(options = {}) {
     reset() { resets++; values.clear(); },
   };
   const document = {
-    querySelector() { return null; },
+    querySelector(selector) {
+      if (selector === '.contact-details a[href^="mailto:"]' && options.fallbackEmail) return {getAttribute() {return options.fallbackEmail;}};
+      return null;
+    },
     querySelectorAll(selector) { return selector === "[data-inquiry-form]" ? [form] : []; },
     getElementById() { return null; },
     documentElement: { classList: { remove() {} } },
@@ -79,7 +86,7 @@ function createHarness(options = {}) {
   }
   vm.runInNewContext(source, {
     window, document, location, fetch, FormData: MockFormData,
-    sessionStorage: { getItem() { return null; } }, URL,
+    sessionStorage: { getItem() { return options.pendingRequest || null; }, removeItem() {} }, URL,
   }, { filename: "material-ledger.js" });
   return {
     events, calls, button, note, attributes,
@@ -114,11 +121,45 @@ for (const request_type of ["Quote", "Sample", "TDS", "General Inquiry"]) {
   });
 }
 
+for (const product of ["Pebbles", "Colour-Coated Silica Sand", "Glass Chips", "Grout Sand", "Marble Chips"]) {
+  test(`confirmed decorative inquiry uses bounded catalogue label: ${product}`, async () => {
+    const harness = createHarness({ values: { product, request_type: "Sample" } });
+    assert.equal(harness.events.length, 0);
+    await harness.submit();
+    assert.equal(harness.events.length, 1);
+    assert.equal(harness.events[0][2].product, product);
+    assert.equal(harness.events[0][2].request_type, "Sample");
+    assert.equal(JSON.stringify(harness.events).includes("Private"), false);
+  });
+}
+
 test("unknown or personal request/product text is replaced with fixed labels", async () => {
   const harness = createHarness({ values: { request_type: "private@example.test", product: "Private free text" } });
   await harness.submit();
   assert.equal(harness.events[0][2].request_type, "General Inquiry");
   assert.equal(harness.events[0][2].product, "Unspecified");
+});
+
+test("decorative forms ignore an unsupported pending TDS request instead of blanking Sample", async () => {
+  const harness = createHarness({values: {request_type: "Sample", product: "Glass Chips"},
+    requestOptions: ["Sample", "Quote", "General Inquiry"], pendingRequest: "TDS"});
+  await harness.submit();
+  assert.equal(harness.events[0][2].request_type, "Sample");
+});
+
+test("supported pending requests still prefill decorative forms", async () => {
+  const harness = createHarness({values: {request_type: "Sample", product: "Grout Sand"},
+    requestOptions: ["Sample", "Quote", "General Inquiry"], pendingRequest: "Quote"});
+  await harness.submit();
+  assert.equal(harness.events[0][2].request_type, "Quote");
+});
+
+test("error fallback shows the plain email address, not the draft query payload", async () => {
+  const harness = createHarness({ok: false, fallbackEmail: "mailto:deep@jadewavesenterprise.com?subject=Private%20selection&body=Private%20draft"});
+  await harness.submit();
+  assert.ok(harness.note.textContent.includes("Please email deep@jadewavesenterprise.com."));
+  assert.equal(harness.note.textContent.includes("subject="), false);
+  assert.equal(harness.note.textContent.includes("Private"), false);
 });
 
 for (const [name, options] of [

@@ -3,6 +3,7 @@ import json
 import re
 from html import escape
 from pathlib import Path
+from templates import decorative_inquiry
 
 ROOT = Path(__file__).resolve().parents[1]
 PATH = '/products/pebbles/'
@@ -43,9 +44,16 @@ def render(g):
     }
     for before, after in replacements.items():
         content = content.replace(before, after)
+    first = entries[0]
+    extra = ('<p class="pebble-brief-name" data-brief-name>' + escape(first['name']) + '</p>'
+             '<label for="enquiry-size">Preferred size</label><select id="enquiry-size" data-enquiry-size disabled>'
+             + ''.join('<option>' + escape(size) + '</option>' for size in first['sizes']) + '</select>')
+    enquiry = decorative_inquiry.render(g, PRODUCT['name'],
+        'Pebble: ' + first['name'] + '\nFinish: ' + first['finish'] + '\nPreferred size: ' + first['sizes'][0], 'data-email', extra)
+    content = content.replace('{{ENQUIRY}}', enquiry)
     assert not re.search(r'\{\{\w+\}\}', content)
     data = json.dumps(entries, ensure_ascii=False).replace('<', '\\u003c')
-    body = (g['nav_html']() + '<main id="main-content" tabindex="-1">' + content + '</main>'
+    body = (decorative_inquiry.navigation(g) + '<main id="main-content" tabindex="-1">' + content + '</main>'
             + f'<script type="application/json" id="pebble-data">{data}</script>' + g['footer_html']())
     schema = [
         {'@context': 'https://schema.org', '@type': 'Product', 'name': 'Pebbles',
@@ -63,4 +71,4 @@ def render(g):
               f'<script defer src="assets/pebbles/pebbles.js?v={g["BUILD_VERSION"]}"></script>')
     markup = markup.replace(g['BASE_URL'] + '/assets/jade-waves-logo-transparent.png',
                             g['BASE_URL'] + '/assets/pebbles/white-polished.webp')
-    return markup.replace('</head>', assets + '</head>')
+    return decorative_inquiry.add_assets(g, markup.replace('</head>', assets + '</head>'))

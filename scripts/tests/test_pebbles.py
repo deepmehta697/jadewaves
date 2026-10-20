@@ -27,8 +27,8 @@ class PebbleIntegrationTests(unittest.TestCase):
 
     def test_core_products_remain_with_the_decorative_catalogue_pages(self):
         self.assertEqual(len(site.PRODUCTS), 11)
-        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 15)
-        self.assertEqual(len({p['slug'] for p in site.CATALOGUE_PRODUCTS}), 15)
+        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 16)
+        self.assertEqual(len({p['slug'] for p in site.CATALOGUE_PRODUCTS}), 16)
         self.assertIn('pebbles', site.CATALOGUE_BY_SLUG)
         for p in site.PRODUCTS:
             self.assertIn(p['slug'], site.CATALOGUE_BY_SLUG)
@@ -45,7 +45,7 @@ class PebbleIntegrationTests(unittest.TestCase):
         for html in (site.render_homepage(), site.render_products_index()):
             self.assertIn('href="products/pebbles/"', html)
             self.assertIn('Pebbles', html)
-        self.assertIn('15 products', site.render_products_index())
+        self.assertIn('16 products', site.render_products_index())
 
     def test_one_photo_with_clean_data_and_all_local_assets(self):
         entries = pebbles.catalogue()
@@ -69,7 +69,8 @@ class PebbleIntegrationTests(unittest.TestCase):
         links = [a['href'] for t, a in self.tags if t == 'a' and 'data-email' in a]
         self.assertEqual(len(links), 1)
         self.assertTrue(links[0].startswith('mailto:' + site.CONTACT['sales_email'] + '?'))
-        self.assertNotIn('data-inquiry-form', self.html)
+        self.assertIn('data-inquiry-form', self.html)
+        self.assertIn('data-decorative-form', self.html)
 
     def test_carousel_paths_follow_the_site_base(self):
         raw = re.search(r'<script type="application/json" id="pebble-data">(.*?)</script>', self.html, re.S).group(1)

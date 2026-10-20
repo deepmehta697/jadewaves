@@ -11,6 +11,8 @@
   const analyticsProducts = new Set([
     "Silica Sand", "Silica Flour", "Quartz Sand", "Bentonite", "Kaolin (China Clay)",
     "Talc", "Feldspar", "Salt", "Fly Ash", "Copper Slag", "Rubber Granules",
+    "Pebbles", "Colour-Coated Silica Sand", "Glass Chips", "Grout Sand",
+    "Marble Chips",
   ]);
   const pendingRequestKey = "jade-waves-inquiry-request";
   let backgroundState = [];
@@ -118,7 +120,10 @@
 
   const setRequestType = (value) => {
     if (!requestTypes.has(value)) return;
-    formTargets.forEach((form) => { const field = form.elements.namedItem("request_type"); if (field) field.value = value; });
+    formTargets.forEach((form) => {
+      const field = form.elements.namedItem("request_type");
+      if (field && (field.tagName !== "SELECT" || [...field.options].some((option) => option.value === value))) field.value = value;
+    });
   };
   const setProduct = (value) => {
     formTargets.forEach((form) => {
@@ -178,7 +183,7 @@
     const note = form.querySelector("[data-form-note]");
     const submitButton = form.querySelector('button[type="submit"]');
     const defaultLabel = submitButton?.textContent.trim() || "Send requirement ↗";
-    const email = document.querySelector('.contact-details a[href^="mailto:"]')?.getAttribute("href").slice(7);
+    const email = document.querySelector('.contact-details a[href^="mailto:"]')?.getAttribute("href").slice(7).split("?")[0];
     const phone = document.querySelector('.contact-details a[href^="tel:"]')?.textContent.trim();
     const fallback = email ? `Please email ${email}${phone ? ` or call ${phone}` : ""}.` : "Please contact the export desk directly.";
     const setNote = (message, state) => {

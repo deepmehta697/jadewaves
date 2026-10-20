@@ -61,10 +61,11 @@ class DecorativeGrowthTests(unittest.TestCase):
             self.assertGreater(int(photos[0]['width']), 0)
             self.assertGreater(int(photos[0]['height']), 0)
 
-    def test_email_draft_pages_do_not_load_form_captcha(self):
+    def test_decorative_pages_now_have_real_forms_with_captcha_and_email_fallback(self):
         for html in self.pages.values():
-            self.assertNotIn('data-inquiry-form', html)
-            self.assertNotIn('google.com/recaptcha/api.js', html)
+            self.assertIn('data-inquiry-form', html)
+            self.assertIn('google.com/recaptcha/api.js', html)
+            self.assertIn('Prefer email?', html)
             self.assertIn(site.GA4_MEASUREMENT_ID, html)
 
     def test_all_core_forms_and_home_keep_captcha(self):

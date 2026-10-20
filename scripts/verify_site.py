@@ -121,7 +121,7 @@ def verify(root):
         if not schemas:
             errors.append(f'{route}: missing JSON-LD')
         schema_types = {item.get('@type') for item in schemas if isinstance(item, dict)}
-        decorative_routes = {'/products/pebbles/', '/products/colour-coated-silica-sand/', '/products/glass-chips/', '/products/grout-sand/'}
+        decorative_routes = {'/products/pebbles/', '/products/colour-coated-silica-sand/', '/products/glass-chips/', '/products/grout-sand/', '/products/marble-chips/'}
         required_product_schema = {'Product', 'BreadcrumbList'} if route in decorative_routes else {'Product', 'FAQPage', 'BreadcrumbList'}
         if route.startswith('/products/') and route != '/products/' and not required_product_schema <= schema_types:
             errors.append(f'{route}: missing product schema')
@@ -137,7 +137,7 @@ def verify(root):
         if any(term in markup for term in ['data-route-network', '<canvas', 'data-parallax', 'autoplay']):
             errors.append(f'{route}: obsolete decorative motion or autoplay')
         forms = [attrs for tag, attrs in page.tags if tag == 'form' and 'data-inquiry-form' in attrs]
-        if route.startswith('/products/') and route != '/products/' and route not in decorative_routes and not forms:
+        if route.startswith('/products/') and route != '/products/' and not forms:
             errors.append(f'{route}: missing contextual form')
         if route == '/products/pebbles/':
             email = [a.get('href', '') for t, a in page.tags if t == 'a' and 'data-email' in a]
@@ -154,7 +154,7 @@ def verify(root):
                     errors.append(f'{route}: missing colour catalogue or image asset')
             except (ValueError, KeyError, TypeError):
                 errors.append(f'{route}: invalid colour catalogue')
-        if route in {'/products/glass-chips/', '/products/grout-sand/'}:
+        if route in {'/products/glass-chips/', '/products/grout-sand/', '/products/marble-chips/'}:
             email = [a.get('href', '') for t, a in page.tags if t == 'a' and 'data-product-email' in a]
             if not email or not email[0].startswith('mailto:' + g.CONTACT['sales_email'] + '?') or 'data-product-carousel' not in markup:
                 errors.append(f'{route}: missing contextual email enquiry or manual carousel')
@@ -162,10 +162,10 @@ def verify(root):
             try:
                 data = json.loads(raw.group(1)) if raw else {}
                 entries, colours = data.get('entries', []), data.get('colours', [])
-                count = 6 if route == '/products/glass-chips/' else 2
+                count = {'/products/glass-chips/': 6, '/products/grout-sand/': 2, '/products/marble-chips/': 12}[route]
                 if len(entries) != count or any(not (root / e['src']).is_file() for e in entries + colours):
                     errors.append(f'{route}: invalid product catalogue or missing asset')
-                if len(data.get('sizes', [])) != 3:
+                if len(data.get('sizes', [])) != (5 if route == '/products/marble-chips/' else 3):
                     errors.append(f'{route}: missing grade options')
                 if route == '/products/grout-sand/':
                     radios = [a for t, a in page.tags if t == 'input' and 'data-product-colour' in a]

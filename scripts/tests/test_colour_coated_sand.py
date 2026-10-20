@@ -28,11 +28,11 @@ class ColourCoatedSandTests(unittest.TestCase):
 
     def test_decorative_family_preserves_core_catalogue_and_approved_additions(self):
         self.assertEqual(len(site.PRODUCTS), 11)
-        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 15)
+        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 16)
         family = next(f for f in site.PRODUCT_FAMILIES if f['id'] == 'decorative-range')
         self.assertEqual(family['name'], 'Decorative Range')
-        self.assertEqual(family['products'], ['pebbles', 'colour-coated-silica-sand', 'glass-chips', 'grout-sand'])
-        self.assertIn('15 products', site.render_products_index())
+        self.assertEqual(family['products'], ['pebbles', 'colour-coated-silica-sand', 'glass-chips', 'grout-sand', 'marble-chips'])
+        self.assertIn('16 products', site.render_products_index())
         self.assertIn('id="decorative-stone"', site.render_products_index())
 
     def test_home_and_materials_both_link_to_the_new_page(self):
@@ -85,7 +85,8 @@ class ColourCoatedSandTests(unittest.TestCase):
         links = [a['href'] for t, a in self.tags if t == 'a' and 'data-sand-email' in a]
         self.assertEqual(len(links), 1)
         self.assertEqual(urlsplit(links[0]).path, site.CONTACT['sales_email'])
-        self.assertNotIn('data-inquiry-form', self.html)
+        self.assertIn('data-inquiry-form', self.html)
+        self.assertIn('data-decorative-form', self.html)
         self.assertNotIn('data-preview-inquiry-form', self.html)
 
     def test_no_supplier_rates_or_invented_technical_claims(self):

@@ -1,4 +1,18 @@
 {
+  "/assets/bentonite/bentonite-clay.webp": {
+    "width": 1000,
+    "height": 1000,
+    "variants": [
+      {"src": "/assets/bentonite/bentonite-clay-160.webp", "width": 160},
+      {"src": "/assets/bentonite/bentonite-clay-480.webp", "width": 480},
+      {"src": "/assets/bentonite/bentonite-clay-960.webp", "width": 960},
+      {"src": "/assets/bentonite/bentonite-clay.webp", "width": 1000}
+    ]
+  },
+  "/assets/marble-chips/white.webp": {
+    "width": 717,
+    "height": 714
+  },
   "/assets/glass-chips/clear.webp": {
     "width": 1040,
     "height": 542

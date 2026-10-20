@@ -1,0 +1,98 @@
+[
+  {
+    "id": "white",
+    "name": "White",
+    "src": "assets/marble-chips/white.webp",
+    "width": 717,
+    "height": 714,
+    "alt": "White marble chips"
+  },
+  {
+    "id": "red",
+    "name": "Red",
+    "src": "assets/marble-chips/red.webp",
+    "width": 720,
+    "height": 713,
+    "alt": "Red marble chips"
+  },
+  {
+    "id": "rojo-pink",
+    "name": "Rojo pink",
+    "src": "assets/marble-chips/rojo-pink.webp",
+    "width": 722,
+    "height": 708,
+    "alt": "Rojo pink marble chips"
+  },
+  {
+    "id": "pink-wood",
+    "name": "Pink wood",
+    "src": "assets/marble-chips/pink-wood.webp",
+    "width": 720,
+    "height": 716,
+    "alt": "Pink wood marble chips"
+  },
+  {
+    "id": "green",
+    "name": "Green",
+    "src": "assets/marble-chips/green.webp",
+    "width": 720,
+    "height": 713,
+    "alt": "Green marble chips"
+  },
+  {
+    "id": "grey",
+    "name": "Grey",
+    "src": "assets/marble-chips/grey.webp",
+    "width": 720,
+    "height": 711,
+    "alt": "Grey marble chips"
+  },
+  {
+    "id": "mocha",
+    "name": "Mocha",
+    "src": "assets/marble-chips/mocha.webp",
+    "width": 719,
+    "height": 713,
+    "alt": "Mocha marble chips"
+  },
+  {
+    "id": "brown",
+    "name": "Brown",
+    "src": "assets/marble-chips/brown.webp",
+    "width": 719,
+    "height": 711,
+    "alt": "Brown marble chips"
+  },
+  {
+    "id": "black",
+    "name": "Black",
+    "src": "assets/marble-chips/black.webp",
+    "width": 719,
+    "height": 711,
+    "alt": "Black marble chips"
+  },
+  {
+    "id": "panther",
+    "name": "Panther",
+    "src": "assets/marble-chips/panther.webp",
+    "width": 719,
+    "height": 711,
+    "alt": "Panther marble chips"
+  },
+  {
+    "id": "ivory-cream",
+    "name": "Ivory cream",
+    "src": "assets/marble-chips/ivory-cream.webp",
+    "width": 722,
+    "height": 714,
+    "alt": "Ivory cream marble chips"
+  },
+  {
+    "id": "mixed-marble",
+    "name": "Mixed marble",
+    "src": "assets/marble-chips/mixed-marble.webp",
+    "width": 719,
+    "height": 707,
+    "alt": "Mixed marble marble chips"
+  }
+]

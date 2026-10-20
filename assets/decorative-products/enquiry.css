@@ -1,0 +1,24 @@
+/* One quiet enquiry section, shared by the four decorative materials. */
+.decorative-enquiry { background: var(--ml-limestone); border-top: 1px solid var(--ml-rule); scroll-margin-top: 7rem; }
+.decorative-enquiry-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem,6vw,6rem); align-items: start; }
+.decorative-enquiry-intro h2 { max-width: 15ch; font-size: clamp(2.5rem,4vw,4rem); scroll-margin-top: 7rem; }
+.decorative-enquiry-intro > p:not(.ml-eyebrow) { max-width: 40ch; margin-top: 1.25rem; color: var(--ml-slate); font-size: 1rem; }
+.decorative-enquiry-selection { margin-block: 1.75rem; padding-block: 1.25rem; border-block: 1px solid var(--ml-rule); }
+.decorative-enquiry-selection > span { font-size: .875rem; color: var(--ml-slate); }
+.decorative-enquiry-selection > p { margin-top: .5rem; }
+[data-decorative-selection] { white-space: pre-line; font-size: .9375rem; line-height: 1.7; }
+.decorative-enquiry-fallback { display: flex; flex-direction: column; align-items: start; gap: .75rem; font-size: .9375rem; overflow-wrap: anywhere; }
+.decorative-inquiry-form label > span, .decorative-inquiry-form .form-note { font-size: .9375rem; }
+.decorative-inquiry-form label small { font-size: inherit; font-weight: 400; color: var(--ml-slate); }
+.decorative-inquiry-form input, .decorative-inquiry-form select, .decorative-inquiry-form textarea { min-width: 0; font-size: 1rem; }
+.decorative-inquiry-form .form-security__hint { font-size: .8125rem; }
+.decorative-inquiry-form .form-actions { align-items: start; }
+.decorative-inquiry-form .form-note { line-height: 1.6; }
+.decorative-enquiry-intro label { display: block; margin-block: 1.5rem .5rem; font-size: .9375rem; font-weight: 600; }
+.decorative-enquiry-intro select { width: 100%; min-height: 48px; padding: .75rem; border: 1px solid var(--ml-rule); background: var(--ml-chalk); color: var(--ml-iron); font-size: 1rem; }
+.decorative-enquiry-intro .pebble-brief-name { font-size: 1.5rem; }
+@media (max-width: 760px) {
+  .decorative-enquiry-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .decorative-enquiry-intro h2 { max-width: none; }
+  .decorative-inquiry-form .form-grid { grid-template-columns: 1fr; }
+}

@@ -110,7 +110,7 @@ def collect(session, site, ga4_property, as_of):
         'Query rows may omit anonymized/low-volume queries; top-row limits apply.',
         'All-markets and excluding-India views are separate; GA4 uses its property timezone.',
         'Sitewide query context is not evidence of rankings for the new pages.',
-        'Organic landing sessions are not inquiries. Decorative email drafts do not emit confirmed generate_lead events.',
+        'Organic landing sessions are not inquiries. Only server-confirmed forms emit generate_lead; opening email drafts does not.',
         'No causal ranking/performance lift can be inferred from this baseline.',
     ]
     return result

@@ -3,7 +3,7 @@ import json
 from html import escape
 from pathlib import Path
 import re
-from templates import decorative_products
+from templates import decorative_products, decorative_inquiry
 
 ROOT = Path(__file__).resolve().parents[1]
 PATH = '/products/colour-coated-silica-sand/'
@@ -46,9 +46,11 @@ def render(g):
     related = ('<nav class="ml-container coated-sand-related" aria-label="Related materials">'
                '<a href="/products/pebbles/">Explore pebbles ↗</a>'
                '<a href="/products/glass-chips/">Explore decorative glass chips ↗</a>'
+               '<a href="/products/marble-chips/">Explore marble chips ↗</a>'
                '<a href="/products/grout-sand/">Explore coloured grout sand ↗</a>'
                '<a href="/products/silica-sand/">Looking for industrial silica sand? ↗</a></nav>')
-    body = g['nav_html']() + '<main id="main-content" tabindex="-1">' + section + related + '</main>' + g['footer_html']()
+    enquiry = decorative_inquiry.render(g, PRODUCT['name'], 'Colour: Red\nGrain size: 0.5–1 mm', 'data-sand-email')
+    body = decorative_inquiry.navigation(g) + '<main id="main-content" tabindex="-1">' + section + related + enquiry + '</main>' + g['footer_html']()
     base = g['BASE_URL']
     schema = [
         {'@context': 'https://schema.org', '@type': 'Product', 'name': PRODUCT['name'],
@@ -66,4 +68,5 @@ def render(g):
     html = html.replace(base + '/assets/jade-waves-logo-transparent.png', base + '/assets/colour-coated-sand/red.webp')
     html = add_styles(g, html)
     html = decorative_products.add_styles(g, html)
-    return html.replace('</head>', f'<script defer src="assets/colour-coated-sand/coated-sand.js?v={g["BUILD_VERSION"]}"></script></head>')
+    html = html.replace('</head>', f'<script defer src="assets/colour-coated-sand/coated-sand.js?v={g["BUILD_VERSION"]}"></script></head>')
+    return decorative_inquiry.add_assets(g, html)
