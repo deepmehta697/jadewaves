@@ -35,6 +35,7 @@ def render(g):
         '{{OPTIONS}}': ''.join(f'<option value="{e["id"]}">{escape(e["name"])}</option>' for e in entries),
         '{{DATA}}': json.dumps(entries, ensure_ascii=False).replace('<', '\\u003c'),
         '{{APPLICATIONS}}': decorative_products.coated_applications(),
+        '{{BUYER_QUESTIONS}}': decorative_products.buyer_questions('colour-coated-silica-sand'),
         '<p class="ml-eyebrow">Silica sand / Decorative range</p>': '<a class="ml-eyebrow coated-range-breadcrumb" href="/products/#decorative-range">Materials / Decorative Range ↗</a>',
         '<h2 id="coated-sand-heading">Colour-coated silica sand.</h2>': '<h1 id="coated-sand-heading">Colour-coated silica sand.</h1>',
         'Standard silica sand COA/TDS references': 'Industrial silica sand COA/TDS references',

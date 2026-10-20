@@ -25,6 +25,12 @@ def add_styles(g, html):
     return html.replace('</head>', f'<link rel="stylesheet" href="assets/decorative-products/decorative-products.css?v={g["BUILD_VERSION"]}" /></head>')
 
 
+def buyer_questions(slug):
+    questions = json.loads((ROOT / 'templates/decorative-buyer-questions.json').read_text())[slug]
+    rows = ''.join('<div><dt>' + escape(q['question']) + '</dt><dd>' + escape(q['answer']) + '</dd></div>' for q in questions)
+    return '<div class="buyer-question-list"><h3>Before you order</h3><dl>' + rows + '</dl></div>'
+
+
 def coated_applications():
     groups = json.loads((ROOT / 'templates/coated-applications.json').read_text())
     assert sum(len(group['items']) for group in groups) == 16
@@ -64,6 +70,7 @@ def render(g, slug):
         'EMAIL': escape(email, quote=True), 'CTA_OBJECT': 'this finish' if slug == 'glass-chips' else 'grout sand',
         'CAPTION': escape(product['caption']), 'NOTES_TITLE': escape(product['notes_title']),
         'NOTES': ''.join(f'<p>{escape(note)}</p>' for note in product['notes']),
+        'BUYER_QUESTIONS': buyer_questions(slug),
         'CHOICE_TEXT': escape(', '.join(e['name'] for e in photos)), 'SIZE_TEXT': escape(' / '.join(product['sizes'])),
         'DATA': json.dumps(config, ensure_ascii=False).replace('<', '\\u003c'),
         'RELATED': f'<a href="/products/{other["slug"]}/">Explore {escape(other["name"].lower())} ↗</a><a href="/products/colour-coated-silica-sand/">Explore colour-coated silica sand ↗</a><a href="/products/pebbles/">Explore decorative pebbles ↗</a>',

@@ -1,0 +1,17 @@
+{
+  "glass-chips": [
+    {"question": "What should I include in a sample enquiry?", "answer": "Choose a finish and listed chip grade, then share your application, binder system, quantity and destination. The enquiry button carries your selected finish and size into an email draft."},
+    {"question": "Can I use the photograph to approve grading?", "answer": "Use the photograph for appearance only. Confirm the chip-size range and grading against an approved physical sample before ordering; a photograph is not a sieve report."},
+    {"question": "Is binder compatibility already confirmed?", "answer": "No. Confirm suitability for your own terrazzo or surface system through sample assessment. A catalogue size or finish does not establish the performance of the completed system."}
+  ],
+  "grout-sand": [
+    {"question": "Is this a ready-to-use grout?", "answer": "This is coloured filler sand for a grout or surface formulation, not a complete ready-to-use grout. Specify your binder system and intended application when requesting a sample."},
+    {"question": "How should I specify a mesh grade?", "answer": "Request the listed 100 mesh or 150 mesh grade and state your sieve standard and acceptance limits. The catalogue's 0.5–1 mm option is separate; do not assume a millimetre conversion without confirming the grading standard."},
+    {"question": "How do I approve a catalogue or custom colour?", "answer": "Choose from the 25 named chart references or share your target shade for a custom-colour enquiry. Confirm the actual shade with a physical sample; the carousel shows assorted samples rather than a photograph of every colour."}
+  ],
+  "colour-coated-silica-sand": [
+    {"question": "How is this different from industrial silica sand?", "answer": "This range is colour-coated decorative sand in a listed 0.5–1 mm grain size. Industrial silica sand chemistry and technical sheets do not establish the coating's performance or certify this decorative range."},
+    {"question": "What should be checked for my finish system?", "answer": "State the intended use, binder system, target shade and grain-size requirement. Confirm coating performance and suitability against an approved sample. Aquarium decoration and children's play applications require specific suitability and safety verification."},
+    {"question": "What information is needed for a quotation?", "answer": "Include your selected colour, 0.5–1 mm grade, quantity, destination, packing requirement and whether you need a sample. Confirm the final specification and packing before an order."}
+  ]
+}

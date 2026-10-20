@@ -1,5 +1,10 @@
 /* Existing approved product layout, extended only for two compact grade selectors. */
 .decorative-lead { max-width: 54ch; margin-top: .8rem; color: var(--ml-slate); font-size: .9375rem; }
+.buyer-question-list { margin-top: 1.25rem; }
+.buyer-question-list h3 { margin-bottom: .75rem; font: 600 .8125rem/1.5 var(--ml-sans); letter-spacing: 0; color: var(--ml-iron); }
+.buyer-question-list dl > div + div { margin-top: 1rem; }
+.buyer-question-list dt { margin-bottom: .25rem; font-weight: 600; color: var(--ml-iron); }
+.buyer-question-list dd { margin: 0; line-height: 1.7; }
 .decorative-selection-name { font: 400 clamp(2.5rem,3.5vw,3.6rem)/1.1 var(--ml-serif); letter-spacing: -.035em; }
 .decorative-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .decorative-choices > div { min-width: 0; }

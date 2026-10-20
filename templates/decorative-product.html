@@ -8,7 +8,7 @@
     <div class="coated-sand-carousel" role="region" aria-roledescription="carousel" aria-label="{{NAME}} selections" tabindex="0" data-product-carousel>
       <div class="coated-sand-stage">
         <figure class="coated-sand-photo" role="group" aria-roledescription="slide" aria-label="1 of {{COUNT}}: {{FIRST_NAME}}" data-product-frame>
-          <img src="{{FIRST_SRC}}" alt="{{FIRST_ALT}}" width="{{WIDTH}}" height="{{HEIGHT}}" loading="eager" decoding="async" data-product-photo>
+          <img src="{{FIRST_SRC}}" alt="{{FIRST_ALT}}" width="{{WIDTH}}" height="{{HEIGHT}}" loading="eager" fetchpriority="high" decoding="async" data-product-photo>
         </figure>
         <div class="coated-sand-controls" data-product-controls hidden>
           <span data-product-counter>01 / {{PADDED_COUNT}}</span>
@@ -29,7 +29,7 @@
       </div>
     </div>
     {{COLOUR_PALETTE}}
-    <details class="coated-sand-notes"><summary>{{NOTES_TITLE}} <span aria-hidden="true">+</span></summary><div>{{NOTES}}</div></details>
+    <details class="coated-sand-notes"><summary>{{NOTES_TITLE}} <span aria-hidden="true">+</span></summary><div>{{NOTES}}{{BUYER_QUESTIONS}}</div></details>
     <noscript><p class="coated-sand-noscript">Listed {{CHOICE_LOWER}} options: {{CHOICE_TEXT}}. Sizes: {{SIZE_TEXT}}. Enable JavaScript to browse the photos and select a grade.</p></noscript>
   </div>
   <script type="application/json" id="decorative-product-data">{{DATA}}</script>

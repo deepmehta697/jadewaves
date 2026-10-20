@@ -1695,7 +1695,11 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
     body = enhance_images(body)
     schema_blob = json.dumps(schema, ensure_ascii=False)
     tracking_markup = analytics_snippet()
-    recaptcha_markup = recaptcha_script_markup()
+    decorative_path = path in {'/products/pebbles/', '/products/glass-chips/',
+                               '/products/grout-sand/', '/products/colour-coated-silica-sand/'}
+    # Email-draft pages do not need the submission form's third-party CAPTCHA.
+    # Any future real inquiry form automatically retains its protection.
+    recaptcha_markup = recaptcha_script_markup() if not decorative_path or 'data-inquiry-form' in body else ''
     return make_project_pages_safe(
         dedent(
             f"""
