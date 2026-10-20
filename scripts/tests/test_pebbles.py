@@ -25,10 +25,10 @@ class PebbleIntegrationTests(unittest.TestCase):
         self.html = pebbles.render(vars(site))
         self.tags = Markup(self.html).tags
 
-    def test_core_products_remain_with_one_additional_catalogue_page(self):
+    def test_core_products_remain_with_the_decorative_catalogue_pages(self):
         self.assertEqual(len(site.PRODUCTS), 11)
-        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 12)
-        self.assertEqual(len({p['slug'] for p in site.CATALOGUE_PRODUCTS}), 12)
+        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 13)
+        self.assertEqual(len({p['slug'] for p in site.CATALOGUE_PRODUCTS}), 13)
         self.assertIn('pebbles', site.CATALOGUE_BY_SLUG)
         for p in site.PRODUCTS:
             self.assertIn(p['slug'], site.CATALOGUE_BY_SLUG)
@@ -39,13 +39,13 @@ class PebbleIntegrationTests(unittest.TestCase):
         self.assertNotIn('noindex', self.html)
         self.assertIn('/products/pebbles/', site.render_sitemap())
         self.assertEqual(site.page_lastmod('/products/pebbles/'), '2026-10-20')
-        self.assertEqual(site.page_lastmod('/products/silica-sand/'), '2026-10-13')
+        self.assertEqual(site.page_lastmod('/products/feldspar/'), '2026-10-13')
 
     def test_discovery_from_home_and_material_portfolio(self):
         for html in (site.render_homepage(), site.render_products_index()):
             self.assertIn('href="products/pebbles/"', html)
             self.assertIn('Pebbles', html)
-        self.assertIn('12 products', site.render_products_index())
+        self.assertIn('13 products', site.render_products_index())
 
     def test_one_photo_with_clean_data_and_all_local_assets(self):
         entries = pebbles.catalogue()

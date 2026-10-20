@@ -67,8 +67,9 @@ class SEORegressionTests(unittest.TestCase):
         ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
         sitemap = ET.fromstring(site.render_sitemap())
         urls = [n.text for n in sitemap.findall('s:url/s:loc', ns)]
-        self.assertEqual(len(urls), 36)
-        self.assertEqual(len(set(urls)), 36)
+        self.assertEqual(len(urls), 37)
+        self.assertEqual(len(set(urls)), 37)
+        self.assertIn(site.BASE_URL + '/products/colour-coated-silica-sand/', urls)
         self.assertIn(site.BASE_URL + '/products/pebbles/', urls)
         for post in site.BLOGS:
             self.assertIn(site.BASE_URL + '/blog/' + post['slug'] + '/', urls)

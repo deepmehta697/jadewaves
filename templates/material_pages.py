@@ -122,6 +122,8 @@ def _directory(g, products, detailed=False):
             document = f'<a class="ml-text-link ml-directory-document" href="{escape(tds)}" target="_blank" rel="noopener">TDS <span aria-hidden="true">↗</span></a>' if tds else f'<a class="ml-text-link ml-directory-document" href="/products/{escape(product["slug"])}/#contact" data-set-request="TDS">Request technical data <span aria-hidden="true">↗</span></a>'
             if product['slug'] == 'pebbles':
                 document = '<a class="ml-text-link ml-directory-document" href="/products/pebbles/#collection">Explore colours &amp; sizes <span aria-hidden="true">↗</span></a>'
+            elif product['slug'] == 'colour-coated-silica-sand':
+                document = '<a class="ml-text-link ml-directory-document" href="/products/colour-coated-silica-sand/">Explore colours &amp; sizes <span aria-hidden="true">↗</span></a>'
             rows.append(f'''<article class="ml-directory-row ml-directory-row--detailed" data-reveal>
               <a class="ml-directory-thumb" href="/products/{escape(product["slug"])}/" tabindex="-1" aria-hidden="true"><img class="ml-thumbnail" src="{escape(image)}" alt="" loading="lazy" /></a>
               <div class="ml-directory-name"><h3><a href="/products/{escape(product["slug"])}/">{escape(product["name"])}</a></h3><p>{escape(" · ".join(product["forms"]))}</p></div>
@@ -224,6 +226,8 @@ def render_products_index(g):
     content += f'<div class="ml-container ml-family-nav" aria-label="Material families"><nav>{anchors}</nav></div><div id="material-directory">'
     for index, family in enumerate(g["PRODUCT_FAMILIES"], start=1):
         products = [g["CATALOGUE_BY_SLUG"][slug] for slug in family["products"] if slug in g["CATALOGUE_BY_SLUG"]]
+        if family['id'] == 'decorative-range':
+            content += '<span id="decorative-stone"></span>'
         content += f'''<section class="ml-section ml-section--portfolio" id="{escape(family["id"])}"><div class="ml-container">
           {_heading(g, f"Family / {index:02d}", family["name"], family["copy"])}
           <p class="ml-family-applications">{' / '.join(escape(item) for item in family["best_for"])}</p>
@@ -298,6 +302,10 @@ def render_product_page(g, product):
     related = [g["PRODUCTS_BY_SLUG"][slug] for slug in product["related"] if slug in g["PRODUCTS_BY_SLUG"]]
     if related:
         content += f'<section class="ml-section ml-section--related"><div class="ml-container">{_heading(g, "Related materials", "Continue your comparison.")}{_directory(g, related)}</div></section>'
+    if product['slug'] == 'silica-sand':
+        content += ('<div class="ml-container coated-sand-crosslink"><p>Looking for decorative finishes? '
+                    '<a href="/products/colour-coated-silica-sand/">Explore colour-coated silica sand ↗</a>'
+                    '</p></div>')
     content += _brief(g, product["name"])
     path = f'/products/{product["slug"]}/'
     schema = [

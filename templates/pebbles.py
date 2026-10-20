@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PATH = '/products/pebbles/'
 PRODUCT = {
-    'slug': 'pebbles', 'name': 'Pebbles', 'family': 'Decorative Stone',
+    'slug': 'pebbles', 'name': 'Pebbles', 'family': 'Decorative Range',
     'forms': ['Natural', 'Polished', 'Tumbled', 'Coated'],
     'industries': ['Decorative stone'],
     'applications': ['Colour and finish selection', 'Project-specific sizing'],

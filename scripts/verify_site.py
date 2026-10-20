@@ -112,7 +112,8 @@ def verify(root):
         if not schemas:
             errors.append(f'{route}: missing JSON-LD')
         schema_types = {item.get('@type') for item in schemas if isinstance(item, dict)}
-        required_product_schema = {'Product', 'BreadcrumbList'} if route == '/products/pebbles/' else {'Product', 'FAQPage', 'BreadcrumbList'}
+        decorative_routes = {'/products/pebbles/', '/products/colour-coated-silica-sand/'}
+        required_product_schema = {'Product', 'BreadcrumbList'} if route in decorative_routes else {'Product', 'FAQPage', 'BreadcrumbList'}
         if route.startswith('/products/') and route != '/products/' and not required_product_schema <= schema_types:
             errors.append(f'{route}: missing product schema')
         if route.startswith('/blog/') and route != '/blog/' and 'BlogPosting' not in schema_types:
@@ -127,12 +128,23 @@ def verify(root):
         if any(term in markup for term in ['data-route-network', '<canvas', 'data-parallax', 'autoplay']):
             errors.append(f'{route}: obsolete decorative motion or autoplay')
         forms = [attrs for tag, attrs in page.tags if tag == 'form' and 'data-inquiry-form' in attrs]
-        if route.startswith('/products/') and route not in {'/products/', '/products/pebbles/'} and not forms:
+        if route.startswith('/products/') and route != '/products/' and route not in decorative_routes and not forms:
             errors.append(f'{route}: missing contextual form')
         if route == '/products/pebbles/':
             email = [a.get('href', '') for t, a in page.tags if t == 'a' and 'data-email' in a]
             if not email or not email[0].startswith('mailto:' + g.CONTACT['sales_email'] + '?') or 'data-carousel' not in markup:
                 errors.append(f'{route}: missing contextual email enquiry or collection carousel')
+        if route == '/products/colour-coated-silica-sand/':
+            email = [a.get('href', '') for t, a in page.tags if t == 'a' and 'data-sand-email' in a]
+            if not email or not email[0].startswith('mailto:' + g.CONTACT['sales_email'] + '?') or 'data-sand-carousel' not in markup:
+                errors.append(f'{route}: missing contextual email enquiry or colour carousel')
+            raw = re.search(r'<script type="application/json" id="coated-sand-data">(.*?)</script>', markup, re.S)
+            try:
+                entries = json.loads(raw.group(1)) if raw else []
+                if len(entries) != 6 or any(not (root / e['src']).is_file() for e in entries):
+                    errors.append(f'{route}: missing colour catalogue or image asset')
+            except (ValueError, KeyError, TypeError):
+                errors.append(f'{route}: invalid colour catalogue')
         if forms:
             names = {attrs.get('name') for tag, attrs in page.tags if tag in {'input', 'select', 'textarea'}}
             required = {'request_type', 'product', 'name', 'email', 'application', 'destination', 'volume', 'packing_size', 'notes', 'company_website'}

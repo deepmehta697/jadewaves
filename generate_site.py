@@ -8,7 +8,7 @@ from html import escape
 from pathlib import Path
 from textwrap import dedent
 
-from templates import material_layout, material_pages, material_support, pebbles
+from templates import material_layout, material_pages, material_support, pebbles, colour_coated_sand
 from templates.material_media import enhance_images
 from templates.product_guides import PRODUCT_GUIDES, PRODUCT_GUIDE_SLUGS
 
@@ -656,7 +656,7 @@ PRODUCTS = [product for product in PRODUCTS if product["slug"] in CORE_PRODUCT_S
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
 # Preserve the eleven core minerals and their buyer-guide contracts. Decorative
 # stone is an additional, independently rendered catalogue page.
-CATALOGUE_PRODUCTS = PRODUCTS + [pebbles.PRODUCT]
+CATALOGUE_PRODUCTS = PRODUCTS + [pebbles.PRODUCT, colour_coated_sand.PRODUCT]
 CATALOGUE_BY_SLUG = {product['slug']: product for product in CATALOGUE_PRODUCTS}
 
 PRODUCT_FAMILIES = [
@@ -703,10 +703,10 @@ PRODUCT_FAMILIES = [
 ]
 
 PRODUCT_FAMILIES.append({
-    'id': 'decorative-stone', 'name': 'Decorative Stone',
-    'copy': 'Pebbles in natural, tumbled, polished and coated finishes. Compare colour and size before confirming a sample.',
-    'best_for': ['Colour selection', 'Finish selection', 'Size comparison'],
-    'products': ['pebbles'], 'visual_slug': 'pebbles',
+    'id': 'decorative-range', 'name': 'Decorative Range',
+    'copy': 'Pebbles and colour-coated silica sand. Choose the colour, finish and size for your project.',
+    'best_for': ['Decorative finishes', 'Colour selection', 'Sample-led approval'],
+    'products': ['pebbles', 'colour-coated-silica-sand'], 'visual_slug': 'pebbles',
 })
 
 HOME_FEATURED = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
@@ -1527,6 +1527,8 @@ PAGE_LASTMOD = {
     "/privacy-policy/": "2026-10-10",
     "/terms-disclaimer/": "2026-10-10",
     **{f"/products/{product['slug']}/": "2026-10-13" for product in PRODUCTS},
+    "/products/silica-sand/": "2026-10-20",
+    "/products/colour-coated-silica-sand/": "2026-10-20",
 }
 
 
@@ -1729,6 +1731,11 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
 
 
 PRODUCT_VISUALS = {
+    'colour-coated-silica-sand': {
+        'hero': '/assets/colour-coated-sand/red.webp',
+        'thumb': '/assets/colour-coated-sand/red.webp',
+        'alt': 'Red colour-coated silica sand grain appearance',
+    },
     'pebbles': {
         'hero': '/assets/pebbles/white-polished.webp',
         'thumb': '/assets/pebbles/white-polished.webp',
@@ -1884,6 +1891,10 @@ def render_products_index() -> str:
 def render_product_page(product: dict) -> str:
     if product['slug'] == 'pebbles':
         return pebbles.render(globals())
+    if product['slug'] == 'colour-coated-silica-sand':
+        return colour_coated_sand.render(globals())
+    if product['slug'] == 'silica-sand':
+        return colour_coated_sand.add_styles(globals(), material_pages.render_product_page(globals(), product))
     return material_pages.render_product_page(globals(), product)
 
 
