@@ -1946,6 +1946,19 @@ def render_robots() -> str:
     ).strip()
 
 
+def product_sitemap_images(path: str) -> list[str]:
+    # Make carousel photos discoverable without adding a visible image grid.
+    if path == '/products/pebbles/':
+        photos = pebbles.catalogue()
+    elif path == '/products/colour-coated-silica-sand/':
+        photos = colour_coated_sand.catalogue()
+    elif path in {'/products/glass-chips/', '/products/grout-sand/'}:
+        photos = decorative_products.catalogue(path.strip('/').split('/')[-1])
+    else:
+        return []
+    return [BASE_URL + '/' + photo['src'].lstrip('/') for photo in photos]
+
+
 def render_sitemap() -> str:
     # Publish only routes assembled into the production artifact. Workspace
     # previews and other applications must not leak into the public sitemap.
@@ -1958,11 +1971,13 @@ def render_sitemap() -> str:
     for path in sorted(urls):
         modified = page_lastmod(path)
         lastmod = f"<lastmod>{modified}</lastmod>" if modified else ""
-        entries.append(f"  <url><loc>{BASE_URL}{path}</loc>{lastmod}</url>")
+        images = ''.join('<image:image><image:loc>' + escape(image) + '</image:loc></image:image>'
+                         for image in product_sitemap_images(path))
+        entries.append(f"  <url><loc>{BASE_URL}{path}</loc>{lastmod}{images}</url>")
     entries = "\n".join(entries)
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
         f"{entries}\n"
         "</urlset>"
     )

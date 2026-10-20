@@ -14,8 +14,8 @@ PRODUCT = {
     'applications': ['Flooring', 'Surface finishes', 'Decoration'],
     'specs': ['0.5–1 mm coated grain'],
     'summary_spec': 'Six colours · 0.5–1 mm · Sample-led shade approval',
-    'seo_title': 'Colour-Coated Silica Sand | Jade Waves Enterprise',
-    'meta_description': 'Explore six colours of coated silica sand for decorative floors, surface finishes and landscaping. Review grain size and discuss a shade sample with Jade Waves.',
+    'seo_title': 'Colour-Coated Silica Sand Supplier | Jade Waves Enterprise',
+    'meta_description': 'Source colour-coated silica sand from India in six colours and 0.5–1 mm grain size for flooring, coatings and decorative finishes. Request a shade sample.',
 }
 
 
@@ -44,6 +44,8 @@ def render(g):
     assert not re.search(r'\{\{\w+\}\}', section)
     related = ('<nav class="ml-container coated-sand-related" aria-label="Related materials">'
                '<a href="/products/pebbles/">Explore pebbles ↗</a>'
+               '<a href="/products/glass-chips/">Explore decorative glass chips ↗</a>'
+               '<a href="/products/grout-sand/">Explore coloured grout sand ↗</a>'
                '<a href="/products/silica-sand/">Looking for industrial silica sand? ↗</a></nav>')
     body = g['nav_html']() + '<main id="main-content" tabindex="-1">' + section + related + '</main>' + g['footer_html']()
     base = g['BASE_URL']
@@ -51,7 +53,8 @@ def render(g):
         {'@context': 'https://schema.org', '@type': 'Product', 'name': PRODUCT['name'],
          'description': PRODUCT['meta_description'], 'category': 'Decorative Range',
          'brand': {'@type': 'Brand', 'name': g['CONTACT']['company']},
-         'url': base + PATH, 'image': base + '/assets/colour-coated-sand/red.webp'},
+         'url': base + PATH, 'image': [base + '/' + entry['src'] for entry in entries],
+         'size': '0.5–1 mm', 'color': [entry['name'] for entry in entries]},
         {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
             {'@type': 'ListItem', 'position': 1, 'name': 'Materials', 'item': base + '/products/'},
             {'@type': 'ListItem', 'position': 2, 'name': 'Decorative Range', 'item': base + '/products/#decorative-range'},

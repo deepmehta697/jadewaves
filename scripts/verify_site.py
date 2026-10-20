@@ -59,6 +59,15 @@ def verify(root):
     sitemap_routes = {urlsplit(node.text).path for node in sitemap.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
     if sitemap_routes != set(routes):
         errors.append(f'Sitemap differs from production pages: {sitemap_routes ^ set(routes)}')
+    for entry in sitemap.findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url'):
+        page_url = entry.findtext('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')
+        image_urls = [node.text for node in entry.findall('{http://www.google.com/schemas/sitemap-image/1.1}image/{http://www.google.com/schemas/sitemap-image/1.1}loc')]
+        expected_images = g.product_sitemap_images(urlsplit(page_url).path)
+        if image_urls != expected_images:
+            errors.append(f'{page_url}: incomplete carousel image sitemap')
+        for image_url in image_urls:
+            if not image_url.startswith(g.BASE_URL + '/') or not (root / urlsplit(image_url).path.lstrip('/')).is_file():
+                errors.append(f'{page_url}: missing/non-local sitemap image {image_url}')
     redirects = dict(g.LEGACY_REDIRECTS)
     redirects.update({path: target for path, _, target in g.malformed_redirect_entries()})
     for source, target in redirects.items():

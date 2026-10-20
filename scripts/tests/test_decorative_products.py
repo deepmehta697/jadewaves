@@ -51,7 +51,7 @@ class DecorativeProductTests(unittest.TestCase):
                 self.assertEqual({s['@type'] for s in schemas}, {'Product', 'BreadcrumbList'})
                 product = next(s for s in schemas if s['@type'] == 'Product')
                 self.assertEqual(product['url'], site.BASE_URL + path)
-                self.assertIn('content="' + product['image'] + '"', html)
+                self.assertIn('content="' + product['image'][0] + '"', html)
                 for field in ('offers', 'review', 'aggregateRating', 'manufacturer'): self.assertNotIn(field, product)
                 self.assertEqual(site.page_lastmod(path), '2026-10-20')
 

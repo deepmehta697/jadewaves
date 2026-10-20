@@ -2,8 +2,9 @@
   {
     "slug": "glass-chips",
     "name": "Glass Chips",
+    "seo_title": "Glass Chips Supplier in India | Jade Waves Enterprise",
     "heading": "Glass chips.",
-    "lead": "Decorative glass aggregate. Choose your finish and chip size.",
+    "lead": "Glass chips supplied from India for terrazzo and decorative surfaces. Compare six finishes and listed sizes.",
     "choice_label": "Finish",
     "size_label": "Chip size",
     "sizes": ["1–3 mm", "3–6 mm", "6–9 mm"],
@@ -13,13 +14,14 @@
     "notes_title": "Selection notes",
     "notes": ["Sizes shown are listed catalogue grades. Confirm the chip-size range, finish and binder compatibility against an approved sample before ordering."],
     "enquiry_note": "Please confirm the finish, grading, binder compatibility and packing.",
-    "meta_description": "Explore clear, green, brown, cobalt blue, mixed mirror and sky blue glass chips. Compare listed sizes and discuss a finish sample with Jade Waves."
+    "meta_description": "Source decorative glass chips from India in six finishes and listed 1–3, 3–6 and 6–9 mm grades for terrazzo and surface systems. Request a sample."
   },
   {
     "slug": "grout-sand",
     "name": "Grout Sand",
+    "seo_title": "Coloured Grout Sand Supplier in India | Jade Waves Enterprise",
     "heading": "Grout sand.",
-    "lead": "Coloured filler sand for grout blends and surface finishes.",
+    "lead": "Coloured grout filler sand supplied from India for tile-joint blends and surface finishes.",
     "choice_label": "Sample view",
     "size_label": "Size / mesh grade",
     "sizes": ["0.5–1 mm", "100 mesh", "150 mesh"],
@@ -29,6 +31,6 @@
     "notes_title": "Packing & grade notes",
     "notes": ["25 kg bags; 40 bags per 1,000 kg jumbo bag. Loose jumbo packing and custom sizes or colours can be discussed.", "Filler sand, not ready-to-use grout. Confirm the mesh standard, binder compatibility and target shade for your formulation."],
     "enquiry_note": "Please confirm the shade, grading or mesh standard, binder compatibility and packing.",
-    "meta_description": "Explore coloured grout filler sand in 0.5–1 mm, 100 mesh and 150 mesh grades. Discuss shades, samples and packing for grout blends and textured finishes."
+    "meta_description": "Source coloured grout filler sand from India in 25 shades and 0.5–1 mm, 100 mesh or 150 mesh grades. Compare colours and request a shade sample."
   }
 ]

@@ -9,8 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = json.loads((ROOT / 'templates/decorative-products.json').read_text())
 PRODUCTS = [{**p, 'family': 'Decorative Range', 'industries': ['Decorative finishes'],
              'applications': [text for _, text in p['applications']],
-             'summary_spec': ' / '.join(p['sizes']), 'specs': p['sizes'],
-             'seo_title': p['name'] + ' | Jade Waves Enterprise'} for p in CONFIG]
+             'summary_spec': ' / '.join(p['sizes']), 'specs': p['sizes']} for p in CONFIG]
 
 
 def catalogue(slug):
@@ -67,7 +66,7 @@ def render(g, slug):
         'NOTES': ''.join(f'<p>{escape(note)}</p>' for note in product['notes']),
         'CHOICE_TEXT': escape(', '.join(e['name'] for e in photos)), 'SIZE_TEXT': escape(' / '.join(product['sizes'])),
         'DATA': json.dumps(config, ensure_ascii=False).replace('<', '\\u003c'),
-        'RELATED': f'<a href="/products/{other["slug"]}/">Explore {escape(other["name"].lower())} ↗</a><a href="/products/colour-coated-silica-sand/">Explore colour-coated silica sand ↗</a>',
+        'RELATED': f'<a href="/products/{other["slug"]}/">Explore {escape(other["name"].lower())} ↗</a><a href="/products/colour-coated-silica-sand/">Explore colour-coated silica sand ↗</a><a href="/products/pebbles/">Explore decorative pebbles ↗</a>',
         'SELECTED_COLOUR': '<p class="decorative-requested-colour">Requested colour: <strong data-product-selected-colour>' + escape(shades[0]['name']) + '</strong></p>' if shades else '',
         'COLOUR_PALETTE': '',
     }
@@ -96,14 +95,15 @@ def render(g, slug):
         {'@context': 'https://schema.org', '@type': 'Product', 'name': product['name'],
          'description': product['meta_description'], 'category': 'Decorative Range',
          'brand': {'@type': 'Brand', 'name': g['CONTACT']['company']},
-         'url': base + path, 'image': base + '/' + first['src']},
+         'url': base + path, 'image': [base + '/' + photo['src'] for photo in photos],
+         'size': product['sizes']},
         {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
             {'@type': 'ListItem', 'position': 1, 'name': 'Materials', 'item': base + '/products/'},
             {'@type': 'ListItem', 'position': 2, 'name': 'Decorative Range', 'item': base + '/products/#decorative-range'},
             {'@type': 'ListItem', 'position': 3, 'name': product['name'], 'item': base + path},
         ]},
     ]
-    html = g['page_shell'](product['name'] + ' | Jade Waves Enterprise', product['meta_description'],
+    html = g['page_shell'](product['seo_title'], product['meta_description'],
                            path, body, schema, 'page-product page-ledger page-coated-sand page-' + slug)
     html = html.replace('<meta property="og:image" content="' + base + '/assets/jade-waves-logo-transparent.png"',
                         '<meta property="og:image" content="' + base + '/' + first['src'] + '"')
