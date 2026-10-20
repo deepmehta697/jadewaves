@@ -39,7 +39,7 @@ class PebbleIntegrationTests(unittest.TestCase):
         self.assertNotIn('noindex', self.html)
         self.assertIn('/products/pebbles/', site.render_sitemap())
         self.assertEqual(site.page_lastmod('/products/pebbles/'), '2026-10-20')
-        self.assertEqual(site.page_lastmod('/products/feldspar/'), '2026-10-13')
+        self.assertEqual(site.page_lastmod('/products/feldspar/'), '2026-10-20')
 
     def test_discovery_from_home_and_material_portfolio(self):
         for html in (site.render_homepage(), site.render_products_index()):

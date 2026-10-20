@@ -280,6 +280,27 @@ def _documents(g, product):
     return '<div class="ml-document-list">' + markup + '</div>'
 
 
+def _product_evidence(product):
+    slug = product['slug']
+    if slug == 'bentonite':
+        stem, caption, width, height = '/assets/bentonite/bentonite-clip', 'Bentonite yard footage', 848, 480
+    elif slug == 'feldspar':
+        stem, caption, width, height = '/assets/feldspar/feldspar-footage', 'Feldspar footage', 540, 960
+    elif slug == 'quartz-sand-for-ceramics':
+        stem, caption, width, height = '/assets/product-handling/material-handling', 'Material stockpiles', 540, 960
+    else:
+        return ''
+    portrait_class = ' ml-product-video--portrait' if height > width else ''
+    return f'''<figure class="ml-evidence ml-product-video{portrait_class}" data-reveal>
+      <video controls muted playsinline preload="none" width="{width}" height="{height}"
+        poster="{stem}-poster.webp" aria-label="{caption}" aria-describedby="{slug}-video-caption">
+        <source src="{stem}.mp4" type="video/mp4" />
+        <source src="{stem}.webm" type="video/webm" />
+        <a href="{stem}.mp4">Watch the video</a>.
+      </video><figcaption id="{slug}-video-caption">{caption}</figcaption>
+    </figure>'''
+
+
 def render_product_page(g, product):
     image, alt = _visual(g, product["slug"])
     content = _photo_hero(g, product["name"], product.get("short_copy", product["hero_copy"]), image, alt, "Jade Waves Enterprise / " + product["family"], secondary="Read specification", secondary_href="#specification", material=True, proof=[product.get("summary_spec", product["specs"][0]), product["packing"], "COA & TDS", "FCL export handling"])
@@ -289,27 +310,17 @@ def render_product_page(g, product):
     </div></section>'''
     applications = [(item, "") for item in product["applications"]]
     checks = ''.join(f'<li>{escape(point)}</li>' for point in product.get("booking_points", product["specs"]))
-    evidence = ('<figure class="ml-evidence" data-reveal><img src="/assets/optimized/packing-area.jpg" '
-                'alt="Packing area for bagged industrial mineral shipments" loading="lazy" />'
-                f'<figcaption>Packing basis / {escape(product["packing"])}</figcaption></figure>')
-    if product['slug'] == 'bentonite':
-        evidence = '''<figure class="ml-evidence ml-product-video" data-reveal>
-          <video controls muted playsinline preload="none" width="848" height="480"
-            poster="/assets/bentonite/bentonite-clip-poster.webp" aria-label="Silent bentonite yard video" aria-describedby="bentonite-video-caption">
-            <source src="/assets/bentonite/bentonite-clip.mp4" type="video/mp4" />
-            <source src="/assets/bentonite/bentonite-clip.webm" type="video/webm" />
-            <a href="/assets/bentonite/bentonite-clip.mp4">Watch the silent bentonite yard video</a>.
-          </video><figcaption id="bentonite-video-caption">Bentonite yard footage · Silent clip. Visual reference, not a grade or performance test.</figcaption>
-        </figure>'''
+    evidence = _product_evidence(product)
+    documents_class = '' if evidence else ' ml-document-layout--documents-only'
     content += f'''<section class="ml-section ml-section--applications"><div class="ml-container ml-use-layout">
       <div>{_heading(g, "Application fit", "Where this material works.")}{_ledger(g, applications)}</div>
       <aside class="ml-buying-checks" data-reveal><p class="ml-eyebrow">Before ordering</p><h3>Build the technical brief.</h3><ul>{checks}</ul><p>{escape(product["commercial_fit"])}</p></aside>
     </div></section>
-    <section class="ml-section ml-section--documents" id="technical-documents"><div class="ml-container ml-document-layout">
+    <section class="ml-section ml-section--documents" id="technical-documents"><div class="ml-container ml-document-layout{documents_class}">
       <div>{_heading(g, "Technical evidence", "Documents for your review.", product.get("parameter_docs_copy", "TDS and sample COA references for the discussed material. Confirm the applicable grade before approval."))}{_documents(g, product)}</div>
       {evidence}
     </div></section>'''
-    content += _process(g, product, show_photo=product['slug'] != 'bentonite')
+    content += _process(g, product, show_photo=False)
     faq_markup, faq_schema = g["render_faq"](product)
     faq_markup = faq_markup.replace('class="faq-item"', 'class="ml-faq"')
     content += f'<section class="ml-section"><div class="ml-container">{_heading(g, "Buyer questions", "Before you confirm supply.")}<div class="ml-faq-list">{faq_markup}</div></div></section>'

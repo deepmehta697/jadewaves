@@ -64,9 +64,11 @@ class BentoniteMediaTests(unittest.TestCase):
         for t, a in self.tags:
             if t == 'source': self.assertTrue((ROOT/a['src']).is_file())
 
-    def test_other_product_packing_photos_and_protected_forms_are_preserved(self):
+    def test_other_product_has_no_unrelated_video_and_protected_forms_are_preserved(self):
         silica = site.render_product_page(site.PRODUCTS_BY_SLUG['silica-sand'])
-        self.assertIn('packing-area', silica)
+        self.assertNotIn('packing-area', silica)
+        self.assertNotIn('product-handling/material-handling', silica)
+        self.assertNotIn('<video ', silica)
         self.assertNotIn('bentonite-clip', silica)
         self.assertIn('data-inquiry-form', self.html)
         self.assertIn('google.com/recaptcha/api.js', self.html)

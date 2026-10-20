@@ -1526,7 +1526,7 @@ PAGE_LASTMOD = {
     "/industrial-minerals-exporter-india/": "2026-10-10",
     "/privacy-policy/": "2026-10-10",
     "/terms-disclaimer/": "2026-10-10",
-    **{f"/products/{product['slug']}/": "2026-10-13" for product in PRODUCTS},
+    **{f"/products/{product['slug']}/": "2026-10-20" for product in PRODUCTS},
     "/products/silica-sand/": "2026-10-20",
     "/products/colour-coated-silica-sand/": "2026-10-20",
     "/products/glass-chips/": "2026-10-20",

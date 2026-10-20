@@ -169,6 +169,8 @@ a:hover .ml-arrow { transform: translateX(4px); }
 .ml-evidence-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: start; }
 .ml-evidence { min-width: 0; }
 .ml-evidence img, .ml-evidence video { width: 100%; height: 320px; object-fit: cover; background: #dbddd1; }
+.ml-evidence.ml-product-video video { display: block; height: auto; aspect-ratio: 848 / 480; object-fit: contain; background: var(--ml-iron); }
+.ml-evidence.ml-product-video--portrait video { height: min(480px, 70svh); aspect-ratio: auto; }
 .ml-evidence-wide { grid-row: span 2; }
 .ml-evidence-wide img, .ml-evidence-wide video { height: 570px; }
 .ml-evidence figcaption, .ml-process-photo figcaption { display: flex; justify-content: space-between; gap: 1rem; font-size: .75rem; color: var(--ml-slate); padding-top: .75rem; line-height: 1.5; }
@@ -342,6 +344,7 @@ a:hover .ml-arrow { transform: translateX(4px); }
 .ml-buying-checks ul { color: var(--ml-slate); font-size: .875rem; line-height: 1.7; margin-block: 1.5rem; }
 .ml-buying-checks > p:not(.ml-eyebrow) { font-size: .875rem; color: var(--ml-slate); }
 .ml-document-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 4rem; align-items: start; }
+.ml-document-layout--documents-only { grid-template-columns: minmax(0, 48rem); }
 .ml-document-layout .ml-document { grid-template-columns: 7rem 1fr 24px; gap: 1rem; }
 .ml-document > span:first-child { color: var(--ml-slate); font: .6875rem/1.6 var(--ml-mono); }
 .ml-document-layout .ml-evidence img { height: 450px; }

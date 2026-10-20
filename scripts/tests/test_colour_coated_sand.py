@@ -67,7 +67,7 @@ class ColourCoatedSandTests(unittest.TestCase):
         self.assertIn(site.GA4_MEASUREMENT_ID, self.html)
         self.assertEqual(site.page_lastmod(coated.PATH), '2026-10-20')
         self.assertEqual(site.page_lastmod('/products/silica-sand/'), '2026-10-20')
-        self.assertEqual(site.page_lastmod('/products/feldspar/'), '2026-10-13')
+        self.assertEqual(site.page_lastmod('/products/feldspar/'), '2026-10-20')
 
     def test_image_and_script_paths_follow_the_real_site_base(self):
         self.assertIn("document.write('<base href=\"' + baseHref + '\">');", self.html)
