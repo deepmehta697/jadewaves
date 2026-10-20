@@ -345,6 +345,11 @@ a:hover .ml-arrow { transform: translateX(4px); }
 .ml-buying-checks > p:not(.ml-eyebrow) { font-size: .875rem; color: var(--ml-slate); }
 .ml-document-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 4rem; align-items: start; }
 .ml-document-layout--documents-only { grid-template-columns: minmax(0, 48rem); }
+.ml-dispatch-videos { display: grid; grid-template-columns: minmax(0, 3.2fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.ml-dispatch-video { width: 100%; justify-self: center; }
+.ml-dispatch-video--portrait { max-width: 20rem; }
+.ml-dispatch-video video { display: block; width: 100%; height: auto; object-fit: contain; background: var(--ml-iron); }
+.ml-dispatch-video figcaption { padding-top: .75rem; font-size: .75rem; color: var(--ml-slate); }
 .ml-document-layout .ml-document { grid-template-columns: 7rem 1fr 24px; gap: 1rem; }
 .ml-document > span:first-child { color: var(--ml-slate); font: .6875rem/1.6 var(--ml-mono); }
 .ml-document-layout .ml-evidence img { height: 450px; }
@@ -468,6 +473,7 @@ html.js-reveal-ready [data-reveal].is-visible { opacity: 1; transform: none; }
   .ml-hero h1 { font-size: clamp(3.5rem, 7vw, 5.5rem); }
 }
 @media (max-width: 960px) {
+  .ml-dispatch-videos { grid-template-columns: 1fr; gap: 2rem; }
   :root { --ml-header: 76px; }
   .desktop-nav { display: none; }
   .header-actions { margin-left: auto; }

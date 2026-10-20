@@ -67,8 +67,8 @@ class ProductMediaTests(unittest.TestCase):
             html = site.render_product_page(product)
             self.assertNotIn('<video ', html)
 
-    def test_non_product_photo_and_existing_bentonite_clip_are_kept(self):
-        self.assertIn('packing-area', site.render_homepage())
+    def test_export_market_photo_and_existing_bentonite_clip_are_kept(self):
+        self.assertNotIn('packing-area', site.render_homepage())
         self.assertIn('packing-area', site.render_export_markets_page())
         html = site.render_product_page(site.PRODUCTS_BY_SLUG['bentonite'])
         self.assertIn('>Bentonite yard footage</figcaption>', html)

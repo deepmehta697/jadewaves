@@ -164,22 +164,27 @@ def _process(g, product=None, show_photo=True):
     </div></section>'''
 
 
-def _gallery(g):
-    images = [
-        ("/assets/optimized/factory-view.jpg", "Mineral processing facility", "01 / Processing facility", "ml-evidence-wide"),
-        ("/assets/optimized/manual-sorting.jpg", "Manual sorting of mineral material", "02 / Material sorting", ""),
-        ("/assets/container-loading-wide.jpeg", "Bagged industrial minerals loaded in an export container", "03 / Container loading", "ml-evidence-tall"),
-        ("/assets/silica-sand-coa-preview.png", "Preview of a silica sand certificate of analysis", "04 / Silica sand · COA reference", "ml-evidence-document"),
-    ]
-    figures = []
-    for image, alt, caption, class_name in images:
-        photograph = f'<img src="{escape(image)}" alt="{escape(alt)}" loading="lazy" />'
-        if class_name == "ml-evidence-document":
-            photograph = f'<a href="/assets/silica-sand-coa-premium-final.pdf" target="_blank" rel="noopener" aria-label="Open silica sand certificate of analysis PDF">{photograph}</a>'
-        figures.append(f'<figure class="ml-evidence {class_name}" data-reveal>{photograph}<figcaption>{escape(caption)}</figcaption></figure>')
-    return f'''<section class="ml-section ml-section--evidence"><div class="ml-container">
-      {_heading(g, "Field evidence", "The material. The handling. The paperwork.", link="See operations", href="/operations/")}
-      <div class="ml-gallery">{''.join(figures)}</div>
+def _dispatch_footage(g):
+    return f'''<section class="ml-section ml-section--dispatch" id="dispatch-footage"><div class="ml-container">
+      {_heading(g, "Dispatch footage", "Inside the loading yard.", "Bag handling before dispatch.", link="See operations", href="/operations/")}
+      <div class="ml-dispatch-videos">
+      <figure class="ml-dispatch-video" data-reveal>
+        <video controls muted playsinline preload="none" width="1280" height="720"
+          poster="/assets/jcb-poster.jpg" aria-label="Loading activity during cargo preparation">
+          <source src="/assets/jcb.mp4" type="video/mp4" />
+          <a href="/assets/jcb.mp4">Watch the cargo preparation video</a>.
+        </video>
+        <figcaption>Loading activity during cargo preparation</figcaption>
+      </figure>
+      <figure class="ml-dispatch-video ml-dispatch-video--portrait" data-reveal>
+        <video controls muted playsinline preload="none" width="474" height="850"
+          poster="/assets/dispatch/dispatch-loading-poster.webp" aria-label="Packed bags in the dispatch yard">
+          <source src="/assets/dispatch/dispatch-loading.mp4" type="video/mp4" />
+          <a href="/assets/dispatch/dispatch-loading.mp4">Watch the packed-bags video</a>.
+        </video>
+        <figcaption>Packed bags</figcaption>
+      </figure>
+      </div>
     </div></section>'''
 
 
@@ -216,7 +221,7 @@ def render_homepage(g):
       {_heading(g, "The complete directory", "Every material, in one place.", link="Compare the portfolio", href="/products/")}
       {_directory(g, g["CATALOGUE_PRODUCTS"])}
     </div></section>'''
-    content += _process(g) + _gallery(g)
+    content += _process(g, show_photo=False) + _dispatch_footage(g)
     content += f'''<section class="ml-section ml-section--markets" id="countries-served"><div class="ml-container ml-market-note" data-reveal>
       <div><p class="ml-eyebrow">Export markets</p><h2>From India to your discharge port.</h2></div>
       <div><p>Gulf · Southeast Asia · Mauritius · Maldives</p><a class="ml-text-link" href="/export-markets/">Read the destination brief <span aria-hidden="true">↗</span></a></div>
