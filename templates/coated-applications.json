@@ -1,0 +1,8 @@
+[
+  {"name": "Flooring & jointing", "items": ["Epoxy flooring", "Terrazzo flooring", "Screeds", "Grout"]},
+  {"name": "Walls & finished surfaces", "items": ["Wall cladding", "Tiles", "Agate stone slabs", "Textured stone coatings"]},
+  {"name": "Decoration & landscaping", "items": ["Vase decoration", "Landscaping"]},
+  {"name": "Manufacturing & construction", "items": ["Construction", "Paint manufacturing", "Colour manufacturing"]},
+  {"name": "Specialist outdoor uses", "items": ["Golf grounds", "Children’s play gardens"]},
+  {"name": "Aquarium decoration", "items": ["Aquarium tank decoration"]}
+]

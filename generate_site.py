@@ -8,7 +8,7 @@ from html import escape
 from pathlib import Path
 from textwrap import dedent
 
-from templates import material_layout, material_pages, material_support, pebbles, colour_coated_sand
+from templates import material_layout, material_pages, material_support, pebbles, colour_coated_sand, decorative_products
 from templates.material_media import enhance_images
 from templates.product_guides import PRODUCT_GUIDES, PRODUCT_GUIDE_SLUGS
 
@@ -655,8 +655,8 @@ PRODUCTS = [product for product in PRODUCTS if product["slug"] in CORE_PRODUCT_S
 
 PRODUCTS_BY_SLUG = {product["slug"]: product for product in PRODUCTS}
 # Preserve the eleven core minerals and their buyer-guide contracts. Decorative
-# stone is an additional, independently rendered catalogue page.
-CATALOGUE_PRODUCTS = PRODUCTS + [pebbles.PRODUCT, colour_coated_sand.PRODUCT]
+# materials are additional, independently rendered catalogue pages.
+CATALOGUE_PRODUCTS = PRODUCTS + [pebbles.PRODUCT, colour_coated_sand.PRODUCT] + decorative_products.PRODUCTS
 CATALOGUE_BY_SLUG = {product['slug']: product for product in CATALOGUE_PRODUCTS}
 
 PRODUCT_FAMILIES = [
@@ -704,9 +704,9 @@ PRODUCT_FAMILIES = [
 
 PRODUCT_FAMILIES.append({
     'id': 'decorative-range', 'name': 'Decorative Range',
-    'copy': 'Pebbles and colour-coated silica sand. Choose the colour, finish and size for your project.',
+    'copy': 'Pebbles, glass chips and coloured sands. Choose the colour, finish and size for your project.',
     'best_for': ['Decorative finishes', 'Colour selection', 'Sample-led approval'],
-    'products': ['pebbles', 'colour-coated-silica-sand'], 'visual_slug': 'pebbles',
+    'products': ['pebbles', 'colour-coated-silica-sand', 'glass-chips', 'grout-sand'], 'visual_slug': 'pebbles',
 })
 
 HOME_FEATURED = ["silica-sand", "quartz-sand-for-ceramics", "feldspar"]
@@ -1529,6 +1529,8 @@ PAGE_LASTMOD = {
     **{f"/products/{product['slug']}/": "2026-10-13" for product in PRODUCTS},
     "/products/silica-sand/": "2026-10-20",
     "/products/colour-coated-silica-sand/": "2026-10-20",
+    "/products/glass-chips/": "2026-10-20",
+    "/products/grout-sand/": "2026-10-20",
 }
 
 
@@ -1731,6 +1733,9 @@ def page_shell(title: str, meta_description: str, path: str, body: str, schema: 
 
 
 PRODUCT_VISUALS = {
+    **{p['slug']: {'hero': '/' + decorative_products.catalogue(p['slug'])[0]['src'],
+                   'thumb': '/' + decorative_products.catalogue(p['slug'])[0]['src'],
+                   'alt': decorative_products.catalogue(p['slug'])[0]['alt']} for p in decorative_products.PRODUCTS},
     'colour-coated-silica-sand': {
         'hero': '/assets/colour-coated-sand/red.webp',
         'thumb': '/assets/colour-coated-sand/red.webp',
@@ -1889,6 +1894,8 @@ def render_products_index() -> str:
 
 
 def render_product_page(product: dict) -> str:
+    if product['slug'] in {'glass-chips', 'grout-sand'}:
+        return decorative_products.render(globals(), product['slug'])
     if product['slug'] == 'pebbles':
         return pebbles.render(globals())
     if product['slug'] == 'colour-coated-silica-sand':

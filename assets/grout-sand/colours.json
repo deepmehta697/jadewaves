@@ -1,0 +1,177 @@
+[
+  {
+    "id": "white",
+    "name": "White",
+    "src": "assets/grout-sand/swatches/white.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "ivory",
+    "name": "Ivory",
+    "src": "assets/grout-sand/swatches/ivory.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "red-oxide",
+    "name": "Red oxide",
+    "src": "assets/grout-sand/swatches/red-oxide.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "terracotta",
+    "name": "Terracotta",
+    "src": "assets/grout-sand/swatches/terracotta.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "coffee-brown",
+    "name": "Coffee brown",
+    "src": "assets/grout-sand/swatches/coffee-brown.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "copper-brown",
+    "name": "Copper brown",
+    "src": "assets/grout-sand/swatches/copper-brown.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "burgundy",
+    "name": "Burgundy",
+    "src": "assets/grout-sand/swatches/burgundy.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "red",
+    "name": "Red",
+    "src": "assets/grout-sand/swatches/red.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "light-pink",
+    "name": "Light pink",
+    "src": "assets/grout-sand/swatches/light-pink.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "d-black",
+    "name": "D Black",
+    "src": "assets/grout-sand/swatches/d-black.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "light-grey",
+    "name": "Light grey",
+    "src": "assets/grout-sand/swatches/light-grey.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "dark-grey",
+    "name": "Dark grey",
+    "src": "assets/grout-sand/swatches/dark-grey.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "steel-grey",
+    "name": "Steel grey",
+    "src": "assets/grout-sand/swatches/steel-grey.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "yellow",
+    "name": "Yellow",
+    "src": "assets/grout-sand/swatches/yellow.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "dark-brown",
+    "name": "Dark brown",
+    "src": "assets/grout-sand/swatches/dark-brown.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "blue",
+    "name": "Blue",
+    "src": "assets/grout-sand/swatches/blue.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "alpen-blue",
+    "name": "Alpen blue",
+    "src": "assets/grout-sand/swatches/alpen-blue.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "sky-blue",
+    "name": "Sky blue",
+    "src": "assets/grout-sand/swatches/sky-blue.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "brown",
+    "name": "Brown",
+    "src": "assets/grout-sand/swatches/brown.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "beige",
+    "name": "Beige",
+    "src": "assets/grout-sand/swatches/beige.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "golden-yellow",
+    "name": "Golden yellow",
+    "src": "assets/grout-sand/swatches/golden-yellow.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "green",
+    "name": "Green",
+    "src": "assets/grout-sand/swatches/green.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "light-green",
+    "name": "Light green",
+    "src": "assets/grout-sand/swatches/light-green.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "kesar",
+    "name": "Kesar",
+    "src": "assets/grout-sand/swatches/kesar.webp",
+    "width": 194,
+    "height": 16
+  },
+  {
+    "id": "mashroom",
+    "name": "Mashroom",
+    "src": "assets/grout-sand/swatches/mashroom.webp",
+    "width": 194,
+    "height": 16
+  }
+]

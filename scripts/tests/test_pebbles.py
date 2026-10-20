@@ -27,8 +27,8 @@ class PebbleIntegrationTests(unittest.TestCase):
 
     def test_core_products_remain_with_the_decorative_catalogue_pages(self):
         self.assertEqual(len(site.PRODUCTS), 11)
-        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 13)
-        self.assertEqual(len({p['slug'] for p in site.CATALOGUE_PRODUCTS}), 13)
+        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 15)
+        self.assertEqual(len({p['slug'] for p in site.CATALOGUE_PRODUCTS}), 15)
         self.assertIn('pebbles', site.CATALOGUE_BY_SLUG)
         for p in site.PRODUCTS:
             self.assertIn(p['slug'], site.CATALOGUE_BY_SLUG)
@@ -45,7 +45,7 @@ class PebbleIntegrationTests(unittest.TestCase):
         for html in (site.render_homepage(), site.render_products_index()):
             self.assertIn('href="products/pebbles/"', html)
             self.assertIn('Pebbles', html)
-        self.assertIn('13 products', site.render_products_index())
+        self.assertIn('15 products', site.render_products_index())
 
     def test_one_photo_with_clean_data_and_all_local_assets(self):
         entries = pebbles.catalogue()

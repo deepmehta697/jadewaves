@@ -124,6 +124,8 @@ def _directory(g, products, detailed=False):
                 document = '<a class="ml-text-link ml-directory-document" href="/products/pebbles/#collection">Explore colours &amp; sizes <span aria-hidden="true">↗</span></a>'
             elif product['slug'] == 'colour-coated-silica-sand':
                 document = '<a class="ml-text-link ml-directory-document" href="/products/colour-coated-silica-sand/">Explore colours &amp; sizes <span aria-hidden="true">↗</span></a>'
+            elif product['slug'] in {'glass-chips', 'grout-sand'}:
+                document = f'<a class="ml-text-link ml-directory-document" href="/products/{escape(product["slug"])}/#collection">Explore finishes &amp; sizes <span aria-hidden="true">↗</span></a>'
             rows.append(f'''<article class="ml-directory-row ml-directory-row--detailed" data-reveal>
               <a class="ml-directory-thumb" href="/products/{escape(product["slug"])}/" tabindex="-1" aria-hidden="true"><img class="ml-thumbnail" src="{escape(image)}" alt="" loading="lazy" /></a>
               <div class="ml-directory-name"><h3><a href="/products/{escape(product["slug"])}/">{escape(product["name"])}</a></h3><p>{escape(" · ".join(product["forms"]))}</p></div>

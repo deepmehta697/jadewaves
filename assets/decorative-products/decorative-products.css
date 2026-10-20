@@ -1,0 +1,43 @@
+/* Existing approved product layout, extended only for two compact grade selectors. */
+.decorative-lead { max-width: 54ch; margin-top: .8rem; color: var(--ml-slate); font-size: .9375rem; }
+.decorative-selection-name { font: 400 clamp(2.5rem,3.5vw,3.6rem)/1.1 var(--ml-serif); letter-spacing: -.035em; }
+.decorative-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.decorative-choices > div { min-width: 0; }
+.coated-sand-use h3 { font: 600 .75rem/1.5 var(--ml-sans); letter-spacing: 0; margin-bottom: .7rem; }
+.page-grout-sand .coated-sand-photo img { width: 100%; max-height: 380px; }
+.coated-sand-carousel:focus-visible, .coated-sand-controls button:focus-visible,
+.coated-sand-selection select:focus-visible, .coated-sand-notes summary:focus-visible {
+  outline: 2px solid var(--ml-jade); outline-offset: 4px;
+}
+.decorative-requested-colour { margin-bottom: .8rem; font-size: .8125rem; color: var(--ml-slate); }
+.decorative-requested-colour strong { font-weight: 600; color: var(--ml-iron); }
+.decorative-colours, .coated-full-applications { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--ml-rule); scroll-margin-top: 6rem; }
+.decorative-colours h2, .coated-full-applications h2 { font: 400 clamp(2rem,3vw,2.8rem)/1.1 var(--ml-serif); letter-spacing: -.035em; }
+.decorative-colours > p { margin-top: .75rem; font-size: .875rem; color: var(--ml-slate); }
+.decorative-colour-field { border: 0; padding: 0; margin: 1.5rem 0 0; min-width: 0; }
+.decorative-colour-field legend { margin-bottom: .7rem; font-size: .75rem; font-weight: 600; }
+.decorative-colour-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: .5rem 1.25rem; }
+.decorative-swatch { display: grid !important; grid-template-columns: 14px 28px 1fr; gap: .5rem; align-items: center; margin: 0 !important; padding: .55rem 0; min-height: 44px; font-size: .75rem !important; font-weight: 400 !important; cursor: pointer; }
+.decorative-swatch input { width: 14px; height: 14px; accent-color: var(--ml-jade); }
+.decorative-swatch img { width: 28px; height: 20px; object-fit: cover; border: 1px solid #b7bdb3; }
+.decorative-swatch:has(input:checked) span { color: var(--ml-jade); font-weight: 600; }
+.decorative-swatch:has(input:focus-visible) { outline: 2px solid var(--ml-jade); outline-offset: 3px; }
+.decorative-colour-note { max-width: 90ch; margin-top: 1.25rem; color: var(--ml-slate); font-size: .75rem !important; line-height: 1.6; }
+.decorative-colours > .ml-text-link { display: inline-block; margin-top: 1rem; font-size: .8125rem; }
+.decorative-app-summary { margin-bottom: .6rem; font-size: .8125rem; line-height: 1.6; color: var(--ml-slate); }
+.coated-sand-use > .ml-text-link { font-size: .8125rem; }
+.coated-application-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.75rem 2.5rem; margin-top: 1.75rem; }
+.coated-application-grid h3 { margin-bottom: .7rem; font: 600 .8125rem/1.4 var(--ml-sans); letter-spacing: 0; }
+.coated-application-grid ul { padding-left: 1rem; list-style: disc; font-size: .8125rem; line-height: 1.9; color: var(--ml-slate); }
+@media (max-width: 960px) {
+  .decorative-colour-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .coated-application-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 640px) {
+  .decorative-selection-name { font-size: 2.5rem; }
+  .decorative-choices { gap: .75rem; }
+  .page-grout-sand .coated-sand-photo img { max-height: 290px; }
+  .decorative-colour-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .35rem 1rem; }
+  .coated-application-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+@media (max-width: 380px) { .decorative-choices { grid-template-columns: 1fr; gap: 0; } }

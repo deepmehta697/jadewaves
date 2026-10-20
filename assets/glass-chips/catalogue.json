@@ -1,0 +1,50 @@
+[
+  {
+    "id": "clear",
+    "name": "Clear",
+    "src": "assets/glass-chips/clear.webp",
+    "width": 1040,
+    "height": 542,
+    "alt": "Clear glass chips"
+  },
+  {
+    "id": "green",
+    "name": "Green",
+    "src": "assets/glass-chips/green.webp",
+    "width": 719,
+    "height": 714,
+    "alt": "Green glass chips"
+  },
+  {
+    "id": "brown",
+    "name": "Brown",
+    "src": "assets/glass-chips/brown.webp",
+    "width": 721,
+    "height": 1112,
+    "alt": "Brown glass chips"
+  },
+  {
+    "id": "cobalt-blue",
+    "name": "Cobalt blue",
+    "src": "assets/glass-chips/cobalt-blue.webp",
+    "width": 721,
+    "height": 718,
+    "alt": "Cobalt blue glass chips"
+  },
+  {
+    "id": "mixed-mirror",
+    "name": "Mixed mirror",
+    "src": "assets/glass-chips/mixed-mirror.webp",
+    "width": 719,
+    "height": 711,
+    "alt": "Mixed mirror glass chips"
+  },
+  {
+    "id": "sky-blue",
+    "name": "Sky blue",
+    "src": "assets/glass-chips/sky-blue.webp",
+    "width": 721,
+    "height": 710,
+    "alt": "Sky blue glass chips"
+  }
+]

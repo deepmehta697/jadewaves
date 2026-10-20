@@ -1,0 +1,18 @@
+[
+  {
+    "id": "colour-range",
+    "name": "Colour range",
+    "src": "assets/grout-sand/colour-range.webp",
+    "width": 623,
+    "height": 426,
+    "alt": "Colour range of grout filler sand samples"
+  },
+  {
+    "id": "neutral-shades",
+    "name": "Neutral shades",
+    "src": "assets/grout-sand/neutral-shades.webp",
+    "width": 571,
+    "height": 262,
+    "alt": "Neutral shades of grout filler sand samples"
+  }
+]

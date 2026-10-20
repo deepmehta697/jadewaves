@@ -1,0 +1,37 @@
+<section class="ml-section coated-sand-section" id="collection" aria-labelledby="product-title">
+  <div class="ml-container">
+    <div class="coated-sand-heading">
+      <a class="ml-eyebrow coated-range-breadcrumb" href="/products/#decorative-range">Materials / Decorative Range ↗</a>
+      <h1 id="product-title">{{HEADING}}</h1>
+      <p class="decorative-lead">{{LEAD}}</p>
+    </div>
+    <div class="coated-sand-carousel" role="region" aria-roledescription="carousel" aria-label="{{NAME}} selections" tabindex="0" data-product-carousel>
+      <div class="coated-sand-stage">
+        <figure class="coated-sand-photo" role="group" aria-roledescription="slide" aria-label="1 of {{COUNT}}: {{FIRST_NAME}}" data-product-frame>
+          <img src="{{FIRST_SRC}}" alt="{{FIRST_ALT}}" width="{{WIDTH}}" height="{{HEIGHT}}" loading="eager" decoding="async" data-product-photo>
+        </figure>
+        <div class="coated-sand-controls" data-product-controls hidden>
+          <span data-product-counter>01 / {{PADDED_COUNT}}</span>
+          <div><button type="button" aria-label="Previous {{CHOICE_LOWER}}" data-product-prev><span aria-hidden="true">←</span></button><button type="button" aria-label="Next {{CHOICE_LOWER}}" data-product-next><span aria-hidden="true">→</span></button></div>
+        </div>
+      </div>
+      <div class="coated-sand-selection">
+        <h2 class="decorative-selection-name" data-product-name>{{FIRST_NAME}}</h2>
+        <div class="decorative-choices">
+          <div><label for="product-choice">{{CHOICE_LABEL}}</label><select id="product-choice" data-product-select disabled>{{OPTIONS}}</select></div>
+          <div><label for="product-size">{{SIZE_LABEL}}</label><select id="product-size" data-product-size disabled>{{SIZES}}</select></div>
+        </div>
+        <div class="coated-sand-use"><h3>Applications</h3><dl>{{APPLICATIONS}}</dl></div>
+        {{SELECTED_COLOUR}}
+        <a class="button button--dark coated-sand-enquire" href="{{EMAIL}}" data-product-email>Enquire about {{CTA_OBJECT}} <span aria-hidden="true">↗</span></a>
+        <p class="coated-sand-caption">{{CAPTION}}</p>
+        <p class="coated-sand-status" role="status" aria-live="polite" aria-atomic="true" data-product-announcement></p>
+      </div>
+    </div>
+    {{COLOUR_PALETTE}}
+    <details class="coated-sand-notes"><summary>{{NOTES_TITLE}} <span aria-hidden="true">+</span></summary><div>{{NOTES}}</div></details>
+    <noscript><p class="coated-sand-noscript">Listed {{CHOICE_LOWER}} options: {{CHOICE_TEXT}}. Sizes: {{SIZE_TEXT}}. Enable JavaScript to browse the photos and select a grade.</p></noscript>
+  </div>
+  <script type="application/json" id="decorative-product-data">{{DATA}}</script>
+</section>
+<nav class="ml-container coated-sand-related" aria-label="Related materials">{{RELATED}}</nav>

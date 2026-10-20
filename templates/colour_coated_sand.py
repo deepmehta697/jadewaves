@@ -3,6 +3,7 @@ import json
 from html import escape
 from pathlib import Path
 import re
+from templates import decorative_products
 
 ROOT = Path(__file__).resolve().parents[1]
 PATH = '/products/colour-coated-silica-sand/'
@@ -33,6 +34,7 @@ def render(g):
         '{{WIDTH}}': str(entries[0]['width']), '{{HEIGHT}}': str(entries[0]['height']),
         '{{OPTIONS}}': ''.join(f'<option value="{e["id"]}">{escape(e["name"])}</option>' for e in entries),
         '{{DATA}}': json.dumps(entries, ensure_ascii=False).replace('<', '\\u003c'),
+        '{{APPLICATIONS}}': decorative_products.coated_applications(),
         '<p class="ml-eyebrow">Silica sand / Decorative range</p>': '<a class="ml-eyebrow coated-range-breadcrumb" href="/products/#decorative-range">Materials / Decorative Range ↗</a>',
         '<h2 id="coated-sand-heading">Colour-coated silica sand.</h2>': '<h1 id="coated-sand-heading">Colour-coated silica sand.</h1>',
         'Standard silica sand COA/TDS references': 'Industrial silica sand COA/TDS references',
@@ -59,4 +61,5 @@ def render(g):
     html = g['page_shell'](PRODUCT['seo_title'], PRODUCT['meta_description'], PATH, body, schema, 'page-product page-ledger page-coated-sand')
     html = html.replace(base + '/assets/jade-waves-logo-transparent.png', base + '/assets/colour-coated-sand/red.webp')
     html = add_styles(g, html)
+    html = decorative_products.add_styles(g, html)
     return html.replace('</head>', f'<script defer src="assets/colour-coated-sand/coated-sand.js?v={g["BUILD_VERSION"]}"></script></head>')

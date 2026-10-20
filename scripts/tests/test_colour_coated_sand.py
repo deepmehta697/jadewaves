@@ -26,13 +26,13 @@ class ColourCoatedSandTests(unittest.TestCase):
         cls.html = coated.render(vars(site))
         cls.tags = Markup(cls.html).tags
 
-    def test_decorative_family_has_two_products_and_preserves_core_catalogue(self):
+    def test_decorative_family_preserves_core_catalogue_and_approved_additions(self):
         self.assertEqual(len(site.PRODUCTS), 11)
-        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 13)
+        self.assertEqual(len(site.CATALOGUE_PRODUCTS), 15)
         family = next(f for f in site.PRODUCT_FAMILIES if f['id'] == 'decorative-range')
         self.assertEqual(family['name'], 'Decorative Range')
-        self.assertEqual(family['products'], ['pebbles', 'colour-coated-silica-sand'])
-        self.assertIn('13 products', site.render_products_index())
+        self.assertEqual(family['products'], ['pebbles', 'colour-coated-silica-sand', 'glass-chips', 'grout-sand'])
+        self.assertIn('15 products', site.render_products_index())
         self.assertIn('id="decorative-stone"', site.render_products_index())
 
     def test_home_and_materials_both_link_to_the_new_page(self):
