@@ -1,0 +1,128 @@
+/* Scoped preview styles. The live design system and portfolio are untouched. */
+.pebble-page { background: var(--ml-chalk); }
+.pebble-page .site-header { position: relative; }
+.pebble-page .site-header__inner { min-height: 88px; }
+.pebble-header-action { margin-left: 1rem; }
+.pebble-intro { background: var(--ml-limestone); border-bottom: 1px solid var(--ml-rule); }
+.pebble-intro-inner { padding-block: 2.25rem 2rem; }
+.pebble-intro-copy { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: .4rem 3rem; }
+.pebble-intro h1 { font-size: clamp(3.5rem,6.5vw,6.5rem); line-height: .98; font-weight: 400; }
+.pebble-intro h1 em { font-weight: 400; color: var(--ml-jade); }
+.pebble-intro .ml-kicker { grid-column: 1 / -1; margin-bottom: .8rem; }
+.pebble-lead { max-width: 48ch; margin-top: 1.5rem; color: var(--ml-slate); font-size: 1rem; line-height: 1.6; }
+.pebble-explore { display: none; }
+.pebble-explore span { font-size: 1.25rem; transition: transform 180ms ease; }
+.pebble-explore:hover span { transform: translateY(4px); }
+.pebble-collection { padding: 2rem 0 4rem; }
+.collection-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.collection-heading .ml-eyebrow { margin: 0; }
+.collection-heading > p:last-child { color: var(--ml-slate); font-size: .8rem; }
+.pebble-viewer { display: grid; grid-template-columns: 1.2fr 1fr; border: 1px solid var(--ml-rule); }
+.pebble-stage { display: flex; flex-direction: column; min-width: 0; background: #e7e5df; padding: 1.4rem; }
+.photo-topline,.photo-bottomline { display: flex; justify-content: space-between; gap: 1rem; font: .625rem/1.4 var(--ml-mono); letter-spacing: .02em; color: #535c56; }
+.photo-bottomline { margin-top: 1rem; }
+.photo-bottomline > span:last-child { flex-shrink: 0; }
+.pebble-photo { display: grid; place-items: center; flex: 1; min-height: 330px; padding: 1.25rem .25rem; touch-action: pan-y; }
+.pebble-photo img { width: auto; height: auto; max-height: 375px; max-width: 100%; object-fit: contain; box-shadow: 0 8px 30px #20251d12; }
+.pebble-photo img.is-changing { animation: pebble-photo-in 240ms ease both; }
+.pebble-selection { padding: clamp(1.5rem,3vw,3rem); display: flex; flex-direction: column; min-width: 0; }
+.selection-overline { display: flex; justify-content: space-between; color: var(--ml-jade); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; }
+.pebble-selection h2 { margin: .75rem 0 1.5rem; font-size: clamp(2.3rem,3.25vw,3.4rem); line-height: 1.05; min-height: 2.1em; }
+.pebble-select-wrap label,.pebble-brief label { display: block; margin-bottom: .5rem; font-size: .75rem; font-weight: 600; }
+.pebble-page select { width: 100%; min-height: 48px; padding: .7rem 2rem .7rem .8rem; border: 1px solid var(--ml-rule); background: var(--ml-chalk); font-size: .875rem; color: var(--ml-iron); text-overflow: ellipsis; }
+.pebble-specs { margin-block: 1.5rem; }
+.spec-label { display: block; font-size: .625rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ml-slate); }
+.pebble-specs p { margin-top: .35rem; font-size: .8125rem; line-height: 1.6; }
+.spec-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.1rem; }
+.pebble-enquire { width: 100%; margin-top: auto; justify-content: space-between; }
+.pebble-carousel-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1.4rem; }
+.pebble-carousel-controls p { font-size: .7rem; color: var(--ml-slate); }
+.pebble-carousel-controls > div { display: flex; gap: .5rem; }
+.pebble-carousel-controls button { display: grid; place-items: center; width: 44px; height: 44px; background: transparent; border: 1px solid var(--ml-rule); font-size: 1.2rem; transition: background 160ms, color 160ms; }
+.pebble-carousel-controls button:hover { background: var(--ml-jade); border-color: var(--ml-jade); color: white; }
+.pebble-photo-note { margin-top: 1.1rem; color: var(--ml-slate); font-size: .65rem; line-height: 1.6; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.pebble-details { border-top: 1px solid var(--ml-rule); background: var(--ml-limestone); }
+.pebble-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+.pebble-details h2 { font-size: clamp(2.5rem,4vw,4rem); }
+.pebble-details-copy > p { font-size: .95rem; color: var(--ml-slate); max-width: 48ch; }
+.pebble-checklist { margin-top: 2rem; }
+.pebble-checklist > div { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; border-top: 1px solid var(--ml-rule); padding: 1rem 0; }
+.pebble-checklist dt { font-size: .75rem; font-weight: 600; }
+.pebble-checklist dd { margin: 0; font-size: .8125rem; color: var(--ml-slate); }
+.pebble-size-reference { margin-top: 3rem; border-block: 1px solid var(--ml-rule); }
+.pebble-size-reference summary { display: flex; justify-content: space-between; gap: 1rem; padding: 1.25rem 0; list-style: none; cursor: pointer; font-size: .875rem; font-weight: 600; }
+.pebble-size-reference summary::-webkit-details-marker { display: none; }
+.pebble-size-reference summary span { font-size: 1.3rem; font-weight: 400; line-height: 1; transition: transform 180ms; }
+.pebble-size-reference[open] summary span { transform: rotate(45deg); }
+.pebble-table-scroll { overflow-x: auto; padding-bottom: 1.5rem; }
+.pebble-size-reference table { width: 100%; border-collapse: collapse; text-align: left; font-size: .75rem; }
+.pebble-size-reference caption { text-align: left; padding-bottom: 1rem; color: var(--ml-slate); }
+.pebble-size-reference th,.pebble-size-reference td { border-top: 1px solid var(--ml-rule); padding: .8rem .75rem .8rem 0; vertical-align: top; }
+.pebble-size-reference thead th { color: var(--ml-slate); font-size: .625rem; text-transform: uppercase; letter-spacing: .08em; }
+.pebble-size-reference tbody th { font-weight: 500; width: 40%; }
+.pebble-contact { background: var(--ml-jade); color: var(--ml-chalk); padding-block: clamp(3.5rem,6vw,6rem); }
+.pebble-contact-inner { display: grid; grid-template-columns: 1.3fr .85fr; align-items: start; gap: clamp(2rem,8vw,8rem); }
+.pebble-contact .ml-eyebrow,.pebble-contact .spec-label { color: #d1e0d8; }
+.pebble-contact h2 { max-width: 16ch; font-size: clamp(2.5rem,4.2vw,4.2rem); }
+.pebble-contact-inner > div > p:last-child { margin-top: 1.5rem; max-width: 43ch; color: #d1e0d8; font-size: .875rem; }
+.pebble-brief { border-top: 1px solid #ffffff55; padding-top: 1rem; }
+.pebble-brief-name { font: 400 1.8rem/1.2 var(--ml-serif); margin-top: .5rem; }
+.pebble-brief label { margin-top: 1.5rem; }
+.pebble-brief .button { width: 100%; justify-content: space-between; margin-top: 1rem; }
+.pebble-mail-note { margin-top: .75rem; font-size: .625rem; color: #d1e0d8; }
+.pebble-direct-email { display: inline-block; margin-top: 1.5rem; font-size: .8rem; overflow-wrap: anywhere; }
+.pebble-direct-email:hover { color: white; }
+.pebble-footer { padding-block: 1.5rem; background: var(--ml-chalk); }
+.pebble-footer > div { display: flex; justify-content: space-between; gap: 1rem; font-size: .7rem; color: var(--ml-slate); }
+.pebble-noscript { padding-block: 1.5rem; }
+@keyframes pebble-photo-in { from { opacity: .3; transform: translateX(6px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pebble-intro-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: no-preference) { .pebble-intro-copy { animation: pebble-intro-in 450ms ease both; } .pebble-intro .pebble-lead { animation: pebble-intro-in 450ms 90ms ease both; } }
+@media (max-width: 960px) {
+  .pebble-page .desktop-nav { display: flex; gap: 1rem; }
+  .pebble-intro-inner { align-items: start; }
+  .pebble-explore { margin-top: .4rem; }
+  .pebble-viewer { grid-template-columns: 1fr 1fr; }
+  .pebble-stage { padding: 1rem; }
+  .photo-bottomline > span:last-child { display: none; }
+  .pebble-photo { min-height: 250px; }
+  .pebble-details-grid { gap: 2rem; }
+  .pebble-checklist > div { grid-template-columns: 1fr; gap: .4rem; }
+}
+@media (max-width: 640px) {
+  .pebble-page { font-size: 16px; }
+  .pebble-page .site-header__inner { min-height: 76px; gap: .5rem; }
+  .pebble-page .desktop-nav { display: none; }
+  .pebble-header-action { margin-left: auto; min-height: 44px; font-size: .75rem; padding: .6rem .85rem; }
+  .pebble-page .brand-lockup strong { font-size: 1.05rem; }
+  .pebble-page .brand-lockup em { font-size: .56rem; }
+  .pebble-page .brand-mark { gap: .45rem; }
+  .pebble-page .brand-mark img { width: 36px; height: 36px; }
+  .pebble-intro-inner { padding-block: 1.75rem 1.5rem; }
+  .pebble-intro-copy { display: block; }
+  .pebble-intro h1 { font-size: clamp(3.1rem,10.5vw,4.7rem); }
+  .pebble-intro .ml-kicker { font-size: .6rem; margin-bottom: 1.25rem; }
+  .pebble-lead { font-size: .875rem; margin-top: 1.1rem; }
+  .pebble-explore { display: none; }
+  .pebble-collection { padding-block: 1.4rem 2.5rem; }
+  .collection-heading { margin-bottom: .9rem; }
+  .collection-heading > p:last-child { display: none; }
+  .collection-heading .ml-eyebrow { font-size: .625rem; }
+  .pebble-viewer { grid-template-columns: 1fr; }
+  .pebble-stage { padding: .875rem; }
+  .pebble-photo { min-height: 220px; padding: 1rem 0; }
+  .pebble-photo img { max-height: 270px; }
+  .photo-topline,.photo-bottomline { font-size: .55rem; }
+  .photo-bottomline { margin-top: 0; }
+  .pebble-selection { padding: 1.5rem; }
+  .pebble-selection h2 { font-size: 2.5rem; min-height: 0; margin-bottom: 1.4rem; }
+  .pebble-page select { font-size: 16px; }
+  .pebble-photo-note { font-size: .7rem; }
+  .pebble-details-grid,.pebble-contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .pebble-details { padding-block: 2.75rem; }
+  .pebble-details h2,.pebble-contact h2 { font-size: 2.75rem; }
+  .pebble-size-reference table { min-width: 580px; }
+  .pebble-footer > div { flex-direction: column; gap: .75rem; }
+}
+@media (prefers-reduced-motion: reduce) { .pebble-page *, .pebble-page *::before, .pebble-page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
