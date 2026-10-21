@@ -6,7 +6,7 @@ inquiry behaviour, and the document shell remain a single source of truth.
 
 from html import escape
 import re
-from templates import rubber_granules
+from templates import rubber_granules, salt_gallery
 
 
 def _shell(g, title, description, path, content, schema, page_class):
@@ -294,6 +294,8 @@ def _product_evidence(product):
         stem, caption, width, height = '/assets/feldspar/feldspar-footage', 'Feldspar footage', 540, 960
     elif slug == 'quartz-sand-for-ceramics':
         stem, caption, width, height = '/assets/product-handling/material-handling', 'Material stockpiles', 540, 960
+    elif slug == 'copper-slag':
+        stem, caption, width, height = '/assets/copper-slag/copper-slag-footage', 'Copper slag footage', 540, 960
     else:
         return ''
     portrait_class = ' ml-product-video--portrait' if height > width else ''
@@ -316,6 +318,8 @@ def render_product_page(g, product):
     </div></section>'''
     if product['slug'] == 'rubber-granules':
         content += rubber_granules.render_colours()
+    elif product['slug'] == 'salt':
+        content += salt_gallery.render()
     applications = [(item, "") for item in product["applications"]]
     checks = ''.join(f'<li>{escape(point)}</li>' for point in product.get("booking_points", product["specs"]))
     evidence = _product_evidence(product)
@@ -352,8 +356,13 @@ def render_product_page(g, product):
     if product['slug'] == 'rubber-granules':
         schema[0]['image'] = [g['BASE_URL'] + image] + [g['BASE_URL'] + '/' + entry['src'] for entry in rubber_granules.catalogue()]
         schema[0]['color'] = [entry['name'] for entry in rubber_granules.catalogue()]
+    elif product['slug'] == 'salt':
+        schema[0]['image'] = [g['BASE_URL'] + image] + [g['BASE_URL'] + '/' + entry['src'] for entry in salt_gallery.catalogue()]
+        schema[0]['additionalProperty'] = [{'@type': 'PropertyValue', 'name': 'Iodine content', 'value': 'Customizable as per client requirements'}]
     html = _shell(g, product["seo_title"], product["meta_description"], path, content, schema, "page-product")
-    return rubber_granules.add_assets(g, html) if product['slug'] == 'rubber-granules' else html
+    if product['slug'] == 'rubber-granules': return rubber_granules.add_assets(g, html)
+    if product['slug'] == 'salt': return salt_gallery.add_assets(g, html)
+    return html
 
 
 def render_export_markets_page(g):

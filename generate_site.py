@@ -8,7 +8,7 @@ from html import escape
 from pathlib import Path
 from textwrap import dedent
 
-from templates import material_layout, material_pages, material_support, pebbles, colour_coated_sand, decorative_products, media_seo, rubber_granules
+from templates import material_layout, material_pages, material_support, pebbles, colour_coated_sand, decorative_products, media_seo, rubber_granules, salt_gallery
 from templates.material_media import enhance_images
 from templates.product_guides import PRODUCT_GUIDES, PRODUCT_GUIDE_SLUGS
 
@@ -440,7 +440,7 @@ PRODUCTS = [
         "theme": "salt",
         "eyebrow": "Chemical / Water Treatment / Utility / Food-Linked Supply",
         "seo_title": "Industrial Salt Supplier from India | Jade Waves Enterprise",
-        "meta_description": "Industrial and iodized salt from India for chemical, water treatment, and food-linked use. Review purity, iodine requirements, packing, and export handling.",
+        "meta_description": "Salt supplied from India with iodine content customizable to client requirements. Compare salt grades, samples, purity, grain size and export packing.",
         "hero_copy": "Industrial and iodized salt grades for water treatment, chemical processing, infrastructure, and food-linked demand, with flexible packing and dependable export flow.",
         "short_copy": "Iodized and non-iodized salt grades for water treatment, chemical, utility, and food-linked supply.",
         "summary_spec": "NaCl 99.00% / Moisture 0.2% max",
@@ -1533,6 +1533,8 @@ PAGE_LASTMOD = {
     "/products/grout-sand/": "2026-10-20",
     "/products/marble-chips/": "2026-10-20",
     "/products/bentonite/": "2026-10-20",
+    "/products/copper-slag/": "2026-10-21",
+    "/products/salt/": "2026-10-21",
 }
 
 
@@ -1981,6 +1983,8 @@ def product_sitemap_images(path: str) -> list[str]:
         images = [BASE_URL + PRODUCT_VISUALS[slug]['hero']]
         if slug == 'rubber-granules':
             images += [BASE_URL + '/' + entry['src'] for entry in rubber_granules.catalogue()]
+        elif slug == 'salt':
+            images += [BASE_URL + '/' + entry['src'] for entry in salt_gallery.catalogue()]
         return images
     else:
         return []

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "view-1",
+    "name": "Non-iodized salt",
+    "src": "assets/salt/salt-view-1.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Non-iodized salt sample in a blue bowl with its handwritten reference label"
+  },
+  {
+    "id": "view-2",
+    "name": "Raw salt",
+    "src": "assets/salt/salt-view-2.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Raw salt sample in a blue bowl with its handwritten reference label"
+  },
+  {
+    "id": "view-3",
+    "name": "Iodized salt",
+    "src": "assets/salt/salt-view-3.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Iodized salt sample in a blue bowl with its handwritten reference label"
+  },
+  {
+    "id": "view-4",
+    "name": "Oversized salt",
+    "src": "assets/salt/salt-view-4.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Oversized salt sample in a blue bowl with its handwritten reference label"
+  },
+  {
+    "id": "view-5",
+    "name": "Industrial salt",
+    "src": "assets/salt/salt-view-5.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Industrial salt sample in a blue bowl with its handwritten reference label"
+  }
+]

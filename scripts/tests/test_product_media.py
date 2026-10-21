@@ -19,10 +19,11 @@ class ProductMediaTests(unittest.TestCase):
                 self.assertNotIn('IMG_3390', html)
                 self.assertNotIn('/Users/', html)
 
-    def test_only_three_core_pages_have_their_assigned_video_beside_documents(self):
+    def test_only_four_core_pages_have_their_assigned_video_beside_documents(self):
         assigned = {'bentonite': 'bentonite/bentonite-clip',
                     'feldspar': 'feldspar/feldspar-footage',
-                    'quartz-sand-for-ceramics': 'product-handling/material-handling'}
+                    'quartz-sand-for-ceramics': 'product-handling/material-handling',
+                    'copper-slag': 'copper-slag/copper-slag-footage'}
         for product in site.PRODUCTS:
             with self.subTest(slug=product['slug']):
                 html = site.render_product_page(product)
@@ -52,7 +53,8 @@ class ProductMediaTests(unittest.TestCase):
                 if product['slug'] != 'bentonite':
                     self.assertEqual((video['width'], video['height']), ('540', '960'))
                     self.assertIn('ml-product-video--portrait', html)
-                self.assertEqual(site.page_lastmod(f"/products/{product['slug']}/"), '2026-10-20')
+                expected_date = '2026-10-21' if product['slug'] == 'copper-slag' else '2026-10-20'
+                self.assertEqual(site.page_lastmod(f"/products/{product['slug']}/"), expected_date)
 
     def test_img_3350_is_exclusive_to_quartz_across_all_product_pages(self):
         for product in site.CATALOGUE_PRODUCTS:
